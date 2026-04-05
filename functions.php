@@ -84,21 +84,22 @@ add_action('after_setup_theme', 'cbc_setup');
 function cbc__theme()
 {
 
-	wp_enqueue_script(
+	wp_set_script_translations('cbc', 'cbc');
+
+	wp_enqueue_script_module(
 		"cbc",
 		get_stylesheet_directory_uri() . "/dist/assets/index.js",
 		array(),
+		wp_get_theme()->get("Version"),
+		array()
+	);
+
+	wp_enqueue_style(
+		"cbc",
+		get_stylesheet_directory_uri() . '/dist/assets/index.css',
 		wp_get_theme()->get("Version"), //time()
 		true
 	);
-	// wp_set_script_translations('cbc', 'cbc');
-
-	// wp_enqueue_style(
-	// 	"cbc",
-	// 	get_stylesheet_directory_uri() . '/dist/assets/index.css',
-	// 	wp_get_theme()->get("Version"), //time()
-	// 	true
-	// );
 
 	wp_enqueue_style(
 		"cbc",

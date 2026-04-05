@@ -5,6 +5,120 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+    font-family: "CabinetGrotesk Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Exo 2", sans-serif;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Exo2-Variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Exo 2 Italic", sans-serif;
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Exo2-Italic-Variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "EBGaramond", serif;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/EBGaramond-Variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "EBGaramond Italic", serif;
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/EBGaramond-Italic-Variable.woff2") format("woff2");
+}
+
+@theme {
+    --font-cabinet: "CabinetGrotesk Variable", sans-serif;
+    --font-exo2: "Exo 2", sans-serif;
+    --font-exo2i: "Exo 2 Italic", sans-serif;
+    --font-garamond: "EBGaramond", serif;
+    --font-garamondi: "EBGaramond Italic", serif;
+    --color-bege-50: oklch(0.974 0.017 87.96);
+    --color-bege-100: oklch(0.952 0.033 91.65);
+    --color-bege-200: oklch(0.861 0.076 93.45);
+    --color-bege-300: oklch(0.767 0.067 94.04);
+    --color-bege-400: oklch(0.68 0.06 94.04);
+    --color-bege-500: oklch(0.586 0.051 94.04);
+    --color-bege-600: oklch(0.499 0.044 94.51);
+    --color-bege-700: oklch(0.405 0.035 94.66);
+    --color-bege-800: oklch(0.318 0.028 92.77);
+    --color-bege-900: oklch(0.222 0.019 93.36);
+    --color-bege-950: oklch(0.177 0.016 95.8);
+    --color-chocolate-50: oklch(0.966 0.015 48.61);
+    --color-chocolate-100: oklch(0.925 0.036 51.01);
+    --color-chocolate-200: oklch(0.85 0.08 56.53);
+    --color-chocolate-300: oklch(0.78 0.1341 62.55);
+    --color-chocolate-400: oklch(0.707 0.126 63.77);
+    --color-chocolate-500: oklch(0.627 0.112 63.48);
+    --color-chocolate-600: oklch(0.531 0.095 63.6);
+    --color-chocolate-700: oklch(0.435 0.078 63.67);
+    --color-chocolate-800: oklch(0.331 0.059 62.14);
+    --color-chocolate-900: oklch(0.235 0.042 62.04);
+    --color-chocolate-950: oklch(0.189 0.033 62.6);
+    --color-darkgreen-50: oklch(0.958 0.061 166.29);
+    --color-darkgreen-100: oklch(0.914 0.133 166.29);
+    --color-darkgreen-200: oklch(0.831 0.171 166.54);
+    --color-darkgreen-300: oklch(0.766 0.158 166.25);
+    --color-darkgreen-400: oklch(0.697 0.143 166.7);
+    --color-darkgreen-500: oklch(0.632 0.13 166.48);
+    --color-darkgreen-600: oklch(0.556 0.115 166.35);
+    --color-darkgreen-700: oklch(0.487 0.1 166.7);
+    --color-darkgreen-800: oklch(0.421 0.087 166.73);
+    --color-darkgreen-900: oklch(0.35 0.072 166.53);
+    --color-darkgreen-950: oklch(0.246 0.051 166.29);
+    --color-mate-50: oklch(0.962 0.032 149.51);
+    --color-mate-100: oklch(0.924 0.072 149.12);
+    --color-mate-200: oklch(0.84 0.112 148.72);
+    --color-mate-300: oklch(0.774 0.103 148.79);
+    --color-mate-400: oklch(0.698 0.094 148.44);
+    --color-mate-500: oklch(0.628 0.084 148.49);
+    --color-mate-600: oklch(0.561 0.075 148.56);
+    --color-mate-700: oklch(0.487 0.065 148.65);
+    --color-mate-800: oklch(0.374 0.049 148.45);
+    --color-mate-900: oklch(0.254 0.033 149.48);
+    --color-mate-950: oklch(0.194 0.026 148.73);
+    --color-tan-50: oklch(0.965 0.009 84.52);
+    --color-tan-100: oklch(0.94 0.018 92.64);
+    --color-tan-200: oklch(0.879 0.031 92.32);
+    --color-tan-300: oklch(0.81 0.028 93.13);
+    --color-tan-400: oklch(0.751 0.026 91.65);
+    --color-tan-500: oklch(0.647 0.023 91.65);
+    --color-tan-600: oklch(0.542 0.019 91.65);
+    --color-tan-700: oklch(0.449 0.016 93.14);
+    --color-tan-800: oklch(0.344 0.012 93.77);
+    --color-tan-900: oklch(0.24 0.008 84.57);
+    --color-tan-950: oklch(0.187 0.006 91.64);
+    --color-terracotta-50: oklch(0.958 0.017 21.9);
+    --color-terracotta-100: oklch(0.925 0.033 17.82);
+    --color-terracotta-200: oklch(0.845 0.076 20.81);
+    --color-terracotta-300: oklch(0.773 0.119 23.32);
+    --color-terracotta-400: oklch(0.692 0.176 26.32);
+    --color-terracotta-500: oklch(0.62 0.2139 30.26);
+    --color-terracotta-600: oklch(0.531 0.183 30.34);
+    --color-terracotta-700: oklch(0.431 0.149 30.24);
+    --color-terracotta-800: oklch(0.341 0.118 30.26);
+    --color-terracotta-900: oklch(0.243 0.084 30.7);
+    --color-terracotta-950: oklch(0.185 0.064 30.19);
+}
+
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
@@ -118,13 +232,25 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
-  html {
-    @apply font-sans;
+
+    html {
+        @apply font-sans;
     }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-gutter: stable;
 }

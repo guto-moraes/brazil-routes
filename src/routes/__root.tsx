@@ -1,33 +1,56 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 
 // Import Custom CSS
-import themeStyle from "../index.css?url";
+import appCss from '../index.css?url'
+import Footer from '@/layouts/footer';
+import Header from '@/layouts/header';
 
 export const Route = createRootRoute({ 
   head: () => ({
+    meta: [
+      {
+        charSet: 'utf-8',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+    ],
     links: [
-      { rel: 'stylesheet', href: themeStyle },
+      {
+        rel: 'stylesheet',
+        href: appCss,
+      },
     ],
   }),
-  component: RootLayout 
+  shellComponent: RootDocument,
 });
 
-// eslint-disable-next-line react-refresh/only-export-components
-function RootLayout() {
+function RootDocument() {
   return (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/sobre-o-projeto" className="[&.active]:font-bold">
-          Sobre o Projeto
-        </Link>{" "}
-      </div>
-      <hr />
-      <Outlet />
-      <TanStackRouterDevtools position="bottom-right" />
-    </>
+    <html lang="pt-br">
+      <head>
+        <HeadContent />
+      </head>
+      <body className="bg-tan-50">
+        <Header />
+        <Outlet />
+        <Footer />
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
+        <Scripts />
+      </body>
+    </html>
   );
 }
