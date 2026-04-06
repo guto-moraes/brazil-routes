@@ -1,3 +1,5 @@
+import { type LatLngTuple } from "leaflet";
+
 /**
  * Partners types
  */
@@ -35,4 +37,12 @@ export type SectionTransitionTypes = {
   description: string;
   image: string;
   services: string[];
+}
+
+
+export type MapTypes = {
+    title: string;
+    image: string;
+    description: string;
+    coordinates: LatLngTuple;
 }

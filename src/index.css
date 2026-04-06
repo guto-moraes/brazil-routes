@@ -14,6 +14,22 @@
 }
 
 @font-face {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Inter-Variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter Italic", sans-serif;
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/Inter-Italic-Variable.woff2") format("woff2");
+}
+
+@font-face {
     font-family: "Exo 2", sans-serif;
     font-style: normal;
     font-weight: 100 900;
@@ -47,6 +63,8 @@
 
 @theme {
     --font-cabinet: "CabinetGrotesk Variable", sans-serif;
+    --font-inter: "Inter", sans-serif;
+    --font-interi: "Inter Italic", sans-serif;
     --font-exo2: "Exo 2", sans-serif;
     --font-exo2i: "Exo 2 Italic", sans-serif;
     --font-garamond: "EBGaramond", serif;
@@ -91,7 +109,7 @@
     --color-mate-400: oklch(0.698 0.094 148.44);
     --color-mate-500: oklch(0.628 0.084 148.49);
     --color-mate-600: oklch(0.561 0.075 148.56);
-    --color-mate-700: oklch(0.487 0.065 148.65);
+    --color-mate-700: oklch(0.49 0.065 148.66);
     --color-mate-800: oklch(0.374 0.049 148.45);
     --color-mate-900: oklch(0.254 0.033 149.48);
     --color-mate-950: oklch(0.194 0.026 148.73);
@@ -415,4 +433,10 @@ html:active-view-transition-type(warp) {
   .other .char {
     margin-top: 0.5rem;
   }
+}
+
+
+/* Mapa */
+.leaflet-popup-tip-container {
+  bottom: -20px!important;
 }

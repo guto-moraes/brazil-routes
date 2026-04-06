@@ -53,9 +53,14 @@ const primaryLinks: LinkTypes[] = [
     transition: ['slide-left']
   },
   {
+    title: "Mapa Interativo",
+    url: "/mapa-interativo",
+    transition: ['slide-right']
+  },
+  {
     title: "Fale Conosco",
     url: "/fale-conosco",
-    transition: ['slide-right']
+    transition: ['slide-left']
   },
 ];
 

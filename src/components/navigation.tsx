@@ -132,8 +132,8 @@ const Navigation = ({
           isActiveMenu || isHome ? "shadow-none bg-mate-500" : className,
         )}
       >
-        <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-40">
-          <div className="nav-logo p-4 lg:px-0 border-none z-50">
+        <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-60">
+          <div className="nav-logo p-4 lg:px-0 border-none z-60">
             <a role="menu-item" href="/" title="Página Inicial">
               <img
                 src={isActiveMenu || isHome ? negatiLogo : logo}
@@ -181,7 +181,7 @@ const Navigation = ({
         </nav>
       </header>
 
-      <div className="nav-content w-full absolute top-0 left-0 z-30" aria-labelledby="menubutton" tabIndex={-1}>
+      <div className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-50" : "")} aria-labelledby="menubutton" tabIndex={-1}>
         <div className="nav-transition bg-[#a9c1b3] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
         <div className="nav-transition bg-[#94ae96] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
         <div className="nav-transition bg-[#5a7462] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
