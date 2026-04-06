@@ -10,11 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
+import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
   path: '/sobre-o-projeto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaInterativoRoute = MapaInterativoRouteImport.update({
+  id: '/mapa-interativo',
+  path: '/mapa-interativo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,31 +29,53 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlmanaqueDigitalIndexRoute = AlmanaqueDigitalIndexRouteImport.update({
+  id: '/almanaque-digital/',
+  path: '/almanaque-digital/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sobre-o-projeto'
+  fullPaths:
+    | '/'
+    | '/mapa-interativo'
+    | '/sobre-o-projeto'
+    | '/almanaque-digital/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sobre-o-projeto'
-  id: '__root__' | '/' | '/sobre-o-projeto'
+  to: '/' | '/mapa-interativo' | '/sobre-o-projeto' | '/almanaque-digital'
+  id:
+    | '__root__'
+    | '/'
+    | '/mapa-interativo'
+    | '/sobre-o-projeto'
+    | '/almanaque-digital/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MapaInterativoRoute: typeof MapaInterativoRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
+  AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +87,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreOProjetoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mapa-interativo': {
+      id: '/mapa-interativo'
+      path: '/mapa-interativo'
+      fullPath: '/mapa-interativo'
+      preLoaderRoute: typeof MapaInterativoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,12 +101,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/': {
+      id: '/almanaque-digital/'
+      path: '/almanaque-digital'
+      fullPath: '/almanaque-digital/'
+      preLoaderRoute: typeof AlmanaqueDigitalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MapaInterativoRoute: MapaInterativoRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
+  AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

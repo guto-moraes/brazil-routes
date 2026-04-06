@@ -1,26 +1,28 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import { createRootRoute, useRouterState } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import Navigation from "@/components/navigation";
+import Footer from "@/layouts/footer";
 
 // Import Custom CSS
-import appCss from '../index.css?url'
-import Footer from '@/layouts/footer';
-import Header from '@/layouts/header';
+import appCss from "../index.css?url";
+import Partners from "@/layouts/partials/partners";
 
-export const Route = createRootRoute({ 
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       {
-        charSet: 'utf-8',
+        charSet: "utf-8",
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
       },
     ],
+    title: "Caminhos do Brasil Central",
     links: [
       {
-        rel: 'stylesheet',
+        rel: "stylesheet",
         href: appCss,
       },
     ],
@@ -28,29 +30,30 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
 });
 
-function RootDocument() {
+function RootDocument({ children }: { children: React.ReactNode }) {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const isHome = pathname === "/"
+
   return (
-    <html lang="pt-br">
-      <head>
-        <HeadContent />
-      </head>
-      <body className="bg-tan-50">
-        <Header />
-        <Outlet />
-        <Footer />
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
-        <Scripts />
-      </body>
-    </html>
+    <>
+      <Navigation logo="/images/logo.webp" logoWidth="w-36 sm:w-48 md:w-52" isHome={isHome} className={isHome ? "bg-mate-700" : "shadow-lg bg-white py-0" } />
+      {children}
+      <Partners />
+      <Footer />
+      <TanStackDevtools
+        config={{
+          position: "bottom-right",
+        }}
+        plugins={[
+          {
+            name: "Tanstack Router",
+            render: <TanStackRouterDevtoolsPanel />,
+          },
+        ]}
+      />
+    </>
   );
 }

@@ -6,6 +6,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base:"./",
   build: {
     outDir: "dist", // Changes base output directory from 'dist' to 'build'
   },

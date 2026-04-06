@@ -1,7 +1,14 @@
-import Main from "@/layouts/main";
 import { createFileRoute } from "@tanstack/react-router";
+import Main from "@/layouts/main";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "Página Inicial | Caminhos do Brasil Central",
+      }
+    ]
+  }),
   component: Index,
 });
 

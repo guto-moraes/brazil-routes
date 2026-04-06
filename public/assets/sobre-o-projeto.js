@@ -1,0 +1,1 @@
+import{l as e}from"./index.js";import{t as r}from"./main.js";var t=e();function i(){return(0,t.jsx)(r,{className:"flex justify-center items-center",children:(0,t.jsx)("h1",{className:"text-8xl text-tan-700 text-center font-cabinet font-black",children:"Sobre o Projeto"})})}export{i as component};
