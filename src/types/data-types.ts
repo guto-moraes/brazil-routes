@@ -65,6 +65,6 @@ export type SectionsPinRotateTypes = {
 export type AlmanaqueChapterTypes = {
   chapter: string;
   chapterTitle: string;
-  description: string;
+  synopsis: string;
   image: string;
 }
