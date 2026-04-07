@@ -121,7 +121,7 @@ const ScrollingAnimatedCards = () => {
             if (progress >= 0.7 && !isFlipAnimationCompleted) {
               gsap.to(".sticky-card", {
                 rotationY: 180,
-                duration: 0.75,
+                duration: 0.5,
                 ease: "power3.inOut",
                 stagger: 0.1,
               });
@@ -129,7 +129,7 @@ const ScrollingAnimatedCards = () => {
               gsap.to(["#sticky-card-1", "#sticky-card-3"], {
                 y: 30,
                 rotationZ: (i) => [-15, 15][i],
-                duration: 0.75,
+                duration: 0.5,
                 ease: "power3.inOut",
               });
 
@@ -137,7 +137,7 @@ const ScrollingAnimatedCards = () => {
             } else if (progress < 0.7 && isFlipAnimationCompleted) {
               gsap.to(".sticky-card", {
                 rotationY: 0,
-                duration: 0.75,
+                duration: 0.5,
                 ease: "power3.inOut",
                 stagger: -0.1,
               });
@@ -145,7 +145,7 @@ const ScrollingAnimatedCards = () => {
               gsap.to(["#sticky-card-1", "#sticky-card-3"], {
                 y: 0,
                 rotationZ: 0,
-                duration: 0.75,
+                duration: 0.5,
                 ease: "power3.inOut",
               });
 
@@ -166,6 +166,8 @@ const ScrollingAnimatedCards = () => {
         initAnimations();
       }, 250);
     });
+
+    ScrollTrigger.refresh();
   });
 
   return (
@@ -177,7 +179,9 @@ const ScrollingAnimatedCards = () => {
             "items-center p-8 max-lg:flex-col max-lg:h-max max-lg:py-16 max-lg:px-8",
           )}
         >
-          <h2 className="max-lg:text-5xl text-7xl text-center text-[#673c43] font-cabinet font-black mb-16">Pessoas que construíram a história</h2>
+          <h2 className="max-lg:text-5xl text-7xl text-center text-[#673c43] font-cabinet font-black mb-16">
+            Pessoas que construíram a história
+          </h2>
           <div
             className={cn(
               "sticky-card-header w-full max-w-5xl mx-auto absolute top-[28%] left-1/2 -translate-1/2",
@@ -190,7 +194,8 @@ const ScrollingAnimatedCards = () => {
                 "relative translate-y-10 max-lg:opacity-100 opacity-0 lg:mt-8",
               )}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus maxime natus eius aut doloremque sunt debitis beatae obcaecati.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus maxime natus eius aut doloremque sunt
+              debitis beatae obcaecati.
             </p>
           </div>
           <div

@@ -13,14 +13,21 @@ import type { MapTypes } from "@/types/data-types";
 
 const ChangePositionView = ({ center }: { center: LatLngTuple }) => {
   const map = useMap();
+
   useEffect(() => {
-    map.setView(center); // Or map.flyTo(center, zoom);
-  }, [center, map]); // Dependencies for useEffect
+    const observer = new ResizeObserver(() => {
+      map.invalidateSize(); // Force map to recalculate size on container change
+    });
+    map.flyTo(center); // Or map.flyTo(center, zoom);
+
+    observer.observe(map.getContainer());
+    return () => observer.disconnect();
+  }, [map, center]); // Dependencies for useEffect
   return null;
 };
 
-const Map = ({ markers, show }: { markers: MapTypes[], show: boolean }) => {
-  const [location, setLocation] = useState<LatLngTuple>([-15.006,-52.108]);
+const Map = ({ markers, show, setShow }: { markers: MapTypes[]; show: boolean; setShow: () => void }) => {
+  const [location, setLocation] = useState<LatLngTuple>([-15.006, -52.108]);
 
   const LeafIcon = icon({
     iconUrl: mapIcon,
@@ -29,72 +36,67 @@ const Map = ({ markers, show }: { markers: MapTypes[], show: boolean }) => {
     popupAnchor: [3, -50],
   });
 
-  /** Event hover to show popup */
-  // const handleOnMouse = useMemo(
-  //     () => ({
-  //         mouseover(e: { target: { openPopup: () => void } }) {
-  //             e.target.openPopup();
-  //         },
-  //         mouseout(e: { target: { closePopup: () => void } }) {
-  //             e.target.closePopup();
-  //         }
-  //     }),
-  //     []
-  // );
-
   return (
-    <div
-      className={cn(
-        "rounded-lg xl:h-[calc(100svh-104px)] z-40 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
-        show ? "block" : "hidden",
-      )}
+    <MapContainer
+      center={location}
+      zoom={9}
+      zoomControl={false}
+      scrollWheelZoom={false}
+      dragging={true}
+      className="h-full w-full z-40"
     >
-      <MapContainer
-        center={location}
-        zoom={9}
-        zoomControl={false}
-        scrollWheelZoom={false}
-        dragging={true}
-        className="h-full w-full z-40"
-      >
-        <ZoomControl position="topright" />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contribuidores'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          className="[&>.leaflet-attribution-flag]:hidden!"
-        />
+      <ZoomControl position="topright" />
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contribuidores'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        className="[&>.leaflet-attribution-flag]:hidden!"
+      />
 
-        <MarkerClusterGroup>
-          {markers.map((marker: MapTypes, index: number) => {
-            const coordinates = marker.coordinates;
+      <MarkerClusterGroup>
+        {markers.map((marker: MapTypes, index: number) => {
+          const coordinates = marker.coordinates;
 
-            return (
-              <Marker
-                key={index}
-                position={coordinates}
-                icon={LeafIcon}
-                eventHandlers={{
-                  mouseover: () => setLocation(coordinates),
-                }}
-              >
-                <Popup className="w-[320px]! relative">
-                  <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">Fonte: {marker.imageCopy}</span>
-                  <img src={marker.image} className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover" alt={marker.title} title={marker.title} />
-                  <h3
-                    className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
-                    {marker.title}
-                  </h3>
-                  <p className="text-sm text-tan-900 text-justify hyphens-auto px-4">
-                      {marker.description}
-                  </p>
-                </Popup>
-              </Marker>
-            );
-          })}
-        </MarkerClusterGroup>
-        <ChangePositionView center={location} />
-      </MapContainer>
-    </div>
+          return (
+            <Marker
+              key={index}
+              position={coordinates}
+              icon={LeafIcon}
+              eventHandlers={{
+                mouseover: () => setLocation(coordinates),
+              }}
+            >
+              <Popup className="w-[320px]! relative">
+                <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
+                  Fonte: {marker.imageCopy}
+                </span>
+                <img
+                  src={marker.image}
+                  className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover"
+                  alt={marker.title}
+                  title={marker.title}
+                />
+                <h3 className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
+                  {marker.title}
+                </h3>
+                <p className="text-sm text-tan-900 text-justify hyphens-auto px-4">{marker.description}</p>
+                <div className="flex justify-center items-center gap-6 -mt-6 mb-4">
+                  <button
+                    className={cn(
+                      "rounded-2xl bg-white hover:bg-darkgreen-600 border border-darkgreen-500 hover:border-darkgreen-600",
+                      "text-darkgreen-500 hover:text-white text-xs font-semibold uppercase py-2 px-4  transition-colors duration-300 cursor-pointer",
+                    )}
+                    onClick={setShow}
+                  >
+                    {show ? "Fechar" : "Mais Informações"}
+                  </button>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
+      </MarkerClusterGroup>
+      <ChangePositionView center={location} />
+    </MapContainer>
   );
 };
 

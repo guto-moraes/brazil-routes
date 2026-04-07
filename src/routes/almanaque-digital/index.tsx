@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import Title from "@/components/title";
 import ScrollingAnimatedCards from "@/components/scrolling-animate-cards";
+import SectionAlmanaqueChapters from "@/components/section-almanaque-chapters";
 
 export const Route = createFileRoute('/almanaque-digital/')({
   head: () => ({
@@ -97,6 +98,8 @@ function Almanaque() {
             </div>
           </div>
         </section>
+
+        <SectionAlmanaqueChapters />
 
         <ScrollingAnimatedCards />
   </>
