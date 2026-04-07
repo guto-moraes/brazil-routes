@@ -30,8 +30,8 @@ function InteractiveMap() {
   return (
     <>
     <div className="h-full w-full grid grid-cols-2">
-      <div></div>
       <Map markers={map} show={true} />
+      <div></div>
     </div>
     </>
   );

@@ -20,11 +20,11 @@ const ChangePositionView = ({ center }: { center: LatLngTuple }) => {
 };
 
 const Map = ({ markers, show }: { markers: MapTypes[], show: boolean }) => {
-  const [location, setLocation] = useState<LatLngTuple>([-15.2287428,-52.1229742]);
+  const [location, setLocation] = useState<LatLngTuple>([-15.006,-52.108]);
 
   const LeafIcon = icon({
     iconUrl: mapIcon,
-    iconSize: [33, 50],
+    iconSize: [40, 53.2],
     iconAnchor: [13, 49],
     popupAnchor: [3, -50],
   });
@@ -45,18 +45,17 @@ const Map = ({ markers, show }: { markers: MapTypes[], show: boolean }) => {
   return (
     <div
       className={cn(
-        "rounded-lg [&>.leaflet-container]:rounded-lg z-40",
-        "[&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
+        "rounded-lg xl:h-[calc(100svh-104px)] z-40 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
         show ? "block" : "hidden",
       )}
     >
       <MapContainer
         center={location}
-        zoom={10}
+        zoom={9}
         zoomControl={false}
         scrollWheelZoom={false}
         dragging={true}
-        className="rounded-lg xl:h-250 w-full z-40"
+        className="h-full w-full z-40"
       >
         <ZoomControl position="topright" />
         <TileLayer
@@ -78,13 +77,14 @@ const Map = ({ markers, show }: { markers: MapTypes[], show: boolean }) => {
                   mouseover: () => setLocation(coordinates),
                 }}
               >
-                <Popup className="flex! flex-col!">
-                  <img src={marker.image} className="rounded-md w-full object-cover" alt={marker.title} title={marker.title} />
+                <Popup className="w-[320px]! relative">
+                  <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">Fonte: {marker.imageCopy}</span>
+                  <img src={marker.image} className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover" alt={marker.title} title={marker.title} />
                   <h3
-                    className="text-lg text-chocolate-700 font-inter font-bold uppercase leading-6 mt-6">
+                    className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
                     {marker.title}
                   </h3>
-                  <p className="text-sm text-tan-900 text-justify hyphens-auto">
+                  <p className="text-sm text-tan-900 text-justify hyphens-auto px-4">
                       {marker.description}
                   </p>
                 </Popup>

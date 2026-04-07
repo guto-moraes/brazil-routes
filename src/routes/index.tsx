@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Main from "@/layouts/main";
+import SectionPinRotate from "@/components/section-pin-rotate";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,8 +14,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <Main className="flex justify-center items-center">
-      <h1 className="text-8xl text-tan-700 font-cabinet font-black">Página Inicial</h1>
-    </Main>
+    <>
+      <SectionPinRotate />
+    </>
   );
 }

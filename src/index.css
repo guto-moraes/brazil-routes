@@ -437,6 +437,46 @@ html:active-view-transition-type(warp) {
 
 
 /* Mapa */
+/* Example: Dark Mode Filter */
+.leaflet-layer {
+  filter: grayscale(80%);
+}
+
+.leaflet-popup-content-wrapper{
+  padding: 0!important;
+}
+
+.leaflet-popup-content {
+  display: flex!important;
+  flex-direction: column!important;
+  gap: 1rem!important;
+  max-height: max-content!important;
+}
+
+.leaflet-popup-content p {
+  width: 320px!important;
+  margin-block-start: 0!important;
+}
+
+.leaflet-popup-content {
+  margin: 0!important;
+}
+
 .leaflet-popup-tip-container {
   bottom: -20px!important;
+}
+
+.leaflet-popup-close-button {
+  size: 1rem;
+  top: 0.25rem!important;
+  right: 0.25rem!important;
+  background-color: rgba(0,0,0,0.5)!important;
+  color: var(--color-white)!important;
+  border-radius: 100%;
+}
+
+.leaflet-popup-close-button span {
+  position: absolute;
+  top: -0.05rem!important;
+  right: 0.35rem;
 }

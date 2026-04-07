@@ -1,7 +1,7 @@
 import { type LatLngTuple } from "leaflet";
 
 /**
- * Partners types
+ * Partners Types
  */
 export type PartnersTypes = {
   name: string;
@@ -11,7 +11,7 @@ export type PartnersTypes = {
 };
 
 /**
- * Slider types
+ * Slider Types
  */
 export type SliderTypes = {
   title: string;
@@ -20,7 +20,7 @@ export type SliderTypes = {
 };
 
 /**
- * Slider types
+ * Slider Types
  */
 export type LinkTypes = {
   title: string;
@@ -30,7 +30,7 @@ export type LinkTypes = {
 
 
 /**
- * Section transition types
+ * Section Transition Types
  */
 export type SectionTransitionTypes = {
   title: string;
@@ -45,4 +45,26 @@ export type MapTypes = {
     image: string;
     description: string;
     coordinates: LatLngTuple;
+    imageCopy: string;
+}
+
+/**
+ * Section Pin Rotate Types
+ */
+export type SectionsPinRotateTypes = {
+    tag: string;
+    title: string;
+    description: string;
+    link: string;
+    image: string;
+}
+
+/**
+ * Alamanque Chapter Types
+ */
+export type AlmanaqueChapterTypes = {
+  chapter: string;
+  chapterTitle: string;
+  description: string;
+  image: string;
 }

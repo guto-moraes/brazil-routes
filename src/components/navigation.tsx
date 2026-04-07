@@ -132,8 +132,8 @@ const Navigation = ({
           isActiveMenu || isHome ? "shadow-none bg-mate-500" : className,
         )}
       >
-        <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-60">
-          <div className="nav-logo p-4 lg:px-0 border-none z-60">
+        <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-70">
+          <div className="nav-logo p-4 lg:px-0 border-none z-70">
             <a role="menu-item" href="/" title="Página Inicial">
               <img
                 src={isActiveMenu || isHome ? negatiLogo : logo}
@@ -144,7 +144,7 @@ const Navigation = ({
             </a>
           </div>
           <button
-            className="nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5"
+            className="nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-70"
             id="menubutton"
             aria-haspopup="true"
             aria-controls="menu"
