@@ -67,7 +67,7 @@ const primaryLinks: LinkTypes[] = [
 const secondaryLinks: LinkTypes[] = [
   {
     title: "Apoio Financeiro",
-    url: "https://caminhosdobrasilcentral.com/apoio-financeiro",
+    url: "/apoio-financeiro",
     transition: ['slide-left']
   },
   {

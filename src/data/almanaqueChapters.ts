@@ -31,7 +31,7 @@ export const alamanaqueChapters: AlmanaqueChapterTypes[] = [
     },
     {
         chapter: "Capítulo 05",
-        chapterTitle: "Memória e Patrimônio: os rastros de Expedição",
+        chapterTitle: "Memória e Patrimônio: os rastros",
         synopsis: "Quais foram os legados históricos deixados pela ERX e pela FBC no leste de Mato Grosso? Quais marcas foram inscritas nas paisagens urbanas, na memória coletiva e no próprio pefil de ocupação do território? Afinal, qual a importância histórica da ERX e da FBC para o atual Vale do Araguaia?",
         image: image_two,
     }

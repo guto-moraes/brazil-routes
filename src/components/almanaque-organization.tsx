@@ -94,11 +94,17 @@ const AlmanaqueOrganization = () => {
     ScrollTrigger.create({
         trigger: ".main-section",
         start: "bottom bottom",
-        end: 3500,
+        end: 3000,
         endTrigger: ".other",
         pin: true,
         scrub: 1,
-        onUpdate: () => changeSlideDirection(1),
+        onUpdate: () => {
+          if(currentIndex < slides.length){
+            changeSlideDirection(1)
+          } else {
+            changeSlideDirection(-1)
+          }
+        }
     })
 
     ScrollTrigger.refresh();

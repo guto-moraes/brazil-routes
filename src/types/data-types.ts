@@ -68,3 +68,13 @@ export type AlmanaqueChapterTypes = {
   synopsis: string;
   image: string;
 }
+
+/**
+ * History People Types
+ */
+export type PeopleHistoryTypes = {
+    name: string;
+    image: string;
+    tribute: boolean;
+    color: string;
+};

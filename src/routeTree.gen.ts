@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
 import { Route as CreditosRouteImport } from './routes/creditos'
+import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 
@@ -30,6 +31,11 @@ const CreditosRoute = CreditosRouteImport.update({
   path: '/creditos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApoioFinanceiroRoute = ApoioFinanceiroRouteImport.update({
+  id: '/apoio-financeiro',
+  path: '/apoio-financeiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const AlmanaqueDigitalIndexRoute = AlmanaqueDigitalIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -67,6 +76,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/apoio-financeiro'
     | '/creditos'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
@@ -74,6 +84,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/apoio-financeiro'
     | '/creditos'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
@@ -81,6 +92,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/apoio-financeiro'
     | '/creditos'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
   CreditosRoute: typeof CreditosRoute
   MapaInterativoRoute: typeof MapaInterativoRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apoio-financeiro': {
+      id: '/apoio-financeiro'
+      path: '/apoio-financeiro'
+      fullPath: '/apoio-financeiro'
+      preLoaderRoute: typeof ApoioFinanceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -137,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApoioFinanceiroRoute: ApoioFinanceiroRoute,
   CreditosRoute: CreditosRoute,
   MapaInterativoRoute: MapaInterativoRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,

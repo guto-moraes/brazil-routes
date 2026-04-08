@@ -144,7 +144,7 @@ const Navigation = ({
             </a>
           </div>
           <button
-            className="nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-70"
+            className="nav-toggler p-4 border-0 group flex items-center gap-x-1.5 z-70 cursor-pointer pointer-events-auto"
             id="menubutton"
             aria-haspopup="true"
             aria-controls="menu"
@@ -152,9 +152,9 @@ const Navigation = ({
             onClick={handleActiveMenu}
           >
             {!isActiveMenu && screenWidth && screenWidth >= 640 && (
-              <span className={cn("uppercase", isActiveMenu || isHome ? "text-white" : menuTextColor)}>Menu</span>
+              <span className={cn("uppercase pointer-events-none", isActiveMenu || isHome ? "text-white" : menuTextColor)}>Menu</span>
             )}
-            <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden">
+            <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden pointer-events-none">
               <span
                 className={cn(
                   "bg-white w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
