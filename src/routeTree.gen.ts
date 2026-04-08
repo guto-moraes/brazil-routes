@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
+import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,11 @@ const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
 const MapaInterativoRoute = MapaInterativoRouteImport.update({
   id: '/mapa-interativo',
   path: '/mapa-interativo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
+  id: '/linha-do-tempo',
+  path: '/linha-do-tempo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreditosRoute = CreditosRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/linha-do-tempo'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
     | '/almanaque-digital/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/linha-do-tempo'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
     | '/almanaque-digital'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/linha-do-tempo'
     | '/mapa-interativo'
     | '/sobre-o-projeto'
     | '/almanaque-digital/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
   CreditosRoute: typeof CreditosRoute
+  LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   MapaInterativoRoute: typeof MapaInterativoRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/mapa-interativo'
       fullPath: '/mapa-interativo'
       preLoaderRoute: typeof MapaInterativoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/linha-do-tempo': {
+      id: '/linha-do-tempo'
+      path: '/linha-do-tempo'
+      fullPath: '/linha-do-tempo'
+      preLoaderRoute: typeof LinhaDoTempoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creditos': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApoioFinanceiroRoute: ApoioFinanceiroRoute,
   CreditosRoute: CreditosRoute,
+  LinhaDoTempoRoute: LinhaDoTempoRoute,
   MapaInterativoRoute: MapaInterativoRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,

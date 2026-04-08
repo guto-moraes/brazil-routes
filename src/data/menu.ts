@@ -53,14 +53,19 @@ const primaryLinks: LinkTypes[] = [
     transition: ['slide-left']
   },
   {
+    title: "Linha do Tempo",
+    url: "/linha-do-tempo",
+    transition: ['slide-right']
+  },
+  {
     title: "Mapa Interativo",
     url: "/mapa-interativo",
-    transition: ['slide-right']
+    transition: ['slide-left']
   },
   {
     title: "Fale Conosco",
     url: "/fale-conosco",
-    transition: ['slide-left']
+    transition: ['slide-right']
   },
 ];
 

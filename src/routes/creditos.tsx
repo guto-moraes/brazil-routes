@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import AlmanaqueOrganization from "@/components/almanaque-organization";
 
 export const Route = createFileRoute("/creditos")({
-  component: RouteComponent,
+  component: Credits,
 });
 
-function RouteComponent() {
+function Credits() {
   return <AlmanaqueOrganization />;
 }
