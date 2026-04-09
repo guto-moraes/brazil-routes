@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,6 +12,9 @@ import ButtonLinkWithIcon from "./button-link-with-icon";
 gsap.registerPlugin(ScrollTrigger);
 
 const PhotosScrollingSection = () => {
+  const refContainer = useRef<HTMLElement>(null);
+
+
   useGSAP(() => {
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -97,11 +101,11 @@ const PhotosScrollingSection = () => {
     );
 
     ScrollTrigger.refresh();
-  });
+  }, { scope: refContainer });
 
   return (
     <>
-      <section className="photos-container relative bg-tan-900 h-svh w-full overflow-hidden">
+      <section className="photos-container relative bg-tan-900 h-svh w-full overflow-hidden" ref={refContainer}>
         <div className="intro-text absolute inset-0 flex flex-col items-center justify-center gap-y-8">
           <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-bege-200 text-center font-black italic uppercase leading-none">
             História e Memória

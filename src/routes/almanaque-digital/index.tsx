@@ -1,13 +1,13 @@
 "use client";
 
 import { createFileRoute } from "@tanstack/react-router";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
+// import { gsap } from "gsap";
+// import { useGSAP } from "@gsap/react";
 // import Main from "@/layouts/main";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import Title from "@/components/title";
 import ScrollingAnimatedCards from "@/components/scrolling-animate-cards";
-import SectionAlmanaqueChapters from "@/components/section-almanaque-chapters";
+import PhotosScrollingSection from "@/components/photos-scrolling-section";
 
 export const Route = createFileRoute('/almanaque-digital/')({
   head: () => ({
@@ -32,36 +32,36 @@ export const Route = createFileRoute('/almanaque-digital/')({
 })
 
 function Almanaque() {
- useGSAP(() => {
-    const cardsWrappers = gsap.utils.toArray(".chapters-card-wrapper");
-    const cards = gsap.utils.toArray(".chapter-card");
+//  useGSAP(() => {
+//     const cardsWrappers = gsap.utils.toArray(".chapters-card-wrapper");
+//     const cards = gsap.utils.toArray(".chapter-card");
 
-    cardsWrappers.forEach((wrapper, i: number) => {
-      const card = cards[i];
-      let scale = 1,
-        rotation = 0;
-      if (i !== cards.length - 1) {
-        scale = 0.9 + 0.025 * i;
-        rotation = -10;
-      }
-      gsap.to(card as HTMLElement, {
-        scale: scale,
-        rotationX: rotation,
-        transformOrigin: "top center",
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrapper as HTMLElement,
-          start: "top " + (60 + 10 * i),
-          end: "bottom 800",
-          endTrigger: ".chapters-cards-block",
-          scrub: true,
-          pin: wrapper as HTMLElement,
-          pinSpacing: false,
-          id: String(i + 1),
-        },
-      });
-    });
-  });
+//     cardsWrappers.forEach((wrapper, i: number) => {
+//       const card = cards[i];
+//       let scale = 1,
+//         rotation = 0;
+//       if (i !== cards.length - 1) {
+//         scale = 0.9 + 0.025 * i;
+//         rotation = -10;
+//       }
+//       gsap.to(card as HTMLElement, {
+//         scale: scale,
+//         rotationX: rotation,
+//         transformOrigin: "top center",
+//         ease: "none",
+//         scrollTrigger: {
+//           trigger: wrapper as HTMLElement,
+//           start: "top " + (60 + 10 * i),
+//           end: "bottom 800",
+//           endTrigger: ".chapters-cards-block",
+//           scrub: true,
+//           pin: wrapper as HTMLElement,
+//           pinSpacing: false,
+//           id: String(i + 1),
+//         },
+//       });
+//     });
+//   });
 
   return <>
           <Title className="w-full max-w-7xl mx-auto" text="Almanaque Digital" />
@@ -99,8 +99,8 @@ function Almanaque() {
           </div>
         </section>
 
-        <SectionAlmanaqueChapters />
-
         <ScrollingAnimatedCards />
+        <section className="bg-bone-500 h-svh w-full"></section>
+        <PhotosScrollingSection />
   </>
 }

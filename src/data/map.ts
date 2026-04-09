@@ -1,5 +1,5 @@
 import type { MapTypes } from "@/types/data-types";
-import chaple from "@/assets/images/expedicao/capela-nossa-senhora-auxiliadora__nova-xavantinawebp.webp"
+import chaple from "@/assets/images/expedicao/capela-nossa-senhora-auxiliadora__nova-xavantina.webp"
 import river from "@/assets/images/expedicao/chegada-no-rio-das-mortes.webp";
 import airport from "@/assets/images/expedicao/aeroporto-de-aragarcas.webp";
 import vanique_house from "@/assets/images/expedicao/casa-cel-vanique.webp";

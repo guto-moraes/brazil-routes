@@ -31,14 +31,14 @@ const Navigation = ({
     if (isActiveMenu) {
       setTimeout(() => {
         setIsActiveMenu(false);
-      }, 1000);
+      }, 0);
     }
     setIsActiveMenu(true);
   };
 
   const handleClickLink = () => {
-    setIsActiveMenu(false);
     ScrollTrigger.refresh();
+    setIsActiveMenu(false);
   };
 
   const menuTextColor = menuIconColor.split("-")[2]
@@ -251,6 +251,7 @@ const Navigation = ({
                     title={title}
                     onClick={handleClickLink}
                     viewTransition={{ types: transition }}
+                    preloadDelay={400}
                   >
                     {title}
                   </Link>

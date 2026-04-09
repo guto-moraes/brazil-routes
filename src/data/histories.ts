@@ -48,6 +48,6 @@ export const peopleHistory: PeopleHistoryTypes[] = [
         name: "Pioneiro",
         tribute: false,
         image: pioneiro,
-        color: "bg-mate-800",
+        color: "bg-bone-500",
     }
 ]

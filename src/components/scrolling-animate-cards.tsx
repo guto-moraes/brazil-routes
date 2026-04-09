@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,6 +10,8 @@ import { cn } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollingAnimatedCards = () => {
+  const containerScope = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -169,11 +172,11 @@ const ScrollingAnimatedCards = () => {
     });
 
     ScrollTrigger.refresh();
-  });
+  }, { scope: containerScope });
 
   return (
     <>
-      <div className="animation-block">
+      <div ref={containerScope}>
         <section
           className={cn(
             "sticky-cards bg-bege-100 relative h-svh w-full flex flex-col justify-center",
