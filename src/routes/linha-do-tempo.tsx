@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MoveDown } from "lucide-react";
-import TextReveal from "@/components/text-reveal";
 import TimelineGroup from "@/components/timeline";
+// import TextSplit from "@/components/text-split";
+import TextReveal from "@/components/text-reveal";
 export const Route = createFileRoute("/linha-do-tempo")({
   component: Timeline,
 });
@@ -20,13 +21,15 @@ function Timeline() {
           </h1>
           <div className="absolute bottom-2.5 right-0 w-full xl:max-w-120">
             <TextReveal
-              id="resume"
-              onTrigger=".hero-title"
+              onTrigger=".hero"
               className="text-lg xl:text-3xl text-right text-balance"
-              initialTextColor="text-tan-400"
-              endTextColor="text-terracotta-950"
+              initialTextColor="#948f80"
+              endTextColor="#290402"
               text="Breve linha do tempo da colonização não indígena na atual região do Vale do Araguaia (1943-1967)"
             />
+            {/* <TextSplit className="text-lg xl:text-3xl text-terracotta-950 text-right text-balance">
+                Breve linha do tempo da colonização não indígena na atual região do Vale do Araguaia (1943-1967)
+            </TextSplit> */}
           </div>
         </div>
 

@@ -82,7 +82,7 @@ const secondaryLinks: LinkTypes[] = [
   },
   {
     title: "Referências",
-    url: "https://caminhosdobrasilcentral.com/referencias",
+    url: "/referencias",
     transition: ['slide-left']
   },
 ];

@@ -36,6 +36,11 @@ const Navigation = ({
     setIsActiveMenu(true);
   };
 
+  const handleClickLink = () => {
+    setIsActiveMenu(false);
+    ScrollTrigger.refresh();
+  };
+
   const menuTextColor = menuIconColor.split("-")[2]
     ? `text-${menuIconColor.split("-")[1]}-${menuIconColor.split("-")[2]}`
     : `text-${menuIconColor.split("-")[1]}`;
@@ -152,7 +157,11 @@ const Navigation = ({
             onClick={handleActiveMenu}
           >
             {!isActiveMenu && screenWidth && screenWidth >= 640 && (
-              <span className={cn("uppercase pointer-events-none", isActiveMenu || isHome ? "text-white" : menuTextColor)}>Menu</span>
+              <span
+                className={cn("uppercase pointer-events-none", isActiveMenu || isHome ? "text-white" : menuTextColor)}
+              >
+                Menu
+              </span>
             )}
             <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden pointer-events-none">
               <span
@@ -164,8 +173,7 @@ const Navigation = ({
               ></span>
               <span
                 className={cn(
-                  "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100",
-
+                  "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100 pointer-events-none",
                   isActiveMenu || isHome ? "bg-white" : menuIconColor,
                 )}
               ></span>
@@ -181,7 +189,11 @@ const Navigation = ({
         </nav>
       </header>
 
-      <div className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-50" : "")} aria-labelledby="menubutton" tabIndex={-1}>
+      <div
+        className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-50" : "")}
+        aria-labelledby="menubutton"
+        tabIndex={-1}
+      >
         <div className="nav-transition bg-[#a9c1b3] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
         <div className="nav-transition bg-[#94ae96] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
         <div className="nav-transition bg-[#5a7462] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
@@ -204,6 +216,7 @@ const Navigation = ({
                     title={title}
                     target="_blank"
                     rel="noopener"
+                    onClick={handleClickLink}
                   >
                     {title}
                   </a>
@@ -211,13 +224,15 @@ const Navigation = ({
               ))}
             </ul>
             <ul role="menu" className="nav-legal z-2">
-              {legals.map(({ title, url }, index) => (
+              {legals.map(({ title, url, transition }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className="text-[1.5rem] text-[#a9c1b3] tracking-[-2%] leading-[1.1] no-underline mb-2 block"
                     to={url}
                     title={title}
+                    viewTransition={{ types: transition }}
+                    onClick={handleClickLink}
                   >
                     {title}
                   </Link>
@@ -227,13 +242,15 @@ const Navigation = ({
           </div>
           <div className="nav-items-col flex-4 flex justify-between gap-8">
             <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-2">
-              {primaryLinks.map(({ title, url }, index) => (
+              {primaryLinks.map(({ title, url, transition }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className="text-3xl text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block z-40"
                     to={url}
                     title={title}
+                    onClick={handleClickLink}
+                    viewTransition={{ types: transition }}
                   >
                     {title}
                   </Link>
@@ -252,6 +269,7 @@ const Navigation = ({
                       className="text-[1.5rem] text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block"
                       activeProps={{ className: "font-bold" }}
                       viewTransition={{ types: transition }}
+                      onClick={handleClickLink}
                     >
                       {title}
                     </Link>

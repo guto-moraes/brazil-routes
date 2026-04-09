@@ -9,17 +9,13 @@ import { cn } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger);
 
 const TextReveal = ({
-  id,
   onTrigger,
-  delay,
   className,
   initialTextColor,
   endTextColor,
   text,
 }: {
-  id: string;
   onTrigger: string;
-  delay?: number;
   className: string;
   initialTextColor: string;
   endTextColor: string;
@@ -33,11 +29,10 @@ const TextReveal = ({
     });
     gsap.ticker.lagSmoothing(0);
 
-    const text = document.querySelector<HTMLParagraphElement>(`#${id}`);
+    const text = document.querySelector<HTMLParagraphElement>(".resume");
 
     gsap.to(text, {
-      duration: 3,
-      delay: delay ? delay : 0,
+      duration: 0.5,
       text: {
         value: text!.textContent,
         oldClass: initialTextColor,
@@ -53,7 +48,7 @@ const TextReveal = ({
   });
 
   return (
-    <p id={id} className={cn("resume", className)}>
+    <p className={cn("resume", className)}>
       {text}
     </p>
   );

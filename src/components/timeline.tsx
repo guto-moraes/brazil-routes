@@ -23,7 +23,7 @@ const TimelineGroup = () => {
         },
       })
       .to(wrapper, {
-        backgroundColor: "#938e7f",
+        backgroundColor: "#2c2c29",
         clipPath: "circle(71% at 50% 50%)",
         duration: 1 / totalPanels,
       })
@@ -62,9 +62,6 @@ const TimelineGroup = () => {
 
   return (
     <>
-      <section className="hero-timeline bg-mate-500 h-svh w-full grid place-content-center">
-        <h1 className="text-8xl text-white font-cabinet font-black">Intro</h1>
-      </section>
 
       <section className="timeline-wrapper h-svh w-full [clip-path: circle(1% at 50% 50%)] overflow-hidden">
         <div className="timeline-content h-svh w-full flex flex-nowrap">
