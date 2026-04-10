@@ -1,18 +1,19 @@
 "use client";
 
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
 import { cn } from "@/lib/utils";
-// import { alamanaqueChapters } from "@/data/almanaqueChapters";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Col = ({ className, children }: { className?: string; children: React.ReactNode }) => {
   return <div className={cn("col flex-1 flex flex-col justify-center items-center gap-8", className)}>{children}</div>;
 };
+
 
 const servicesCopy: string[][] = [
   [
@@ -42,6 +43,8 @@ const servicesCopy: string[][] = [
 ];
 
 const SectionAlmanaqueChapters = () => {
+  const stickyCardsContainer = useRef<HTMLElement>(null);
+  
   useGSAP(() => {
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -51,8 +54,7 @@ const SectionAlmanaqueChapters = () => {
 
     gsap.ticker.lagSmoothing(0);
 
-
-    const stickySection = gsap.utils.toArray<HTMLElement>(".sticky-posts");
+    const stickySection = document.querySelector<HTMLElement>(".sticky-chapters");
     const stickyHeight = window.innerHeight * 8;
     const services = document.querySelectorAll<HTMLDivElement>(".service");
     const indicator = document.querySelector<HTMLDivElement>(".indicator");
@@ -180,68 +182,11 @@ const SectionAlmanaqueChapters = () => {
 
     ScrollTrigger.refresh();
 
-  });
+  }, { scope: stickyCardsContainer });
 
   return (
     <>
-      {/* <section className="sticky-posts bg-chocolate-300 relative h-svh w-full flex max-lg:flex-col">
-        <Col className="max-lg:pt-[25%] max-lg:justify-start">
-          <div className="services relative flex flex-col items-center">
-            <div className="indicator bg-chocolate-800 absolute top-0 left-0 w-full h-10 translate-y-0 -z-1"></div>
-            {alamanaqueChapters.map(({ chapter }, index) => {
-              return (
-                <div className={cn("group service w-max h-12", index === 0 && "active")} key={index}>
-                  <p className="text-4xl text-chocolate-600/50 group-[.active]:text-white font-semibold transition-colors duration-300 uppercase">
-                    {chapter}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </Col>
-        <Col className="max-lg:flex-row gap-6">
-          <div className="service-img-wrapper relative w-[60%] h-62.5 overflow-hidden [clip-path:polygon(50% 0, 100% 0, 100% 85%, 90% 100%, 50% 100%, 0 100%, 0 0)] max-lg:w-[25%]">
-            <div className="service-img w-full h-500 transform-y-0 will-change-transform">
-              <div className="img h-62.5 w-full">
-                {alamanaqueChapters.map(({ chapterTitle, image }, index) => (
-                  <img
-                    key={index}
-                    className="h-full w-full object-cover"
-                    src={image}
-                    alt={chapterTitle}
-                    title={chapterTitle}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="service-copy w-[60%]">
-            <p className="text-sm text-chocolate-900 lg:text-lg font-mono leading-7">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi dolore placeat vel voluptatibus adipisci,
-              cumque, veniam repellat velit quos laboriosam, eveniet quasi eaque voluptas!
-            </p>
-          </div>
-        </Col>
-
-        <div className="progress-bar bg-chocolate-100 absolute -top-[15%] lg:top-1/2 left-1/2 -translate-1/2 h-[50%] lg:h-[60%] w-[2.5px] max-lg:-rotate-90">
-          <div className="progress bg-chocolate-800 absolute top-0 left-0 h-full w-full origin-top scale-y-0 will-change-transform"></div>
-        </div>
-
-        <div className="index bg-chocolate-900 text-white absolute max-lg:top-[5%] max-lg:bottom-[unset] bottom-[10%] left-1/2 -translate-x-1/2 flex justify-between items-center w-15 pt-1 pb-0.5 px-0.5">
-          <span
-            id="current-count"
-            className="text-xl font-mono font-semibold leading-3 w-3 flex justify-center items-center"
-          >
-            1
-          </span>
-          <span className="separator text-xl font-mono font-semibold leading-3  h-0.5 w-5 flex justify-center items-center bg-chocolate-300 relative -top-px"></span>
-          <span className="total-count text-xl font-mono font-semibold leading-3 w-3 flex justify-center items-center">
-            {alamanaqueChapters.length}
-          </span>
-        </div>
-      </section> */}
-
-      <section className="sticky-posts bg-chocolate-300 relative h-svh w-full flex max-lg:flex-col">
+      <section className="sticky-chapters bg-chocolate-300 relative h-svh w-full flex max-lg:flex-col" ref={stickyCardsContainer}>
         <Col className="max-lg:pt-[25%] max-lg:justify-start">
           <div className="services relative flex flex-col items-center">
             <div className="indicator bg-chocolate-800 absolute top-0 left-0 w-full h-10 translate-y-0 -z-1"></div>

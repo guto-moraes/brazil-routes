@@ -54,7 +54,7 @@ export type MapTypes = {
 export type SectionsPinRotateTypes = {
     tag: string;
     title: string;
-    description: string;
+    synopsis: string;
     link: string;
     image: string;
 }
@@ -76,5 +76,4 @@ export type PeopleHistoryTypes = {
     name: string;
     image: string;
     tribute: boolean;
-    color: string;
 };

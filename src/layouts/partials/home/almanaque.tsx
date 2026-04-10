@@ -1,36 +1,19 @@
 "use client";
 
-import { motion } from "motion/react";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 
 const Almanaque = () => {
   return (
     <div className="bg-tan-200 w-full">
       <div className="py-32 max-w-7xl w-full mx-auto grid grid-cols-3 gap-16">
-        <motion.div
-          initial={{ x: -40, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{
-            duration: 1,
-            ease: "easeIn"
-          }}
-          className="col-span-1 h-full w-full"
-        >
+        <div className="col-span-1 h-full w-full">
           <img
             src="/images/tablet-cover-book.png"
             alt="Capa do e-book Caminhos do Brasil Central"
             className="w-full h-full drop-shadow-2xl"
           />
-        </motion.div>
-        <motion.div
-          initial={{ x: 40, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{
-            duration: 1,
-            ease: "easeIn"
-          }}
-          className="relative col-span-2 rounded-2xl bg-tan-100 overflow-hidden p-8"
-        >
+        </div>
+        <div className="relative col-span-2 rounded-2xl bg-tan-100 overflow-hidden p-8" >
           <img
             src="/images/logo-icon.webp"
             alt="Ícon do Projeto Caminhos do Brasil Central"
@@ -66,7 +49,7 @@ const Almanaque = () => {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

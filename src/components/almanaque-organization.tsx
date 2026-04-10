@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
 import { cn } from "@/lib/utils";
-import { alamanaqueChapters } from "@/data/almanaqueChapters";
+import { almanaqueChapters } from "@/data/almanaqueChapters";
 
 gsap.registerPlugin(Observer, ScrollTrigger);
 
@@ -117,7 +117,7 @@ const AlmanaqueOrganization = () => {
       </section>
 
       <section className="main-section relative h-svh w-full overflow-hidden">
-        {alamanaqueChapters.map(({ chapter, chapterTitle, synopsis, image }, index) => (
+        {almanaqueChapters.map(({ tag, title, synopsis, image }, index: number) => (
           <div
             className={cn("slide bg-tan-800 absolute inset-0 grid max-md:grid-rows-2 md:grid-cols-2 select-none")}
             key={index}
@@ -128,9 +128,9 @@ const AlmanaqueOrganization = () => {
                 "text-center flex flex-col justify-center items-center gap-y-8 py-15 px-25",
               )}
             >
-              <span className="text-lg text-chocolate-300 font-inter font-medium">{chapter}</span>
+              <span className="text-lg text-chocolate-300 font-inter font-medium">{tag}</span>
               <h1 className="text-[clamp(1.8rem,3vw,5rem)] text-mate-200 font-cabinet font-black leading-none">
-                {chapterTitle}
+                {title}
               </h1>
               <p className="text-[clamp(0.90rem,2.5vw,1.3rem)] text-white font-inter">{synopsis}</p>
             </div>
@@ -138,8 +138,8 @@ const AlmanaqueOrganization = () => {
               <img
                 className="block h-full w-full object-cover will-change-transform absolute inset-0"
                 src={image}
-                alt={chapter}
-                title={chapter}
+                alt={title}
+                title={title}
               />
             </div>
           </div>

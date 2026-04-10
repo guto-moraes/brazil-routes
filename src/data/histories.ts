@@ -12,42 +12,35 @@ export const peopleHistory: PeopleHistoryTypes[] = [
         name: "Honorato Rocha dos Santos",
         tribute: true,
         image: honorato,
-        color: "bg-mate-800",
     },
     {
         name: "Salomão Gomes de Souza",
         tribute: true,
         image: salomao,
-        color: "bg-chocolate-300",
     },
     {
         name: "Abraão Barros dos Santos",
         tribute: false,
         image: abraao,
-        color: "bg-tan-500",
     },
     {
         name: "Adão de Souza Gomes",
         tribute: false,
         image: adao,
-        color: "bg-bege-400",
     },
     {
         name: "José Batista Porto",
         tribute: false,
         image: jose,
-        color: "bg-mate-500",
     },
     {
         name: "Raimundo Pereira dos Santos",
         tribute: false,
         image: raimundo,
-        color: "bg-chocolate-400",
     },
     {
         name: "Pioneiro",
         tribute: false,
         image: pioneiro,
-        color: "bg-bone-500",
     }
 ]

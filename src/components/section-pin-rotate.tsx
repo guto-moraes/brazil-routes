@@ -5,11 +5,18 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import ButtonLinkWithIcon from "./button-link-with-icon";
-import { sectionsPinRotate } from "@/data/sectionsPinRotate";
+import type { ChaptersAlmanaqueTypes } from "@/types/theme-graphql";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SectionPinRotate = () => {
+type ChaptersTypes = {
+  dataChapters: ChaptersAlmanaqueTypes;
+}
+
+
+const SectionPinRotate = ({ dataChapters }: ChaptersTypes) => {
+  const chapters = dataChapters.cbcTheme.cbcSettings.capitulosDoEBook;
+
   useGSAP(() => {
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -54,7 +61,7 @@ const SectionPinRotate = () => {
 
   return (
     <div className="bg-tan-950">
-      {sectionsPinRotate.map(({ tag, title, description, link, image }, index: number) => {
+      {chapters && chapters.map(({ tag, title, synopsis, image }, index) => {
         return (
           <section
             key={index}
@@ -65,16 +72,16 @@ const SectionPinRotate = () => {
                 <h3 className="text-xl text-mate-600 font-light border-b border-tan-200">{tag}</h3>
                 <p className="text-3xl text-tan-700 absolute bottom-0 left-0">
                   <span className="font-extralight">
-                    [<span className="font-normal">{`0${index + 1}`}</span>]
+                    [<span className="font-normal">{`0${index}`}</span>]
                   </span>
                 </p>
               </div>
               <div className="col-span-3 py-8 px-16 flex flex-col gap-12">
                 <h2 className="text-3xl font-light">{title}</h2>
-                <p className="text-lg text-tan-700 font-light">{description}</p>
+                <p className="indent-8 text-lg text-tan-800 text-justify hyphens-auto font-light">{synopsis}</p>
                 <ButtonLinkWithIcon
                   textButton="Saiba mais"
-                  link={link}
+                  link="/"
                   bgColor="bg-mate-400 hover:bg-mate-500 text-white"
                   iconColor="bg-white text-mate-700"
                   target={false}
@@ -82,7 +89,7 @@ const SectionPinRotate = () => {
               </div>
               <div
                 className="col-span-2 rounded-2xl bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${image})` }}
+                style={{ backgroundImage: `url(${image.node.guid})` }}
               ></div>
             </div>
           </section>

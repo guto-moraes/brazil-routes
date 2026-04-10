@@ -1,6 +1,12 @@
 import { createRootRoute, useRouterState } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
+
+// Import Tanstack Query Provider and Initialize QueryClient
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
+
+// Import Static Layout Components
 import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
 
@@ -35,14 +41,21 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     select: (state) => state.location.pathname,
   });
 
-  const isHome = pathname === "/"
+  const isHome = pathname === "/";
 
   return (
     <>
-      <Navigation logo="/images/logo.webp" logoWidth="w-36 sm:w-48 md:w-52" isHome={isHome} className={isHome ? "bg-mate-700" : "shadow-lg bg-white py-0" } />
-      {children}
-      <Partners />
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <Navigation
+          logo="/images/logo.webp"
+          logoWidth="w-36 sm:w-48 md:w-52"
+          isHome={isHome}
+          className={isHome ? "bg-mate-700" : "shadow-lg bg-white py-0"}
+        />
+        {children}
+        <Partners />
+        <Footer />
+      </QueryClientProvider>
       <TanStackDevtools
         config={{
           position: "bottom-right",
