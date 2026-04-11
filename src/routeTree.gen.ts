@@ -14,6 +14,7 @@ import { Route as ReferenciasRouteImport } from './routes/referencias'
 import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
+import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
 import { Route as IndexRouteImport } from './routes/index'
@@ -44,6 +45,11 @@ const FaleConoscoRoute = FaleConoscoRouteImport.update({
   path: '/fale-conosco',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipeDoProjetoRoute = EquipeDoProjetoRouteImport.update({
+  id: '/equipe-do-projeto',
+  path: '/equipe-do-projeto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreditosRoute = CreditosRouteImport.update({
   id: '/creditos',
   path: '/creditos',
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
+  '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoio-financeiro'
     | '/creditos'
+    | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
   CreditosRoute: typeof CreditosRoute
+  EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   MapaInterativoRoute: typeof MapaInterativoRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaleConoscoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/equipe-do-projeto': {
+      id: '/equipe-do-projeto'
+      path: '/equipe-do-projeto'
+      fullPath: '/equipe-do-projeto'
+      preLoaderRoute: typeof EquipeDoProjetoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/creditos': {
       id: '/creditos'
       path: '/creditos'
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApoioFinanceiroRoute: ApoioFinanceiroRoute,
   CreditosRoute: CreditosRoute,
+  EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
   MapaInterativoRoute: MapaInterativoRoute,

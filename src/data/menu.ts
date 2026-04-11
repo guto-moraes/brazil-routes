@@ -71,19 +71,24 @@ const primaryLinks: LinkTypes[] = [
 
 const secondaryLinks: LinkTypes[] = [
   {
+    title: "Equipe do Projeto",
+    url: "/equipe-do-projeto",
+    transition: ['slide-left']
+  },
+  {
     title: "Apoio Financeiro",
     url: "/apoio-financeiro",
-    transition: ['slide-left']
+    transition: ['slide-right']
   },
   {
     title: "Créditos",
     url: "/creditos",
-    transition: ['slide-right']
+    transition: ['slide-left']
   },
   {
     title: "Referências",
     url: "/referencias",
-    transition: ['slide-left']
+    transition: ['slide-right']
   },
 ];
 
