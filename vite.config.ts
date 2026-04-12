@@ -6,6 +6,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  mode: "development",
   base:"./",
   build: {
     outDir: "dist", // Changes base output directory from 'dist' to 'build'
@@ -28,6 +29,9 @@ export default defineConfig({
         target: "es2020",
         // CSS code splitting
         cssCodeSplit: true,
+      },
+      define: {
+        "process.env.NODE_ENV": "'development'"
       },
     },
   },

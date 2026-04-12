@@ -40,12 +40,11 @@ function InteractiveMap() {
 
   return (
     <>
-      <div className={cn("h-full w-full grid grid-cols-2")}>
+      <div className={cn("h-[calc(100svh-104px)] w-full grid max-lg:grid-rows-2 lg:grid-rows-1 lg:grid-cols-2")}>
         <div
           className={cn(
-            "rounded-lg xl:h-[calc(100svh-104px)] z-40",
-            "[&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
-            show ? "col-span-1" : "col-span-2",
+            "rounded-lg h-[calc(100svh-104px)] z-40 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
+            show ? "max-lg:row-span-1 lg:col-span-1" : "max-lg:row-span-2 lg:col-span-2",
           )}
         >
           <Map markers={map} show={show} setShow={handleSetShow} />
@@ -54,7 +53,7 @@ function InteractiveMap() {
           data-hovering
           className={cn(
             "bg-darkgreen-500 relative h-full max-h-[calc(100svh-104px)] w-full",
-            "origin-center transition-transform duration-300 ease-in-out",
+            "origin-center transition-all duration-500 ease-in-out",
             show ? "scale-100" : "scale-0",
           )}
         >

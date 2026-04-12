@@ -1,9 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router'
+import ElasticTextIntro from '@/components/elastic-text-intro'
 
 export const Route = createFileRoute('/fale-conosco')({
-  component: RouteComponent,
+  head: () => ({
+    meta: [
+      {
+        title: "Fale Conosco"
+      },
+      {
+        name:"description",
+        content: "Página de contato do site"
+      }
+    ],
+  }),
+  component: ContactUs,
 })
 
-function RouteComponent() {
-  return <div>Hello "/fale-conosto"!</div>
+function ContactUs() {
+  return <ElasticTextIntro />
 }
