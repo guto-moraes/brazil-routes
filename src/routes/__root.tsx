@@ -50,7 +50,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           logo="/images/logo.webp"
           logoWidth="w-36 sm:w-48 md:w-52"
           isHome={isHome}
-          className={isHome ? "bg-mate-700" : "shadow-lg bg-white py-0"}
+          className={isHome ? "bg-gray-600" : "shadow-lg bg-white py-0"}
         />
         {children}
         <Partners />

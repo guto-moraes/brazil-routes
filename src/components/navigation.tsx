@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { socials, legals, primaryLinks, secondaryLinks } from "@/data/menu";
 import { cn } from "@/lib/utils";
-import negatiLogo from "@/assets/images/negative-logo.webp";
+import negativeLogo from "@/assets/images/negative-logo.webp";
 
 gsap.registerEffect(SplitText);
 
@@ -31,14 +31,9 @@ const Navigation = ({
     if (isActiveMenu) {
       setTimeout(() => {
         setIsActiveMenu(false);
-      }, 0);
+      }, 1000);
     }
     setIsActiveMenu(true);
-  };
-
-  const handleClickLink = () => {
-    ScrollTrigger.refresh();
-    setIsActiveMenu(false);
   };
 
   const menuTextColor = menuIconColor.split("-")[2]
@@ -132,76 +127,67 @@ const Navigation = ({
   return (
     <>
       <header
-        className={cn(
-          "p-4 lg:px-0 h-26 w-full flex justify-center items-center",
-          isActiveMenu || isHome ? "shadow-none bg-mate-500" : className,
-        )}
+        className={cn("p-4 lg:px-0 h-26 w-full", isActiveMenu || isHome ? "shadow-none bg-gray-600" : className)}
       >
-        <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-70">
-          <div className="nav-logo p-4 lg:px-0 border-none z-70">
-            <a role="menu-item" href="/" title="Página Inicial">
-              <img
-                src={isActiveMenu || isHome ? negatiLogo : logo}
-                alt="Logotipo do Projeto Caminhos do Brasil Central"
-                title="Logotipo do Projeto Caminhos do Brasil Central"
-                className={logoWidth}
-              />
-            </a>
-          </div>
-          <button
-            className="nav-toggler p-4 border-0 group flex items-center gap-x-1.5 z-70 cursor-pointer pointer-events-auto"
-            id="menubutton"
-            aria-haspopup="true"
-            aria-controls="menu"
-            tabIndex={0}
-            onClick={handleActiveMenu}
-          >
-            {!isActiveMenu && screenWidth && screenWidth >= 640 && (
-              <span
-                className={cn("uppercase pointer-events-none", isActiveMenu || isHome ? "text-white" : menuTextColor)}
-              >
-                Menu
-              </span>
-            )}
-            <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden pointer-events-none">
-              <span
-                className={cn(
-                  "bg-white w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
-                  "group-[.open]:translate-y-2 group-[.open]:rotate-45",
-                  isActiveMenu || isHome ? "bg-white" : menuIconColor,
-                )}
-              ></span>
-              <span
-                className={cn(
-                  "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100 pointer-events-none",
-                  isActiveMenu || isHome ? "bg-white" : menuIconColor,
-                )}
-              ></span>
-              <span
-                className={cn(
-                  "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
-                  "group-[.open]:-translate-y-2 group-[.open]:-rotate-45",
-                  isActiveMenu || isHome ? "bg-white" : menuIconColor,
-                )}
-              ></span>
+        <div className="container mx-auto">
+          <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-40">
+            <div className="nav-logo p-4 lg:px-0 border-none z-50">
+              <a role="menu-item" href="/" title="Página Inicial">
+                <img
+                  src={isActiveMenu || isHome ? negativeLogo : logo}
+                  alt="Logotipo do Projeto Caminhos do Brasil Central"
+                  title="Logotipo do Projeto Caminhos do Brasil Central"
+                  className={logoWidth}
+                />
+              </a>
             </div>
-          </button>
-        </nav>
+            <button
+              className="nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80"
+              id="menubutton"
+              aria-haspopup="true"
+              aria-controls="menu"
+              tabIndex={0}
+              onClick={handleActiveMenu}
+            >
+              {!isActiveMenu && screenWidth && screenWidth >= 640 && (
+                <span className={cn("uppercase", isActiveMenu || isHome ? "text-white" : menuTextColor)}>Menu</span>
+              )}
+              <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden pointer-events-none">
+                <span
+                  className={cn(
+                    "bg-white w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
+                    "group-[.open]:translate-y-2 group-[.open]:rotate-45",
+                    isActiveMenu || isHome ? "bg-white" : menuIconColor,
+                  )}
+                ></span>
+                <span
+                  className={cn(
+                    "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100",
+                    isActiveMenu || isHome ? "bg-white" : menuIconColor,
+                  )}
+                ></span>
+                <span
+                  className={cn(
+                    "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
+                    "group-[.open]:-translate-y-2 group-[.open]:-rotate-45",
+                    isActiveMenu || isHome ? "bg-white" : menuIconColor,
+                  )}
+                ></span>
+              </div>
+            </button>
+          </nav>
+        </div>
       </header>
 
-      <div
-        className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-50" : "")}
-        aria-labelledby="menubutton"
-        tabIndex={-1}
-      >
-        <div className="nav-transition bg-[#a9c1b3] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-[#94ae96] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-[#5a7462] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-[#536c5b] h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+      <div className="nav-content w-full absolute top-0 left-0 z-30" aria-labelledby="menubutton" tabIndex={-1}>
+        <div className="nav-transition bg-gray-300 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-gray-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-gray-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-gray-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
 
         <div
           className={cn(
-            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-mate-800 pointer-events-auto",
+            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-gray-700 pointer-events-auto",
             "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
@@ -216,7 +202,6 @@ const Navigation = ({
                     title={title}
                     target="_blank"
                     rel="noopener"
-                    onClick={handleClickLink}
                   >
                     {title}
                   </a>
@@ -224,15 +209,13 @@ const Navigation = ({
               ))}
             </ul>
             <ul role="menu" className="nav-legal z-2">
-              {legals.map(({ title, url, transition }, index) => (
+              {legals.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className="text-[1.5rem] text-[#a9c1b3] tracking-[-2%] leading-[1.1] no-underline mb-2 block"
                     to={url}
                     title={title}
-                    viewTransition={{ types: transition }}
-                    onClick={handleClickLink}
                   >
                     {title}
                   </Link>
@@ -242,16 +225,13 @@ const Navigation = ({
           </div>
           <div className="nav-items-col flex-4 flex justify-between gap-8">
             <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-2">
-              {primaryLinks.map(({ title, url, transition }, index) => (
+              {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className="text-3xl text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block z-40"
                     to={url}
                     title={title}
-                    onClick={handleClickLink}
-                    viewTransition={{ types: transition }}
-                    preloadDelay={400}
                   >
                     {title}
                   </Link>
@@ -270,7 +250,6 @@ const Navigation = ({
                       className="text-[1.5rem] text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block"
                       activeProps={{ className: "font-bold" }}
                       viewTransition={{ types: transition }}
-                      onClick={handleClickLink}
                     >
                       {title}
                     </Link>

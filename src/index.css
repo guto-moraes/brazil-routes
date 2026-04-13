@@ -112,6 +112,17 @@
   --color-darkgreen-800: oklch(0.421 0.087 166.73);
   --color-darkgreen-900: oklch(0.35 0.072 166.53);
   --color-darkgreen-950: oklch(0.246 0.051 166.29);
+  --color-gray-50: oklch(0.9581 0 0);
+  --color-gray-100: oklch(0.9128 0 0);
+  --color-gray-200: oklch(0.8359 0 0);
+  --color-gray-300: oklch(0.7508 0 0);
+  --color-gray-400: oklch(0.6731 0 0);
+  --color-gray-500: oklch(0.5863 0 0);
+  --color-gray-600: oklch(0.5068 0 0);
+  --color-gray-700: oklch(0.4128 0 0);
+  --color-gray-800: oklch(0.3171 0 0);
+  --color-gray-900: oklch(0.2308 0 0);
+  --color-gray-950: oklch(0.1776 0 0);
   --color-mate-50: oklch(0.962 0.032 149.51);
   --color-mate-100: oklch(0.924 0.072 149.12);
   --color-mate-200: oklch(0.84 0.112 148.72);
@@ -585,4 +596,65 @@ html:active-view-transition-type(warp) {
   width: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+
+@theme {
+  --color-card-accent-1: #b1c03f;
+  --color-card-accent-2: #f2acac;
+  --color-card-accent-3: #fedd93;
+  --color-card-accent-4: #81b7bf;
+  --color-card-accent-5: #eeeb99
+}
+
+.sticky-cards {
+  position: relative;
+  width: 100vw;
+  background-color: #0f0f0f;
+}
+
+.sticky-cards .card {
+  position: sticky;
+  height: 125svh;
+  width: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.sticky-cards .card-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 50% 100%;
+  will-change: transfomr;
+  text-align: center;
+}
+
+.sticky-cards .card-inner:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0f0f0f;
+  opacity: var(--after-opacity,0);
+  will-change: opacity;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#card-1 {
+  background-color: var(--color-card-accent-2);
+}
+
+#card-2 {
+  background-color: var(--color-card-accent-3);
+}
+
+#card-3 {
+  background-color: var(--color-card-accent-4);
 }

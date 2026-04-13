@@ -29,6 +29,8 @@ function Index() {
     <>
       {data && (
         <>
+          <div className="relative bg-gray-600 h-[calc(100svh-104px)] w-full overflow-hidden">
+          </div>
           <SectionPinRotate dataChapters={data} />
           <PhotosScrollingSection />
         </>
