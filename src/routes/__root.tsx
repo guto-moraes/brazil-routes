@@ -46,12 +46,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Navigation
-          logo="/images/logo.webp"
-          logoWidth="w-36 sm:w-48 md:w-52"
-          isHome={isHome}
-          className={isHome ? "bg-gray-600" : "shadow-lg bg-white py-0"}
-        />
+        <Navigation isHome={isHome} />
         {children}
         <Partners />
         <Footer />

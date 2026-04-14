@@ -61,7 +61,7 @@ function InteractiveMap() {
             title="Fechar"
             className={cn(
               "rounded-full bg-black/50 hover:bg-black/70 text-white size-8 absolute top-4 right-4",
-              "grid place-content-center transition-colors duration-300 cursor-pointer",
+              "grid place-content-center transition-colors duration-300 cursor-pointer z-100",
             )}
             onClick={handleSetShow}
           >

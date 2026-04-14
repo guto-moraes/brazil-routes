@@ -60,7 +60,7 @@ const SectionPinRotate = ({ dataChapters }: ChaptersTypes) => {
   });
 
   return (
-    <div className="bg-tan-950">
+    <div className="bg-tan-950 mt-[100svh]">
       {chapters && chapters.map(({ tag, title, synopsis, image }, index) => {
         return (
           <section

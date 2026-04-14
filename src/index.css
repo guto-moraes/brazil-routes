@@ -69,6 +69,17 @@
   --font-exo2i: "Exo 2 Italic", sans-serif;
   --font-garamond: "EBGaramond", serif;
   --font-garamondi: "EBGaramond Italic", serif;
+  --color-artic-50: oklch(0.963 0.016 210.95);
+  --color-artic-100: oklch(0.936 0.03 209.53);
+  --color-artic-200: oklch(0.873 0.066 206.92);
+  --color-artic-300: oklch(0.804 0.063 207.65);
+  --color-artic-400: oklch(0.745 0.057 207.5);
+  --color-artic-500: oklch(0.64 0.049 208.32);
+  --color-artic-600: oklch(0.537 0.042 208.9);
+  --color-artic-700: oklch(0.444 0.034 209.78);
+  --color-artic-800: oklch(0.341 0.026 211.36);
+  --color-artic-900: oklch(0.241 0.018 207.93);
+  --color-artic-950: oklch(0.186 0.015 203.81);
   --color-bege-50: oklch(0.974 0.017 87.96);
   --color-bege-100: oklch(0.952 0.033 91.65);
   --color-bege-200: oklch(0.861 0.076 93.45);

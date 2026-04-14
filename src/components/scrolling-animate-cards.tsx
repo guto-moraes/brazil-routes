@@ -179,11 +179,11 @@ const ScrollingAnimatedCards = () => {
       <div ref={containerScope}>
         <section
           className={cn(
-            "sticky-cards bg-bege-100 relative h-svh w-full flex flex-col justify-center",
+            "sticky-cards bg-bone-300 relative h-svh w-full flex flex-col justify-center",
             "items-center p-8 max-lg:flex-col max-lg:h-max max-lg:py-16 max-lg:px-8",
           )}
         >
-          <h2 className="max-lg:text-5xl text-7xl text-center text-[#673c43] font-cabinet font-black mb-16">
+          <h2 className="max-lg:text-5xl text-7xl text-center text-bege-100 font-cabinet font-black mb-16">
             Pessoas que construíram a história
           </h2>
           <div

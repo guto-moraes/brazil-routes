@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import SectionPinRotate from "@/components/section-pin-rotate";
 import PhotosScrollingSection from "@/components/photos-scrolling-section";
 import { useQueryChaptersAlmanaqueHome } from "@/queries/theme-settings";
+import Video from "@/layouts/partials/home/video-cover";
+import video from "@/assets/video-background.mp4";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,7 +31,13 @@ function Index() {
     <>
       {data && (
         <>
-          <div className="relative bg-gray-600 h-[calc(100svh-104px)] w-full overflow-hidden">
+          <div className="absolute top-0 left-0 bg-artic-400 h-svh w-full overflow-hidden z-20">
+            <Video videoUrl={video} height="h-svh" />
+            <div className="paths absolute bottom-4 left-44">
+              <h1 className="text-artic-900/70 text-[11vw] font-black uppercase leading-[0.85] -tracking-[0.08em] flex flex-col">
+                Caminhos <span className="text-[clamp(2rem,7vw,10vw)] font-normal -tracking-[0.13em]">do Brasil Central</span>
+              </h1>
+            </div>
           </div>
           <SectionPinRotate dataChapters={data} />
           <PhotosScrollingSection />
