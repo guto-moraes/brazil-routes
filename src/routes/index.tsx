@@ -33,8 +33,11 @@ function Index() {
         <>
           <div className="absolute top-0 left-0 bg-artic-400 h-svh w-full overflow-hidden z-20">
             <Video videoUrl={video} height="h-svh" />
-            <div className="paths absolute bottom-4 left-44">
-              <h1 className="text-artic-900/70 text-[11vw] font-black uppercase leading-[0.85] -tracking-[0.08em] flex flex-col">
+            <div className="absolute bg-hero inset-0 bg-mate-500/20 z-20">
+
+            </div>
+            <div className="paths absolute bottom-4 left-52 z-30">
+              <h1 className="text-artic-900 text-[11vw] font-black uppercase leading-[0.85] -tracking-[0.08em] flex flex-col">
                 Caminhos <span className="text-[clamp(2rem,7vw,10vw)] font-normal -tracking-[0.13em]">do Brasil Central</span>
               </h1>
             </div>

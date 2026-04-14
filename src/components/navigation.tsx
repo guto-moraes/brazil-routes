@@ -134,7 +134,7 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                   title="Logotipo do Projeto Caminhos do Brasil Central"
                   className={cn(
                     "w-32 md:w-48 lg:w-52",
-                    isHome && "filter-black"
+                    isHome && "ml-6"
                   )}
                 />
               </a>
