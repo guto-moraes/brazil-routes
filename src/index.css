@@ -674,3 +674,177 @@ html:active-view-transition-type(warp) {
 
 
 
+
+
+
+
+
+    .carousel-container {
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--color-black);
+            cursor: none;
+            overflow: hidden;
+        }
+
+        .carousel-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-container h2,
+        .carousel-container p, 
+        .carousel-container a {
+            font-weight: 400;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .carousel-container h2 {
+            font-size: 2.25rem;
+        }
+
+        .carousel-container p, 
+        .carousel-container a {
+            font-size: 1rem;
+        }
+
+        .carousel-cursor {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .carousel-cursor p {
+            font-size: 0.725rem;
+            text-transform: uppercase;
+        }
+        
+        .carousel-image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            opacity: 0.5;
+        }
+        
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        
+        .carousel-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: 100%;
+            padding: 4em 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .carousel-indices {
+            width: 100%;
+            height: 0.625rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.25em;
+        }
+        
+        .carousel-index {
+            position: relative;
+            width: 100%;
+            height: 0.0625rem;
+            background-color: rgba(255,255,255,0.25);
+        }
+
+        .carousel-index-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #fff;
+            transform: scaleX(100%);
+        }
+
+        .carousel-profile {
+            width: 100%;
+            height: 3.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .carousel-profile-icon {
+            position: relative;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-profile-name {
+            position: relative;
+            width: 12.5rem;
+            height: 1.25rem;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .carousel-content-title-row {
+            position: relative;
+            width: 100%;
+            height: 3rem;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+        
+        .carousel-content-title-row h2,
+        .carousel-profile-name p {
+            position: absolute;
+            top: 0;
+        }
+
+        .carousel-content-link {
+            position: relative;
+            width: max-content;
+            margin: 2em 0;
+            padding: 0.25em 0;
+        }
+
+        .carousel-content-link::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 0.0325rem;
+            background-color: #fff;
+        }
+
+
+
+
