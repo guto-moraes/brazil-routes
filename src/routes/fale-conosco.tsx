@@ -1,3 +1,4 @@
+import InstagramCarousel from "@/components/carousel";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -18,9 +19,7 @@ export const Route = createFileRoute("/fale-conosco")({
 function ContactUs() {
   return(
     <>
-      <div className="relative bg-mate-600 h-[calc(100svh-104px)] w-full overflow-hidden">
-        
-      </div>
+      <InstagramCarousel />
     </>
   )
 }
