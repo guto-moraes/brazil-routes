@@ -1,5 +1,6 @@
-import TextNewSectionReveal from "@/components/text-new-section-reveal";
 import { createFileRoute } from "@tanstack/react-router";
+import AboveTheFold from "@/layouts/partials/home/above-the-fold";
+// import TextNewSectionReveal from "@/components/text-new-section-reveal";
 // import ScrollableSections from "@/components/scrollable-sections";
 // import InstagramCarousel from "@/components/carousel";
 
@@ -23,7 +24,8 @@ function ContactUs() {
     <>
       {/* <InstagramCarousel /> */}
       {/* <ScrollableSections /> */}
-      <TextNewSectionReveal />
+      {/* <TextNewSectionReveal /> */}
+      <AboveTheFold />
     </>
   )
 }

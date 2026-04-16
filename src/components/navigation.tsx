@@ -132,10 +132,7 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                   src={isActiveMenu || isHome ? negativeLogo : logo}
                   alt="Logotipo do Projeto Caminhos do Brasil Central"
                   title="Logotipo do Projeto Caminhos do Brasil Central"
-                  className={cn(
-                    "w-32 md:w-48 lg:w-52",
-                    isHome && "ml-6"
-                  )}
+                  className={cn("w-32 md:w-48 lg:w-52", isHome && "ml-6")}
                 />
               </a>
             </div>
@@ -189,14 +186,14 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
         aria-labelledby="menubutton"
         tabIndex={-1}
       >
-        <div className="nav-transition bg-artic-300 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-darkgreen-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-darkgreen-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-darkgreen-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-darkgreen-700 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
 
         <div
           className={cn(
-            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-artic-500 pointer-events-auto",
+            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-darkgreen-800 pointer-events-auto",
             "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
@@ -206,7 +203,10 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                 <li className="line" role="presentation" key={index}>
                   <a
                     role="menuitem"
-                    className="text-[1.5rem] text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block cursor-pointer"
+                    className={cn(
+                      "text-2xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
+                      "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
+                    )}
                     href={url}
                     title={title}
                     target="_blank"
@@ -222,7 +222,10 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
-                    className="text-[1.5rem] text-artic-700 tracking-[-2%] leading-[1.1] no-underline mb-2 block data-[status=active]:text-artic-800"
+                    className={cn(
+                      "text-2xl text-darkgreen-500 hover:text-white data-[status=active]:text-chocolate-300",
+                      "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
+                    )}
                     activeProps={{ className: "font-bold" }}
                     to={url}
                     title={title}
@@ -240,7 +243,10 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
-                    className="text-3xl text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block z-40 data-[status=active]:text-artic-800"
+                    className={cn(
+                      "text-3xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
+                      "tracking-[-2%] leading-[1.1] no-underline block transition-colors duration-300",
+                    )}
                     activeProps={{ className: "font-bold" }}
                     to={url}
                     title={title}
@@ -260,7 +266,10 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                       role="menuitem"
                       to={url}
                       title={title}
-                      className="text-[1.5rem] text-white tracking-[-2%] leading-[1.1] no-underline mb-2 block data-[status=active]:text-artic-800"
+                      className={cn(
+                        "text-2xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
+                        "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
+                      )}
                       activeProps={{ className: "font-bold" }}
                       viewTransition={{ types: transition }}
                       onClick={handleCloseMenu}

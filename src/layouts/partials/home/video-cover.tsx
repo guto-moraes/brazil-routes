@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 const Video = ({ height = "h-full", videoUrl  }: { height?: string; videoUrl: string }) => {
   return (
     <>
-      <div className={cn("relative w-full bg-linear-to-b from-artic-500 to-artic-500 z-0", height)}>
+      <div className={cn("relative w-full bg-linear-to-b from-darkgreen-500 to-darkgreen-500 z-0", height)}>
         <div className="isolate w-full h-full absolute inset-0">
           <video
             src={videoUrl}
@@ -14,7 +14,7 @@ const Video = ({ height = "h-full", videoUrl  }: { height?: string; videoUrl: st
           />
         </div>
       </div>
-      <div className="absolute inset-0 bg-hero z-10"></div>
+      <div className="absolute bg-hero inset-0 bg-darkgreen-500/20 z-1"></div>
     </>
   );
 };
