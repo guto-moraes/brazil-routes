@@ -13,6 +13,7 @@ import Footer from "@/layouts/footer";
 // Import Custom CSS
 import appCss from "../index.css?url";
 import Partners from "@/layouts/partials/partners";
+import ReactLenis from "lenis/react";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -46,6 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
+        <ReactLenis root />
         <Navigation isHome={isHome} />
         {children}
         <Partners />

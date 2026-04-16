@@ -1,5 +1,7 @@
-import InstagramCarousel from "@/components/carousel";
+import TextNewSectionReveal from "@/components/text-new-section-reveal";
 import { createFileRoute } from "@tanstack/react-router";
+// import ScrollableSections from "@/components/scrollable-sections";
+// import InstagramCarousel from "@/components/carousel";
 
 export const Route = createFileRoute("/fale-conosco")({
   head: () => ({
@@ -19,7 +21,9 @@ export const Route = createFileRoute("/fale-conosco")({
 function ContactUs() {
   return(
     <>
-      <InstagramCarousel />
+      {/* <InstagramCarousel /> */}
+      {/* <ScrollableSections /> */}
+      <TextNewSectionReveal />
     </>
   )
 }

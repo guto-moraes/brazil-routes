@@ -6,15 +6,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import ButtonLinkWithIcon from "./button-link-with-icon";
 import type { ChaptersAlmanaqueTypes } from "@/types/theme-graphql";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type ChaptersTypes = {
+  className?: string;
   dataChapters: ChaptersAlmanaqueTypes;
 }
 
 
-const SectionPinRotate = ({ dataChapters }: ChaptersTypes) => {
+const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
   const chapters = dataChapters.cbcTheme.cbcSettings.capitulosDoEBook;
 
   useGSAP(() => {
@@ -60,7 +62,7 @@ const SectionPinRotate = ({ dataChapters }: ChaptersTypes) => {
   });
 
   return (
-    <div className="bg-tan-950 mt-[100svh]">
+    <div className={cn("bg-tan-950", className)}>
       {chapters && chapters.map(({ tag, title, synopsis, image }, index) => {
         return (
           <section
