@@ -3,6 +3,8 @@ import { useQueryChaptersAlmanaqueHome } from "@/queries/theme-settings";
 import SectionPinRotate from "@/components/section-pin-rotate";
 import PhotosScrollingSection from "@/components/photos-scrolling-section";
 import AboveTheFold from "@/layouts/partials/home/above-the-fold";
+import LogoSvg from "@/components/logo-svg";
+import ElasticTextIntro from "@/components/elastic-text-intro";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +38,14 @@ function Index() {
           <AboveTheFold />
           <SectionPinRotate dataChapters={data} />
           <PhotosScrollingSection />
+          <section className="h-svh w-full grid place-content-center">
+            <LogoSvg className="fill-bege-300 size-128" />
+          </section>
+          <ElasticTextIntro />
+
+          <section className="h-svh w-full bg-mate-500 grid place-content-center">
+            <h2 className="text-8xl text-white font-cabinet font-black">Teste</h2>
+          </section>
         </>
       )}
     </>

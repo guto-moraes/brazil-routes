@@ -68,7 +68,7 @@ const AboveTheFold = () => {
 
       approaches.forEach((approach, index) => {
         gsap.set(approach, {
-          translateY: -(300 * (index + 1)),
+          translateY: 300 * (index + 1),
           transformOrigin: "bottom",
         });
       });
@@ -152,51 +152,60 @@ const AboveTheFold = () => {
         ref={animationContainer}
       >
         <Navigation isHome={true} />
-        <div className="animation-area bg-darkgreen-500 absolute inset-0 h-svh w-full flex flex-col justify-center items-center">
+        <div
+          className={cn(
+            "animation-area bg-linear-to-bl from-darkgreen-400 to-darkgreen-800 absolute",
+            "inset-0 h-svh w-full flex flex-col justify-center items-center",
+          )}
+        >
           <div className="h-full w-full absolute inset-0 bg-hero z-1"></div>
-          <div className="project-name absolute top-[24%] z-1 transform-3d perspective-distant perspective-origin-top">
+          <div className="project-name absolute top-[22.5%] z-3 transform-3d perspective-distant perspective-origin-top">
             <div className="project-content relative text-center uppercase transform ml-3.5">
-              <p className="text-[0.625rem] text-darkgreen-700 font-semibold leading-none tracking-tighter absolute top-9.5 -left-8 transform -rotate-90">
-                Projeto
-              </p>
+              <p className="text-2xl text-white text-center font-semibold leading-none tracking-tighter">Projeto</p>
               <h2
                 className={cn(
-                  "site-name text-[clamp(2.5rem,3.4vw,7vw)] text-white font-bold leading-[1.3]",
-                  "-tracking-[0.075em] w-full [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]",
+                  "site-name text-[clamp(2.5rem,4vw,7vw)] text-bege-200 font-cabinet font-black leading-[1.3]",
+                  "-tracking-[0.05em] w-full [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]",
                 )}
               >
                 Caminhos do Brasil Central
               </h2>
             </div>
           </div>
-          <Video videoSrc={videoSrc} className="[clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]" />
-          <div className="slogan-container absolute bottom-[26.5%] transform-3d perspective-distant perspective-origin-bottom overflow-hidden z-1">
-            <div className="slogan-content text-center uppercase flex flex-col justify-center items-center transform">
-              <TextRevealHidden blockColor="#0000000ff">
-                <p className="text-3xl text-white text-center font-semibold w-full px-4 xl:px-0 tracking-tighter">
+          <Video
+            videoSrc={videoSrc}
+            className="bg-linear-to-tr from-darkgreen-800 from-10% via-darkgreen-600 to-darkgreen-500 [clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]"
+          />
+
+          <div className="slogan-container absolute bottom-[24.5%] transform-3d perspective-distant perspective-origin-bottom overflow-hidden z-1">
+            <div className="slogan-content text-center h-max w-full flex flex-col justify-center items-center transform">
+              <TextRevealHidden blockColor="#0000000">
+                <p className="text-4xl text-white text-center font-cintarini w-full p-4 xl:px-0 tracking-tighter">
                   Onde o sertão se fez caminho e a memória se faz patrimônio
                 </p>
               </TextRevealHidden>
             </div>
           </div>
-          <div className="site-title absolute -bottom-full left-52 z-30 text-white uppercase scale-100 -rotate-45">
-            <h2 className="text-[clamp(2.5rem,11vw,13vw)] font-black leading-[0.85] -tracking-[0.08em]">Caminhos</h2>
-            <h2 className="text-[clamp(2rem,7vw,10vw)] font-normal leading-[0.85] -tracking-[0.13em]">
+          <div className="site-title absolute -bottom-full left-52 z-30 uppercase scale-100 -rotate-45">
+            <h2 className="text-[clamp(2.5rem,11vw,13vw)] text-bege-200 font-black leading-[0.85] -tracking-[0.08em]">
+              Caminhos
+            </h2>
+            <h2 className="text-[clamp(2rem,7vw,10vw)] text-white font-normal leading-[0.85] -tracking-[0.13em]">
               do Brasil Central
             </h2>
           </div>
         </div>
         <ResearchApproaches>
           <ApproachContainer>
-            <Hourglass size={64} className="opacity-50" />
+            <Hourglass size={64} className="text-bege-200 opacity-50" />
             <Approach text="História" />
           </ApproachContainer>
           <ApproachContainer>
-            <Brain size={64} className="opacity-50" />
+            <Brain size={64} className="text-bege-200 opacity-50" />
             <Approach text="Memória" />
           </ApproachContainer>
           <ApproachContainer>
-            <Landmark size={64} className="opacity-50" />
+            <Landmark size={64} className="text-bege-200 opacity-50" />
             <Approach text="Patrimônio" />
           </ApproachContainer>
         </ResearchApproaches>

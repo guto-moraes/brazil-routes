@@ -32,45 +32,18 @@
 }
 
 @font-face {
-  font-family: "Exo 2", sans-serif;
+  font-family: "Cintarini";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Exo2-Variable.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Exo 2 Italic", sans-serif;
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/Exo2-Italic-Variable.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "EBGaramond", serif;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/EBGaramond-Variable.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "EBGaramond Italic", serif;
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/EBGaramond-Italic-Variable.woff2") format("woff2");
+  src: url("/fonts/cintarini.regular.woff2") format("woff2");
 }
 
 @theme {
   --font-cabinet: "CabinetGrotesk Variable", sans-serif;
   --font-inter: "Inter", sans-serif;
   --font-interi: "Inter Italic", sans-serif;
-  --font-exo2: "Exo 2", sans-serif;
-  --font-exo2i: "Exo 2 Italic", sans-serif;
-  --font-garamond: "EBGaramond", serif;
-  --font-garamondi: "EBGaramond Italic", serif;
+  --font-cintarini: "Cintarini";
   --color-artic-50: oklch(0.963 0.016 210.95);
   --color-artic-100: oklch(0.936 0.03 209.53);
   --color-artic-200: oklch(0.873 0.066 206.92);

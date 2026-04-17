@@ -186,14 +186,14 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
         aria-labelledby="menubutton"
         tabIndex={-1}
       >
-        <div className="nav-transition bg-darkgreen-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-darkgreen-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-darkgreen-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-darkgreen-700 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-artic-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-artic-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-artic-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-artic-700 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
 
         <div
           className={cn(
-            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-darkgreen-800 pointer-events-auto",
+            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-artic-800 pointer-events-auto",
             "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
