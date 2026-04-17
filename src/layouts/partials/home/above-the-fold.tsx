@@ -4,13 +4,17 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
-
+import { cn } from "@/lib/utils";
 import Navigation from "@/components/navigation";
+import Video from "./video-cover";
 import videoSrc from "@/assets/video-background.mp4";
 import TextRevealHidden from "@/components/text-reveal-hidden";
+import { Approach, ApproachContainer, ResearchApproaches } from "./research-approaches";
+import { Brain, Hourglass, Landmark } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const AboveTheFold = () => {
   const animationContainer = useRef<HTMLElement | null>(null);
@@ -25,24 +29,62 @@ const AboveTheFold = () => {
       gsap.ticker.lagSmoothing(0);
 
       const animationArea = document.querySelector<HTMLDivElement>(".above-the-fold");
-      const title = document.querySelector<HTMLDivElement>(".project-name");
-      const description = document.querySelector<HTMLDivElement>(".slogan");
+      const titleContainer = document.querySelector<HTMLDivElement>(".project-name");
+      const siteName = gsap.utils.toArray<HTMLHeadingElement>(".site-name");
+      const description = document.querySelector<HTMLDivElement>(".slogan-content");
       const videoContainer = document.querySelector<HTMLDivElement>(".video-container");
       const siteTitle = document.querySelector<HTMLDivElement>(".site-title");
+      const approaches = document.querySelectorAll<HTMLDivElement>(".approaches .approach");
+
+      SplitText.create(siteName, {
+        type: "chars",
+        charsClass: "translate-y-0 transform",
+        autoSplit: true,
+        onSplit: (self) => {
+          return gsap.from(self.chars, {
+            y: 150,
+            stagger: 0.02,
+            duration: 0.8,
+            ease: "power2.inOut",
+            delay: 0.02,
+          });
+        },
+      });
+
+      gsap.fromTo(
+        videoContainer,
+        {
+          height: "0%",
+          width: "0%",
+        },
+        {
+          height: "40%",
+          width: "62%",
+          duration: 1.5,
+          ease: "power3.inOut",
+          delay: 0.5,
+        },
+      );
+
+      approaches.forEach((approach, index) => {
+        gsap.set(approach, {
+          translateY: -(300 * (index + 1)),
+          transformOrigin: "bottom",
+        });
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: animationArea,
           start: "50% 50%",
-          end: "300% 60%",
+          end: "500% 60%",
           scrub: 1,
           pin: true,
-          markers: true,
         },
       });
 
       tl.to(
-        title,
+        titleContainer,
         {
           rotateX: "110deg",
           opacity: 0,
@@ -61,11 +103,15 @@ const AboveTheFold = () => {
           },
           "rc",
         )
-        .to(
+        .fromTo(
           videoContainer,
           {
+            height: "40%",
+            width: "62%",
+          },
+          {
             height: "100%",
-            width: "100%",
+            width: "125%",
             duration: 5,
             ease: "power2.inOut",
           },
@@ -74,15 +120,27 @@ const AboveTheFold = () => {
         .to(
           siteTitle,
           {
-            left: -420,
-            bottom: 110,
-            rotate: -90,
+            left: 76,
+            bottom: 200,
+            rotate: 0,
             scale: 0.4,
             duration: 5,
             ease: "power3.inOut",
           },
           2,
         );
+
+      approaches.forEach((approach) => {
+        tl.to(
+          approach,
+          {
+            translateY: -40,
+            duration: 5,
+            ease: "power3.inOut",
+          },
+          3,
+        );
+      });
     },
     { scope: animationContainer },
   );
@@ -90,56 +148,59 @@ const AboveTheFold = () => {
   return (
     <>
       <section
-        className="above-the-fold relative h-svh w-full bg-darkgreen-500 overflow-hidden bg-hero"
+        className="above-the-fold relative h-svh w-full bg-darkgreen-800 overflow-hidden bg-hero"
         ref={animationContainer}
       >
         <Navigation isHome={true} />
         <div className="animation-area bg-darkgreen-500 absolute inset-0 h-svh w-full flex flex-col justify-center items-center">
           <div className="h-full w-full absolute inset-0 bg-hero z-1"></div>
-          <div className="project-name absolute top-[22.75%] z-1 transform-3d perspective-midrange perspective-origin-top">
-            <div className="top-content relative text-center uppercase transform ml-3.5">
+          <div className="project-name absolute top-[24%] z-1 transform-3d perspective-distant perspective-origin-top">
+            <div className="project-content relative text-center uppercase transform ml-3.5">
               <p className="text-[0.625rem] text-darkgreen-700 font-semibold leading-none tracking-tighter absolute top-9.5 -left-8 transform -rotate-90">
                 Projeto
               </p>
-              <h2 className="text-[clamp(2.5rem,3.4vw,7vw)] text-white font-bold leading-[1.3] -tracking-[0.075em] w-full">
+              <h2
+                className={cn(
+                  "site-name text-[clamp(2.5rem,3.4vw,7vw)] text-white font-bold leading-[1.3]",
+                  "-tracking-[0.075em] w-full [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]",
+                )}
+              >
                 Caminhos do Brasil Central
               </h2>
             </div>
           </div>
-          <div className={`video-container h-[40%] w-[51%] absolute top-1/2 left-1/2 -translate-1/2`}>
-            <div className="isolate w-full h-full absolute inset-0 bg-darkgreen-500">
-              <video
-                src={videoSrc}
-                muted
-                loop
-                autoPlay
-                className="absolute top-0 left-0 object-cover opacity-50 w-full h-full z-3"
-              />
-              <div className="absolute inset-0 w-full h-full bg-darkgreen-500 bg-hero"></div>
-            </div>
-          </div>
-          <div className="slogan-container absolute bottom-[25%] transform-3d perspective-midrange perspective-origin-bottom overflow-hidden z-1">
-            <div className="slogan text-center uppercase flex flex-col justify-center items-center transform">
-              {/* <h2 className="text-[clamp(1.8rem,2.75vw,5vw)] text-white font-bold leading-[1.3] -tracking-[0.065em]">
-                História, Memória e Patrimônio
-              </h2> */}
-              <TextRevealHidden blockColor="#219577">
-                <p className="text-3xl text-black/50 text-center font-semibold w-full px-4 xl:px-0 tracking-tighter">
+          <Video videoSrc={videoSrc} className="[clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]" />
+          <div className="slogan-container absolute bottom-[26.5%] transform-3d perspective-distant perspective-origin-bottom overflow-hidden z-1">
+            <div className="slogan-content text-center uppercase flex flex-col justify-center items-center transform">
+              <TextRevealHidden blockColor="#0000000ff">
+                <p className="text-3xl text-white text-center font-semibold w-full px-4 xl:px-0 tracking-tighter">
                   Onde o sertão se fez caminho e a memória se faz patrimônio
                 </p>
               </TextRevealHidden>
             </div>
           </div>
-          <div className="site-title absolute -bottom-full left-52 z-30 text-white/25 uppercase scale-100 rotate-0">
+          <div className="site-title absolute -bottom-full left-52 z-30 text-white uppercase scale-100 -rotate-45">
             <h2 className="text-[clamp(2.5rem,11vw,13vw)] font-black leading-[0.85] -tracking-[0.08em]">Caminhos</h2>
             <h2 className="text-[clamp(2rem,7vw,10vw)] font-normal leading-[0.85] -tracking-[0.13em]">
               do Brasil Central
             </h2>
           </div>
-          div.research-approach
         </div>
+        <ResearchApproaches>
+          <ApproachContainer>
+            <Hourglass size={64} className="opacity-50" />
+            <Approach text="História" />
+          </ApproachContainer>
+          <ApproachContainer>
+            <Brain size={64} className="opacity-50" />
+            <Approach text="Memória" />
+          </ApproachContainer>
+          <ApproachContainer>
+            <Landmark size={64} className="opacity-50" />
+            <Approach text="Patrimônio" />
+          </ApproachContainer>
+        </ResearchApproaches>
       </section>
-      <div className="part-2 bg-artic-400 h-svh w-full mt-[100%]">Vídeo</div>
     </>
   );
 };
