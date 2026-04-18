@@ -48,7 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <>
       <QueryClientProvider client={queryClient}>
         <ReactLenis root />
-        {!isHome && <Navigation />}
+        {isHome && <Navigation />}
         {children}
         <Partners />
         <Footer />

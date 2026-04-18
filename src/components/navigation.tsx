@@ -126,13 +126,14 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
       >
         <div className="container mx-auto">
           <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-70">
-            <div className="nav-logo p-4 lg:px-0 border-none z-50">
+            <div className="nav-logo py-4 text-left border-none z-50">
               <a role="menu-item" href="/" title="Página Inicial">
                 <img
-                  src={isActiveMenu || isHome ? negativeLogo : logo}
+                  src={isActiveMenu ? negativeLogo : logo}
+                  // src={logo}
                   alt="Logotipo do Projeto Caminhos do Brasil Central"
                   title="Logotipo do Projeto Caminhos do Brasil Central"
-                  className={cn("w-32 md:w-48 lg:w-52", isHome && "ml-6")}
+                  className={cn("w-32 md:w-48 lg:w-52")}
                 />
               </a>
             </div>
@@ -146,9 +147,8 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
             >
               <span
                 className={cn(
-                  "uppercase duration-700 transition-all",
-                  isActiveMenu || isHome ? "text-white" : "text-gray-600",
-                  isActiveMenu ? "scale-0" : "scale-100",
+                  "text-chocolate-800 uppercase duration-700 transition-all",
+                  isActiveMenu ? "text-white scale-0" : "text-chocolate-800 scale-100",
                   screenWidth && screenWidth < 640 ? "hidden" : "block",
                 )}
               >
@@ -157,22 +157,22 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
               <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden z-75">
                 <span
                   className={cn(
-                    "bg-white w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
+                    "mw-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:translate-y-2 group-[.open]:rotate-45",
-                    isActiveMenu || isHome ? "bg-white" : "bg-gray-600",
+                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100",
-                    isActiveMenu || isHome ? "bg-white" : "bg-gray-600",
+                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:-translate-y-2 group-[.open]:-rotate-45",
-                    isActiveMenu || isHome ? "bg-white" : "bg-gray-600",
+                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
               </div>
@@ -186,14 +186,14 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
         aria-labelledby="menubutton"
         tabIndex={-1}
       >
-        <div className="nav-transition bg-artic-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
-        <div className="nav-transition bg-artic-700 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-tan-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-tan-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-tan-600 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
+        <div className="nav-transition bg-tan-700 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
 
         <div
           className={cn(
-            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-artic-800 pointer-events-auto",
+            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-tan-800 pointer-events-auto",
             "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >

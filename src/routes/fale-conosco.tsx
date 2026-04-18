@@ -13,8 +13,10 @@ import { createFileRoute } from "@tanstack/react-router";
 // import InstagramCarousel from "@/components/carousel";
 
 import { useRef } from "react";
+import Navigation from "@/components/navigation";
+import { cn } from "@/lib/utils";
 import videoSrc from "@/assets/video-background.mp4";
-import LogoSvg from "@/components/logo-svg";
+// import LogoSvg from "@/components/logo-svg";
 
 export const Route = createFileRoute("/fale-conosco")({
   head: () => ({
@@ -42,23 +44,46 @@ function ContactUs() {
         lenis.raf(time * 1000);
       });
 
-      const video = document.querySelector<HTMLHeadingElement>(".video-container");
-      const logo = gsap.utils.toArray<SVGAElement>(".video-mask svg");
+      const container = document.querySelector<HTMLDivElement>(".above-the-fold");
+      const videoContainer = document.querySelector<HTMLDivElement>(".video-container");
+      const heading = document.querySelector<HTMLHeadElement>(".site-name h2");
 
-      gsap.to(logo,{
-        scale: 200,
-        yPercent: 1000,
-        duration: 5,
-        ease: "none",
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: video,
-          start: "top top",
-          end: 5000,
+          trigger: container,
+          start: "50% 50%",
+          end: "500% 60%",
           pin: true,
           scrub: 1,
           markers: true,
-        },
+        }
       });
+
+      
+      tl.fromTo(
+        heading,
+        { rotateX: "0deg" },
+        {
+          rotateX: "-110deg",
+          duration: 1.5,
+          opacity: 0,
+          ease: "power4.inOut",
+        },
+        "rc",
+      ).fromTo(
+        videoContainer,
+        {
+          height: "40%",
+          width: "72%",
+        },
+        {
+          height: "100%",
+          width: "125%",
+          duration: 5,
+          ease: "power4.inOut",
+        },
+        "rc",
+      );
     },
     { scope: videoContainer },
   );
@@ -69,23 +94,34 @@ function ContactUs() {
       {/* <ScrollableSections /> */}
       {/* <TextNewSectionReveal /> */}
 
-      <section className="video-container relative bg-linear-to-bl bg-darkgreen-500 from-10% via-darkgreen-600 to-darkgreen-800 bg-hero h-[calc(100svh-104px)] w-full overflow-hidden" ref={videoContainer}>
-        <video
-          muted
-          loop
-          autoPlay
-          className="h-full w-full absolute inset-0 scale-125 object-cover opacity-50 -z-1 [clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]"
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        <div className="video-mask relative bg-white mix-blend-screen h-[calc(100svh-104px)] w-full">
-          <LogoSvg className="size-150 absolute top-1/2 left-1/2 -translate-1/2 animate-pulse" />
+      <section className="above-the-fold relative bg-hero h-svh w-full overflow-hidden">
+        <Navigation isHome={true} />
+
+        <div className="h-[calc(100svh-104px)] container mx-auto px-4 lg:px-0">
+          <div
+            className={cn(
+              "video-container absolute top-1/2 left-1/2 -translate-1/2 h-[40%] w-[72%]",
+              "[clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]",
+            )}
+          >
+            <video autoPlay loop muted className="h-full w-full object-cover opacity-50">
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          </div>
+          <div className="site-name h-max absolute bottom-60 left-1/2 -translate-x-1/2 perspective-distant transform-3d">
+            <h2
+              className={cn(
+                "text-[clamp(2.5rem,4vw,8vw)] text-chocolate-800 font-black leading-[0.85] uppercase -tracking-[0.075em] w-max",
+              )}
+            >
+              Caminhos do Brasil Central
+            </h2>
+          </div>
         </div>
-        <div className="bg-linear-to-bl bg-darkgreen-500/40 from-10% via-darkgreen-600/40 to-darkgreen-800/40 bg-hero absolute inset-0 h-full w-full -z-1"></div>
       </section>
 
-      <section className="h-svh w-full bg-chocolate-300 grid place-content-center">
-        <h2 className="text-8xl text-terracotta-900 font-cabinet font-black">Fim</h2>
+      <section className="bg-mate-500 h-svh w-full grid place-content-center">
+        <h2 className="text-8xl text white font-cabinet font-black">Teste</h2>
       </section>
     </>
   );
