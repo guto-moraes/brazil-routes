@@ -17,6 +17,7 @@ import { useRef } from "react";
 // import { cn } from "@/lib/utils";
 // import videoSrc from "@/assets/video-background.mp4";
 import InfiniteMarquee from "@/components/infinite-marquee";
+import HeroProjectNameReveal from "@/components/hero-project-name-reveal";
 // import LogoSvg from "@/components/logo-svg";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -120,13 +121,13 @@ function ContactUs() {
         </div>
       </section> */}
 
-
-
-          <InfiniteMarquee />
+      <HeroProjectNameReveal />
 
       <section className="bg-mate-500 h-svh w-full grid place-content-center">
         <h2 className="text-8xl text white font-cabinet font-black">Teste</h2>
       </section>
+
+      <InfiniteMarquee />
     </>
   );
 }

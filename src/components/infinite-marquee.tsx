@@ -1,3 +1,5 @@
+"use client";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -30,31 +32,27 @@ const InfiniteMarquee = () => {
       bannerRight!.appendChild(clone);
     });
  
-    const tl = gsap.timeline({ x: 0, visibility: "visible", opacity: 0, autoAlpha: 0, });
+    const tl = gsap.timeline({ x: 0, visibility: "visible", });
 
     tl.to(bannerLeft, {
       x: -250,
-	  opacity: 1,
-	  autoAlpha: 1,
-      duration: 4,
+      duration: 16,
       repeat: -1,
       ease: "linear",
-    }, "rc").totalProgress(0.5)
+    }, "rc")
     .to(bannerRight, {
       x: 250,
-	  opacity: 1,
-      autoAlpha: 1,
-      duration: 4,
+      duration: 16,
       repeat: -1,
       ease: "linear",
-    }, "rc").totalProgress(0.5);
+    }, "rc");
   });
 
   return (
     <>
       <section className="bg-tan-900 pt-16 pb-8 w-full overflow-hidden">
         <div className="banners-wrapper bg-tan-900 border-y-2 border-bege-300 w-full -mt-8 -rotate-z-2">
-          <div className="banner-scroll-left opacity-0 invisible will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
+          <div className="banner-scroll-left will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
             <div className="banner-item text-bege-300 uppercase h-full w-fit py-4 flex flex-col justify-center items-center">
               <span className="text-[6.25rem] font-black leading-[0.8] tracking-tighter">Barra</span>
               <span className="text-[3.7rem] leading-[0.8] -tracking-wide">do Garças</span>
@@ -79,7 +77,7 @@ const InfiniteMarquee = () => {
         </div>
 
         <div className="banners-wrapper bg-tan-900 border-y-2 border-bege-300 w-screen overflow-hidden -mt-14 -ml-4 rotate-z-2">
-          <div className="banner-scroll-right opacity-0 invisible will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
+          <div className="banner-scroll-right will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
             <div className="banner-item text-bege-300 uppercase h-full w-fit py-4 flex flex-col justify-center items-center">
               <span className="text-[6.5rem] font-black leading-[0.8] -tracking-wider">Nova</span>
               <span className="text-[3.7rem] leading-[0.8] -tracking-widest">Xavantina</span>
