@@ -2,9 +2,9 @@
 
 // import { Link } from "@tanstack/react-router";
 // import { useEffect } from "react";
-// import gsap from "gsap";
+import gsap from "gsap";
 // import { useGSAP } from "@gsap/react";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);

@@ -43,7 +43,7 @@ const InfiniteMarquee = () => {
 
   return (
     <>
-      <section className="bg-tan-900 pt-16 pb-8 w-full overflow-hidden">
+      <section className="bg-tan-900 py-8 w-full overflow-hidden">
         <div className="banners-wrapper bg-tan-900 border-y-2 border-bege-300 w-full -rotate-z-2">
           <div className="banner-scroll-left will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
             <div className="banner-item text-bege-300 uppercase h-full w-fit py-4 flex flex-col justify-center items-center">

@@ -3,7 +3,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +17,7 @@ import { useRef } from "react";
 // import videoSrc from "@/assets/video-background.mp4";
 import InfiniteMarquee from "@/components/infinite-marquee";
 import HeroProjectNameReveal from "@/components/hero-project-name-reveal";
+import IntroCardsStick from "@/components/intro-cards-stick";
 // import LogoSvg from "@/components/logo-svg";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -40,11 +40,6 @@ function ContactUs() {
 
   useGSAP(
     () => {
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
 
       const container = document.querySelector<HTMLDivElement>(".above-the-fold");
       const videoContainer = document.querySelector<HTMLDivElement>(".video-container");
@@ -57,7 +52,7 @@ function ContactUs() {
           end: "500% 60%",
           pin: true,
           scrub: 1,
-          markers: true,
+          // markers: true,
         },
       });
 
@@ -124,9 +119,8 @@ function ContactUs() {
       <HeroProjectNameReveal />
 
       <InfiniteMarquee />
-      <section className="bg-mate-500 h-svh w-full grid place-content-center">
-        <h2 className="text-8xl text white font-cabinet font-black">Teste</h2>
-      </section>
+
+      <IntroCardsStick />
     </>
   );
 }

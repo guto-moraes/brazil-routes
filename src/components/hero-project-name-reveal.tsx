@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const HeroProjectNameReveal = () => {
   const heroContainer = useRef<HTMLElement | null>(null);
-  const [isInitialPage, setIsInitialPage] = useState(false);
+  // const [isInitialPage, setIsInitialPage] = useState(false);
 
   useGSAP(
     () => {
@@ -61,7 +61,7 @@ const HeroProjectNameReveal = () => {
             yPercent: 200,
             stagger: 0.02,
             ease: "power2.out",
-            onComplete: () => setIsInitialPage(true),
+            // onComplete: () => setIsInitialPage(true),
           },
           "-=0.5",
         );
@@ -82,7 +82,7 @@ const HeroProjectNameReveal = () => {
   return (
     <>
       <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden" ref={heroContainer}>
-        <Navigation isHome={isInitialPage} />
+        <Navigation isHome />
         <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10">
           <img
             className="hero-image invert scale-0 opacity-7.5 absolute top-1/2 left-1/2 -translate-1/2 h-1/2 w-1/2 object-cover -z-1"
