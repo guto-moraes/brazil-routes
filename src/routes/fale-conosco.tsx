@@ -13,9 +13,10 @@ import { createFileRoute } from "@tanstack/react-router";
 // import InstagramCarousel from "@/components/carousel";
 
 import { useRef } from "react";
-import Navigation from "@/components/navigation";
-import { cn } from "@/lib/utils";
-import videoSrc from "@/assets/video-background.mp4";
+// import Navigation from "@/components/navigation";
+// import { cn } from "@/lib/utils";
+// import videoSrc from "@/assets/video-background.mp4";
+import InfiniteMarquee from "@/components/infinite-marquee";
 // import LogoSvg from "@/components/logo-svg";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -56,10 +57,9 @@ function ContactUs() {
           pin: true,
           scrub: 1,
           markers: true,
-        }
+        },
       });
 
-      
       tl.fromTo(
         heading,
         { rotateX: "0deg" },
@@ -94,7 +94,7 @@ function ContactUs() {
       {/* <ScrollableSections /> */}
       {/* <TextNewSectionReveal /> */}
 
-      <section className="above-the-fold relative bg-hero h-svh w-full overflow-hidden">
+      {/* <section className="above-the-fold relative bg-hero h-svh w-full overflow-hidden">
         <Navigation isHome={true} />
 
         <div className="h-[calc(100svh-104px)] container mx-auto px-4 lg:px-0">
@@ -118,7 +118,11 @@ function ContactUs() {
             </h2>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+
+          <InfiniteMarquee />
 
       <section className="bg-mate-500 h-svh w-full grid place-content-center">
         <h2 className="text-8xl text white font-cabinet font-black">Teste</h2>
