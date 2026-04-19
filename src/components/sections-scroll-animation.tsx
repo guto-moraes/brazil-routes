@@ -1,31 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { ReactLenis, type LenisRef } from "lenis/react";
 import Main from "@/layouts/main";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SectionScrollAnimation = () => {
-  // const lenis = new Lenis;
-  const lenisRef = useRef<LenisRef | null>(null);
   const containersRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    function update(time: number) {
-      lenisRef.current!.lenis?.raf(time * 1000);
-    }
-
-    lenisRef.current?.lenis?.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => gsap.ticker.remove(update);
-  }, []);
 
   useGSAP(() => {
     const lenis = new Lenis();
@@ -67,7 +52,6 @@ const SectionScrollAnimation = () => {
   return (
     <>
           {/* <section className="h-svh w-full bg-mate-400"></section> */}
-      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
       <Main ref={containersRef}>
         <section className="rotate-section relative h-svh min-h-svh w-full overflow-hidden">
           <section className="container bg-bone-400 relative h-full w-full min-w-full p-8 flex rotate-30 origin-bottom-left will-change-transform">

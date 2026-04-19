@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Lenis from "lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,12 +12,6 @@ const ScrollingAnimatedCards = () => {
   const containerScope = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     const cardContainer = gsap.utils.toArray<HTMLElement>(".sticky-card-container");
     const stickyHeader = gsap.utils.toArray<HTMLElement>(".sticky-card-header p");

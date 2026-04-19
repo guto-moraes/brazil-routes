@@ -1,6 +1,5 @@
 "use client";
 
-import Lenis from "lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,12 +11,6 @@ gsap.registerPlugin(Observer, ScrollTrigger);
 
 const AlmanaqueOrganization = () => {
   useGSAP(() => {
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     gsap.defaults({
       duration: 1.3,

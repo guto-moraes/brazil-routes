@@ -3,18 +3,11 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const InfiniteMarquee = () => {
   useGSAP(() => {
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
 
     const bannerLeft = document.querySelector<HTMLDivElement>(".banner-scroll-left");
     const bannerRight = document.querySelector<HTMLDivElement>(".banner-scroll-right");
@@ -51,7 +44,7 @@ const InfiniteMarquee = () => {
   return (
     <>
       <section className="bg-tan-900 pt-16 pb-8 w-full overflow-hidden">
-        <div className="banners-wrapper bg-tan-900 border-y-2 border-bege-300 w-full -mt-8 -rotate-z-2">
+        <div className="banners-wrapper bg-tan-900 border-y-2 border-bege-300 w-full -rotate-z-2">
           <div className="banner-scroll-left will-change-transform xl:h-50 w-full flex justify-center items-center gap-x-16">
             <div className="banner-item text-bege-300 uppercase h-full w-fit py-4 flex flex-col justify-center items-center">
               <span className="text-[6.25rem] font-black leading-[0.8] tracking-tighter">Barra</span>

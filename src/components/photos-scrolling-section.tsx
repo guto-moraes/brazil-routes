@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Lenis from "lenis";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,12 +15,6 @@ const PhotosScrollingSection = () => {
 
   useGSAP(
     () => {
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
 
       const trigger = document.querySelector<HTMLElement>(".photos-container");
       const introText = document.querySelector<HTMLDivElement>(".intro-text");

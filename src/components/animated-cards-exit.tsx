@@ -1,8 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Lenis from "lenis";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { cn } from "@/lib/utils";
@@ -14,11 +12,6 @@ const AnimatedCardsExit = () => {
 
   useGSAP(
     () => {
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
 
       const cards = gsap.utils.toArray<HTMLDivElement>(".card");
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Lenis from "lenis";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
@@ -17,11 +16,6 @@ const ElasticTextIntro = () => {
 
   useGSAP(
     () => {
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
 
       const header = document.querySelector<HTMLHeadingElement>(".header h2");
       const textElement1 = document.querySelector<HTMLHeadingElement>(".sticky-text-1 .text-container h2");

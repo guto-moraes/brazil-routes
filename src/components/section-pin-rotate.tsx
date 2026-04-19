@@ -3,7 +3,6 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import ButtonLinkWithIcon from "./button-link-with-icon";
 import type { ChaptersAlmanaqueTypes } from "@/types/theme-graphql";
 import { cn } from "@/lib/utils";
@@ -20,11 +19,6 @@ const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
   const chapters = dataChapters.cbcTheme.cbcSettings.capitulosDoEBook;
 
   useGSAP(() => {
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
 
     const pinCards = document.querySelectorAll<HTMLDivElement>(".pin-card");
 

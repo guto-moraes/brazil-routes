@@ -3,7 +3,6 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/images/logo.webp";
 import leader from "@/assets/images/team/luiz-gabriel.webp";
@@ -12,11 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectTeam = () => {
   useGSAP(() => {
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
 
     const section = document.querySelector<HTMLElement>(".team");
     const members = gsap.utils.toArray<HTMLDivElement>(".team-member");

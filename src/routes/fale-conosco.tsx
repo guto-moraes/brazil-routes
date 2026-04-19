@@ -123,11 +123,10 @@ function ContactUs() {
 
       <HeroProjectNameReveal />
 
+      <InfiniteMarquee />
       <section className="bg-mate-500 h-svh w-full grid place-content-center">
         <h2 className="text-8xl text white font-cabinet font-black">Teste</h2>
       </section>
-
-      <InfiniteMarquee />
     </>
   );
 }

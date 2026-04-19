@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import Lenis from "lenis";
 import type { TextRevealHiddenTypes } from "@/types/components-types";
 
 gsap.registerPlugin(SplitText,ScrollTrigger);
@@ -25,11 +24,6 @@ const TextRevealHidden = ({
 
   useGSAP(
     () => {
-      const lenis = new Lenis();
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
 
       if (!containerRef.current) return;
 
