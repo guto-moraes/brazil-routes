@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,6 +18,7 @@ type ChaptersTypes = {
 
 const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
   const chapters = dataChapters.cbcTheme.cbcSettings.capitulosDoEBook;
+  const pinContainer = useRef<HTMLDivElement | null>(null)
 
   useGSAP(() => {
 
@@ -53,10 +55,10 @@ const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
     });
 
     ScrollTrigger.refresh();
-  });
+  }, { scope: pinContainer });
 
   return (
-    <div className={cn("bg-tan-950", className)}>
+    <div className={cn("pin-container bg-tan-950", className)} ref={pinContainer}>
       {chapters && chapters.map(({ tag, title, synopsis, image }, index) => {
         return (
           <section

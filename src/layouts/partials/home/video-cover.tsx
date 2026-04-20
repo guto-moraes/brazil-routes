@@ -5,7 +5,7 @@ const Video = ({ className, videoSrc }: { className?: string; videoSrc: string }
     <>
       <div
         className={cn(
-          "video-container bg-hero h-[40%] w-[62%] absolute top-1/2 left-1/2 -translate-1/2 [clip-path:polygon(10%_0%,90%_0%,90%_100%,10%_100%)]",
+          "video-container bg-hero h-[40%] w-[62%] absolute top-1/2 left-1/2 -translate-1/2",
           className,
         )}
       >

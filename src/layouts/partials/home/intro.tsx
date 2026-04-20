@@ -6,20 +6,21 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { cn } from "@/lib/utils";
+import Navigation from "@/components/navigation";
 import map from "@/assets/images/mapa-da-expedicao.webp";
-// import videoSrc from "@/assets/video-background.mp4";
-// import Video from "@/layouts/partials/home/video-cover";
-import Navigation from "./navigation";
+import videoSrc from "@/assets/video-background.mp4";
+import Video from "@/layouts/partials/home/video-cover";
+import { Approach, ApproachContainer, ResearchApproaches } from "@/layouts/partials/home/research-approaches";
+import { Brain, Hourglass, Landmark } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const HeroProjectNameReveal = () => {
+const Intro = () => {
   const heroContainer = useRef<HTMLElement | null>(null);
-  // const [isInitialPage, setIsInitialPage] = useState(false);
 
   useGSAP(
     () => {
-
+      const approaches = document.querySelectorAll<HTMLDivElement>(".approaches .approach");
       const heroTitleSplit = SplitText.create(".hero-title", {
         type: "chars",
       });
@@ -28,7 +29,21 @@ const HeroProjectNameReveal = () => {
         type: "chars",
       });
 
-      const tl = gsap.timeline({ delay: 0.5 }); //repeat: -1, repeatDelay: 0.5, opacity: 0, autoAlpha: 0,
+      approaches.forEach((approach, index) => {
+        gsap.set(approach, {
+          translateY: 300 * (index + 1),
+          transformOrigin: "bottom",
+        });
+      });
+
+      const tl = gsap.timeline({
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: heroContainer.current,
+          start: "top top",
+          pin: true,
+        },
+      });
 
       tl.to(".hero-content", {
         y: 0,
@@ -61,28 +76,54 @@ const HeroProjectNameReveal = () => {
             yPercent: 200,
             stagger: 0.02,
             ease: "power2.out",
-            // onComplete: () => setIsInitialPage(true),
           },
           "-=0.5",
+        )
+        .to(
+          ".hero-content",
+          {
+            scale: 0,
+            duration: 0.5,
+          },
+          ">0.7",
+        )
+        .to(".video-container", {
+          height: "100svh",
+          width: "125%",
+          scale: 1,
+          duration: 3,
+          ease: "power4.inOut",
+        })
+        .to(
+          ".hero-content",
+          {
+            scale: 1,
+            duration: 1,
+            ease: "power4.in",
+            zIndex: 6,
+          },
+          ">0.5",
         );
-      // .to(".hero-content", {
-      //   scale: 0,
-      //   duration: 0.5,
-      // }, ">0.7")
-      // .to(".video-container", {
-      //   height: "100svh",
-      //   width: "125%",
-      //   scale: 1,
-      //   duration: 1,
-      // })
+
+      approaches.forEach((approach) => {
+        tl.to(
+          approach,
+          {
+            translateY: -40,
+            duration: 5,
+            ease: "power3.inOut",
+          },
+          3,
+        );
+      });
     },
     { scope: heroContainer },
   );
 
   return (
     <>
-      <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden" ref={heroContainer}>
-        <Navigation isHome />
+      <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden z-3" ref={heroContainer}>
+        <Navigation isHome={true} />
         <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10">
           <img
             className="hero-image invert scale-0 opacity-7.5 absolute top-1/2 left-1/2 -translate-1/2 h-1/2 w-1/2 object-cover -z-1"
@@ -113,10 +154,24 @@ const HeroProjectNameReveal = () => {
             </h2>
           </div>
         </div>
-        {/* <Video videoSrc={videoSrc} className="scale-0" /> */}
+        <Video videoSrc={videoSrc} className="scale-0" />
+        <ResearchApproaches>
+          <ApproachContainer>
+            <Hourglass size={64} className="text-bege-200 opacity-50" />
+            <Approach text="História" />
+          </ApproachContainer>
+          <ApproachContainer>
+            <Brain size={64} className="text-bege-200 opacity-50" />
+            <Approach text="Memória" />
+          </ApproachContainer>
+          <ApproachContainer>
+            <Landmark size={64} className="text-bege-200 opacity-50" />
+            <Approach text="Patrimônio" />
+          </ApproachContainer>
+        </ResearchApproaches>
       </section>
     </>
   );
 };
 
-export default HeroProjectNameReveal;
+export default Intro;

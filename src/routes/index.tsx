@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryChaptersAlmanaqueHome } from "@/queries/theme-settings";
-import SectionPinRotate from "@/components/section-pin-rotate";
+import Intro from "@/layouts/partials/home/intro";
 import PhotosScrollingSection from "@/components/photos-scrolling-section";
-import AboveTheFold from "@/layouts/partials/home/above-the-fold";
-import LogoSvg from "@/components/logo-svg";
-import ElasticTextIntro from "@/components/elastic-text-intro";
+import SectionPinRotate from "@/components/section-pin-rotate";
+import InfiniteMarquee from "@/components/infinite-marquee";
+import FieldsOfActivity from "@/components/fields-of-activity";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,17 +35,13 @@ function Index() {
     <>
       {data && (
         <>
-          <AboveTheFold />
+          <Intro />
+          <InfiniteMarquee />
+          <section className="bg-bone-200 h-svh w-full"></section>
           <SectionPinRotate dataChapters={data} />
+          <FieldsOfActivity />
           <PhotosScrollingSection />
-          <section className="h-svh w-full grid place-content-center">
-            <LogoSvg className="fill-bege-300 size-128" />
-          </section>
-          <ElasticTextIntro />
-
-          <section className="h-svh w-full bg-mate-500 grid place-content-center">
-            <h2 className="text-8xl text-white font-cabinet font-black">Teste</h2>
-          </section>
+          <section className="bg-tan-300 h-svh w-full"></section>
         </>
       )}
     </>

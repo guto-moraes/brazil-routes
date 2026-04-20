@@ -16,8 +16,8 @@ import { useRef } from "react";
 // import { cn } from "@/lib/utils";
 // import videoSrc from "@/assets/video-background.mp4";
 import InfiniteMarquee from "@/components/infinite-marquee";
-import HeroProjectNameReveal from "@/components/hero-project-name-reveal";
 import IntroCardsStick from "@/components/intro-cards-stick";
+import Intro from "@/layouts/partials/home/intro";
 // import LogoSvg from "@/components/logo-svg";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -116,7 +116,7 @@ function ContactUs() {
         </div>
       </section> */}
 
-      <HeroProjectNameReveal />
+      <Intro />
 
       <InfiniteMarquee />
 

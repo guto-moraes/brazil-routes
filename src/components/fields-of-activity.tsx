@@ -18,7 +18,8 @@ type CardItem = {
 const CARD_ITEMS: CardItem[] = [
   {
     title: "Circulação Literária",
-    description: "Publicização do Almanaque desbravando o sertão, conquistando o Brasil, texto que trata e analisa os desdobramentos da Expedição Roncador-Xingu e da Fundação Brasil Central no leste de Mato Grosso, entre 1943 e 1967.",
+    description:
+      "Publicização do Almanaque desbravando o sertão, conquistando o Brasil, texto que trata e analisa os desdobramentos da Expedição Roncador-Xingu e da Fundação Brasil Central no leste de Mato Grosso, entre 1943 e 1967.",
     tags: ["Almanaque", "História", "Memória"],
     surface: "#c9d2bf",
     rotateFrom: 11,
@@ -26,7 +27,8 @@ const CARD_ITEMS: CardItem[] = [
   },
   {
     title: "Divulgação Histórica",
-    description: "A formação de uma sociedade reflete uma complexidade de processo históricos. Neste sentido, ao divulgar aspectos que deram os contornos do atual Vale do Araguaia (MT), buscamos viabilizar que mais pessoas conheçam os eventos históricos que ajudaram a formar aquele lugar.",
+    description:
+      "A formação de uma sociedade reflete uma complexidade de processo históricos. Neste sentido, ao divulgar aspectos que deram os contornos do atual Vale do Araguaia (MT), buscamos viabilizar que mais pessoas conheçam os eventos históricos que ajudaram a formar aquele lugar.",
     tags: ["Expedição Roncador-Xingu", "Fundação Brasil Central", "Vale do Araguaia"],
     surface: "#efebde",
     rotateFrom: -9,
@@ -34,7 +36,8 @@ const CARD_ITEMS: CardItem[] = [
   },
   {
     title: "Pesquisa no Espaço Escolar",
-    description: "Como orienta a Base Nacional Comum Curricular (BNCC), a pesquisa pode e deve ser usada como princípio educativo. Assim, por meio de palestras, este projeto também visa o incentivo da realização de pesquisas no ambiente afim de impulsionar novos conhecimentos.",
+    description:
+      "Como orienta a Base Nacional Comum Curricular (BNCC), a pesquisa pode e deve ser usada como princípio educativo. Assim, por meio de palestras, este projeto também visa o incentivo da realização de pesquisas no ambiente afim de impulsionar novos conhecimentos.",
     tags: ["Iniciação Científica", "Desenvolvimento crítico", "Educar pela pesquisa"],
     surface: "#dbcc94",
     rotateFrom: 8,
@@ -42,9 +45,10 @@ const CARD_ITEMS: CardItem[] = [
   },
   {
     title: "Memória e Patrimônio",
-    description: "Outra esfera de atuação deste projeto é a promoção da discussão das temáticas do patrimônio cultural e da memória e, em quais sentidos, eles são importantes para a constuição do patrimônio cultural brasileiro.",
+    description:
+      "Outra esfera de atuação deste projeto é a promoção da discussão das temáticas do patrimônio cultural e da memória e, em quais sentidos, eles são importantes para a constuição do patrimônio cultural brasileiro.",
     tags: ["Valorização da Memória", "Patrimônio Cultural", "Formação Social"],
-    surface: "#90d79b",
+    surface: "#b3f1bd",
     rotateFrom: -12,
     rotateTo: 3,
   },
@@ -59,14 +63,7 @@ type CardTypes = {
   children: React.ReactNode;
 };
 
-const Card = ({
-  title,
-  number,
-  tags,
-  surface,
-  className,
-  children,
-}: CardTypes) => {
+const Card = ({ title, number, tags, surface, className, children }: CardTypes) => {
   const num = typeof number === "number" ? String(number).padStart(2, "0") : number;
   const background = surface
     ? `
@@ -119,74 +116,77 @@ const Intro = () => {
       <p className="text-xl text-tan-600 font-medium uppercase mb-1.5">Projeto Caminhos do Brasil Central</p>
       <h2
         className={cn(
-          "text-[clamp(2.5rem,10vw,5.5rem)] text-tan-800 font-extrabold",
+          "text-[clamp(2.5rem,10vw,5.5rem)] text-chocolate-900 font-extrabold",
           "leading-[0.85] -tracking-[0.02em] uppercase w-220 text-center",
         )}
       >
         Áreas de <span className="-tracking-widest">Atuação</span>
       </h2>
-      <div className="pointer-events-none">
-        <div className="relative bg-gray-300/80 h-48 w-px overflow-hidden">
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-tan-600 to-transparent"></div>
-        </div>
-      </div>
+      <p className="text-2xl text-tan-800 text-center text-balance font-medium max-w-2/3 mx-auto mt-6">
+        Evidentemente, como o tema deste projeto é muito amplo, repleto de complexidades e múltiplos fatores, não há como abranger
+        todas as possibilidades de atuação que ele possibilita. Ainda assim, procuramos, o máximo possível, dar pistas e
+        caminhos de algumas áreas a partir das quais o público-alvo poderá se aprofundar, quando desejar.
+      </p>
     </section>
   );
 };
 
-const IntroCardsStick = () => {
-  const rootRef = useRef<HTMLDivElement>(null);
+const FieldsOfActivity = () => {
+  const introContainerRef = useRef<HTMLDivElement>(null);
   const SCROLL_VH = 80;
   const STAGGER = 0.55;
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const root = rootRef.current;
-    if (!root) return;
+      const root = introContainerRef.current;
+      if (!root) return;
 
-    const spacer = root.querySelector<HTMLElement>("[data-scroll-spacer]");
-    const deck = root.querySelector<HTMLElement>("[data-card-deck]");
-    if (!spacer || !deck) return;
+      const spacer = root.querySelector<HTMLElement>("[data-scroll-spacer]");
+      const deck = root.querySelector<HTMLElement>("[data-card-deck]");
+      if (!spacer || !deck) return;
 
-    const cards = gsap.utils.toArray<HTMLElement>(".card", deck);
-    if (!cards.length) return;
+      const cards = gsap.utils.toArray<HTMLElement>(".card", deck);
+      if (!cards.length) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".intro-container",
-        start: "top top",
-        end: `${SCROLL_VH * CARD_ITEMS.length}%`,
-        scrub: 1.2,
-        pin: true,
-      },
-    });
-
-    cards.forEach((card, i) => {
-      const item = CARD_ITEMS[i]!;
-      gsap.set(card, {
-        yPercent: 350 + i * 50,
-        rotate: item.rotateFrom,
-        opacity: 1,
-        scale: 1.25,
-      });
-      tl.to(
-        card,
-        {
-          yPercent: -50,
-          rotate: item.rotateTo,
-          scale: 0.9,
-          duration: 2,
-          ease: "none",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: introContainerRef.current,
+          start: "top top",
+          end: `${SCROLL_VH * CARD_ITEMS.length}%`,
+          scrub: 1.2,
+          pin: true,
         },
-        i * STAGGER,
-      );
-    });
-  });
+      });
+
+      cards.forEach((card, i) => {
+        const item = CARD_ITEMS[i]!;
+        gsap.set(card, {
+          yPercent: 350 + i * 50,
+          rotate: item.rotateFrom,
+          opacity: 1,
+          scale: 1.25,
+        });
+        tl.to(
+          card,
+          {
+            yPercent: -50,
+            rotate: item.rotateTo,
+            scale: 0.9,
+            duration: 2,
+            ease: "none",
+          },
+          i * STAGGER,
+        );
+      });
+    },
+    { scope: introContainerRef },
+  );
 
   return (
     <>
-      <div className="intro-container relative h-svh w-full bg-[#12100e] overflow-hidden" ref={rootRef}>
+      <div className="intro-container relative h-svh w-full bg-[#12100e] overflow-hidden" ref={introContainerRef}>
         <div data-scroll-spacer className="w-full" style={{ height: `${SCROLL_VH}vh` }} />
 
         <div className="absolute inset-0 z-0">
@@ -214,4 +214,4 @@ const IntroCardsStick = () => {
   );
 };
 
-export default IntroCardsStick;
+export default FieldsOfActivity;

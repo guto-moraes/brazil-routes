@@ -129,8 +129,7 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
             <div className="nav-logo py-4 text-left border-none z-50">
               <a role="menu-item" href="/" title="Página Inicial">
                 <img
-                  src={isActiveMenu ? negativeLogo : logo}
-                  // src={logo}
+                  src={isActiveMenu || isHome ? negativeLogo : logo}
                   alt="Logotipo do Projeto Caminhos do Brasil Central"
                   title="Logotipo do Projeto Caminhos do Brasil Central"
                   className={cn("w-32 md:w-48 lg:w-52")}
@@ -148,7 +147,8 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
               <span
                 className={cn(
                   "text-chocolate-800 uppercase duration-700 transition-all",
-                  isActiveMenu ? "text-white scale-0" : "text-chocolate-800 scale-100",
+                  isActiveMenu || isHome ? "text-white" : "text-chocolate-800",
+                  isActiveMenu ? "scale-0" : "scale-100",
                   screenWidth && screenWidth < 640 ? "hidden" : "block",
                 )}
               >
@@ -159,20 +159,20 @@ const Navigation = ({ isHome, className }: { isHome?: boolean; className?: strin
                   className={cn(
                     "mw-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:translate-y-2 group-[.open]:rotate-45",
-                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || isHome ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100",
-                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || isHome ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:-translate-y-2 group-[.open]:-rotate-45",
-                    isActiveMenu ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || isHome ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
               </div>
