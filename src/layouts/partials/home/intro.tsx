@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Intro = () => {
   const heroContainer = useRef<HTMLElement | null>(null);
+  const [isNegativeLogo, setIsNegativeLogo] = useState(false);
 
   useGSAP(
     () => {
@@ -93,6 +94,7 @@ const Intro = () => {
           scale: 1,
           duration: 3,
           ease: "power4.inOut",
+          onComplete: () => setIsNegativeLogo(true),
         })
         .to(
           ".hero-content",
@@ -102,7 +104,7 @@ const Intro = () => {
             ease: "power4.in",
             zIndex: 6,
           },
-          ">0.5",
+          ">0.2",
         );
 
       approaches.forEach((approach) => {
@@ -110,10 +112,10 @@ const Intro = () => {
           approach,
           {
             translateY: -40,
-            duration: 5,
+            duration: 3,
             ease: "power3.inOut",
           },
-          3,
+          "<",
         );
       });
     },
@@ -123,7 +125,7 @@ const Intro = () => {
   return (
     <>
       <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden z-3" ref={heroContainer}>
-        <Navigation isHome={true} />
+        <Navigation isHome={true} isNegativeLogo={isNegativeLogo} />
         <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10">
           <img
             className="hero-image invert scale-0 opacity-7.5 absolute top-1/2 left-1/2 -translate-1/2 h-1/2 w-1/2 object-cover -z-1"

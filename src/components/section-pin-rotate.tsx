@@ -15,9 +15,8 @@ type ChaptersTypes = {
   dataChapters: ChaptersAlmanaqueTypes;
 }
 
-
 const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
-  const chapters = dataChapters.cbcTheme.cbcSettings.capitulosDoEBook;
+  const chapters = dataChapters.project.theming.capitulosDoEBook;
   const pinContainer = useRef<HTMLDivElement | null>(null)
 
   useGSAP(() => {
