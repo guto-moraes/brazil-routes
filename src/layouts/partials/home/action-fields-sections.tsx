@@ -1,18 +1,16 @@
 "use client";
 
-import { useQueryFieldsActivityOfProject } from "@/queries/theme-settings";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ActionSection, Card } from "@/components/actions-fields-parts";
+import { useQueryFieldsActivityOfProject } from "@/queries/theme-settings";
 import type { FieldsActivity } from "@/types/theme-graphql";
+import { ActionSection, Card } from "@/components/actions-fields-parts";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ActionFieldsSection = () => {
-  const introContainerRef = useRef<HTMLDivElement>(null);
-  const SCROLL_VH = 80;
-  const STAGGER = 0.55;
-
   const { data, isLoading, isError, error } = useQueryFieldsActivityOfProject();
   const {
     fieldsActivities: sections,
@@ -21,11 +19,13 @@ const ActionFieldsSection = () => {
     fieldsActivityPresentation: presentation,
   } = data?.project.theming || {};
 
+  const actionsContainerRef = useRef<HTMLDivElement | null>(null);
+  const SCROLL_VH = 100;
+  const STAGGER = 0.55;
+
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const root = introContainerRef.current;
+      const root = actionsContainerRef.current;
       if (!root) return;
 
       const spacer = root.querySelector<HTMLElement>("[data-scroll-spacer]");
@@ -35,40 +35,43 @@ const ActionFieldsSection = () => {
       const cards = gsap.utils.toArray<HTMLElement>(".card", deck);
       if (!cards.length) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: introContainerRef.current,
-          start: "top top",
-          end: `${SCROLL_VH * sections!.length}%`,
-          scrub: 1.2,
-          pin: true,
-        },
-      });
 
-      if(sections){
-        cards.forEach((card, i) => {
-        const item = sections[i];
-        gsap.set(card, {
-          yPercent: 350 + i * 50,
-          rotate: item.fieldActivityRotateFrom,
-          opacity: 1,
-          scale: 1.25,
-        });
-        tl.to(
-          card,
-          {
-            yPercent: -50,
-            rotate: item.fielActivityRotateTo,
-            scale: 0.9,
-            duration: 2,
-            ease: "none",
+      if (sections) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: actionsContainerRef.current,
+            start: "top top",
+            end: SCROLL_VH * 6,
+            scrub: 1.2,
+            pin: true,
+            markers: true,
+            refreshPriority: -1,
           },
-          i * STAGGER,
-        );
-      });
+        });
+
+        cards.forEach((card, i) => {
+          const item = sections[i];
+          gsap.set(card, {
+            yPercent: 350 + i * 50,
+            rotate: item.fieldActivityRotateFrom,
+            opacity: 1,
+            scale: 1.25,
+          });
+          tl.to(
+            card,
+            {
+              yPercent: -50,
+              rotate: item.fielActivityRotateTo,
+              scale: 0.9,
+              duration: 2,
+              ease: "none",
+            },
+            i * STAGGER,
+          );
+        });
       }
     },
-    { scope: introContainerRef },
+    { scope: actionsContainerRef },
   );
 
   if (isLoading) {
@@ -83,12 +86,14 @@ const ActionFieldsSection = () => {
   }
 
   return (
-    <div className="intro-container bg-amber-200 relative h-svh w-full overflow-hidden" ref={introContainerRef}>
-      <div data-scroll-spacer className="w-full" style={{ height: `${SCROLL_VH}vh` }} />
+    <div className="actions-container bg-amber-200 relative h-svh w-full overflow-hidden" ref={actionsContainerRef}>
+      <div data-scroll-spacer className="w-full" style={{ height: `${SCROLL_VH}vh` }}></div>
 
       <div className="absolute inset-0 z-0">
         <div className="h-svh w-full">
-          {project && title && presentation && <ActionSection project={project} title={title} description={presentation} />}
+          {project && title && presentation && (
+            <ActionSection project={project} title={title} description={presentation} />
+          )}
         </div>
       </div>
 

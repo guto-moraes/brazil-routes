@@ -239,7 +239,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
             </ul>
           </div>
           <div className="nav-items-col flex-4 flex justify-between gap-8">
-            <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-2">
+            <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-5">
               {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link

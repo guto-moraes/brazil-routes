@@ -1,19 +1,15 @@
-import { cn } from "@/lib/utils";
 import type { FieldsActivityCardItem } from "@/types/theme-graphql";
 
 const ActionSection = ({ project, title, description }: { project: string; title: string; description: string }) => {
   return (
-    <section className="action-section relative bg-tan-400 h-full w-full flex flex-col justify-center items-center gap-y-1">
-      <p className="text-xl text-tan-600 font-medium uppercase">{project}</p>
-      <h2
-        className={cn(
-          "text-[clamp(2.5rem,10vw,5.5rem)] text-chocolate-900 font-extrabold",
-          "leading-[0.85] -tracking-[0.02em] uppercase w-220 text-center",
-        )}
-      >
-        {title}
-      </h2>
-      <p className="text-xl text-tan-800 text-center text-balance font-medium max-w-1/2 mx-auto mt-8">{description}</p>
+    <section className="actions-section relative bg-tan-300 h-full w-full flex flex-col justify-center items-center gap-y-1">
+            <hgroup className="text-center">
+              <h3 className="text-lg text-tan-500 uppercase">{project}</h3>
+              <h2 className="text-8xl text-tan-800 font-cabinet font-black">{title}</h2>
+            </hgroup>
+            <p className="text-xl text-tan-700 text-center text-balance w-1/2 mx-auto">
+              {description}
+            </p>
     </section>
   );
 };

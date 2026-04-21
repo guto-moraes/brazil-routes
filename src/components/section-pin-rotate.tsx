@@ -17,7 +17,7 @@ type ChaptersTypes = {
 
 const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
   const chapters = dataChapters.project.theming.capitulosDoEBook;
-  const pinContainer = useRef<HTMLDivElement | null>(null)
+  const pinContainerRef = useRef<HTMLDivElement | null>(null)
 
   useGSAP(() => {
 
@@ -53,11 +53,10 @@ const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
       }
     });
 
-    ScrollTrigger.refresh();
-  }, { scope: pinContainer });
+  }, { scope: pinContainerRef });
 
   return (
-    <div className={cn("pin-container bg-tan-950", className)} ref={pinContainer}>
+    <div className={cn("pin-container bg-tan-950", className)} ref={pinContainerRef}>
       {chapters && chapters.map(({ tag, title, synopsis, image }, index) => {
         return (
           <section

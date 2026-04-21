@@ -92,10 +92,10 @@ const Intro = () => {
           height: "100svh",
           width: "125%",
           scale: 1,
-          duration: 3,
+          duration: 2,
           ease: "power4.inOut",
           onComplete: () => setIsNegativeLogo(true),
-        })
+        },"<0.1")
         .to(
           ".hero-content",
           {
@@ -104,7 +104,7 @@ const Intro = () => {
             ease: "power4.in",
             zIndex: 6,
           },
-          ">0.2",
+          "<1.5",
         );
 
       approaches.forEach((approach) => {
@@ -124,7 +124,7 @@ const Intro = () => {
 
   return (
     <>
-      <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden z-3" ref={heroContainer}>
+      <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden" ref={heroContainer}>
         <Navigation isHome={true} isNegativeLogo={isNegativeLogo} />
         <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10">
           <img
