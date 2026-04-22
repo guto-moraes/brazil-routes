@@ -5,7 +5,8 @@ import { useQueryChaptersAlmanaqueHomePresentation } from "@/queries/theme-setti
 import Intro from "@/layouts/partials/home/intro";
 import SectionPinRotate from "@/components/section-pin-rotate";
 import InfiniteMarquee from "@/components/infinite-marquee";
-import ActionFieldsSection from "@/layouts/partials/home/action-fields-sections";
+import ActivitiesFields from "@/components/activities-fields";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,8 +39,7 @@ function Index() {
       <InfiniteMarquee />
       <section className="bg-bone-200 h-svh w-full"></section>
       <SectionPinRotate dataChapters={data} />
-      <ActionFieldsSection />
-      <section className="bg-tan-300 h-svh w-full"></section>
+      <ActivitiesFields />
     </>
   );
 }

@@ -25,7 +25,7 @@ export type FieldsActivityCardItem = {
   description: string;
   tags: string;
   number: number | string;
-  className: string;
+  className?: string;
 };
 
 //Tipagem para consultas da apresentação Almanaque
