@@ -37,14 +37,7 @@ const Intro = () => {
         });
       });
 
-      const tl = gsap.timeline({
-        delay: 0.5,
-        scrollTrigger: {
-          trigger: heroContainer.current,
-          start: "top top",
-          pin: true,
-        },
-      });
+      const tl = gsap.timeline();
 
       tl.to(".hero-content", {
         y: 0,

@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { FieldsActivityCardItem } from "@/types/theme-graphql";
-import { useQueryFieldsActivityOfProject } from "@/queries/theme-settings";
+import type { FieldsActivity, FieldsActivityCardItem } from "@/types/theme-types";
+import { useQueryFieldsActivityOfProject } from "@/queries/theme-queries";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -42,7 +42,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
       </ul>
       <span
         className={cn(
-          "text-[clamp(2.75rem,10vw,6rem)] text-tan-800/20 font-extrabold leading-none",
+          "text-[clamp(2.5rem,8vw,5rem)] text-tan-800/20 font-extrabold leading-none",
           "tracking-[-0.04em] tabular-nums absolute bottom-4 right-8",
         )}
       >
@@ -125,7 +125,7 @@ const ActivitiesFields = () => {
           )}
         >
           {activities &&
-            activities.map((activity, index) => (
+            activities.map((activity: FieldsActivity, index: number) => (
               <Card
                 key={index}
                 color={activity.fieldActivityColor}

@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ButtonLinkWithIcon from "./button-link-with-icon";
-import type { ChaptersAlmanaqueTypes } from "@/types/theme-graphql";
+import type { ChaptersAlmanaqueTypes } from "@/types/theme-types";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,7 +16,7 @@ type ChaptersTypes = {
 }
 
 const SectionPinRotate = ({ className, dataChapters }: ChaptersTypes) => {
-  const chapters = dataChapters.project.theming.capitulosDoEBook;
+  const chapters = dataChapters.project.theming.ebookChapters;
   const pinContainerRef = useRef<HTMLDivElement | null>(null)
 
   useGSAP(() => {
