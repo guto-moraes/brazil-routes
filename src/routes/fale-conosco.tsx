@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import InfiniteMarquee from "@/components/infinite-marquee";
+
+import TimelineGroup from "@/components/timeline";
+
 export const Route = createFileRoute("/fale-conosco")({
   head: () => ({
     meta: [
@@ -18,10 +20,7 @@ export const Route = createFileRoute("/fale-conosco")({
 function ContactUs() {
   return (
     <>
-      {/* <InstagramCarousel /> */}
-      {/* <ScrollableSections /> */}
-      {/* <TextNewSectionReveal /> */}
-      <InfiniteMarquee />
+      <TimelineGroup />
     </>
   );
 }

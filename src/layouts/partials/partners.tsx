@@ -3,7 +3,7 @@ import type { PartnerType } from "@/types/theme-types";
 
 const Partners = () => {
   const { data } = useQueryPartners();
-  const { partners } = data?.project?.theming || {};
+  const partners = data?.project.theming.partners || [];
 
   return (
     <section className="shadow-lg bg-bege-50 p-4 xl:p-0 xl:h-44">

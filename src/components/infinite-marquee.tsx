@@ -30,7 +30,7 @@ const InfiniteMarquee = () => {
       bannerLeft,
       {
         x: -250,
-        duration: 16,
+        duration: 12,
         repeat: -1,
         ease: "linear",
       },
@@ -39,7 +39,7 @@ const InfiniteMarquee = () => {
       bannerRight,
       {
         x: 250,
-        duration: 16,
+        duration: 12,
         repeat: -1,
         ease: "linear",
       },

@@ -3,13 +3,15 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ButtonLinkWithIcon from "./button-link-with-icon";
-import ebookCover from "@/assets/images/tablet-cover-book.png";
-import projectIcon from "@/assets/images/logo-icon.webp";
+import { useQueryAlmanaquePresentation } from "@/queries/theme-queries";
+import { sanitizedData } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const EbookPresentationSection = () => {
   const ebookPresentationRef = useRef<HTMLElement | null>(null);
+  const { data } = useQueryAlmanaquePresentation();
+  const { ebookPresentation: almanaque } = data?.project.theming || {};
 
   useGSAP(
     () => {
@@ -77,32 +79,39 @@ const EbookPresentationSection = () => {
       className="ebook-presentation bg-bone-200 relative h-svh w-full overflow-hidden"
       ref={ebookPresentationRef}
     >
-      <img className="project-icon size-100 absolute" src={projectIcon} alt="Marca do Projeto" />
-      <div className="h-full max-w-7xl mx-auto flex justify-between items-center gap-12 px-8">
+      <img
+        className="project-icon size-100 absolute"
+        src={almanaque && almanaque.projectIcon.node.guid}
+        alt="Marca do Projeto"
+      />
+      <div className="h-full container mx-auto flex justify-between items-center gap-12 px-8">
         <div className="perspective-dramatic">
           <img
-            src={ebookCover}
+            src={almanaque && almanaque.ebookCover.node.guid}
             alt="E-book no formato PDF"
             title="E-book no formato PDF"
             className="ebook-cover w-100 rotate-y-4"
           />
         </div>
         <div className="ebook-presentation h-full min-h-125 w-full max-w-180 flex flex-col justify-center items-end gap-y-16">
-          <div className="flex flex-col items-end gap-y-10">
+          <div className="flex flex-col items-end gap-y-14">
             <h2 className="text-6xl text-right text-mate-800 text-balance font-black">Almanaque Digital</h2>
-            <p className="text-xl text-bone-800 text-right text-balance w-[90%]">
-              O <strong>Desbravando o sertão, conconquistando o Brasil</strong>, projeto inédito que contou com
-              financiamento da Fundação de Amparo à Pesquisa do Estado de Mato Grosso (Fapemat), narra e analise a
-              história da expedição forjou a colonização não indígena na região que hoje é conhecida como Vale do
-              Araguaia, entre as divisas dos estados de Goiás e Mato Grosso, a Expedição Roncador-Xingu, bem como dos
-              processos que culminaram com a criação e a atuação da Fundação Brasil Central na região e os seus
-              desdobramentos.
-            </p>
+            <p
+              className="text-xl text-bone-800 text-justify text-balance w-full"
+              dangerouslySetInnerHTML={almanaque && sanitizedData(almanaque.ebookSynopsis)}
+            />
           </div>
-          <div className="w-full flex justify-end">
+          <div className="w-full flex justify-end items-center gap-8">
+            <ButtonLinkWithIcon
+              textButton="Saiba mais"
+              link={almanaque && almanaque.almanaqueUrlPage}
+              bgColor="bg-bone-400 hover:bg-bone-600 text-white"
+              iconColor="bg-white text-bone-700"
+              target={false}
+            />
             <ButtonLinkWithIcon
               textButton="Faça o download agora!"
-              link="/files/ebook.pdf"
+              link={almanaque && almanaque.almanaqueDownloadUrl}
               bgColor="bg-mate-400 hover:bg-mate-500 text-white"
               iconColor="bg-white text-mate-700"
               target={false}

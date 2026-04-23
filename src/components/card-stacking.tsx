@@ -13,7 +13,7 @@ const CardStacking = () => {
     function initScrool(){
         
         const section = document.querySelector<HTMLElement>(".card-stack-section");
-        const cards = gsap.utils.toArray<HTMLDivElement>(".card-stack", section);
+        const cards = gsap.utils.toArray<HTMLDivElement>(".card-stack");
 
         //Initial state
         gsap.set(cards[0], { xPercent: 150 });

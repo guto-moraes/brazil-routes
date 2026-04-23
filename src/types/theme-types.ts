@@ -1,3 +1,47 @@
+//Tipagem da consulta da apresentação do Almanaque
+export type AlmanaquePresentationTypes = {
+  project: {
+    theming: {
+      ebookPresentation: {
+        projectIcon: {
+          node: {
+            guid: string;
+          };
+        };
+        ebookCover: {
+          node: {
+            guid: string;
+          };
+        };
+        title: string;
+        ebookSynopsis: string;
+        almanaqueUrlPage: string;
+        almanaqueDownloadUrl: string;
+      };
+    };
+  };
+};
+
+//Tipagem para consultas da apresentação Almanaque
+export type ChaptersTypes = {
+  tag: string;
+  title: string;
+  synopsis: string;
+  image: {
+    node: {
+      guid: string;
+    };
+  };
+};
+
+export type ChaptersAlmanaqueTypes = {
+  project: {
+    theming: {
+      ebookChapters: ChaptersTypes[];
+    };
+  };
+};
+
 //Tipagem da consulta para área de atuação
 export type FieldsActivity = {
   fieldActivity: string;
@@ -28,35 +72,15 @@ export type FieldsActivityCardItem = {
   className?: string;
 };
 
-//Tipagem para consultas da apresentação Almanaque
-export type ChaptersTypes = {
-  tag: string;
-  title: string;
-  synopsis: string;
-  image: {
-    node: {
-      guid: string;
-    };
-  };
-};
-
-export type ChaptersAlmanaqueTypes = {
-  project: {
-    theming: {
-      ebookChapters: ChaptersTypes[];
-    };
-  };
-};
-
 //Tipagem da linha de parceiros realizadores do projeto
 export type PartnerType = {
-  url: string;
-  name: string;
   image: {
     node: {
       guid: string;
     };
   };
+  name: string;
+  url: string;
 };
 
 export type PartnersTypes = {

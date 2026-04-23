@@ -52,7 +52,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
   );
 };
 
-const ActivitiesFields = () => {
+const ActivitiesFieldsSection = () => {
   const activitiesCardsRef = useRef<HTMLElement | null>(null);
   const { data, isLoading } = useQueryFieldsActivityOfProject();
   const {
@@ -86,7 +86,7 @@ const ActivitiesFields = () => {
         cards.forEach((card, i) => {
           const cardItem = activities[i];
           gsap.set(card, {
-            yPercent: 250 + 1 * 50,
+            yPercent: 150 + 1 * 50,
             opacity: 1,
             scale: 1.25,
             rotate: cardItem.fieldActivityRotateFrom,
@@ -141,4 +141,4 @@ const ActivitiesFields = () => {
   );
 };
 
-export default ActivitiesFields;
+export default ActivitiesFieldsSection;

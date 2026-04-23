@@ -1,82 +1,100 @@
 "use client";
 
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { cn } from "@/lib/utils";
+import ButtonLinkWithIcon from "./button-link-with-icon";
+import type { ChaptersAlmanaqueTypes } from "@/types/theme-types";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AlmanaqueChapters = () => {
-  useGSAP(() => {
+type ChaptersTypes = {
+  className?: string;
+  dataChapters: ChaptersAlmanaqueTypes;
+};
 
-  });
+const AlmanaqueChaptersSection = ({ className, dataChapters }: ChaptersTypes) => {
+  const chapters = dataChapters.project.theming.ebookChapters;
+  const pinContainerRef = useRef<HTMLDivElement | null>(null);
 
-  return(
-    <>
-        <section className="intro bg-chocolate-300 h-svh w-full grid place-content-center">
-            <h2 className="text-8xl text-white font-cabinet font-black">Início</h2>
-        </section>
+  useGSAP(
+    () => {
+      const pinCards = document.querySelectorAll<HTMLDivElement>(".chapter-card");
 
-        <section className="stickys relative bg-tan-800 text-tan-200 h-svh w-full overflow-hidden p-2">
-            <div className="sticky-cols relative h-full w-full">
-                <div className="col col-1 absolute h-full w-1/2 will-change-transform">
-                    <div className="col-content relative h-full w-full p-2">
-                        <div className="col-content-wrapper relative rounded-2xl bg-tan-700 h-full w-full flex flex-col justify-between overflow-hidden">
-                            <h2 className="text-5xl text-tan-400 font-cabinet font-medium leading-[1.1] w-[60%] p-10">
-                                A memória de pessoas que viveram durante os anos de atuação da FBC
-                            </h2>
-                            <p className="text-base text-white font-medium w-[60%] p-10">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni soluta velit ex vero esse fugiat labore corrupti, iste adipisci debitis consequatur eos, accusamus necessitatibus eum sint cumque quasi ullam temporibus. Quia, laborum!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col col-2 absolute h-full w-1/2 will-change-transform translate-x-full">
-                    <div className="col-img col-img-1 h-full w-full p-2 absolute top-0 left-0">
-                        <div className="col-img-wrapper relative rounded-2xl bg-tan-600 h-full w-full overflow-hidden">
-                            <img className="h-full w-full object-cover" src="/images/experiments/1.webp" alt="" />
-                        </div>
-                    </div>
-                    <div className="col-img col-img-2 h-full w-full p-2 absolute top-0 left-0 [clip-path:polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)]">
-                        <div className="col-img-wrapper relative rounded-2xl bg-tan-700 h-full w-full overflow-hidden">
-                            <img className="h-full w-full object-cover transform scale-125" src="/images/experiments/2.webp" alt="" />
-                        </div>
-                    </div>
-                </div>
-                <div className="col col-3 absolute h-full w-1/2 will-change-transform translate-full p-2">
-                    <div className="col-content-wrapper-1 relative rounded-2xl bg-tan-700 h-full w-full p-10 flex flex-col justify-between overflow-hidden">
-                        <h2 className="text-5xl text-tan-400 font-cabinet font-medium leading-[1.1] w-[60%] p-10">
-                            A história também se faz de memórias
-                        </h2>
-                        <p className="text-base text-white font-medium w-[60%] p-10">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum sit sunt ipsa maiores! Dolor impedit minima adipisci officia dignissimos quis eveniet consequuntur suscipit maxime rem? Facilis ex nemo fugit asperiores.
-                        </p>
-                    </div>
-                    <div className="col-content-wrapper-2 rounded-2xl bg-tan-600 h-full w-full p-10 absolute top-0 left-0 flex flex-col justify-between overflow-hidden">
-                            <h2 className="text-5xl text-tan-400 font-cabinet font-medium leading-[1.1] w-[60%]">
-                                A memória de pessoas que viveram durante os anos de atuação da FBC
-                            </h2>
-                            <p className="text-base text-white font-medium w-[60%] p-10">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni soluta velit ex vero esse fugiat labore corrupti, iste adipisci debitis consequatur eos, accusamus necessitatibus eum sint cumque quasi ullam temporibus. Quia, laborum!
-                            </p>
-                    </div>
-                </div>
-                <div className="col col-4 absolute h-full w-1/2 will-change-transform translate-full">
-                    <div className="col-img relative h-full w-full p-2">
-                        <div className="col-img-wrapper relative rounded-2xl bg-tan-700 h-full w-full overflow-hidden">
-                            <img className="h-full w-full object-cover" src="/images/experiments/3.webp" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      pinCards.forEach((pinCard, index) => {
+        if (index < pinCards.length - 1) {
+          ScrollTrigger.create({
+            trigger: pinCard,
+            start: "top top",
+            endTrigger: pinCards[pinCards.length - 1],
+            end: "top top",
+            pin: true,
+            pinSpacing: false,
+          });
 
-        <section className="other bg-mate-500 h-svh w-full grid place-content-center">
-            <h2 className="text-8xl text-white font-cabinet font-black">Fim</h2>
-        </section>
-    </>
+          ScrollTrigger.create({
+            trigger: pinCards[index + 1],
+            start: "top bottom",
+            end: "top top",
+            onUpdate: (self) => {
+              const progress = self.progress;
+              gsap.set(pinCard, {
+                scale: 1 - progress * 0.25,
+                rotation: index % 2 === 0 ? progress * 5 : -progress * 5,
+                rotationX: index % 2 === 0 ? progress * 40 : -progress * 40,
+              });
+              gsap.set(pinCard.querySelector(".overlay"), {
+                opacity: progress * 0.4,
+              });
+            },
+          });
+        }
+      });
+    },
+    { scope: pinContainerRef },
+  );
+
+  return (
+    <div className={cn("almanaque-chapters-container bg-tan-950", className)} ref={pinContainerRef}>
+      {chapters &&
+        chapters.map(({ tag, title, synopsis, image }, index) => {
+          return (
+            <section
+              key={index}
+              className="chapter-card relative h-svh w-full flex flex-col border-b border-black/25 bg-bege-50 px-[6vw] py-[5vh] transform-3d perspective-[1000px] md:flex-row md:justify-between md:gap-0 md:px-[8vw] md:py-[10vh]"
+            >
+              <div className="h-full w-full grid grid-cols-6">
+                <div className="col-span-1 relative py-8 overflow-hidden">
+                  <h3 className="text-xl text-mate-600 font-light border-b border-tan-200">{tag}</h3>
+                  <p className="text-3xl text-tan-700 absolute bottom-0 left-0">
+                    <span className="font-extralight">
+                      [<span className="font-normal">{`0${index}`}</span>]
+                    </span>
+                  </p>
+                </div>
+                <div className="col-span-3 py-8 px-16 flex flex-col gap-12">
+                  <h2 className="text-3xl font-light">{title}</h2>
+                  <p className="indent-8 text-lg text-tan-800 text-justify hyphens-auto font-light">{synopsis}</p>
+                  <ButtonLinkWithIcon
+                    textButton="Saiba mais"
+                    link="/"
+                    bgColor="bg-mate-400 hover:bg-mate-500 text-white"
+                    iconColor="bg-white text-mate-700"
+                    target={false}
+                  />
+                </div>
+                <div
+                  className="col-span-2 rounded-2xl bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${image.node.guid})` }}
+                ></div>
+              </div>
+            </section>
+          );
+        })}
+    </div>
   );
 };
 
-export default AlmanaqueChapters;
+export default AlmanaqueChaptersSection;

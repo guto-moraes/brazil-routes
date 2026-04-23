@@ -1,12 +1,13 @@
 "use client";
 
 import { createFileRoute } from "@tanstack/react-router";
-import { useQueryChaptersAlmanaqueHomePresentation } from "@/queries/theme-queries";
+import { useQueryAlmanaqueChapters } from "@/queries/theme-queries";
 import Intro from "@/layouts/partials/home/intro";
 import InfiniteMarquee from "@/components/infinite-marquee";
 import EbookPresentationSection from "@/components/ebook-presentation-section";
-import SectionPinRotate from "@/components/section-pin-rotate";
-import ActivitiesFields from "@/components/activities-fields";
+import ActivitiesFieldsSection from "@/components/activities-fields";
+import AlmanaqueChaptersSection from "@/components/almanaque-chapters";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { data, isLoading, isError, error } = useQueryChaptersAlmanaqueHomePresentation();
+  const { data, isLoading, isError, error } = useQueryAlmanaqueChapters();
 
   if (isLoading) {
     return <h1>Carregando...</h1>;
@@ -39,8 +40,8 @@ function Index() {
         <Intro />
         <InfiniteMarquee />
         <EbookPresentationSection />
-        <SectionPinRotate dataChapters={data} />
-        <ActivitiesFields />
+        <AlmanaqueChaptersSection dataChapters={data} />
+        <ActivitiesFieldsSection />
       </>
     )
   );
