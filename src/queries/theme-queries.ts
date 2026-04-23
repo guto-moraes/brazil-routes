@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import request from "graphql-request";
-import type { AlmanaquePresentationTypes, ChaptersAlmanaqueTypes, FieldsActivityTypes,  } from "@/types/theme-types";
-import { ALMANAQUE_PRESENTATION, CHAPTERS_ALMANAQUE, FIELDS_ACTIVITY, PARTNERS } from "@/graphql/theme-graphql";
+import type { AlmanaquePresentationTypes, FieldsActivityTypes, PionnersTypes,  } from "@/types/theme-types";
+import { ALMANAQUE_PRESENTATION, FIELDS_ACTIVITY, PARTNERS, PIONEERS } from "@/graphql/theme-graphql";
 import type { PartnersTypes } from "@/types/theme-types";
 
 const GRAPHQL_URL = "http://caminhos-do-brasil-central.local/graphql";
 
-//Fetch da Seção Capítulos do Almanaque - Página Inicial
+//Fetch da Seção de Apresentação do Almanaque - Página Inicial
 const fetchAlmanaquePresentation = async () => {
   return await request<AlmanaquePresentationTypes>(GRAPHQL_URL, ALMANAQUE_PRESENTATION);
 };
 
-//Query da Seção Capítulos do Almanaque - Página Inicial
+//Query da Seção de Apresentação do Almanaque - Página Inicial
 export const useQueryAlmanaquePresentation = () => {
   return useQuery<AlmanaquePresentationTypes>({
     queryKey: ["almanaque-presentation"],
@@ -19,16 +19,16 @@ export const useQueryAlmanaquePresentation = () => {
   });
 };
 
-//Fetch da Seção Capítulos do Almanaque - Página Inicial
-const fetchAlmanaqueChapters = async () => {
-  return await request<ChaptersAlmanaqueTypes>(GRAPHQL_URL, CHAPTERS_ALMANAQUE);
+//Fetch da Seção de Pioneiros - Página Inicial
+const fetchPioneers = async () => {
+  return await request<PionnersTypes>(GRAPHQL_URL, PIONEERS);
 };
 
-//Query da Seção Capítulos do Almanaque - Página Inicial
-export const useQueryAlmanaqueChapters = () => {
-  return useQuery<ChaptersAlmanaqueTypes>({
-    queryKey: ["almanaque-chapters"],
-    queryFn: () => fetchAlmanaqueChapters(),
+//Query da Seção de Pioneiros - Página Inicial
+export const useQueryPioneers = () => {
+  return useQuery<PionnersTypes>({
+    queryKey: ["pioneers"],
+    queryFn: () => fetchPioneers(),
   });
 };
 

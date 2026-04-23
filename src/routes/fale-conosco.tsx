@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import TimelineGroup from "@/components/timeline";
+import FlipCardScroll from "@/components/flip-card-scroll.tsx";
 
 export const Route = createFileRoute("/fale-conosco")({
   head: () => ({
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/fale-conosco")({
 function ContactUs() {
   return (
     <>
-      <TimelineGroup />
+      <FlipCardScroll />
     </>
   );
 }

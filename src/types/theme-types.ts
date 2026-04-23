@@ -42,6 +42,34 @@ export type ChaptersAlmanaqueTypes = {
   };
 };
 
+//Tipagem da consulta dos pioneiros
+export type PioneerTypes = {
+  image: {
+    node: {
+      guid: string;
+    };
+  };
+  name: string;
+  tribute: string;
+};
+
+export type PionnersTypes = {
+  project: {
+    theming: {
+      firstScreen: {
+        title: string;
+        description: string;
+      };
+      pioneersList: PioneerTypes[];
+      lastScreen: {
+        title: string;
+        textButton: string;
+        urlButton: string;
+      };
+    };
+  };
+};
+
 //Tipagem da consulta para área de atuação
 export type FieldsActivity = {
   fieldActivity: string;

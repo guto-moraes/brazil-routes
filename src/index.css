@@ -647,6 +647,10 @@ html:active-view-transition-type(warp) {
   background-color: var(--color-card-accent-4);
 }
 
+#card-4 {
+  background-color: var(--color-card-accent-5);
+}
+
 
 .experience{
     position: relative;
@@ -694,3 +698,8 @@ html:active-view-transition-type(warp) {
     font-size: 3rem;
     font-family: 'bold';
 }
+  
+.hero-sticky-cards .card {
+    transform: translate(-50%, -50%);
+}
+

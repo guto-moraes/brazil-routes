@@ -1,12 +1,12 @@
 "use client";
 
 import { createFileRoute } from "@tanstack/react-router";
-import { useQueryAlmanaqueChapters } from "@/queries/theme-queries";
+import { useQueryAlmanaqueChapters } from "@/queries/almanaque-queries";
 import Intro from "@/layouts/partials/home/intro";
 import InfiniteMarquee from "@/components/infinite-marquee";
 import EbookPresentationSection from "@/components/ebook-presentation-section";
 import ActivitiesFieldsSection from "@/components/activities-fields";
-import AlmanaqueChaptersSection from "@/components/almanaque-chapters";
+import PioneersMemoryPhotosSection from "@/components/pioneers-memory-photos-sections";
 
 
 export const Route = createFileRoute("/")({
@@ -40,7 +40,7 @@ function Index() {
         <Intro />
         <InfiniteMarquee />
         <EbookPresentationSection />
-        <AlmanaqueChaptersSection dataChapters={data} />
+        <PioneersMemoryPhotosSection />
         <ActivitiesFieldsSection />
       </>
     )

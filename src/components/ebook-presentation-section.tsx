@@ -23,7 +23,7 @@ const EbookPresentationSection = () => {
         scrollTrigger: {
           trigger: ebookPresentationRef.current,
           start: "top top",
-          end: `${window.innerHeight / 3}%`,
+          end: `${window.innerHeight / 4}%`,
           pin: true,
           scrub: 1,
         },
@@ -40,7 +40,7 @@ const EbookPresentationSection = () => {
           y: -100,
           x: -100,
           opacity: 0.25,
-          duration: 1,
+          duration: 0.5,
         },
         "a",
       )
@@ -53,7 +53,7 @@ const EbookPresentationSection = () => {
           {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
           },
           "a",
         )
@@ -66,7 +66,7 @@ const EbookPresentationSection = () => {
           {
             x: 0,
             opacity: 1,
-            duration: 1,
+            duration: 0.5,
           },
           "a",
         );
@@ -84,7 +84,7 @@ const EbookPresentationSection = () => {
         src={almanaque && almanaque.projectIcon.node.guid}
         alt="Marca do Projeto"
       />
-      <div className="h-full container mx-auto flex justify-between items-center gap-12 px-8">
+      <div className="h-full container mx-auto flex justify-around items-center gap-12 px-8">
         <div className="perspective-dramatic">
           <img
             src={almanaque && almanaque.ebookCover.node.guid}
@@ -95,7 +95,7 @@ const EbookPresentationSection = () => {
         </div>
         <div className="ebook-presentation h-full min-h-125 w-full max-w-180 flex flex-col justify-center items-end gap-y-16">
           <div className="flex flex-col items-end gap-y-14">
-            <h2 className="text-6xl text-right text-mate-800 text-balance font-black">Almanaque Digital</h2>
+            <h2 className="text-6xl text-right text-bone-800 text-balance font-black">Almanaque Digital</h2>
             <p
               className="text-xl text-bone-800 text-justify text-balance w-full"
               dangerouslySetInnerHTML={almanaque && sanitizedData(almanaque.ebookSynopsis)}

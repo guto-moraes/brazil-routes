@@ -5,13 +5,18 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-import { peopleHistory } from "@/data/histories";
 import ButtonLinkWithIcon from "./button-link-with-icon";
+import { useQueryPioneers } from "@/queries/theme-queries";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PhotosScrollingSection = () => {
+const PioneersMemoryPhotosSection = () => {
   const refContainer = useRef<HTMLElement>(null);
+  const { data } = useQueryPioneers();
+  const { firstScreen, pioneersList: pioneers, lastScreen } = data?.project.theming || {};
+  const lastScreenTitle = lastScreen && lastScreen?.title.split(",");
+
+  console.log(pioneers);
 
   useGSAP(
     () => {
@@ -98,62 +103,63 @@ const PhotosScrollingSection = () => {
   );
 
   return (
-    <section className="photos-container relative bg-tan-800 h-svh w-full overflow-hidden z-30" ref={refContainer}>
+    <section className="photos-container relative bg-bone-800 h-svh w-full overflow-hidden z-30" ref={refContainer}>
       <div className="intro-text absolute inset-0 flex flex-col items-center justify-center gap-y-8">
-        <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-chocolate-300 text-center font-black italic uppercase leading-none">
-          História e Memória
+        <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-mate-300 text-center font-black italic uppercase leading-none">
+          {firstScreen && firstScreen.title}
         </h1>
-        <p className="indent-10 text-2xl text-chocolate-100 text-justify text-pretty hyphens-auto w-full xl:max-w-5xl">
-          A memória das pessoas que viveram durante os anos de atuação da FBC no leste de Mato Grosso constitui, dentre
-          outros aspectos, é uma importante fonte para se compreender e analisar o passado daquele lugar. Pois, embora
-          raramente sejam encontradas na documentação escrita, os eventos que tais memórias ajudam a recompor também
-          fazem parte do processo de formação histórica e social da região do Vale do Araguaia.
+        <p className="indent-10 text-2xl text-white text-justify text-pretty hyphens-auto w-full xl:max-w-5xl">
+          {firstScreen && firstScreen.description}
         </p>
       </div>
       <div className="reveal-text absolute inset-0 flex flex-col justify-center gap-y-10 items-center z-0">
-        <h1 className="text-[clamp(1.8rem,6vw,5rem)] text-chocolate-300 text-center font-black italic uppercase leading-none">
-          A história também <br /> se faz de memórias
+        <h1 className="text-[clamp(1.8rem,6vw,5rem)] text-mate-300 text-center font-black italic uppercase leading-none">
+          {lastScreenTitle && lastScreenTitle[0]} <br /> {lastScreenTitle && lastScreenTitle[1]}
         </h1>
         <ButtonLinkWithIcon
-          textButton="Conheça um pouco mais"
-          link="/files/ebook.pdf"
-          bgColor="bg-darkgreen-400 hover:bg-darkgreen-500 text-white"
-          iconColor="bg-white text-mate-700"
+          textButton={lastScreen && lastScreen.textButton}
+          link={lastScreen && lastScreen.urlButton}
+          bgColor="bg-chocolate-300 hover:bg-chocolate-500 text-white"
+          iconColor="bg-white text-chocolate-700"
           target={false}
         />
       </div>
       <div className="scroll-photos relative h-full w-[450vw] pl-[100vw] flex items-center z-10 pointer-events-none">
-        {peopleHistory.map(({ image, name, tribute }, index) => (
-          <div
-            key={index}
-            className={cn(
-              "card shrink-0 rounded-2xl shadow-[-10px_10px_rgba(0,0,0,0.5)]",
-              "h-112 w-80 border-10 border-white flex flex-col justify-between mx-10 p-6",
-              tribute ? "bg-bone-600" : "bg-mate-400",
-            )}
-          >
-            <header className="rounded-sm h-80 w-full overflow-x-auto">
-              <img
-                className={cn("h-full w-full object-cover object-top will-change-transform", tribute && "grayscale-85")}
-                src={image}
-                alt={name}
-              />
-            </header>
-            <div className="w-full">
-              <p className="rounded bg-black/30 text-sm text-white font-medium leading-6 h-6 w-full pl-2 mb-2">
-                {name}
-              </p>
-              {tribute && (
-                <p className="rounded bg-black/25 text-[0.75rem] text-white h-4.5 w-22 pl-2">
-                  <em>in memoriam</em>
-                </p>
+        {pioneers &&
+          pioneers.map((pioneer, index) => (
+            <div
+              key={index}
+              className={cn(
+                "card shrink-0 rounded-2xl shadow-[-10px_10px_rgba(0,0,0,0.5)]",
+                "h-112 w-80 border-10 border-white flex flex-col justify-between mx-10 p-6",
+                pioneer.tribute ? "bg-bone-600" : "bg-mate-400",
               )}
+            >
+              <header className="rounded-sm h-80 w-full overflow-x-auto">
+                <img
+                  className={cn(
+                    "h-full w-full object-cover object-top will-change-transform",
+                    pioneer.tribute && "grayscale-85",
+                  )}
+                  src={pioneer.image.node.guid}
+                  alt={pioneer.name}
+                />
+              </header>
+              <div className="w-full">
+                <p className="rounded bg-black/30 text-sm text-white font-medium leading-6 h-6 w-full pl-2 mb-2">
+                  {pioneer.name}
+                </p>
+                {pioneer.tribute && (
+                  <p className="rounded bg-black/25 text-[0.75rem] text-white h-4.5 w-22 pl-2">
+                    <em>in memoriam</em>
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </section>
   );
 };
 
-export default PhotosScrollingSection;
+export default PioneersMemoryPhotosSection;

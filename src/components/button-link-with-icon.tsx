@@ -9,7 +9,7 @@ const ButtonLinkWithIcon = ({
   iconColor,
   target,
 }: {
-  textButton: string;
+  textButton: string | undefined;
   link: string | undefined;
   bgColor: string;
   iconColor: string;

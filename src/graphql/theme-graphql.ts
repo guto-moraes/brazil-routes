@@ -46,6 +46,34 @@ export const CHAPTERS_ALMANAQUE = gql`
   }
 `;
 
+//Consulta da Seção de Pioneiros - Página Inicial
+export const PIONEERS = gql`
+  query Pioneers {
+    project {
+      theming {
+        firstScreen {
+          title
+          description
+        }
+        pioneersList {
+          image {
+            node {
+              guid
+            }
+          }
+          name
+          tribute
+        }
+        lastScreen {
+          title
+          textButton
+          urlButton
+        }
+      }
+    }
+  }
+`;
+
 //Consulta da Seção Áreas de Atuação - Página Inicial
 export const FIELDS_ACTIVITY = gql`
   query ProjectActivities {

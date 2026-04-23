@@ -9,6 +9,7 @@ const queryClient = new QueryClient();
 // Import Static Layout Components
 import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
+import NotFound from "@/layouts/not-found";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
@@ -35,6 +36,7 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: () => <NotFound />
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
