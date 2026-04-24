@@ -7,7 +7,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import Title from "@/components/title";
 import ScrollingAnimatedCards from "@/components/scrolling-animate-cards";
-import PhotosScrollingSection from "@/components/photos-scrolling-section";
 import SectionAlmanaqueChapters from "@/components/section-almanaque-chapters";
 
 export const Route = createFileRoute("/almanaque-digital/")({
@@ -104,8 +103,6 @@ function Almanaque() {
       <SectionAlmanaqueChapters />
 
       <ScrollingAnimatedCards />
-
-      <PhotosScrollingSection />
     </>
   );
 }

@@ -561,13 +561,15 @@ html:active-view-transition-type(warp) {
 }
 
 .sticky-text-1 .text-container h2 {
-  font-size: 19.5vw !important;
+  font-size: 16.5vw !important;
   font-weight: 300 !important;
   will-change: transform;
+  letter-spacing: -0.12em;
+  margin-left: -1rem;
 }
 
 .sticky-text-2 .text-container h2 {
-  font-size: 20vw !important;
+  font-size: 12vw !important;
   will-change: transform;
 }
 

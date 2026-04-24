@@ -130,8 +130,8 @@ const PioneersMemoryPhotosSection = () => {
             <div
               key={index}
               className={cn(
-                "card shrink-0 rounded-2xl shadow-[-10px_10px_rgba(0,0,0,0.5)]",
-                "h-112 w-80 border-10 border-white flex flex-col justify-between mx-10 p-6",
+                "card shrink-0 rounded-2xl shadow-[-5px_5px_rgba(0,0,0,0.5)]",
+                "h-112 w-80 border-10 border-white flex flex-col justify-start mx-10 p-6",
                 pioneer.tribute ? "bg-bone-600" : "bg-mate-400",
               )}
             >
@@ -145,7 +145,7 @@ const PioneersMemoryPhotosSection = () => {
                   alt={pioneer.name}
                 />
               </header>
-              <div className="w-full">
+              <div className="w-full flex flex-col justify-start items-start mt-2">
                 <p className="rounded bg-black/30 text-sm text-white font-medium leading-6 h-6 w-full pl-2 mb-2">
                   {pioneer.name}
                 </p>

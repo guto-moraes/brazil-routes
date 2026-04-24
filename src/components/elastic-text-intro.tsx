@@ -20,9 +20,9 @@ const ElasticTextIntro = () => {
       const header = document.querySelector<HTMLHeadingElement>(".header h2");
       const textElement1 = document.querySelector<HTMLHeadingElement>(".sticky-text-1 .text-container h2");
       const textElement2 = document.querySelector<HTMLHeadingElement>(".sticky-text-2 .text-container h2");
-      const textElement3 = document.querySelector<HTMLHeadingElement>(".sticky-text-3 .text-container h2");
-      const textContainer3 = document.querySelector<HTMLDivElement>(".sticky-text-3 .text-container");
-      const otherTextBgColor = getComputedStyle(document.documentElement).getPropertyValue("--color-lime-950").trim();
+      // const textElement3 = document.querySelector<HTMLHeadingElement>(".sticky-text-3 .text-container h2");
+      // const textContainer3 = document.querySelector<HTMLDivElement>(".sticky-text-3 .text-container");
+      // const otherTextBgColor = getComputedStyle(document.documentElement).getPropertyValue("--color-lime-950").trim();
 
       let headerSplit: SplitText | null = null;
 
@@ -106,80 +106,81 @@ const ElasticTextIntro = () => {
         },
       });
 
-      // Third Text Start Animation
-      ScrollTrigger.create({
-        trigger: ".sticky-text-3",
-        start: "top bottom",
-        end: "top top",
-        scrub: 1,
-        onUpdate: (self) => {
-          const currentScale = targetScales[2] * self.progress;
-          if (textElement3) setScaleY(textElement3, currentScale);
-        },
-      });
+      // // Third Text Start Animation
+      // ScrollTrigger.create({
+      //   trigger: ".sticky-text-3",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   scrub: 1,
+      //   onUpdate: (self) => {
+      //     const currentScale = targetScales[2] * self.progress;
+      //     if (textElement3) setScaleY(textElement3, currentScale);
+      //   },
+      // });
 
-      // Third Text End Animation
-      ScrollTrigger.create({
-        trigger: ".sticky-text-3",
-        start: "top top",
-        end: `+=${window.innerHeight * 4}px`,
-        pin: true,
-        pinSpacing: false,
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
+      // // Third Text End Animation
+      // ScrollTrigger.create({
+      //   trigger: ".sticky-text-3",
+      //   start: "top top",
+      //   end: `+=${window.innerHeight * 4}px`,
+      //   endTrigger: ".other",
+      //   pin: true,
+      //   pinSpacing: false,
+      //   scrub: 1,
+      //   onUpdate: (self) => {
+      //     const progress = self.progress;
 
-          if (progress === 0) {
-            textContainer3!.style.backgroundColor = otherTextBgColor;
-            textContainer3!.style.opacity = "1";
-          }
+      //     if (progress === 0) {
+      //       textContainer3!.style.backgroundColor = otherTextBgColor;
+      //       textContainer3!.style.opacity = "1";
+      //     }
 
-          if (progress < 0.75) {
-            const scaleProgress = progress / 0.75;
-            const currentScale = 1 + 9 * scaleProgress;
-            textContainer3!.style.transform = `scale3d(${currentScale}, ${currentScale}, 1)`;
-          } else {
-            textContainer3!.style.transform = "scale3d(10,10,1)";
-          }
+      //     if (progress < 0.75) {
+      //       const scaleProgress = progress / 0.75;
+      //       const currentScale = 1 + 9 * scaleProgress;
+      //       textContainer3!.style.transform = `scale3d(${currentScale}, ${currentScale}, 1)`;
+      //     } else {
+      //       textContainer3!.style.transform = "scale3d(10,10,1)";
+      //     }
 
-          if (progress < 0.25) {
-            textContainer3!.style.backgroundColor = otherTextBgColor;
-            textContainer3!.style.opacity = "1";
-          } else if (progress >= 0.25 && progress <= 0.5) {
-            const fadeProgress = (progress - 0.25) / 0.25;
-            const bgOpacity = Math.max(0, Math.min(1, 1 - fadeProgress));
+      //     if (progress < 0.25) {
+      //       textContainer3!.style.backgroundColor = otherTextBgColor;
+      //       textContainer3!.style.opacity = "1";
+      //     } else if (progress >= 0.25 && progress <= 0.5) {
+      //       const fadeProgress = (progress - 0.25) / 0.25;
+      //       const bgOpacity = Math.max(0, Math.min(1, 1 - fadeProgress));
 
-            textContainer3!.style.backgroundColor = otherTextBgColor.replace("1)", `${bgOpacity})`);
-          } else if (progress > 0.5) {
-            textContainer3!.style.backgroundColor = otherTextBgColor.replace("1)", "0)");
-          }
+      //       textContainer3!.style.backgroundColor = otherTextBgColor.replace("1)", `${bgOpacity})`);
+      //     } else if (progress > 0.5) {
+      //       textContainer3!.style.backgroundColor = otherTextBgColor.replace("1)", "0)");
+      //     }
 
-          if (progress >= 0.5 && progress <= 0.75) {
-            const textProgess = (progress - 0.5) / 0.25;
-            const textOpcity = 1 - textProgess;
-            textContainer3!.style.opacity = String(textOpcity);
-          } else if (progress > 0.75) {
-            textContainer3!.style.opacity = "0";
-          }
+      //     if (progress >= 0.5 && progress <= 0.75) {
+      //       const textProgess = (progress - 0.5) / 0.25;
+      //       const textOpcity = 1 - textProgess;
+      //       textContainer3!.style.opacity = String(textOpcity);
+      //     } else if (progress > 0.75) {
+      //       textContainer3!.style.opacity = "0";
+      //     }
 
-          if(headerSplit && headerSplit.words.length > 0){
-            if (progress >= 0.75 && progress <= 0.95) {
-                const textProgess = (progress - 0.75) / 0.2;
-                const totalWords = headerSplit.words.length;
+      //     if(headerSplit && headerSplit.words.length > 0){
+      //       if (progress >= 0.75 && progress <= 0.95) {
+      //           const textProgess = (progress - 0.75) / 0.2;
+      //           const totalWords = headerSplit.words.length;
 
-                headerSplit.words.forEach((word, index) => {
-                    const wordRevealProgress = index / totalWords;
-                    const opacity = textProgess >= wordRevealProgress ? 1 : 0;
-                    gsap.set(word, { opacity })
-                });
-            } else if (progress < 0.75){                
-                gsap.set(headerSplit.words, { opacity: 0 })
-            } else if (progress > 0.95){                
-                gsap.set(headerSplit.words, { opacity: 1 })
-            }
-          }
-        },
-      });
+      //           headerSplit.words.forEach((word, index) => {
+      //               const wordRevealProgress = index / totalWords;
+      //               const opacity = textProgess >= wordRevealProgress ? 1 : 0;
+      //               gsap.set(word, { opacity })
+      //           });
+      //       } else if (progress < 0.75){                
+      //           gsap.set(headerSplit.words, { opacity: 0 })
+      //       } else if (progress > 0.95){                
+      //           gsap.set(headerSplit.words, { opacity: 1 })
+      //       }
+      //     }
+      //   },
+      // });
     },
     { scope: containerRef },
   );
@@ -189,28 +190,22 @@ const ElasticTextIntro = () => {
         <h2 className="text-8xl text-lime-400 font-cabinet font-black uppercase">Início</h2>
       </section>
 
-      <div className="elastic-text-wrapper h-auto w-full" ref={containerRef}>
+      <div className="elastic-text-wrapper h-svh w-full" ref={containerRef}>
         <section className="sticky-wrapper sticky-text-1">
           <div className="text-container">
-            <h2>Caminhos</h2>
+            <h2>Caminhos do</h2>
           </div>
         </section>
         <section className="sticky-wrapper sticky-text-2">
           <div className="text-container">
-            <h2>do Brasil</h2>
+            <h2>Brasil Central</h2>
           </div>
         </section>
-        <section className="sticky-wrapper sticky-text-3">
+        <section className="sticky-wrapper h-auto sticky-text-3">
           <div className="reveal-image">
             <img className="h-full w-full object-cover" src={image} alt="Título da imagem" />
           </div>
-          <div className="text-container">
-            <h2>Central</h2>
-          </div>
-          <div className="header">
-            <h2>História, memória e patrimônio</h2>
-          </div>
-        </section>
+          </section>
       </div>
 
       <section className="other bg-lime-950 h-svh w-full grid place-content-center">
