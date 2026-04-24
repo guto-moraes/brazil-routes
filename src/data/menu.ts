@@ -48,24 +48,29 @@ const primaryLinks: LinkTypes[] = [
     transition: ['slide-right']
   },
   {
+    title: "Blog de Notícias",
+    url: "/blog-de-noticias/",
+    transition: ['slide-left']
+  },
+  {
     title: "Alamanaque Digital",
     url: "/almanaque-digital",
-    transition: ['slide-left']
+    transition: ['slide-right']
   },
   {
     title: "Linha do Tempo",
     url: "/linha-do-tempo",
-    transition: ['slide-right']
+    transition: ['slide-left']
   },
   {
     title: "Mapa Interativo",
     url: "/mapa-interativo",
-    transition: ['slide-left']
+    transition: ['slide-right']
   },
   {
     title: "Fale Conosco",
     url: "/fale-conosco",
-    transition: ['slide-right']
+    transition: ['slide-left']
   },
 ];
 

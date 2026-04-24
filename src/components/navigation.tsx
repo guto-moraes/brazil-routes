@@ -121,7 +121,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
         className={cn(
           "p-4 lg:px-0 h-26 w-full overflow-hidden",
           isActiveMenu && isHome || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
-
+          isActiveMenu || isHome ? "shadow-none bg-none" : "shadow-lg bg-white",
           className,
         )}
       >

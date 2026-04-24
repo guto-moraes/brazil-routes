@@ -18,7 +18,9 @@ import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogDeNoticiasIndexRouteImport } from './routes/blog-de-noticias/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
+import { Route as BlogDeNoticiasChar123SlugChar125RouteImport } from './routes/blog-de-noticias/{-$slug}'
 
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
@@ -65,11 +67,22 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogDeNoticiasIndexRoute = BlogDeNoticiasIndexRouteImport.update({
+  id: '/blog-de-noticias/',
+  path: '/blog-de-noticias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AlmanaqueDigitalIndexRoute = AlmanaqueDigitalIndexRouteImport.update({
   id: '/almanaque-digital/',
   path: '/almanaque-digital/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogDeNoticiasChar123SlugChar125Route =
+  BlogDeNoticiasChar123SlugChar125RouteImport.update({
+    id: '/blog-de-noticias/{-$slug}',
+    path: '/blog-de-noticias/{-$slug}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,7 +94,9 @@ export interface FileRoutesByFullPath {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/blog-de-noticias/{-$slug}': typeof BlogDeNoticiasChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
+  '/blog-de-noticias/': typeof BlogDeNoticiasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,7 +108,9 @@ export interface FileRoutesByTo {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/blog-de-noticias/{-$slug}': typeof BlogDeNoticiasChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
+  '/blog-de-noticias': typeof BlogDeNoticiasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,7 +123,9 @@ export interface FileRoutesById {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/blog-de-noticias/{-$slug}': typeof BlogDeNoticiasChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
+  '/blog-de-noticias/': typeof BlogDeNoticiasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +139,9 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/blog-de-noticias/{-$slug}'
     | '/almanaque-digital/'
+    | '/blog-de-noticias/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,7 +153,9 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/blog-de-noticias/{-$slug}'
     | '/almanaque-digital'
+    | '/blog-de-noticias'
   id:
     | '__root__'
     | '/'
@@ -144,7 +167,9 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/blog-de-noticias/{-$slug}'
     | '/almanaque-digital/'
+    | '/blog-de-noticias/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -157,7 +182,9 @@ export interface RootRouteChildren {
   MapaInterativoRoute: typeof MapaInterativoRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
+  BlogDeNoticiasChar123SlugChar125Route: typeof BlogDeNoticiasChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
+  BlogDeNoticiasIndexRoute: typeof BlogDeNoticiasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -225,11 +252,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog-de-noticias/': {
+      id: '/blog-de-noticias/'
+      path: '/blog-de-noticias'
+      fullPath: '/blog-de-noticias/'
+      preLoaderRoute: typeof BlogDeNoticiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/almanaque-digital/': {
       id: '/almanaque-digital/'
       path: '/almanaque-digital'
       fullPath: '/almanaque-digital/'
       preLoaderRoute: typeof AlmanaqueDigitalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog-de-noticias/{-$slug}': {
+      id: '/blog-de-noticias/{-$slug}'
+      path: '/blog-de-noticias/{-$slug}'
+      fullPath: '/blog-de-noticias/{-$slug}'
+      preLoaderRoute: typeof BlogDeNoticiasChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -245,7 +286,9 @@ const rootRouteChildren: RootRouteChildren = {
   MapaInterativoRoute: MapaInterativoRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
+  BlogDeNoticiasChar123SlugChar125Route: BlogDeNoticiasChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,
+  BlogDeNoticiasIndexRoute: BlogDeNoticiasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
