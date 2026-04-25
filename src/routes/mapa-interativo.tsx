@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Map from "@/components/map";
-import { map } from "@/data/map";
 import { cn } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { X } from "lucide-react";
 import chaple from "@/assets/images/expedicao/capela-nossa-senhora-auxiliadora__nova-xavantina.webp";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useQueryInteractiveMap } from "@/queries/custom-posts-queries";
 
 export const Route = createFileRoute("/mapa-interativo")({
   head: () => ({
@@ -31,8 +31,29 @@ export const Route = createFileRoute("/mapa-interativo")({
   component: InteractiveMap,
 });
 
+const DetailsCloseButton = ({ setShow }: { setShow: React.Dispatch<React.SetStateAction<boolean>> }) => {
+  const handleToggle = () => {
+    setShow(false);
+  };
+
+  return (
+    <button
+      title="Fechar"
+      className={cn(
+        "rounded-full bg-black/50 hover:bg-black/70 text-white size-8 absolute top-4 right-4",
+        "grid place-content-center transition-colors duration-300 cursor-pointer z-100",
+      )}
+      onClick={handleToggle}
+    >
+      <X />
+    </button>
+  );
+};
+
 function InteractiveMap() {
   const [show, setShow] = useState(false);
+  const { data } = useQueryInteractiveMap();
+  const { nodes: locations } = data?.locations || {};
 
   const handleSetShow = () => {
     setShow(!show);
@@ -47,7 +68,7 @@ function InteractiveMap() {
             show ? "max-lg:row-span-1 lg:col-span-1" : "max-lg:row-span-2 lg:col-span-2",
           )}
         >
-          <Map markers={map} show={show} setShow={handleSetShow} />
+          {locations && <Map locations={locations} show={show} setShow={handleSetShow} />}
         </div>
         <ScrollArea
           data-hovering
@@ -57,16 +78,7 @@ function InteractiveMap() {
             show ? "scale-100" : "scale-0",
           )}
         >
-          <button
-            title="Fechar"
-            className={cn(
-              "rounded-full bg-black/50 hover:bg-black/70 text-white size-8 absolute top-4 right-4",
-              "grid place-content-center transition-colors duration-300 cursor-pointer z-100",
-            )}
-            onClick={handleSetShow}
-          >
-            <X />
-          </button>
+          <DetailsCloseButton setShow={setShow} />
 
           <article className="h-full w-full flex flex-col gap-12 p-12">
             <div className="h-80 w-full grid place-content-center overflow-clip">
@@ -77,8 +89,8 @@ function InteractiveMap() {
               Capela Nossa Senhora Auxiliadora
             </h2>
 
-            <div className="flex flex-col gap-y-8">
-              <p className="indent-16 text-xl text-white text-justify hyphens-auto">
+            <div className="flex flex-col gap-y-8 [&_p]:indent-16 [&_p]:text-xl [&_p]:text-white [&_p]:text-justify [&_p]:hyphens-auto">
+              <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, cupiditate. Exercitationem iure, dolores
                 facilis nam delectus reiciendis illum amet quam quod qui omnis magni doloribus, itaque, dolorum aliquid
                 possimus accusamus et suscipit consequatur repudiandae sapiente laboriosam. Blanditiis ipsa perferendis
@@ -88,12 +100,12 @@ function InteractiveMap() {
                 repellendus.
               </p>
 
-              <p className="indent-16 text-xl text-white text-justify hyphens-auto">
+              <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, voluptate quas. Accusantium unde
                 dolores quibusdam ipsa obcaecati deleniti dolor, illo animi hic quasi necessitatibus fugiat.
               </p>
 
-              <p className="indent-16 text-xl text-white text-justify hyphens-auto">
+              <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, cupiditate. Exercitationem iure, dolores
                 facilis nam delectus reiciendis illum amet quam quod qui omnis magni doloribus, itaque, dolorum aliquid
                 possimus accusamus et suscipit consequatur repudiandae sapiente laboriosam. Blanditiis ipsa perferendis

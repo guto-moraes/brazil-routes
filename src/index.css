@@ -708,7 +708,7 @@ html:active-view-transition-type(warp) {
 
 
 
-.infinite-scroll-container {
+/* .infinite-scroll-container {
   animation: loop 20s linear infinite;
 }
 
@@ -719,4 +719,4 @@ html:active-view-transition-type(warp) {
 @keyframes loop {
   from { transform: translateX(0);}
   to { transform: translateX(-100%);}
-}
+} */
