@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CHAPTERS_ALMANAQUE } from "@/graphql/theme-graphql";
 import type { ChaptersAlmanaqueTypes } from "@/types/theme-types";
 
-const GRAPHQL_URL = "http://caminhos-do-brasil-central.local/graphql";
+const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
 //Fetch da Seção Capítulos do Almanaque - Página Inicial
 const fetchAlmanaqueChapters = async () => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -15,6 +15,7 @@ gsap.registerEffect(SplitText);
 const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; isNegativeLogo?: boolean; className?: string }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   const [screenWidth] = useState<number | null>(typeof window !== "undefined" ? window.innerWidth : 0);
+  const navigationRef = useRef<HTMLDivElement | null>(null)
 
   const handleActiveMenu = () => {
     if (isActiveMenu) {
@@ -113,7 +114,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
         );
       });
     }
-  });
+  }, {scope: navigationRef});
 
   return (
     <>
@@ -186,6 +187,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
         className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-0")}
         aria-labelledby="menubutton"
         tabIndex={-1}
+        ref={navigationRef}
       >
         <div className="nav-transition bg-tan-400 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>
         <div className="nav-transition bg-tan-500 h-full w-full absolute top-0 left-0 -z-1 scale-y-0 origin-top will-change-transform pointer-events-none"></div>

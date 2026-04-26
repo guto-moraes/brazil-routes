@@ -500,15 +500,15 @@ html:active-view-transition-type(warp) {
 
 
 /* Base UI ScrollArea - Hide scrollbar by default */
-.scroll-area-scrollbar-thumb {
-  opacity: 0;
+/* .scroll-area-scrollbar-thumb { */
+  /* opacity: 0;
   transition: opacity 0.2s;
-}
+} */
 
 /* Base UI ScrollArea - Show on hover */
-.scroll-area-root:hover .scroll-area-scrollbar-thumb {
+/* .scroll-area-root:hover .scroll-area-scrollbar-thumb {
   opacity: 1;
-}
+} */
 
 
 

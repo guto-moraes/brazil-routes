@@ -4,7 +4,7 @@ import type { AlmanaquePresentationTypes, FieldsActivityTypes, PionnersTypes,  }
 import { ALMANAQUE_PRESENTATION, FIELDS_ACTIVITY, PARTNERS, PIONEERS } from "@/graphql/theme-graphql";
 import type { PartnersTypes } from "@/types/theme-types";
 
-const GRAPHQL_URL = "http://caminhos-do-brasil-central.local/graphql";
+const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
 //Fetch da Seção de Apresentação do Almanaque - Página Inicial
 const fetchAlmanaquePresentation = async () => {

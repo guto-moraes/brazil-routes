@@ -20,3 +20,12 @@ export type InteractiveMapTypes = {
     nodes: LocationTypes[];
   };
 };
+
+//Tipagem da consulta de informações de uma localidade no mapa interativo
+export type InteractiveMapLocationTypes = {
+  location: {
+    id: string;
+    title: string;
+    content: string;
+  };
+};

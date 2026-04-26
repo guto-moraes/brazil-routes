@@ -11,23 +11,26 @@ import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
 import type { LocationTypes } from "@/types/custom-post-types";
 
-const ChangePositionView = ({ center }: { center: LatLngTuple }) => {
+const MapResizer = () => {
   const map = useMap();
 
   useEffect(() => {
     const observer = new ResizeObserver(() => {
-      map.invalidateSize(); // Force map to recalculate size on container change
+      map.invalidateSize();
     });
-    map.flyTo(center); // Or map.flyTo(center, zoom);
 
     observer.observe(map.getContainer());
     return () => observer.disconnect();
-  }, [map, center]); // Dependencies for useEffect
+  }, [map]);
+
   return null;
 };
 
 const ButtonClosePopup = ({ show, setShow }: { show: boolean; setShow: () => void }) => {
   const button = useMap();
+  const htmlElement = document.documentElement;
+  const bodyElement = document.body;
+  const rootElement = document.querySelector<HTMLDivElement>("#app");
 
   const handleToggle = () => {
     button.closePopup();
@@ -37,11 +40,18 @@ const ButtonClosePopup = ({ show, setShow }: { show: boolean; setShow: () => voi
   useEffect(() => {
     if (!show) {
       button.closePopup();
+      htmlElement.classList.remove("overflow-hidden", "overscroll-contain");
+      bodyElement.classList.remove("overflow-hidden", "overscroll-contain");
+      rootElement?.classList.remove("overflow-hidden", "overscroll-contain");
+    } else if (show) {
+      htmlElement.classList.add("overflow-hidden", "overscroll-contain");
+      bodyElement.classList.add("overflow-hidden", "overscroll-contain");
+      rootElement?.classList.add("overflow-hidden", "overscroll-contain");
     }
-  }, [show, button]);
+  }, [show, button, htmlElement.classList, bodyElement.classList, rootElement?.classList]);
 
   return (
-    <div className="flex justify-center items-center gap-6 -mt-6 mb-4">
+    <div className="flex justify-center items-center gap-6 -mt-4 mb-4">
       {show ? (
         <button
           className={cn(
@@ -67,7 +77,17 @@ const ButtonClosePopup = ({ show, setShow }: { show: boolean; setShow: () => voi
   );
 };
 
-const Map = ({ locations, show, setShow }: { locations: LocationTypes[]; show: boolean; setShow: () => void }) => {
+const Map = ({
+  locations,
+  show,
+  setShow,
+  setId,
+}: {
+  locations: LocationTypes[];
+  show: boolean;
+  setShow: () => void;
+  setId: (id: string) => void;
+}) => {
   const [geoLocation, setGeoLocation] = useState<LatLngTuple>([-15.006, -52.108]);
 
   const LeafIcon = icon({
@@ -98,43 +118,42 @@ const Map = ({ locations, show, setShow }: { locations: LocationTypes[]; show: b
           const coordinates = location.places.coordinates.split(",");
 
           return (
-            <>
-              <Marker
-                key={index}
-                position={[Number(coordinates[0]), Number(coordinates[1])]}
-                icon={LeafIcon}
-                // eventHandlers={{
-                //   click: (e) => {
-                //     e.originalEvent.preventDefault();
-                //     setGeoLocation([Number(coordinates[0]), Number(coordinates[1])]);
-                //   },
-                // }}
-              >
-                <Popup className="w-[320px]! relative">
-                  <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
-                    Fonte: {location.places.featuredImageCopy}
-                  </span>
-                  <img
-                    src={location.featuredImage.node.guid}
-                    className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover"
-                    alt={location.title}
-                    title={location.title}
-                  />
-                  <h3 className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
-                    {location.title}
-                  </h3>
-                  <p
-                    className="text-sm text-tan-900 text-justify hyphens-auto px-4"
-                    dangerouslySetInnerHTML={sanitizedData(location.places.description)}
-                  />
-                  <ButtonClosePopup show={show} setShow={setShow} />
-                </Popup>
-              </Marker>
-            </>
+            <Marker
+              key={index}
+              position={[Number(coordinates[0]), Number(coordinates[1])]}
+              icon={LeafIcon}
+              eventHandlers={{
+                click: (e) => {
+                  e.originalEvent.preventDefault();
+                  setGeoLocation([Number(coordinates[0]), Number(coordinates[1])]);
+                  setId(location.id);
+                },
+              }}
+            >
+              <Popup className="w-[320px]! relative">
+                <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
+                  Fonte: {location.places.featuredImageCopy}
+                </span>
+                <img
+                  src={location.featuredImage.node.guid}
+                  className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover"
+                  alt={location.title}
+                  title={location.title}
+                />
+                <h3 className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
+                  {location.title}
+                </h3>
+                <p
+                  className="text-sm text-tan-900 text-justify hyphens-auto px-4"
+                  dangerouslySetInnerHTML={sanitizedData(location.places.description)}
+                />
+                <ButtonClosePopup show={show} setShow={setShow} />
+              </Popup>
+            </Marker>
           );
         })}
       </MarkerClusterGroup>
-      <ChangePositionView center={geoLocation} />
+      <MapResizer />
     </MapContainer>
   );
 };

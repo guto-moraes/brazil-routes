@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Map from "@/components/map";
-import { cn } from "@/lib/utils";
+import { cn, sanitizedData } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { X } from "lucide-react";
-import chaple from "@/assets/images/expedicao/capela-nossa-senhora-auxiliadora__nova-xavantina.webp";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useQueryInteractiveMap } from "@/queries/custom-posts-queries";
+import { useQueryInteractiveMap, useQueryInteractiveMapLocation } from "@/queries/custom-posts-queries";
 
 export const Route = createFileRoute("/mapa-interativo")({
   head: () => ({
@@ -52,72 +51,61 @@ const DetailsCloseButton = ({ setShow }: { setShow: React.Dispatch<React.SetStat
 
 function InteractiveMap() {
   const [show, setShow] = useState(false);
+  const [currentIdMapLocation, setCurrentIdMapLocation] = useState<string>("");
   const { data } = useQueryInteractiveMap();
   const { nodes: locations } = data?.locations || {};
+  const { location } = useQueryInteractiveMapLocation(currentIdMapLocation).data || {};
 
   const handleSetShow = () => {
     setShow(!show);
   };
 
-  return (
-    <>
-      <div className={cn("h-[calc(100svh-104px)] w-full grid max-lg:grid-rows-2 lg:grid-rows-1 lg:grid-cols-2")}>
+  if (locations) {
+    return (
+      <>
         <div
           className={cn(
-            "rounded-lg h-[calc(100svh-104px)] z-40 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
-            show ? "max-lg:row-span-1 lg:col-span-1" : "max-lg:row-span-2 lg:col-span-2",
+            "h-[calc(100svh-104px)] w-full grid max-lg:grid-rows-2 lg:grid-rows-1 max-lg:grid-cols-1 lg:grid-cols-2",
           )}
         >
-          {locations && <Map locations={locations} show={show} setShow={handleSetShow} />}
+          <div
+            className={cn(
+              "rounded-lg h-[calc(100svh-104px)] z-40 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg",
+              show ? "max-lg:row-span-1 lg:col-span-1" : "max-lg:row-span-2 lg:col-span-2",
+            )}
+          >
+            {locations && (
+              <Map locations={locations} show={show} setShow={handleSetShow} setId={setCurrentIdMapLocation} />
+            )}
+          </div>
+          <ScrollArea
+            className={cn(
+              "bg-tan-100 relative h-full max-h-[calc(100svh-104px)] w-full overflow-hidden",
+              "origin-top-right transition-all duration-500 ease-in-out col-span-1",
+              show ? "scale-100" : "scale-0",
+            )}
+          >
+            <DetailsCloseButton setShow={setShow} />
+            {location && (
+                <article className="h-full w-full flex flex-col gap-12 p-12 overflow-y-auto">
+                  <h2 className="text-4xl text-tan-900 font-inter font-bold uppercase tracking-tighter">
+                    {location.title}
+                  </h2>
+
+                  <div
+                    className={cn(
+                      "flex flex-col [&_p]:not-last:mb-4 [&_p]:indent-10 [&_p]:text-base [&_p]:md:text-lg [&_p]:text-tan-900 [&_p]:text-justify [&_p]:hyphens-auto",
+                      "[&_figure]:rounded-t-xl [&_figure]:h-50 [&_figure]:lg:h-80 [&_figure]:xl:h-100 [&_figure]:w-full [&_figure]:first:mb-12",
+                      "[&_figcaption]:bg-black/45 [&_figcaption]:text-xs [&_figcaption]:text-white [&_figcaption]:py-0.5 [&_figcaption]:px-2",
+                      "[&_img]:rounded-t-xl [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:will-change-transform",
+                    )}
+                    dangerouslySetInnerHTML={sanitizedData(location.content)}
+                  />
+                </article>
+            )}
+          </ScrollArea>
         </div>
-        <ScrollArea
-          data-hovering
-          className={cn(
-            "bg-darkgreen-500 relative h-full max-h-[calc(100svh-104px)] w-full",
-            "origin-center transition-all duration-500 ease-in-out",
-            show ? "scale-100" : "scale-0",
-          )}
-        >
-          <DetailsCloseButton setShow={setShow} />
-
-          <article className="h-full w-full flex flex-col gap-12 p-12">
-            <div className="h-80 w-full grid place-content-center overflow-clip">
-              <img className="h-full w-full object-cover object-top-left will-change-transform" src={chaple} />
-            </div>
-
-            <h2 className="text-4xl text-darkgreen-950 font-inter font-bold uppercase tracking-tighter">
-              Capela Nossa Senhora Auxiliadora
-            </h2>
-
-            <div className="flex flex-col gap-y-8 [&_p]:indent-16 [&_p]:text-xl [&_p]:text-white [&_p]:text-justify [&_p]:hyphens-auto">
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, cupiditate. Exercitationem iure, dolores
-                facilis nam delectus reiciendis illum amet quam quod qui omnis magni doloribus, itaque, dolorum aliquid
-                possimus accusamus et suscipit consequatur repudiandae sapiente laboriosam. Blanditiis ipsa perferendis
-                illo numquam illum quae debitis facilis delectus omnis veniam amet aperiam tenetur repellendus dolores
-                eveniet perspiciatis explicabo, dolorum est? Consequuntur nulla fuga alias iure eum officia laborum quam
-                quae laboriosam, mollitia tempore quibusdam earum rerum accusamus obcaecati aspernatur, at officiis
-                repellendus.
-              </p>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, voluptate quas. Accusantium unde
-                dolores quibusdam ipsa obcaecati deleniti dolor, illo animi hic quasi necessitatibus fugiat.
-              </p>
-
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, cupiditate. Exercitationem iure, dolores
-                facilis nam delectus reiciendis illum amet quam quod qui omnis magni doloribus, itaque, dolorum aliquid
-                possimus accusamus et suscipit consequatur repudiandae sapiente laboriosam. Blanditiis ipsa perferendis
-                illo numquam illum quae debitis facilis delectus omnis veniam amet aperiam tenetur repellendus dolores
-                eveniet perspiciatis explicabo, dolorum est? Consequuntur nulla fuga alias iure eum officia laborum quam
-                quae laboriosam, mollitia tempore quibusdam earum rerum accusamus obcaecati aspernatur, at officiis
-                repellendus.
-              </p>
-            </div>
-          </article>
-        </ScrollArea>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }

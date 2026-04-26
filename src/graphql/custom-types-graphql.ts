@@ -6,8 +6,8 @@ export const INTERACTIVE_MAP = gql`
     locations {
       nodes {
         id
-        title
-        content
+        title(format: RENDERED)
+        content(format: RENDERED)
         featuredImage {
           node {
             guid
@@ -19,6 +19,16 @@ export const INTERACTIVE_MAP = gql`
           featuredImageCopy
         }
       }
+    }
+  }
+`;
+
+export const INTERACTIVE_MAP_LOCATION = gql`
+  query InteractiveMapLocation($id: ID!) {
+    location(id: $id) {
+      id
+      title(format: RENDERED)
+      content(format: RENDERED)
     }
   }
 `;
