@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Lenis from "lenis";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -12,7 +13,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const Col = ({ className, children }: { className?: string; children: React.ReactNode }) => {
   return <div className={cn("col flex-1 flex flex-col justify-center items-center gap-8", className)}>{children}</div>;
 };
-
 
 const servicesCopy: string[][] = [
   [
@@ -43,144 +43,162 @@ const servicesCopy: string[][] = [
 
 const SectionAlmanaqueChapters = () => {
   const stickyCardsContainer = useRef<HTMLElement>(null);
-  
-  useGSAP(() => {
 
-    gsap.ticker.lagSmoothing(0);
+  useGSAP(
+    () => {
+      const lenis = new Lenis();
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
 
-    const stickySection = document.querySelector<HTMLElement>(".sticky-chapters");
-    const stickyHeight = window.innerHeight * 8;
-    const services = document.querySelectorAll<HTMLDivElement>(".service");
-    const indicator = document.querySelector<HTMLDivElement>(".indicator");
-    const currentCount = document.querySelector<HTMLSpanElement>("#current-count");
-    const serviceImg = document.querySelector<HTMLDivElement>(".service-img");
-    const serviceCopy = document.querySelector<HTMLParagraphElement>(".service-copy p");
-    const serviceHeight = 48;
-    const imgHeight = 250;
+      gsap.ticker.lagSmoothing(0);
 
-    if (serviceCopy) {
-      serviceCopy.textContent = servicesCopy[0][0];
-    }
-    let currentSplitText = new SplitText(serviceCopy, { type: "lines", linesClass: "line relative will-change-transform" });
+      const stickySection = document.querySelector<HTMLElement>(".sticky-sections");
+      const stickyHeight = window.innerHeight * 8;
+      const services = document.querySelectorAll<HTMLDivElement>(".service");
+      const indicator = document.querySelector<HTMLDivElement>(".indicator");
+      const currentCount = document.querySelector<HTMLSpanElement>("#current-count");
+      const serviceImg = document.querySelector<HTMLDivElement>(".service-img");
+      const serviceCopy = document.querySelector<HTMLParagraphElement>(".service-copy p");
+      const serviceHeight = 48;
+      const imgHeight = 250;
 
-    const measureContainer = document.createElement("div");
-    measureContainer.classList.add("text-6xl", "font-cabinet", "font-semibold", "absolute", "invisible", "h-auto", "w-auto", "whitespace-nowrap", "uppercase");
-    document.body.appendChild(measureContainer);
-
-    const serviceWidths = Array.from(services).map((service) => {
-      measureContainer.textContent = service.querySelector("p")!.textContent;
-      return measureContainer.offsetWidth + 8;
-    });
-
-    document.body.removeChild(measureContainer);
-
-    gsap.set(indicator, {
-      width: serviceWidths[0],
-      xPercent: -50,
-      left: "50%"
-    });
-
-    const scrollPerService = window.innerHeight;
-    let currentIndex = 0;
-
-    const animateTextChange = (index: number) => {
-      return new Promise((resolve) => {
-        gsap.to(currentSplitText.lines, {
-          opacity: 0,
-          y: -20,
-          duration: 0.5,
-          stagger: 0.03,
-          ease: "power3.inOut",
-          onComplete: () => {
-            currentSplitText.revert();
-            
-            const newText = servicesCopy[index][0];
-            serviceCopy!.textContent = newText;
-            
-            currentSplitText = new SplitText(serviceCopy, {
-              type: "lines",
-              linesClass: "line relative will-change-transform"
-            });
-            
-            gsap.set(currentSplitText.lines, {
-              opacity: 0,
-              y: 20,
-            });
-            
-            gsap.to(currentSplitText.lines, {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              stagger: 0.03,
-              ease: "power3.out",
-              onComplete: resolve,
-            });
-          }
-        })
-      })
-    }
-
-    ScrollTrigger.create({
-      trigger: stickySection,
-      start:  "top top",
-      end: `${stickyHeight}px`,
-      pin: true,
-      pinSpacing: true,
-      onUpdate: async (self) => {
-        const progress = self.progress;
-
-        gsap.set(".progress", { scaleY: progress });
-
-        const scrollPosition = Math.max(0, self.scroll() - window.innerHeight);
-        const activeIndex = Math.floor(scrollPosition / scrollPerService);
-
-        if(
-          activeIndex >= 0 &&
-          activeIndex < services.length &&
-          currentIndex !== activeIndex
-        ){
-          currentIndex = activeIndex;
-
-          services.forEach((service) => service.classList.remove("active"));
-          services[activeIndex].classList.add("active");
-
-          await Promise.all([
-            gsap.to(indicator, {
-              y: activeIndex * serviceHeight,
-              width: serviceWidths[activeIndex],
-              duration: 0.5,
-              ease: "power3.inOut",
-              overwrite: true,
-            }),
-            
-            gsap.to(serviceImg, {
-              y: -(activeIndex * imgHeight),
-              duration: 0.5,
-              ease: "power3.inOut",
-              overwrite: true,
-            }),
-            
-            gsap.to(currentCount, {
-              innerText: activeIndex + 1,
-              snap: { innerText: 1 },
-              duration: 0.3,
-              ease: "power3.out",
-            }),
-  
-            animateTextChange(activeIndex),
-  
-          ]);
-        }
+      if (serviceCopy) {
+        serviceCopy.textContent = servicesCopy[0][0];
       }
-    });
+      let currentSplitText = new SplitText(serviceCopy, {
+        type: "lines",
+        linesClass: "line relative will-change-transform",
+      });
 
-    ScrollTrigger.refresh();
+      const measureContainer = document.createElement("div");
+      measureContainer.classList.add(
+        "text-6xl",
+        "font-cabinet",
+        "font-semibold",
+        "absolute",
+        "invisible",
+        "h-auto",
+        "w-auto",
+        "whitespace-nowrap",
+        "uppercase",
+      );
+      document.body.appendChild(measureContainer);
 
-  }, { scope: stickyCardsContainer });
+      const serviceWidths = Array.from(services).map((service) => {
+        measureContainer.textContent = service.querySelector("p")!.textContent;
+        return measureContainer.offsetWidth + 8;
+      });
+
+      document.body.removeChild(measureContainer);
+
+      gsap.set(indicator, {
+        width: serviceWidths[0],
+        xPercent: -50,
+        left: "50%",
+      });
+
+      const scrollPerService = window.innerHeight;
+      let currentIndex = 0;
+
+      const animateTextChange = (index: number) => {
+        return new Promise((resolve) => {
+          gsap.to(currentSplitText.lines, {
+            opacity: 0,
+            y: -20,
+            duration: 0.5,
+            stagger: 0.03,
+            ease: "power3.inOut",
+            onComplete: () => {
+              currentSplitText.revert();
+
+              const newText = servicesCopy[index][0];
+              serviceCopy!.textContent = newText;
+
+              currentSplitText = new SplitText(serviceCopy, {
+                type: "lines",
+                linesClass: "line relative will-change-transform",
+              });
+
+              gsap.set(currentSplitText.lines, {
+                opacity: 0,
+                y: 20,
+              });
+
+              gsap.to(currentSplitText.lines, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.03,
+                ease: "power3.out",
+                onComplete: resolve,
+              });
+            },
+          });
+        });
+      };
+
+      ScrollTrigger.create({
+        trigger: stickySection,
+        start: "top top",
+        end: `${stickyHeight}px`,
+        pin: true,
+        pinSpacing: true,
+        onUpdate: async (self) => {
+          const progress = self.progress;
+
+          gsap.set(".progress", { scaleY: progress });
+
+          const scrollPosition = Math.max(0, self.scroll() - window.innerHeight);
+          const activeIndex = Math.floor(scrollPosition / scrollPerService);
+
+          if (activeIndex >= 0 && activeIndex < services.length && currentIndex !== activeIndex) {
+            currentIndex = activeIndex;
+
+            services.forEach((service) => service.classList.remove("active"));
+            services[activeIndex].classList.add("active");
+
+            await Promise.all([
+              gsap.to(indicator, {
+                y: activeIndex * serviceHeight,
+                width: serviceWidths[activeIndex],
+                duration: 0.5,
+                ease: "power3.inOut",
+                overwrite: true,
+              }),
+
+              gsap.to(serviceImg, {
+                y: -(activeIndex * imgHeight),
+                duration: 0.5,
+                ease: "power3.inOut",
+                overwrite: true,
+              }),
+
+              gsap.to(currentCount, {
+                innerText: activeIndex + 1,
+                snap: { innerText: 1 },
+                duration: 0.3,
+                ease: "power3.out",
+              }),
+
+              animateTextChange(activeIndex),
+            ]);
+          }
+        },
+      });
+
+      ScrollTrigger.refresh();
+    },
+    { scope: stickyCardsContainer },
+  );
 
   return (
     <>
-      <section className="sticky-chapters bg-chocolate-300 relative h-svh w-full flex max-lg:flex-col" ref={stickyCardsContainer}>
+      <section
+        className="sticky-sections bg-chocolate-300 relative h-svh w-full flex max-lg:flex-col"
+        ref={stickyCardsContainer}
+      >
         <Col className="max-lg:pt-[25%] max-lg:justify-start">
           <div className="services relative flex flex-col items-center">
             <div className="indicator bg-chocolate-800 absolute top-0 left-0 w-full h-10 translate-y-0 -z-1"></div>
@@ -262,7 +280,7 @@ const SectionAlmanaqueChapters = () => {
           </span>
           <span className="separator text-xl font-mono font-semibold leading-3  h-0.5 w-5 flex justify-center items-center bg-chocolate-300 relative -top-px"></span>
           <span className="total-count text-xl font-mono font-semibold leading-3 w-3 flex justify-center items-center">
-            8
+            {servicesCopy.length}
           </span>
         </div>
       </section>

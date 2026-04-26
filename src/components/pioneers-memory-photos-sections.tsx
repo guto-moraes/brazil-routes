@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import ButtonLinkWithIcon from "./button-link-with-icon";
-import { useQueryPioneers } from "@/queries/theme-queries";
+import { useQueryPioneers } from "@/hooks/queries/theme-queries";
 
 gsap.registerPlugin(ScrollTrigger);
 

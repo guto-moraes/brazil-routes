@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ButtonLinkWithIcon from "./button-link-with-icon";
-import { useQueryAlmanaquePresentation } from "@/queries/theme-queries";
+import { useQueryAlmanaquePresentation } from "@/hooks/queries/theme-queries";
 import { sanitizedData } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);

@@ -6,7 +6,7 @@ import { cn, sanitizedData } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useQueryInteractiveMap, useQueryInteractiveMapLocation } from "@/queries/custom-posts-queries";
+import { useQueryInteractiveMap, useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
 
 export const Route = createFileRoute("/mapa-interativo")({
   head: () => ({
@@ -95,9 +95,9 @@ function InteractiveMap() {
                   <div
                     className={cn(
                       "flex flex-col [&_p]:not-last:mb-4 [&_p]:indent-10 [&_p]:text-base [&_p]:md:text-lg [&_p]:text-tan-900 [&_p]:text-justify [&_p]:hyphens-auto",
-                      "[&_figure]:rounded-t-xl [&_figure]:h-50 [&_figure]:lg:h-80 [&_figure]:xl:h-100 [&_figure]:w-full [&_figure]:first:mb-12",
-                      "[&_figcaption]:bg-black/45 [&_figcaption]:text-xs [&_figcaption]:text-white [&_figcaption]:py-0.5 [&_figcaption]:px-2",
-                      "[&_img]:rounded-t-xl [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:will-change-transform",
+                      "[&_figure]:rounded-t-xl [&_figure]:h-50! [&_figure]:lg:h-80! [&_figure]:w-full [&_figure]:first:mb-12 [&_figcaption]:bg-black/45",
+                      "[&_figcaption]:text-xs [&_figcaption]:text-white [&_figcaption]:py-0.5 [&_figcaption]:px-2 [&_.wp-image-105]:rounded-t-xl",
+                      "[&_.wp-image-105]:h-full [&_.wp-image-105]:w-full [&_.wp-image-105]:object-cover [&_.wp-image-105]:will-change-transform",
                     )}
                     dangerouslySetInnerHTML={sanitizedData(location.content)}
                   />

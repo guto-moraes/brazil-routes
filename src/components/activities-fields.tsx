@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type { FieldsActivity, FieldsActivityCardItem } from "@/types/theme-types";
-import { useQueryFieldsActivityOfProject } from "@/queries/theme-queries";
+import { useQueryFieldsActivityOfProject } from "@/hooks/queries/theme-queries";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

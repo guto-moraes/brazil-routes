@@ -1,5 +1,5 @@
 import request from "graphql-request";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { CHAPTERS_ALMANAQUE } from "@/graphql/theme-graphql";
 import type { ChaptersAlmanaqueTypes } from "@/types/theme-types";
 
@@ -12,7 +12,7 @@ const fetchAlmanaqueChapters = async () => {
 
 //Query da Seção Capítulos do Almanaque - Página Inicial
 export const useQueryAlmanaqueChapters = () => {
-  return useQuery<ChaptersAlmanaqueTypes>({
+  return useSuspenseQuery<ChaptersAlmanaqueTypes>({
     queryKey: ["almanaque-chapters"],
     queryFn: () => fetchAlmanaqueChapters(),
   });

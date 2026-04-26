@@ -1,4 +1,4 @@
-import { useQueryPartners } from "@/queries/theme-queries";
+import { useQueryPartners } from "@/hooks/queries/theme-queries";
 import type { PartnerType } from "@/types/theme-types";
 
 const Partners = () => {
