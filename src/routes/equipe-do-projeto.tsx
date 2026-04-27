@@ -1,11 +1,12 @@
-import { createFileRoute } from '@tanstack/react-router'
-import ProjectTeam from '@/components/project-team'
+import { createFileRoute } from "@tanstack/react-router";
+import Main from "@/layouts/main";
+import Title from "@/components/title";
 
-export const Route = createFileRoute('/equipe-do-projeto')({
+export const Route = createFileRoute("/equipe-do-projeto")({
   head: () => ({
     meta: [
       {
-        title: "Equipe do Projeto",
+        title: "Equipe do Projeto | Projeto Caminhos do Brasil Central",
       },
       {
         name: "description",
@@ -13,10 +14,20 @@ export const Route = createFileRoute('/equipe-do-projeto')({
           "Equipe multidisciplinar que atuou no desenvolvimento e na execução do Projeto Caminhos do Brasil Central",
       },
     ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://caminhosdobrasilcentral.com/equipe-do-projeto",
+      },
+    ],
   }),
   component: Team,
-})
+});
 
 function Team() {
-  return <ProjectTeam />
+  return (
+    <Main className="container mx-auto">
+      <Title text="Equipe do Projeto" />
+    </Main>
+  );
 }

@@ -52,7 +52,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
   );
 };
 
-const ActivitiesFieldsSection = () => {
+const ActivityAreas = () => {
   const activitiesCardsRef = useRef<HTMLElement | null>(null);
   const { data, isLoading } = useQueryFieldsActivityOfProject();
   const {
@@ -77,7 +77,7 @@ const ActivitiesFieldsSection = () => {
           scrollTrigger: {
             trigger: activitiesCardsRef.current,
             start: "top top",
-            end: `${window.innerHeight}%`,
+            end: `${(window.innerHeight * activities.length)/activities.length}%`,
             pin: true,
             scrub: 1,
           },
@@ -86,7 +86,7 @@ const ActivitiesFieldsSection = () => {
         cards.forEach((card, i) => {
           const cardItem = activities[i];
           gsap.set(card, {
-            yPercent: 150 + 1 * 50,
+            yPercent: 100 + 1 * 50,
             opacity: 1,
             scale: 1.25,
             rotate: cardItem.fieldActivityRotateFrom,
@@ -95,7 +95,7 @@ const ActivitiesFieldsSection = () => {
             yPercent: -50,
             scale: 0.9,
             rotate: cardItem.fielActivityRotateTo,
-            duration: 0.75,
+            duration: 0.5,
           });
         });
       }
@@ -119,11 +119,7 @@ const ActivitiesFieldsSection = () => {
           </div>
         )}
 
-        <div
-          className={cn(
-            "activities-cards fixed inset-0 overflow-hidden flex flex-col",
-          )}
-        >
+        <div className={cn("activities-cards fixed inset-0 overflow-hidden flex flex-col")}>
           {activities &&
             activities.map((activity: FieldsActivity, index: number) => (
               <Card
@@ -141,4 +137,4 @@ const ActivitiesFieldsSection = () => {
   );
 };
 
-export default ActivitiesFieldsSection;
+export default ActivityAreas;

@@ -5,18 +5,16 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
-import ButtonLinkWithIcon from "./button-link-with-icon";
+import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import { useQueryPioneers } from "@/hooks/queries/theme-queries";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PioneersMemoryPhotosSection = () => {
+const PioneersTribute = () => {
   const refContainer = useRef<HTMLElement>(null);
   const { data } = useQueryPioneers();
   const { firstScreen, pioneersList: pioneers, lastScreen } = data?.project.theming || {};
   const lastScreenTitle = lastScreen && lastScreen?.title.split(",");
-
-  console.log(pioneers);
 
   useGSAP(
     () => {
@@ -126,40 +124,42 @@ const PioneersMemoryPhotosSection = () => {
       </div>
       <div className="scroll-photos relative h-full w-[450vw] pl-[100vw] flex items-center z-10 pointer-events-none">
         {pioneers &&
-          pioneers.map((pioneer, index) => (
-            <div
-              key={index}
-              className={cn(
-                "card shrink-0 rounded-2xl shadow-[-5px_5px_rgba(0,0,0,0.5)]",
-                "h-112 w-80 border-10 border-white flex flex-col justify-start mx-10 p-6",
-                pioneer.tribute ? "bg-bone-600" : "bg-mate-400",
-              )}
-            >
-              <header className="rounded-sm h-80 w-full overflow-x-auto">
-                <img
-                  className={cn(
-                    "h-full w-full object-cover object-top will-change-transform",
-                    pioneer.tribute && "grayscale-85",
-                  )}
-                  src={pioneer.image.node.guid}
-                  alt={pioneer.name}
-                />
-              </header>
-              <div className="w-full flex flex-col justify-start items-start mt-2">
-                <p className="rounded bg-black/30 text-sm text-white font-medium leading-6 h-6 w-full pl-2 mb-2">
-                  {pioneer.name}
-                </p>
-                {pioneer.tribute && (
-                  <p className="rounded bg-black/25 text-[0.75rem] text-white h-4.5 w-22 pl-2">
-                    <em>in memoriam</em>
-                  </p>
+          pioneers.map((pioneer, index) => {
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "card shrink-0 rounded-2xl shadow-[-5px_5px_rgba(0,0,0,0.5)]",
+                  "h-112 w-80 border-10 border-white flex flex-col justify-start mx-10 p-6",
+                  pioneer.tribute ? "bg-bone-600" : "bg-mate-400",
                 )}
+              >
+                <header className="rounded-sm h-80 w-full overflow-x-auto">
+                  <img
+                    className={cn(
+                      "h-full w-full object-cover object-top will-change-transform",
+                      pioneer.tribute && "grayscale-85",
+                    )}
+                    src={pioneer.image.node.guid}
+                    alt={pioneer.name}
+                  />
+                </header>
+                <div className="w-full flex flex-col justify-start items-start mt-2">
+                  <p className="rounded bg-black/30 text-sm text-white font-medium leading-6 h-6 w-full pl-2 mb-2">
+                    {pioneer.name}
+                  </p>
+                  {pioneer.tribute && (
+                    <p className="rounded bg-black/25 text-[0.75rem] text-white h-4.5 w-22 pl-2">
+                      <em>in memoriam</em>
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
       </div>
     </section>
   );
 };
 
-export default PioneersMemoryPhotosSection;
+export default PioneersTribute;

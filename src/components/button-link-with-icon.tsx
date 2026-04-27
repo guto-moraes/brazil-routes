@@ -26,9 +26,7 @@ const ButtonLinkWithIcon = ({
       )}
       target={target ? "_blank" : "_parent"}
     >
-      <span className="relative z-10 transition-all duration-500">
-        {textButton}
-      </span>
+      <span className="relative z-10 transition-all duration-500">{textButton}</span>
       <div
         className={cn(
           "absolute right-1 size-10 rounded-full flex items-center justify-center",

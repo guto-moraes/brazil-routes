@@ -1,20 +1,22 @@
-import { createRootRoute, useRouterState } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { TanStackDevtools } from "@tanstack/react-devtools";
+import { createRootRoute, Outlet, useRouterState } from "@tanstack/react-router";
 
 // Import Tanstack Query Provider and Initialize QueryClient
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 // Import Static Layout Components
+import QueryLoadingBoundary from "@/components/query-loading-boundary";
+import NotFound from "@/components/not-found";
+import ErrorComponentTheme from "@/components/error-component";
 import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
-import NotFound from "@/layouts/not-found";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
 import Partners from "@/layouts/partials/partners";
 import SmoothScroller from "@/components/smooth-scroller";
+import { useEffect } from "react";
+import applyGoogleTranslateDOMPatch from "@/lib/applyGoogleTranslateDOMPatch";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,7 +29,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
     ],
-    title: "Caminhos do Brasil Central",
+    title: "Projeto Caminhos do Brasil Central",
     links: [
       {
         rel: "stylesheet",
@@ -35,38 +37,31 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  shellComponent: RootDocument,
-  notFoundComponent: () => <NotFound />
+  component: RootDocument,
+  errorComponent: ({ error, reset }) => <ErrorComponentTheme error={error} reset={reset} />,
+  notFoundComponent: () => <NotFound />,
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument() {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
-
   const isHome = pathname === "/";
 
+  useEffect(() => {
+    applyGoogleTranslateDOMPatch();
+  }, []);
+
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <QueryLoadingBoundary>
         <SmoothScroller>
           {!isHome && <Navigation />}
-          {children}
+          <Outlet />
           <Partners />
           <Footer />
         </SmoothScroller>
-      </QueryClientProvider>
-      <TanStackDevtools
-        config={{
-          position: "bottom-right",
-        }}
-        plugins={[
-          {
-            name: "Tanstack Router",
-            render: <TanStackRouterDevtoolsPanel />,
-          },
-        ]}
-      />
-    </>
+      </QueryLoadingBoundary>
+    </QueryClientProvider>
   );
 }

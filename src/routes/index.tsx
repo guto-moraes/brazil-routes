@@ -1,18 +1,24 @@
-"use client";
-
 import { createFileRoute } from "@tanstack/react-router";
 import Intro from "@/layouts/partials/home/intro";
-import InfiniteMarquee from "@/components/infinite-marquee";
-import EbookPresentationSection from "@/components/ebook-presentation-section";
-import ActivitiesFieldsSection from "@/components/activities-fields";
-import PioneersMemoryPhotosSection from "@/components/pioneers-memory-photos-sections";
-
+import AlamanaquePresentation from "@/layouts/partials/home/almanaque-presentation";
+import PioneersTribute from "@/layouts/partials/home/pioneers-tribute";
+import ActivityAreas from "@/layouts/partials/home/activity-areas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Página Inicial | Caminhos do Brasil Central",
+        title: "Página Inicial | Projeto Caminhos do Brasil Central",
+      },
+      {
+        name: "description",
+        content: "Página de apresentação do Projeto Caminhos do Brasil Central",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://caminhosdobrasilcentral.com/",
       },
     ],
   }),
@@ -22,12 +28,11 @@ export const Route = createFileRoute("/")({
 function Index() {
 
   return (
-      <>
-        <Intro />
-        <InfiniteMarquee />
-        <EbookPresentationSection />
-        <PioneersMemoryPhotosSection />
-        <ActivitiesFieldsSection />
-      </>
+    <>
+      <Intro />
+      <AlamanaquePresentation />
+      <PioneersTribute />
+      <ActivityAreas />
+    </>
   );
 }

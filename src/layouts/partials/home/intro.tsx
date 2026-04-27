@@ -81,14 +81,18 @@ const Intro = () => {
           },
           ">0.7",
         )
-        .to(".video-container", {
-          height: "100svh",
-          width: "125%",
-          scale: 1,
-          duration: 2,
-          ease: "power4.inOut",
-          onComplete: () => setIsNegativeLogo(true),
-        },"<0.1")
+        .to(
+          ".video-container",
+          {
+            height: "100svh",
+            width: "125%",
+            scale: 1,
+            duration: 2,
+            ease: "power4.inOut",
+            onComplete: () => setIsNegativeLogo(true),
+          },
+          "<0.1",
+        )
         .to(
           ".hero-content",
           {
@@ -126,7 +130,7 @@ const Intro = () => {
             alt="Mapa da Expedição Roncador-Xingu"
           />
           <div className="container mx-auto h-max w-fit flex flex-col justify-center items-center overflow-hidden">
-            <h2 className="hero-title text-[9rem] text-chocolate-700 font-bold uppercase leading-[9vw] -tracking-[0.75vw]">
+            <h2 className="hero-title text-[9rem] text-chocolate-700 font-bold uppercase leading-32 -tracking-[0.08em]">
               Caminhos
             </h2>
             <div
@@ -142,7 +146,7 @@ const Intro = () => {
             <h2
               className={cn(
                 "hero-slogan text-2xl text-tan-700 text-center font-cintarini",
-                "font-semibold leading-12 text-balance whitespace-nowrap",
+                "font-semibold leading-16 text-balance whitespace-nowrap tracking-wider",
               )}
             >
               Onde o sertão se fez caminho e a memória se faz patrimônio

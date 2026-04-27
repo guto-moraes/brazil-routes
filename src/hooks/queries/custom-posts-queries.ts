@@ -1,5 +1,5 @@
 import request from "graphql-request";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION } from "@/graphql/custom-types-graphql";
 import type { InteractiveMapLocationTypes, InteractiveMapTypes } from "@/types/custom-post-types";
 
@@ -12,7 +12,7 @@ const fetchInteractiveMap = async () => {
 
 //Query do Mapa Interativo para Todos os Resultados
 export const useQueryInteractiveMap = () => {
-  return useQuery<InteractiveMapTypes>({
+  return useSuspenseQuery<InteractiveMapTypes>({
     queryKey: ["interactive-map"],
     queryFn: () => fetchInteractiveMap(),
   });

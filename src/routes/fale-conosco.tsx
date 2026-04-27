@@ -1,16 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-import FlipCardScroll from "@/components/flip-card-scroll.tsx";
+import Main from "@/layouts/main";
+import Title from "@/components/title";
 
 export const Route = createFileRoute("/fale-conosco")({
   head: () => ({
     meta: [
       {
-        title: "Fale Conosco",
+        title: "Fale Conosco | Projeto Caminhos do Brasil Central",
       },
       {
         name: "description",
-        content: "Página de contato do site",
+        content: "Página de contato com a equipe do Projeto Caminhos do Brasil Central",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://caminhosdobrasilcentral.com/fale-conosco",
       },
     ],
   }),
@@ -19,8 +25,8 @@ export const Route = createFileRoute("/fale-conosco")({
 
 function ContactUs() {
   return (
-    <>
-      <FlipCardScroll />
-    </>
+    <Main className="container mx-auto">
+      <Title text="Fale Conosco" />
+    </Main>
   );
 }

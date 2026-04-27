@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -12,16 +12,23 @@ import negativeLogo from "@/assets/images/logo-negative.webp";
 
 gsap.registerEffect(SplitText);
 
-const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; isNegativeLogo?: boolean; className?: string }) => {
+const Navigation = ({
+  isHome,
+  isNegativeLogo,
+  className,
+}: {
+  isHome?: boolean;
+  isNegativeLogo?: boolean;
+  className?: string;
+}) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   const [screenWidth] = useState<number | null>(typeof window !== "undefined" ? window.innerWidth : 0);
-  const navigationRef = useRef<HTMLDivElement | null>(null)
+  const navigationRef = useRef<HTMLDivElement | null>(null);
 
   const handleActiveMenu = () => {
     if (isActiveMenu) {
       setTimeout(() => {
         setIsActiveMenu(false);
-        ScrollTrigger.refresh();
       }, 1000);
     }
     setIsActiveMenu(true);
@@ -32,96 +39,101 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
     ScrollTrigger.refresh();
   };
 
-  useGSAP(() => {
-    const navToggler = document.querySelector<HTMLButtonElement>(".nav-toggler");
-    const navTransitions = document.querySelectorAll<HTMLDivElement>(".nav-transition");
-    const navItems = document.querySelector<HTMLDivElement>(".nav-items");
+  useGSAP(
+    () => {
+      const navToggler = document.querySelector<HTMLButtonElement>(".nav-toggler");
+      const navTransitions = document.querySelectorAll<HTMLDivElement>(".nav-transition");
+      const navItems = document.querySelector<HTMLDivElement>(".nav-items");
 
-    let isMenuOpen = false;
-    let isAnimating = false;
+      let isMenuOpen = false;
+      let isAnimating = false;
 
-    const tl = gsap.timeline({
-      paused: true,
-      onComplete: () => {
-        isAnimating = false;
-      },
-      onReverseComplete: () => {
-        gsap.set(linkBlocks.join(", "), {
-          y: "100%",
-        });
-        isAnimating = false;
-      },
-    });
-
-    navToggler!.addEventListener("click", () => {
-      if (isAnimating) return;
-
-      isAnimating = true;
-
-      navToggler!.classList.toggle("open");
-
-      if (!isMenuOpen) {
-        tl.play();
-        animateLinksIn();
-      } else {
-        tl.reverse();
-      }
-
-      isMenuOpen = !isMenuOpen;
-    });
-
-    tl.to(navTransitions, {
-      scaleY: 1,
-      duration: 0.75,
-      stagger: 0.1,
-      ease: "power3.inOut",
-    });
-
-    tl.to(
-      navItems,
-      {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 0.75,
-        ease: "power3.inOut",
-      },
-      "-=0.6",
-    );
-
-    SplitText.create(".nav-items a", {
-      type: "lines",
-      mask: "lines",
-      linesClass: "line",
-    });
-
-    const linkBlocks = [
-      ".nav-socials .line, .nav-legal .line",
-      ".nav-primary-links .line",
-      ".nav-secondary-links .line",
-    ];
-
-    function animateLinksIn() {
-      linkBlocks.forEach((selector) => {
-        gsap.fromTo(
-          selector,
-          { y: "100%" },
-          {
-            y: "0%",
-            duration: 0.75,
-            stagger: 0.05,
-            ease: "power3.out",
-            delay: 0.85,
+      document.fonts.ready.then(() => {
+        const tl = gsap.timeline({
+          paused: true,
+          onComplete: () => {
+            isAnimating = false;
           },
+          onReverseComplete: () => {
+            gsap.set(linkBlocks.join(", "), {
+              y: "100%",
+            });
+            isAnimating = false;
+          },
+        });
+
+        navToggler!.addEventListener("click", () => {
+          if (isAnimating) return;
+
+          isAnimating = true;
+
+          navToggler!.classList.toggle("open");
+
+          if (!isMenuOpen) {
+            tl.play();
+            animateLinksIn();
+          } else {
+            tl.reverse();
+          }
+
+          isMenuOpen = !isMenuOpen;
+        });
+
+        tl.to(navTransitions, {
+          scaleY: 1,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.inOut",
+        });
+
+        tl.to(
+          navItems,
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            duration: 0.75,
+            ease: "power3.inOut",
+          },
+          "-=0.6",
         );
+
+        SplitText.create(".nav-items a", {
+          type: "lines",
+          mask: "lines",
+          linesClass: "line",
+        });
+
+        const linkBlocks = [
+          ".nav-socials .line, .nav-legal .line",
+          ".nav-primary-links .line",
+          ".nav-secondary-links .line",
+        ];
+
+        function animateLinksIn() {
+          linkBlocks.forEach((selector) => {
+            gsap.fromTo(
+              selector,
+              { y: "100%" },
+              {
+                y: "0%",
+                duration: 0.75,
+                stagger: 0.05,
+                ease: "power3.out",
+                delay: 0.85,
+              },
+            );
+          });
+        }
       });
-    }
-  }, {scope: navigationRef});
+    },
+    { scope: navigationRef },
+  );
 
   return (
-    <>
+    <Fragment>
       <header
         className={cn(
           "p-4 lg:px-0 h-26 w-full overflow-hidden",
-          isActiveMenu && isHome || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
+          (isActiveMenu && isHome) || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
           isActiveMenu || isHome ? "shadow-none bg-none" : "shadow-lg bg-white",
           className,
         )}
@@ -149,7 +161,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
               <span
                 className={cn(
                   "text-chocolate-800 uppercase duration-700 transition-all",
-                  isActiveMenu || isHome && isNegativeLogo ? "text-white" : "text-chocolate-800",
+                  isActiveMenu || (isHome && isNegativeLogo) ? "text-white" : "text-chocolate-800",
                   isActiveMenu ? "scale-0" : "scale-100",
                   screenWidth && screenWidth < 640 ? "hidden" : "block",
                 )}
@@ -161,20 +173,20 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
                   className={cn(
                     "mw-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:translate-y-2 group-[.open]:rotate-45",
-                    isActiveMenu || isHome && isNegativeLogo ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || (isHome && isNegativeLogo) ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 group-[.open]:translate-x-100",
-                    isActiveMenu || isHome && isNegativeLogo ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || (isHome && isNegativeLogo) ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:-translate-y-2 group-[.open]:-rotate-45",
-                    isActiveMenu || isHome && isNegativeLogo ? "bg-white" : "bg-chocolate-800",
+                    isActiveMenu || (isHome && isNegativeLogo) ? "bg-white" : "bg-chocolate-800",
                   )}
                 ></span>
               </div>
@@ -286,7 +298,7 @@ const Navigation = ({ isHome, isNegativeLogo, className }: { isHome?: boolean; i
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 
