@@ -20,10 +20,10 @@ export const Route = createFileRoute("/referencias")({
       },
     ],
   }),
-  component: Index,
+  component: References,
 });
 
-function Index() {
+function References() {
 
   return (
       <Main className="container mx-auto">

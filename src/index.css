@@ -505,6 +505,35 @@ html:active-view-transition-type(warp) {
   right: 0.35rem;
 }
 
+.leaflet-touch .leaflet-bar a {
+  color: var(--color-white);
+ background-color: var(--color-darkgreen-400);
+ height: 2.5rem!important;
+ display: grid;
+ align-content: center;
+ transition: background 300ms ease-in-out;
+ border: 1px solid var(--color-darkgreen-500)!important;
+}
+
+.leaflet-touch .leaflet-bar a:hover {
+  background-color: var(--color-darkgreen-300);
+}
+
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: 15px!important;
+    border-top-right-radius: 15px!important;
+}
+
+.leaflet-touch .leaflet-bar a:last-child {
+    border-bottom-left-radius: 15px!important;
+    border-bottom-right-radius: 15px!important;
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+ border-color: transparent!important;
+}
+
+/* Fim das configurações do Mapa */
 
 .sticky-wrapper h2 {
   font-size: 5rem;

@@ -20,10 +20,10 @@ export const Route = createFileRoute("/linha-do-tempo")({
       },
     ],
   }),
-  component: Index,
+  component: Timeline,
 });
 
-function Index() {
+function Timeline() {
 
   return (
       <Main className="container mx-auto">

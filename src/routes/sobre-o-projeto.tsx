@@ -20,10 +20,10 @@ export const Route = createFileRoute("/sobre-o-projeto")({
       },
     ],
   }),
-  component: Index,
+  component: About,
 });
 
-function Index() {
+function About() {
 
   return (
       <Main className="container mx-auto">
