@@ -196,7 +196,7 @@ const Navigation = ({
       </header>
 
       <div
-        className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-2")}
+        className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-0")}
         aria-labelledby="menubutton"
         tabIndex={-1}
         ref={navigationRef}
