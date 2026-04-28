@@ -35,6 +35,13 @@ export type BlogItemsTypes = z.infer<typeof BlogItemsSchema>;
 
 export const BlogSchema = z.object({
   posts: z.object({
+    pageInfo: z.object({
+      offsetPagination: z.object({
+        hasMore: z.boolean(),
+        hasPrevious: z.boolean(),
+        total: z.number(),
+      }),
+    }),
     nodes: z.array(BlogItemsSchema),
   }),
 });

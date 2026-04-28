@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQueryState } from "nuqs";
 import { cn, sanitizedData } from "@/lib/utils";
 import Main from "@/layouts/main";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
@@ -6,7 +7,7 @@ import { CalendarClock, MapPin, Tag, User } from "lucide-react";
 import Pagination from "@/components/pagination";
 import { useQueryBlogNews } from "@/hooks/queries/posts-queries";
 
-export const Route = createFileRoute("/blog-de-noticias/")({
+export const Route = createFileRoute("/blog-do-conhecimento/")({
   head: () => ({
     meta: [
       {
@@ -20,39 +21,58 @@ export const Route = createFileRoute("/blog-de-noticias/")({
     links: [
       {
         rel: "canonical",
-        href: "https://caminhosdobrasilcentral.com/blog-de-noticias/",
+        href: "https://caminhosdobrasilcentral.com/blog-do-conhecimento/",
       },
     ],
   }),
   component: RouteComponent,
 });
 
+const MAX_ITEMS = 5;
+const MAX_LEFT = (MAX_ITEMS - 1) / 2;
+const LIMIT = 1; // Number of posts to fetch per request
+
 function RouteComponent() {
-  const { posts } = useQueryBlogNews().data;
+  const [offset, setOffset] = useQueryState("offset");
+  const { posts } = useQueryBlogNews(LIMIT, offset ? Number(offset) : 0).data;
+
+  const pages = Math.ceil((posts.pageInfo.offsetPagination.total ?? 0) / LIMIT);
+
+  const handlePagination = (page: number) => {
+    setOffset(String(Number((page - 1) * LIMIT)));
+  };
 
   return (
     <Main className="bg-tan-100 w-full xl:py-24">
       <div className="max-w-6xl mx-auto xl:pb-16 px-4 xl:px-2">
         <h1 className="text-[clamp(5rem,5vw,5rem)] text-tan-700 font-cabinet font-black xl:pb-24">
-          Blog <span className="text-tan-400">de Notícias</span>
+          Blog do <span className="text-tan-400">Conhecimento</span>
         </h1>
 
         <div className="w-full flex flex-col gap-y-32 divide-y divide-dashed divide-tan-300">
           {posts.nodes.map((post) => (
-            <article className="w-full flex gap-12 not-last:pb-32">
+            <article className="w-full flex gap-12 not-last:pb-32" key={post.id}>
               <aside className="flex-2">
-                <ul className="text-sm text-bone-400 font-mono leading-none h-5 flex flex-col gap-y-4">
+                <ul className="text-sm font-mono leading-none h-5 flex flex-col gap-y-4">
                   <li className="flex items-center gap-x-2">
-                    <CalendarClock /> {new Intl.DateTimeFormat("pt-BR").format(new Date(post.date))}
+                    <CalendarClock className="text-bone-300" />{" "}
+                    <span className="text-mate-600/60 tracking-tighter">
+                      {new Intl.DateTimeFormat("pt-BR").format(new Date(post.date))}
+                    </span>
                   </li>
                   <li className="flex items-center gap-x-2">
-                    <User /> {post.news.author ? post.news.author : post.author.node.name}
+                    <User className="text-bone-300" />{" "}
+                    <span className="text-mate-600/60 tracking-tighter">
+                      {post.news.author ? post.news.author : post.author.node.name}
+                    </span>
                   </li>
                   <li className="flex items-center gap-x-2">
-                    <Tag /> {post.tags.nodes[0].name}
+                    <Tag className="text-bone-300" />{" "}
+                    <span className="text-mate-600/60 tracking-tighter">{post.tags.nodes[0].name}</span>
                   </li>
                   <li className="flex items-center gap-x-2">
-                    <MapPin /> {post.news.location}
+                    <MapPin className="text-bone-300" />{" "}
+                    <span className="text-mate-600/60 tracking-tighter">{post.news.location}</span>
                   </li>
                 </ul>
               </aside>
@@ -85,7 +105,18 @@ function RouteComponent() {
           ))}
         </div>
 
-        <Pagination />
+        {posts && pages > 1 && (
+          <Pagination
+            hasPrevious={posts.pageInfo.offsetPagination.hasPrevious}
+            hasNext={posts.pageInfo.offsetPagination.hasMore}
+            offset={Number(offset)}
+            total={posts.pageInfo.offsetPagination.total}
+            limit={LIMIT}
+            maxItems={MAX_ITEMS}
+            maxLeft={MAX_LEFT}
+            handlePagination={handlePagination}
+          />
+        )}
       </div>
     </Main>
   );

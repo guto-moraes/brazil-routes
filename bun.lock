@@ -22,6 +22,7 @@
         "leaflet.markercluster": "^1.5.3",
         "lenis": "^1.3.21",
         "lucide-react": "^1.7.0",
+        "nuqs": "^2.8.9",
         "react": "^19.2.4",
         "react-dom": "^19.2.4",
         "react-leaflet": "^5.0.0-rc.2",
@@ -731,7 +732,7 @@
 
     "@solid-primitives/utils": ["@solid-primitives/utils@6.4.0", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-AeGTBg8Wtkh/0s+evyLtP8piQoS4wyqqQaAFs2HJcFMMjYAtUgo+ZPduRXLjPlqKVc2ejeR544oeqpbn8Egn8A=="],
 
-    "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
+    "@standard-schema/spec": ["@standard-schema/spec@1.0.0", "", {}, "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="],
 
     "@stylistic/stylelint-plugin": ["@stylistic/stylelint-plugin@3.1.3", "", { "dependencies": { "@csstools/css-parser-algorithms": "^3.0.1", "@csstools/css-tokenizer": "^3.0.1", "@csstools/media-query-list-parser": "^3.0.1", "is-plain-object": "^5.0.0", "postcss": "^8.4.41", "postcss-selector-parser": "^6.1.2", "postcss-value-parser": "^4.2.0", "style-search": "^0.1.0" }, "peerDependencies": { "stylelint": "^16.8.0" } }, "sha512-85fsmzgsIVmyG3/GFrjuYj6Cz8rAM7IZiPiXCMiSMfoDOC1lOrzrXPDk24WqviAghnPqGpx8b0caK2PuewWGFg=="],
 
@@ -2343,6 +2344,8 @@
 
     "nth-check": ["nth-check@2.1.1", "", { "dependencies": { "boolbase": "^1.0.0" } }, "sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w=="],
 
+    "nuqs": ["nuqs@2.8.9", "", { "dependencies": { "@standard-schema/spec": "1.0.0" }, "peerDependencies": { "@remix-run/react": ">=2", "@tanstack/react-router": "^1", "next": ">=14.2.0", "react": ">=18.2.0 || ^19.0.0-0", "react-router": "^5 || ^6 || ^7", "react-router-dom": "^5 || ^6 || ^7" }, "optionalPeers": ["@remix-run/react", "@tanstack/react-router", "next", "react-router", "react-router-dom"] }, "sha512-8ou6AEwsxMWSYo2qkfZtYFVzngwbKmg4c00HVxC1fF6CEJv3Fwm6eoZmfVPALB+vw8Udo7KL5uy96PFcYe1BIQ=="],
+
     "nwsapi": ["nwsapi@2.2.23", "", {}, "sha512-7wfH4sLbt4M0gCDzGE6vzQBo0bfTKjU7Sfpqy/7gs1qBfYz2vEJH6vXcBKpO3+6Yu1telwd0t9HpyOoLEQQbIQ=="],
 
     "object-assign": ["object-assign@4.1.1", "", {}, "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="],
@@ -3490,6 +3493,8 @@
     "jest-util/picomatch": ["picomatch@2.3.2", "", {}, "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="],
 
     "jest-worker/supports-color": ["supports-color@8.1.1", "", { "dependencies": { "has-flag": "^4.0.0" } }, "sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q=="],
+
+    "joi/@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
     "lighthouse/devtools-protocol": ["devtools-protocol@0.0.1507524", "", {}, "sha512-OjaNE7qpk6GRTXtqQjAE5bGx6+c4F1zZH0YXtpZQLM92HNXx4zMAaqlKhP4T52DosG6hDW8gPMNhGOF8xbwk/w=="],
 

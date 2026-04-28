@@ -91,7 +91,7 @@ function InteractiveMap() {
                 </h2>
                 <div
                   className={cn(
-                    "flex flex-col [&_figure.wp-block-image]:rounded-lg [&_figure.wp-block-image]:relative ",
+                    "flex flex-col [&_figure.wp-block-image]:rounded-lg [&_figure.wp-block-image]:relative",
                     "[&_figure.wp-block-image]:w-max! [&_figure.wp-block-image]:max-w-full! [&_figure.wp-block-image]:mx-auto! [&_figure.wp-block-image]:mb-16!",
                     "[&_figure.wp-block-image_img]:rounded-lg [&_figure.wp-block-image_img]:h-full [&_figure.wp-block-image_img]:max-h-100",
                     "[&_figure.wp-block-image_img]:w-full! [&_figure.wp-block-image_img]:object-contain! [&_figure.wp-block-image_figcaption]:absolute",

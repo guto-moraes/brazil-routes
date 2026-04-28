@@ -1,4 +1,5 @@
 import { createRootRoute, Outlet, useRouterState } from "@tanstack/react-router";
+import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 
 // Import Tanstack Query Provider and Initialize QueryClient
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -57,7 +58,9 @@ function RootDocument() {
       <QueryLoadingBoundary>
         <SmoothScroller>
           {!isHome && <Navigation />}
-          <Outlet />
+          <NuqsAdapter>
+            <Outlet />
+          </NuqsAdapter>
           <Partners />
           <Footer />
         </SmoothScroller>

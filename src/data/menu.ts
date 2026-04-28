@@ -48,8 +48,8 @@ const primaryLinks: LinkTypes[] = [
     transition: ['slide-right']
   },
   {
-    title: "Blog de Notícias",
-    url: "/blog-de-noticias/",
+    title: "Blog do Conhecimento",
+    url: "/blog-do-conhecimento/",
     transition: ['slide-left']
   },
   {

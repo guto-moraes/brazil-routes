@@ -6,15 +6,18 @@ import request from "graphql-request";
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
 //Fetch do blog de notícias para todos os resultados
-const fetchBlogNews = async () => {
-  return await request<BlogTypes>(GRAPHQL_URL, BLOG);
+const fetchBlogNews = async (per_page: number, offset: number) => {
+  return await request<BlogTypes>(GRAPHQL_URL, BLOG, {
+    per_page,
+    offset,
+  });
 };
 
 //Query do blog de notícias para todos os resultados
-export const useQueryBlogNews = () => {
+export const useQueryBlogNews = (first: number, offset: number) => {
   return useSuspenseQuery<BlogTypes>({
     queryKey: ["blog-posts"],
-    queryFn: () => fetchBlogNews(),
+    queryFn: () => fetchBlogNews(first, offset),
   });
 };
 

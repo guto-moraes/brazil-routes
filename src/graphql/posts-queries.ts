@@ -3,6 +3,13 @@ import { gql } from "graphql-request";
 export const BLOG = gql`
   query Blog {
     posts {
+      pageInfo {
+        offsetPagination {
+          hasMore
+          hasPrevious
+          total
+        }
+      }
       nodes {
         id
         date
@@ -35,25 +42,25 @@ export const BLOG = gql`
 `;
 
 export const SINGLE_BLOG = gql`
-query SingleBlogPost($slug: ID!) {
-  post(id: $slug, idType: SLUG) {
-    date
-    author {
-      node {
-        name
+  query SingleBlogPost($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      date
+      author {
+        node {
+          name
+        }
       }
-    }
-    tags {
-      nodes {
-        name
+      tags {
+        nodes {
+          name
+        }
       }
+      news {
+        author
+        location
+      }
+      title(format: RENDERED)
+      content(format: RENDERED)
     }
-    news {
-      author
-      location
-    }
-    title(format: RENDERED)
-    content(format: RENDERED)
   }
-}
 `;
