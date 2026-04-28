@@ -7,6 +7,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import brush from "@/assets/images/brush.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,16 +107,17 @@ const ActivityAreas = () => {
   return (
     <>
       <section
-        className="activities-container relative bg-tan-300 h-svh w-full overflow-hidden"
+        className="activities-container relative bg-tan-300/50 h-svh w-full overflow-hidden"
         ref={activitiesCardsRef}
       >
         {project && title && presentation && (
           <div className="activities-heading h-full w-full flex flex-col justify-center items-center gap-y-8">
             <hgroup className="flex flex-col gap-y-1 text-center">
-              <h3 className="text-xl text-tan-600 uppercase">{project}</h3>
-              <h2 className="text-8xl text-tan-800 font-cabinet font-black">{title}</h2>
+              <h3 className="text-xl text-bone-600 uppercase">{project}</h3>
+              <h2 className="text-8xl text-bone-600 font-cabinet font-black">{title}</h2>
             </hgroup>
-            <p className="text-2xl text-tan-700 text-center text-balance font-medium w-1/2">{presentation}</p>
+            <p className="text-2xl text-bone-600 text-center text-balance font-medium w-1/2">{presentation}</p>
+            <img className="absolute top-0 left-0 -z-2 opacity-25" src={brush} alt="" />
           </div>
         )}
 

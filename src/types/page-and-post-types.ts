@@ -1,8 +1,19 @@
 import * as z from "zod";
 
+//Tipagem da consulta de uma página
+export const PageSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+  }),
+});
+
+export type PageTypes = z.infer<typeof PageSchema>;
+
 //Tipagem da consulta de todas as postagens no Blog de Notícias
 export const BlogItemsSchema = z.object({
   id: z.string(),
+  modified: z.string(),
   date: z.string(),
   author: z.object({
     node: z.object({
@@ -51,6 +62,8 @@ export type BlogTypes = z.infer<typeof BlogSchema>;
 //Tipagem da consulta de uma única notícias
 export const BlogItemSchema = z.object({
   post: z.object({
+    id: z.string(),
+    modified: z.string(),
     date: z.string(),
     author: z.object({
       node: z.object({

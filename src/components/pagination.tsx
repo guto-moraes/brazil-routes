@@ -49,7 +49,7 @@ const Pagination = ({
               </button>
             </li>
           ))}
-        {hasNext && (
+        {hasNext && pages > 1 && (
           <li>
             <button
               className={cn(

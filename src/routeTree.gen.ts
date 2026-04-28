@@ -21,6 +21,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
+import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
 
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
@@ -83,6 +84,12 @@ const BlogDoConhecimentoChar123SlugChar125Route =
     path: '/blog-do-conhecimento/{-$slug}',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AlmanaqueDigitalGlossarioRoute =
+  AlmanaqueDigitalGlossarioRouteImport.update({
+    id: '/almanaque-digital/glossario',
+    path: '/almanaque-digital/glossario',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento': typeof BlogDoConhecimentoIndexRoute
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/mapa-interativo': typeof MapaInterativoRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
     | '/blog-do-conhecimento'
@@ -167,6 +179,7 @@ export interface FileRouteTypes {
     | '/mapa-interativo'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -182,6 +195,7 @@ export interface RootRouteChildren {
   MapaInterativoRoute: typeof MapaInterativoRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
+  AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   BlogDoConhecimentoIndexRoute: typeof BlogDoConhecimentoIndexRoute
@@ -273,6 +287,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogDoConhecimentoChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/glossario': {
+      id: '/almanaque-digital/glossario'
+      path: '/almanaque-digital/glossario'
+      fullPath: '/almanaque-digital/glossario'
+      preLoaderRoute: typeof AlmanaqueDigitalGlossarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   MapaInterativoRoute: MapaInterativoRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
+  AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,

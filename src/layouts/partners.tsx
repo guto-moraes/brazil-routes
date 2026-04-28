@@ -6,7 +6,7 @@ const Partners = () => {
   const partners = data?.project.theming.partners || [];
 
   return (
-    <section className="shadow-lg bg-bege-50 p-4 xl:p-0 xl:h-44">
+    <section className="shadow-lg bg-tan-100 p-4 xl:p-0 xl:h-44">
       <div className="h-full max-w-7xl w-full px-4 xl:px-0 md:px-8 mx-auto flex items-center justify-center">
         <div className="flex flex-col gap-y-2">
           <h3>Realização</h3>

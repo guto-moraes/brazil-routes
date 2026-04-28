@@ -101,24 +101,24 @@ const PioneersTribute = () => {
   );
 
   return (
-    <section className="photos-container relative bg-bone-800 h-svh w-full overflow-hidden z-30" ref={refContainer}>
+    <section className="photos-container relative bg-gray-950 h-svh w-full overflow-hidden z-30" ref={refContainer}>
       <div className="intro-text absolute inset-0 flex flex-col items-center justify-center gap-y-8">
-        <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-mate-300 text-center font-black italic uppercase leading-none">
+        <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-darkgreen-500 text-center font-black italic uppercase leading-none">
           {firstScreen && firstScreen.title}
         </h1>
-        <p className="indent-10 text-2xl text-white text-justify text-pretty hyphens-auto w-full xl:max-w-5xl">
+        <p className="text-2xl text-bone-100 text-center text-pretty hyphens-auto w-full xl:max-w-5xl">
           {firstScreen && firstScreen.description}
         </p>
       </div>
       <div className="reveal-text absolute inset-0 flex flex-col justify-center gap-y-10 items-center z-0">
-        <h1 className="text-[clamp(1.8rem,6vw,5rem)] text-mate-300 text-center font-black italic uppercase leading-none">
+        <h1 className="text-[clamp(1.8rem,6vw,5rem)] text-darkgreen-500 text-center font-black italic uppercase leading-none">
           {lastScreenTitle && lastScreenTitle[0]} <br /> {lastScreenTitle && lastScreenTitle[1]}
         </h1>
         <ButtonLinkWithIcon
           textButton={lastScreen && lastScreen.textButton}
           link={lastScreen && lastScreen.urlButton}
-          bgColor="bg-chocolate-300 hover:bg-chocolate-500 text-white"
-          iconColor="bg-white text-chocolate-700"
+          bgColor="bg-bone-400 hover:bg-bone-500 text-white"
+          iconColor="bg-white text-bone-800"
           target={false}
         />
       </div>

@@ -14,7 +14,7 @@ import Footer from "@/layouts/footer";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
-import Partners from "@/layouts/partials/partners";
+import Partners from "@/layouts/partners";
 import SmoothScroller from "@/components/smooth-scroller";
 import { useEffect } from "react";
 import applyGoogleTranslateDOMPatch from "@/lib/applyGoogleTranslateDOMPatch";

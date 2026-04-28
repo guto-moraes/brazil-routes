@@ -29,7 +29,7 @@ const Navigation = ({
     if (isActiveMenu) {
       setTimeout(() => {
         setIsActiveMenu(false);
-      }, 1000);
+      }, 500);
     }
     setIsActiveMenu(true);
   };
@@ -196,7 +196,7 @@ const Navigation = ({
       </header>
 
       <div
-        className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-0")}
+        className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-2")}
         aria-labelledby="menubutton"
         tabIndex={-1}
         ref={navigationRef}

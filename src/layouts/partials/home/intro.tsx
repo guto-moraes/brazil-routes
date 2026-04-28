@@ -11,7 +11,7 @@ import map from "@/assets/images/mapa-da-expedicao.webp";
 import videoSrc from "@/assets/video-background.mp4";
 import Video from "@/layouts/partials/home/video-cover";
 import { Approach, ApproachContainer, ResearchApproaches } from "@/layouts/partials/home/research-approaches";
-import { Brain, Hourglass, Landmark } from "lucide-react";
+import { Hourglass, Landmark, MessagesSquare } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -160,7 +160,7 @@ const Intro = () => {
             <Approach text="História" />
           </ApproachContainer>
           <ApproachContainer>
-            <Brain size={64} className="text-bege-200 opacity-50" />
+            <MessagesSquare size={64} className="text-bege-200 opacity-50" />
             <Approach text="Memória" />
           </ApproachContainer>
           <ApproachContainer>
