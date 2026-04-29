@@ -29,13 +29,15 @@ const Navigation = ({
     if (isActiveMenu) {
       setTimeout(() => {
         setIsActiveMenu(false);
-      }, 500);
+      }, 1000);
     }
     setIsActiveMenu(true);
   };
 
   const handleCloseMenu = () => {
-    setIsActiveMenu(false);
+    setTimeout(() => {
+      setIsActiveMenu(false);
+    }, 1000);
     ScrollTrigger.refresh();
   };
 

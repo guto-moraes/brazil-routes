@@ -1,18 +1,18 @@
-import { BLOG, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-queries";
+import { BLOG, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
 import type { BlogItemTypes, BlogTypes, PageTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
-//Fetch de uma única notícia do blog
+//Fetch de uma única página
 const fetchPages = async (slug: string) => {
   return await request<PageTypes>(GRAPHQL_URL, PAGE, {
     slug,
   });
 };
 
-//Query de uma única notícia do blog
+//Query de uma única página
 export const useQueryPage = (slug: string) => {
   return useSuspenseQuery<PageTypes>({
     queryKey: ["single-page"],

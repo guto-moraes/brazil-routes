@@ -96,8 +96,9 @@ function Glossary() {
             >
               <AccordionTrigger
                 className={cn(
-                  "bg-tan-100 rounded-b-none text-xl text-tan-700 font-inter font-semibold",
-                  "uppercase tracking-tighter hover:no-underline px-4 py-3 items-center cursor-pointer",
+                  "bg-tan-100 hover:bg-tan-200 aria-expanded:bg-mate-400/50 rounded-b-none text-xl",
+                  "text-tan-700 font-inter font-semibold uppercase tracking-tighter hover:no-underline",
+                  "px-4 py-3 items-center transition-colors duration-300 cursor-pointer",
                 )}
               >
                 {item.trigger}

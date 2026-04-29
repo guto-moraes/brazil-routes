@@ -6,32 +6,17 @@ const socials: LinkTypes[] = [
     url: "https://instagram.com/caminhosdobrasilcentral",
     transition: ["slide-right"],
   },
-  {
-    title: "Facebook",
-    url: "https://facebook.com/caminhosdobrasilcentral",
-    transition: ["slide-right"],
-  },
-  {
-    title: "YouTube",
-    url: "https://youtube.com/caminhosdobrasilcentral",
-    transition: ["slide-right"],
-  },
 ];
 
 const legals: LinkTypes[] = [
   {
     title: "Accessibilidade",
-    url: "https://caminhosdobrasilcentral.com/acessibilidade",
+    url: "/acessibilidade",
     transition: ["slide-left"],
   },
   {
-    title: "Cookies",
-    url: "https://caminhosdobrasilcentral.com/cookies",
-    transition: ["slide-right"],
-  },
-  {
     title: "Política de Privacidade",
-    url: "https://caminhosdobrasilcentral.com/politica-de-privacidade",
+    url: "/politica-de-privacidade",
     transition: ["slide-left"],
   },
 ];

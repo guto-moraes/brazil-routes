@@ -1,120 +1,92 @@
-//Tipagem da consulta da apresentação do Almanaque
-export type AlmanaquePresentationTypes = {
-  project: {
-    theming: {
-      ebookPresentation: {
-        projectIcon: {
-          node: {
-            guid: string;
-          };
-        };
-        ebookCover: {
-          node: {
-            guid: string;
-          };
-        };
-        title: string;
-        ebookSynopsis: string;
-        almanaqueUrlPage: string;
-        almanaqueDownloadUrl: string;
-      };
-    };
-  };
-};
-
-//Tipagem para consultas da apresentação Almanaque
-export type ChaptersTypes = {
-  tag: string;
-  title: string;
-  synopsis: string;
-  image: {
-    node: {
-      guid: string;
-    };
-  };
-};
-
-export type ChaptersAlmanaqueTypes = {
-  project: {
-    theming: {
-      ebookChapters: ChaptersTypes[];
-    };
-  };
-};
+import * as z from "zod";
 
 //Tipagem da consulta dos pioneiros
-export type PioneerTypes = {
-  image: {
-    node: {
-      guid: string;
-    };
-  };
-  name: string;
-  tribute: string;
-};
+export const PioneerSchema = z.object({
+  image: z.object({
+    node: z.object({
+      guid: z.string(),
+    }),
+  }),
+  name: z.string(),
+  tribute: z.string(),
+});
 
-export type PionnersTypes = {
-  project: {
-    theming: {
-      firstScreen: {
-        title: string;
-        description: string;
-      };
-      pioneersList: PioneerTypes[];
-      lastScreen: {
-        title: string;
-        textButton: string;
-        urlButton: string;
-      };
-    };
-  };
-};
+export type PioneerTypes = z.infer<typeof PioneerSchema>;
+
+export const PioneersSchema = z.object({
+  project: z.object({
+    theming: z.object({
+      firstScreen: z.object({
+        title: z.string(),
+        description: z.string(),
+      }),
+      pioneersList: z.array(PioneerSchema),
+      lastScreen: z.object({
+        title: z.string(),
+        textButton: z.string(),
+        urlButton: z.string(),
+      }),
+    }),
+  }),
+});
+
+export type PionnersTypes = z.infer<typeof PioneersSchema>;
 
 //Tipagem da consulta para área de atuação
-export type FieldsActivity = {
-  fieldActivity: string;
-  fieldActivityDescription: string;
-  fieldActivityTags: string;
-  fieldActivityColor: string;
-  fieldActivityRotateFrom: number;
-  fielActivityRotateTo: number;
-};
+export const FieldActivitySchema = z.object({
+  fieldActivity: z.string(),
+  fieldActivityDescription: z.string(),
+  fieldActivityTags: z.string(),
+  fieldActivityColor: z.string(),
+  fieldActivityRotateFrom: z.number(),
+  fielActivityRotateTo: z.number(),
+});
 
-export type FieldsActivityTypes = {
-  project: {
-    theming: {
-      projectName: string;
-      fieldsActivityTitle: string;
-      fieldsActivityPresentation: string;
-      fieldsActivities: FieldsActivity[];
-    };
-  };
-};
+export type FieldActivityTypes = z.infer<typeof FieldActivitySchema>;
 
-export type FieldsActivityCardItem = {
-  color: string;
-  title: string;
-  description: string;
-  tags: string;
-  number: number | string;
-  className?: string;
-};
+export const FieldsActivitySchema = z.object({
+  project: z.object({
+    theming: z.object({
+      projectName: z.string(),
+      fieldsActivityTitle: z.string(),
+      fieldsActivityPresentation: z.string(),
+      fieldsActivities: z.array(FieldActivitySchema),
+    }),
+  }),
+});
+
+export type FieldsActivityTypes = z.infer<typeof FieldsActivitySchema>;
+
+export const FieldsActivityCardItemSchema = z.object({
+  color: z.string(),
+  title: z.string(),
+  description: z.string(),
+  tags: z.string(),
+  number: z.number().or(z.string()),
+  className: z.string().optional(),
+});
+
+export type FieldsActivityCardItem = z.infer<typeof FieldsActivityCardItemSchema>;
 
 //Tipagem da linha de parceiros realizadores do projeto
-export type PartnerType = {
-  image: {
-    node: {
-      guid: string;
-    };
-  };
-  name: string;
-  url: string;
-};
+export const PartnerSchema = z.object({
+  image: z.object({
+    node: z.object({
+      guid: z.string(),
+    }),
+  }),
+  name: z.string(),
+  url: z.string(),
+});
 
-export type PartnersTypes = {
-  project: {
-    theming: {
-      partners: PartnerType[];
-    };
-  };
-};
+export type PartnerType = z.infer<typeof PartnerSchema>;
+
+export const PartnersSchema = z.object({
+  project: z.object({
+    theming: z.object({
+      partners: z.array(PartnerSchema),
+    }),
+  }),
+});
+
+export type PartnersTypes = z.infer<typeof PartnersSchema>;

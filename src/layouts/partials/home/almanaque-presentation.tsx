@@ -4,7 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useQueryAlmanaquePresentation } from "@/hooks/queries/theme-queries";
+import { useQueryAlmanaquePresentation } from "@/hooks/queries/almanaque-queries";
 import { sanitizedData } from "@/lib/utils";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 
@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const AlamanaquePresentation = () => {
   const almanaquePresentationRef = useRef<HTMLElement | null>(null);
   const { data } = useQueryAlmanaquePresentation();
-  const { ebookPresentation: almanaque } = data?.project.theming || {};
+  const { ebookPresentation: almanaque } = data.project.theming;
 
   useGSAP(
     () => {

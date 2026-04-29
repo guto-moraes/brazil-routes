@@ -1,23 +1,10 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
-import type { AlmanaquePresentationTypes, FieldsActivityTypes, PionnersTypes,  } from "@/types/theme-types";
-import { ALMANAQUE_PRESENTATION, FIELDS_ACTIVITY, PARTNERS, PIONEERS } from "@/graphql/theme-graphql";
+import type { FieldsActivityTypes, PionnersTypes,  } from "@/types/theme-types";
+import { FIELDS_ACTIVITY, PARTNERS, PIONEERS } from "@/graphql/theme-graphql";
 import type { PartnersTypes } from "@/types/theme-types";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
-
-//Fetch da Seção de Apresentação do Almanaque - Página Inicial
-const fetchAlmanaquePresentation = async () => {
-  return await request<AlmanaquePresentationTypes>(GRAPHQL_URL, ALMANAQUE_PRESENTATION);
-};
-
-//Query da Seção de Apresentação do Almanaque - Página Inicial
-export const useQueryAlmanaquePresentation = () => {
-  return useSuspenseQuery<AlmanaquePresentationTypes>({
-    queryKey: ["almanaque-presentation"],
-    queryFn: () => fetchAlmanaquePresentation(),
-  });
-};
 
 //Fetch da Seção de Pioneiros - Página Inicial
 const fetchPioneers = async () => {
@@ -45,12 +32,12 @@ export const useQueryFieldsActivityOfProject = () => {
   });
 };
 
-//Fetch da Seção Áreas de Atuação - Página Inicial
+//Fetch da Seção Áreas de Atuação - Layout
 const fetchPartners = async () => {
   return await request<PartnersTypes>(GRAPHQL_URL, PARTNERS);
 };
 
-//Query da Seção Áreas de Atuação - Página Inicial
+//Query da Seção Áreas de Atuação - Layout
 export const useQueryPartners = () => {
   return useSuspenseQuery<PartnersTypes>({
     queryKey: ["partners"],

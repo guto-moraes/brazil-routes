@@ -1,51 +1,5 @@
 import { gql } from "graphql-request";
 
-//Consulta da Seção de Apresentaçã do Almanaque - Página Inicial
-export const ALMANAQUE_PRESENTATION = gql`
-  query AlmanaquePresentation {
-    project {
-      theming {
-        ebookPresentation {
-          projectIcon {
-            node {
-              guid
-            }
-          }
-          ebookCover {
-            node {
-              guid
-            }
-          }
-          title
-          ebookSynopsis
-          almanaqueUrlPage
-          almanaqueDownloadUrl
-        }
-      }
-    }
-  }
-`;
-
-//Consulta da Seção Capítulos do Almanaque - Página Inicial
-export const CHAPTERS_ALMANAQUE = gql`
-  query AlmanaqueChapters {
-    project {
-      theming {
-        ebookChapters {
-          tag
-          title
-          synopsis
-          image {
-            node {
-              guid
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 //Consulta da Seção de Pioneiros - Página Inicial
 export const PIONEERS = gql`
   query Pioneers {

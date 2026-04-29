@@ -1,14 +1,16 @@
 import * as z from "zod";
 
 /* Text Reveal Hidden Types */
-export type TextRevealHiddenTypes = {
-  animateOnScroll?: boolean;
-  delay?: number;
-  blockColor?: string;
-  stagger?: number;
-  duration?: number;
-  children: React.ReactNode;
-};
+export const TextRevealHiddenSchema = z.object({
+  animateOnScroll: z.boolean(),
+  delay: z.number().optional(),
+  blockColor: z.string().optional(),
+  stagger: z.number().optional(),
+  duration: z.number().optional(),
+  children: z.custom<React.ReactNode>(),
+});
+
+export type TextRevealHiddenTypes = z.infer<typeof TextRevealHiddenSchema>;
 
 //Tipagem do componente de paginação
 export const PaginationSchema = z.object({
@@ -25,4 +27,4 @@ export const PaginationSchema = z.object({
   }),
 });
 
-export type PaginationTypes = z.infer<typeof PaginationSchema>
+export type PaginationTypes = z.infer<typeof PaginationSchema>;

@@ -26,8 +26,10 @@ export const Route = createFileRoute("/linha-do-tempo")({
 function Timeline() {
 
   return (
-      <Main className="container mx-auto">
-        <Title text="Linha do Tempo" />
-      </Main>
+    <Main className="max-w-5xl mx-auto pb:12 xl:pb-24">
+      <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
+        Linha do <span className="text-tan-400">Tempo</span>
+      </Title>
+    </Main>
   );
 }

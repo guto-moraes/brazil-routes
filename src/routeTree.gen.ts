@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as ReferenciasRouteImport } from './routes/referencias'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
+import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
@@ -31,6 +33,11 @@ const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
 const ReferenciasRoute = ReferenciasRouteImport.update({
   id: '/referencias',
   path: '/referencias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapaInterativoRoute = MapaInterativoRouteImport.update({
@@ -63,6 +70,11 @@ const ApoioFinanceiroRoute = ApoioFinanceiroRouteImport.update({
   path: '/apoio-financeiro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcessibilidadeRoute = AcessibilidadeRouteImport.update({
+  id: '/acessibilidade',
+  path: '/acessibilidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -93,12 +105,14 @@ const AlmanaqueDigitalGlossarioRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -108,12 +122,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -124,12 +140,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -141,12 +159,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acessibilidade'
     | '/apoio-financeiro'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/glossario'
@@ -156,12 +176,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acessibilidade'
     | '/apoio-financeiro'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/glossario'
@@ -171,12 +193,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/acessibilidade'
     | '/apoio-financeiro'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/glossario'
@@ -187,12 +211,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcessibilidadeRoute: typeof AcessibilidadeRoute
   ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
   CreditosRoute: typeof CreditosRoute
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   MapaInterativoRoute: typeof MapaInterativoRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
@@ -215,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/referencias'
       fullPath: '/referencias'
       preLoaderRoute: typeof ReferenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mapa-interativo': {
@@ -259,6 +292,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApoioFinanceiroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/acessibilidade': {
+      id: '/acessibilidade'
+      path: '/acessibilidade'
+      fullPath: '/acessibilidade'
+      preLoaderRoute: typeof AcessibilidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -299,12 +339,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcessibilidadeRoute: AcessibilidadeRoute,
   ApoioFinanceiroRoute: ApoioFinanceiroRoute,
   CreditosRoute: CreditosRoute,
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
   MapaInterativoRoute: MapaInterativoRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
