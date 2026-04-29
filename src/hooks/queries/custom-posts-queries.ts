@@ -1,7 +1,7 @@
 import request from "graphql-request";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import { INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION } from "@/graphql/custom-types-graphql";
-import type { InteractiveMapLocationTypes, InteractiveMapTypes } from "@/types/custom-post-types";
+import { GLOSSARY, INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION } from "@/graphql/custom-types-graphql";
+import type { GlossaryTypes, InteractiveMapLocationTypes, InteractiveMapTypes } from "@/types/custom-post-types";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
@@ -31,5 +31,19 @@ export const useQueryInteractiveMapLocation = (id: string) => {
     queryKey: ["interactive-map-location", id],
     queryFn: () => fetchInteractiveMapLocation(id),
     // staleTime: 60 * 5 * 1000,
+  });
+};
+
+//Fetch do Glossário
+const fetchGlossary = async () => {
+  return await request<GlossaryTypes>(GRAPHQL_URL, GLOSSARY);
+};
+
+//Query do Glossário
+export const useQueryGlossary = () => {
+  return useSuspenseQuery<GlossaryTypes>({
+    queryKey: ["glossary"],
+    queryFn: () => fetchGlossary(),
+    staleTime: 60 * 5 * 1000,
   });
 };

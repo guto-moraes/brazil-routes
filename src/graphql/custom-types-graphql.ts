@@ -32,3 +32,16 @@ export const INTERACTIVE_MAP_LOCATION = gql`
     }
   }
 `;
+
+//Consulta para exibiçao dos termos do Glossário
+export const GLOSSARY = gql`
+  query Glossary {
+    glossarios(where: { orderby: { field: TITLE, order: ASC } }) {
+      nodes {
+        id
+        title(format: RENDERED)
+        content(format: RENDERED)
+      }
+    }
+  }
+`;

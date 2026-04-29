@@ -23,7 +23,7 @@ export type LocationTypes = z.infer<typeof LocationSchema>;
 export const InteractiveMapSchema = z.object({
   locations: z.object({
     nodes: z.array(LocationSchema),
-  })
+  }),
 });
 
 export type InteractiveMapTypes = z.infer<typeof InteractiveMapSchema>;
@@ -56,3 +56,20 @@ export const MarkersSchema = z.object({
 export type MarkersTypes = z.infer<typeof MarkersSchema>;
 
 export type MarkersMapTypes = MarkersTypes & { setLocation: React.Dispatch<React.SetStateAction<LatLngTuple>> };
+
+//Tipagem dos termos do Glossário
+export const GlossaryTermSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string(),
+});
+
+export type GlossaryTermTypes = z.infer<typeof GlossaryTermSchema>
+
+export const GlossarySchema = z.object({
+  glossarios: z.object({
+    nodes: z.array(GlossaryTermSchema),
+  }),
+});
+
+export type GlossaryTypes = z.infer<typeof GlossarySchema>;
