@@ -44,10 +44,9 @@ export const ALMANAQUE_PRESENTATION = gql`
 
 //Consulta da Seção Capítulos do Almanaque - Página Inicial
 export const ALMANAQUE_CHAPTERS = gql`
-  query AlmanaqueChapters {
-    project {
-      id
-      theming {
+  query AlmanaqueChapters($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      almanaque {
         ebookChapters {
           tag
           title
@@ -56,6 +55,9 @@ export const ALMANAQUE_CHAPTERS = gql`
             node {
               guid
             }
+          }
+          link {
+            url
           }
         }
       }

@@ -16,6 +16,8 @@ const ArticleContent = ({ className, content }: { className?: string; content: s
         "[&_figure_figcaption]:text-white [&_figure_figcaption]:p-2 [&_h2.wp-block-heading]:text-3xl [&_h2.wp-block-heading]:text-chocolate-500",
         "[&_h2.wp-block-heading]:font-black [&_h2.wp-block-heading]:mb-8 [&_p_a]:text-chocolate-300 [&_p_a]:hover:text-chocolate-400",
         "[&_p_a]:transition-colors [&_p_a]:duration-300 [&_.wp-block-image_img]:max-w-full! [&_.size-large_img]:max-w-full",
+        "[&_ol]:list-decimal [&_ul]:not-last:mb-12 [&_ul]:ml-6 [&_ul]:list-disc [&_ul_li]:text-lg [&_ul_li]:mb-2",
+        "[&_strong]:text-tan-800",
         className
       )}
       dangerouslySetInnerHTML={sanitizedData(content)}

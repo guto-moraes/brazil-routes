@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { FieldsActivity, FieldsActivityCardItem } from "@/types/theme-types";
+import type { FieldActivityTypes, FieldsActivityCardItem } from "@/types/theme-types";
 import { useQueryFieldsActivityOfProject } from "@/hooks/queries/theme-queries";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -78,7 +78,7 @@ const ActivityAreas = () => {
           scrollTrigger: {
             trigger: activitiesCardsRef.current,
             start: "top top",
-            end: `${(window.innerHeight * activities.length)/activities.length}%`,
+            end: `${(window.innerHeight * activities.length) / activities.length}%`,
             pin: true,
             scrub: 1,
           },
@@ -123,7 +123,7 @@ const ActivityAreas = () => {
 
         <div className={cn("activities-cards fixed inset-0 overflow-hidden flex flex-col")}>
           {activities &&
-            activities.map((activity: FieldsActivity, index: number) => (
+            activities.map((activity: FieldActivityTypes, index: number) => (
               <Card
                 key={index}
                 color={activity.fieldActivityColor}

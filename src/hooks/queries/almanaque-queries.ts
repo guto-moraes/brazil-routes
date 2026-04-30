@@ -35,14 +35,16 @@ export const useQueryAlmanaquePresentation = () => {
 };
 
 //Fetch da Seção dos Capítulos do Alamanaque - Página do Almanaque Digital
-const fetchAlmanaqueChapters = async () => {
-  return await request<AlmanaqueChaptersTypes>(GRAPHQL_URL, ALMANAQUE_CHAPTERS);
+const fetchAlmanaqueChapters = async (slug: string) => {
+  return await request<AlmanaqueChaptersTypes>(GRAPHQL_URL, ALMANAQUE_CHAPTERS, {
+    slug,
+  });
 };
 
 //Query da Seção dos Capítulos do Alamanaque - Página do Almanaque Digital
-export const useQueryAlmanaqueChapters = () => {
+export const useQueryAlmanaqueChapters = (slug: string) => {
   return useSuspenseQuery<AlmanaqueChaptersTypes>({
-    queryKey: ["almanaque-chapters"],
-    queryFn: () => fetchAlmanaqueChapters(),
+    queryKey: ["almanaque-chapters", slug],
+    queryFn: () => fetchAlmanaqueChapters(slug),
   });
 };

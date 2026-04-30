@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const ErrorComponentTheme = ({ error, reset }: { error: Error; reset: () => void }) => {
   return (
     <Main className="container mx-auto h-svh w-full flex flex-col justify-center items-center gap-y-6">
-      <Title text="Algo deu errado!" />
+      <Title>Algo deu errado!</Title>
       <ErrorComponent error={error} />
       <button
         className={cn(

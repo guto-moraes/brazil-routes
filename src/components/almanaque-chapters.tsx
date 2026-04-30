@@ -11,8 +11,8 @@ import { useQueryAlmanaqueChapters } from "@/hooks/queries/almanaque-queries";
 gsap.registerPlugin(ScrollTrigger);
 
 const AlmanaqueChapters = () => {
-  const { data } = useQueryAlmanaqueChapters();
-  const { ebookChapters: chapters } = data.project.theming;
+  const { data } = useQueryAlmanaqueChapters("almanaque-digital");
+  const { ebookChapters: chapters } = data.page.almanaque;
   const pinContainerRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
@@ -55,7 +55,7 @@ const AlmanaqueChapters = () => {
   return (
     <div className={cn("almanaque-chapters-container bg-tan-950")} ref={pinContainerRef}>
       {chapters &&
-        chapters.map(({ tag, title, synopsis, image }, index) => {
+        chapters.map(({ tag, title, synopsis, image, link }, index) => {
           return (
             <section
               key={index}
@@ -75,7 +75,7 @@ const AlmanaqueChapters = () => {
                   <p className="indent-8 text-lg text-tan-800 text-justify hyphens-auto font-light">{synopsis}</p>
                   <ButtonLinkWithIcon
                     textButton="Saiba mais"
-                    link="/"
+                    link={link.url}
                     bgColor="bg-mate-400 hover:bg-mate-500 text-white"
                     iconColor="bg-white text-mate-700"
                     target={false}

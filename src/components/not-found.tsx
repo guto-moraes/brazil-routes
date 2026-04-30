@@ -35,7 +35,7 @@ const NotFound = () => {
             <span>0</span>
             <span>4</span>
           </div>
-          <TextRevealHidden blockColor="#c7c1ad">
+          <TextRevealHidden animateOnScroll={false} blockColor="#c7c1ad">
             <p className="not-found-notification container mx-auto text-2xl text-tan-800 text-center font-medium">
                 Infelizmente, não encontramos o que você está procurando.
             </p>

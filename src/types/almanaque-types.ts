@@ -1,22 +1,5 @@
 import * as z from "zod";
 
-//Tipagem da consulta de uma página
-export const AlmanaquePageSchema = z.object({
-  page: z.object({
-    title: z.string(),
-    content: z.string(),
-    almanaque: z.object({
-      link: z.object({
-        title: z.string(),
-        url: z.string(),
-        target: z.string(),
-      }),
-    }),
-  }),
-});
-
-export type AlmanaquePageTypes = z.infer<typeof AlmanaquePageSchema>;
-
 //Tipagem da consulta da apresentação do Almanaque
 export const AlmanaquePresentationSchema = z.object({
   project: z.object({
@@ -43,6 +26,23 @@ export const AlmanaquePresentationSchema = z.object({
 
 export type AlmanaquePresentationTypes = z.infer<typeof AlmanaquePresentationSchema>;
 
+//Tipagem da consulta de uma página
+export const AlmanaquePageSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+    almanaque: z.object({
+      link: z.object({
+        title: z.string(),
+        url: z.string(),
+        target: z.string(),
+      }),
+    }),
+  }),
+});
+
+export type AlmanaquePageTypes = z.infer<typeof AlmanaquePageSchema>;
+
 //Tipagem para consultas da apresentação Almanaque
 export const AlmanaqueChapterSchema = z.object({
   tag: z.string(),
@@ -53,14 +53,16 @@ export const AlmanaqueChapterSchema = z.object({
       guid: z.string(),
     }),
   }),
+  link: z.object({
+    url: z.string(),
+  })
 });
 
 export type AlmanaqueChapterTypes = z.infer<typeof AlmanaqueChapterSchema>;
 
 export const AlmanaqueChaptersSchema = z.object({
-  project: z.object({
-    id: z.string(),
-    theming: z.object({
+  page: z.object({
+    almanaque: z.object({
       ebookChapters: z.array(AlmanaqueChapterSchema),
     }),
   }),

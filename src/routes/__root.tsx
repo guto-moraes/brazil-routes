@@ -1,4 +1,4 @@
-import { createRootRoute, Outlet, useRouterState } from "@tanstack/react-router";
+import { createRootRoute, useRouterState } from "@tanstack/react-router";
 import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 
 // Import Tanstack Query Provider and Initialize QueryClient
@@ -38,12 +38,12 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  shellComponent: RootDocument,
+  shellComponent: App,
   errorComponent: ({ error, reset }) => <ErrorComponentTheme error={error} reset={reset} />,
   notFoundComponent: () => <NotFound />,
 });
 
-function RootDocument() {
+function App({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
@@ -57,12 +57,12 @@ function RootDocument() {
     <QueryClientProvider client={queryClient}>
       <QueryLoadingBoundary>
         <SmoothScroller>
-          {!isHome && <Navigation />}
           <NuqsAdapter>
-            <Outlet />
+            {!isHome && <Navigation />}
+            {children}
+            <Partners />
+            <Footer />
           </NuqsAdapter>
-          <Partners />
-          <Footer />
         </SmoothScroller>
       </QueryLoadingBoundary>
     </QueryClientProvider>
