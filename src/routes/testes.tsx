@@ -23,7 +23,7 @@ function Tests() {
       gsap.registerPlugin(ScrollTrigger);
 
       const cardContainer = document.querySelector<HTMLDivElement>(".cards-reveal-container");
-      const stickyHeader = document.querySelector<HTMLDivElement>(".cards-reveal-header");
+      const stickyHeader = document.querySelector<HTMLDivElement>(".cards-reveal-header h2");
       const stopAnimations = gsap.utils.toArray<HTMLElement>([
         ".card",
         ".cards-reveal-container",
@@ -69,7 +69,7 @@ function Tests() {
                   y: 40,
                   opacity: 0,
                 });
-              } else if (progress >= 0.25) {
+              } else if (progress > 0.25) {
                 gsap.set(stickyHeader, {
                   y: 0,
                   opacity: 1,
@@ -161,6 +161,7 @@ function Tests() {
                   duration: 0.75,
                   ease: "power3.inOut",
                 });
+
                 isFlipAnimationCompleted = false;
               }
             },
@@ -187,30 +188,30 @@ function Tests() {
       <section className="bg-tan-500 h-svh w-full"></section>
       <section
         className={cn(
-          "cards-reveal relative bg-mate-500 h-svh w-full flex justify-center items-center p-8",
+          "cards-reveal relative bg-tan-950 h-svh w-full flex justify-center items-center p-8",
           "max-lg:h-max max-lg:pt-8 max-lg:pb-16 max-lg:px-4 max-lg:flex-col",
         )}
         ref={cardsRevealRef}
       >
         <div
           className={cn(
-            "cards-reveal-header absolute top-[20%] left-1/2 -translate-1/2",
-            "max-lg:relative max-lg:top-0 max-lg:left-0 max-lg:translate-none max-lg:mb-8",
+            "cards-reveal-header w-full max-w-5xl absolute top-[10%] left-1/2 -translate-x-1/2",
+            "max-lg:relative max-lg:top-0 max-lg:left-0 max-lg:translate-none max-lg:mb-16",
           )}
         >
           <h2
             className={cn(
-              "relative text-7xl text-center font-cabinet font-black leading-none xl:whitespace-nowrap",
-              "will-change-[transform,opacity] translate-y-10 opacity-0 max-lg:text-6xl max-lg:opacity-100",
+              "relative text-6xl text-chocolate-300 text-center font-cabinet font-black leading-none",
+              "will-change-[transform,opacity] translate-y-5 opacity-0 max-lg:text-4xl max-lg:opacity-100",
             )}
           >
-            Pessoas que construíram a história
+            Histórias contadas de quem ajudou a construir a história de uma região
           </h2>
         </div>
 
         <div
           className={cn(
-            "cards-reveal-container relative w-[75%] flex perspective-[1000px] translate-y-10 will-change[width]",
+            "cards-reveal-container relative w-[75%] flex perspective-[1000px] translate-y-10 will-change-[width]",
             "max-lg:w-full max-lg:flex-col max-lg:gap-8",
           )}
         >
@@ -229,8 +230,10 @@ function Tests() {
                 "bg-[#eed7a1] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
               )}
             >
-              <span className="absolute top-8 left-8 opacity-40">( 01 )</span>
-              <p className="text-[2rem] font-medium leading-none">História</p>
+              <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/20 font-light tabular-nums ">
+                ( 01 )
+              </span>
+              <p className="text-[2.125rem] text-tan-900/80 font-semibold leading-none">Expedicionários</p>
             </div>
           </div>
 
@@ -249,8 +252,10 @@ function Tests() {
                 "bg-[#b5ab76] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
               )}
             >
-              <span className="absolute top-8 left-8 opacity-40">( 02 )</span>
-              <p className="text-[2rem] font-medium leading-none">Memória</p>
+              <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/20 font-light tabular-nums ">
+                ( 02 )
+              </span>
+              <p className="text-[2.125rem] text-tan-900/80 font-semibold leading-none">Trabalhadores</p>
             </div>
           </div>
 
@@ -269,8 +274,10 @@ function Tests() {
                 "bg-[#e7bb8b] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
               )}
             >
-              <span className="absolute top-8 left-8 opacity-40">( 03 )</span>
-              <p className="text-[2rem] font-medium leading-none">Patrimônio</p>
+              <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/20 font-light tabular-nums ">
+                ( 03 )
+              </span>
+              <p className="text-[2.125rem] text-tan-900/80 font-semibold leading-none">Migrantes</p>
             </div>
           </div>
         </div>
