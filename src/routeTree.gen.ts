@@ -25,6 +25,10 @@ import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-co
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
+import { Route as AlmanaqueDigitalCapitulo5RouteImport } from './routes/almanaque-digital/capitulo-5'
+import { Route as AlmanaqueDigitalCapitulo4RouteImport } from './routes/almanaque-digital/capitulo-4'
+import { Route as AlmanaqueDigitalCapitulo3RouteImport } from './routes/almanaque-digital/capitulo-3'
+import { Route as AlmanaqueDigitalCapitulo2RouteImport } from './routes/almanaque-digital/capitulo-2'
 import { Route as AlmanaqueDigitalCapitulo1RouteImport } from './routes/almanaque-digital/capitulo-1'
 
 const TestesRoute = TestesRouteImport.update({
@@ -109,6 +113,30 @@ const AlmanaqueDigitalGlossarioRoute =
     path: '/almanaque-digital/glossario',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AlmanaqueDigitalCapitulo5Route =
+  AlmanaqueDigitalCapitulo5RouteImport.update({
+    id: '/almanaque-digital/capitulo-5',
+    path: '/almanaque-digital/capitulo-5',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AlmanaqueDigitalCapitulo4Route =
+  AlmanaqueDigitalCapitulo4RouteImport.update({
+    id: '/almanaque-digital/capitulo-4',
+    path: '/almanaque-digital/capitulo-4',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AlmanaqueDigitalCapitulo3Route =
+  AlmanaqueDigitalCapitulo3RouteImport.update({
+    id: '/almanaque-digital/capitulo-3',
+    path: '/almanaque-digital/capitulo-3',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AlmanaqueDigitalCapitulo2Route =
+  AlmanaqueDigitalCapitulo2RouteImport.update({
+    id: '/almanaque-digital/capitulo-2',
+    path: '/almanaque-digital/capitulo-2',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AlmanaqueDigitalCapitulo1Route =
   AlmanaqueDigitalCapitulo1RouteImport.update({
     id: '/almanaque-digital/capitulo-1',
@@ -130,6 +158,10 @@ export interface FileRoutesByFullPath {
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
+  '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
+  '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
+  '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
+  '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -149,6 +181,10 @@ export interface FileRoutesByTo {
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
+  '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
+  '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
+  '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
+  '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
@@ -169,6 +205,10 @@ export interface FileRoutesById {
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
+  '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
+  '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
+  '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
+  '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -190,6 +230,10 @@ export interface FileRouteTypes {
     | '/sobre-o-projeto'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
+    | '/almanaque-digital/capitulo-2'
+    | '/almanaque-digital/capitulo-3'
+    | '/almanaque-digital/capitulo-4'
+    | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
@@ -209,6 +253,10 @@ export interface FileRouteTypes {
     | '/sobre-o-projeto'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
+    | '/almanaque-digital/capitulo-2'
+    | '/almanaque-digital/capitulo-3'
+    | '/almanaque-digital/capitulo-4'
+    | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
@@ -228,6 +276,10 @@ export interface FileRouteTypes {
     | '/sobre-o-projeto'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
+    | '/almanaque-digital/capitulo-2'
+    | '/almanaque-digital/capitulo-3'
+    | '/almanaque-digital/capitulo-4'
+    | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
@@ -248,6 +300,10 @@ export interface RootRouteChildren {
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   TestesRoute: typeof TestesRoute
   AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
+  AlmanaqueDigitalCapitulo2Route: typeof AlmanaqueDigitalCapitulo2Route
+  AlmanaqueDigitalCapitulo3Route: typeof AlmanaqueDigitalCapitulo3Route
+  AlmanaqueDigitalCapitulo4Route: typeof AlmanaqueDigitalCapitulo4Route
+  AlmanaqueDigitalCapitulo5Route: typeof AlmanaqueDigitalCapitulo5Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
@@ -368,6 +424,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalGlossarioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/capitulo-5': {
+      id: '/almanaque-digital/capitulo-5'
+      path: '/almanaque-digital/capitulo-5'
+      fullPath: '/almanaque-digital/capitulo-5'
+      preLoaderRoute: typeof AlmanaqueDigitalCapitulo5RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/almanaque-digital/capitulo-4': {
+      id: '/almanaque-digital/capitulo-4'
+      path: '/almanaque-digital/capitulo-4'
+      fullPath: '/almanaque-digital/capitulo-4'
+      preLoaderRoute: typeof AlmanaqueDigitalCapitulo4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/almanaque-digital/capitulo-3': {
+      id: '/almanaque-digital/capitulo-3'
+      path: '/almanaque-digital/capitulo-3'
+      fullPath: '/almanaque-digital/capitulo-3'
+      preLoaderRoute: typeof AlmanaqueDigitalCapitulo3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/almanaque-digital/capitulo-2': {
+      id: '/almanaque-digital/capitulo-2'
+      path: '/almanaque-digital/capitulo-2'
+      fullPath: '/almanaque-digital/capitulo-2'
+      preLoaderRoute: typeof AlmanaqueDigitalCapitulo2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/almanaque-digital/capitulo-1': {
       id: '/almanaque-digital/capitulo-1'
       path: '/almanaque-digital/capitulo-1'
@@ -392,6 +476,10 @@ const rootRouteChildren: RootRouteChildren = {
   SobreOProjetoRoute: SobreOProjetoRoute,
   TestesRoute: TestesRoute,
   AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,
+  AlmanaqueDigitalCapitulo2Route: AlmanaqueDigitalCapitulo2Route,
+  AlmanaqueDigitalCapitulo3Route: AlmanaqueDigitalCapitulo3Route,
+  AlmanaqueDigitalCapitulo4Route: AlmanaqueDigitalCapitulo4Route,
+  AlmanaqueDigitalCapitulo5Route: AlmanaqueDigitalCapitulo5Route,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,
