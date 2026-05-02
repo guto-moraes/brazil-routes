@@ -3,6 +3,7 @@ import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import AlmanaqueChapters from "@/components/almanaque-chapters";
 import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
 import { sanitizedData } from "@/lib/utils";
+import FlipCardScrollReveal from "@/components/flip-card-scroll";
 
 export const Route = createFileRoute("/almanaque-digital/")({
   head: () => ({
@@ -58,6 +59,8 @@ function Almanaque() {
       </section>
 
       <AlmanaqueChapters />
+
+      <FlipCardScrollReveal />
     </>
   );
 }
