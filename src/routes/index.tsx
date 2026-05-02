@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Intro from "@/layouts/partials/home/intro";
 import AlamanaquePresentation from "@/layouts/partials/home/almanaque-presentation";
-import PioneersTribute from "@/layouts/partials/home/pioneers-tribute";
 import ActivityAreas from "@/layouts/partials/home/activity-areas";
+import FlipCardScrollReveal from "@/components/flip-card-scroll";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,7 +31,7 @@ function Index() {
     <>
       <Intro />
       <AlamanaquePresentation />
-      <PioneersTribute />
+      <FlipCardScrollReveal />
       <ActivityAreas />
     </>
   );

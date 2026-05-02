@@ -25,6 +25,7 @@ import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-co
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
+import { Route as AlmanaqueDigitalCapitulo1RouteImport } from './routes/almanaque-digital/capitulo-1'
 
 const TestesRoute = TestesRouteImport.update({
   id: '/testes',
@@ -108,6 +109,12 @@ const AlmanaqueDigitalGlossarioRoute =
     path: '/almanaque-digital/glossario',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AlmanaqueDigitalCapitulo1Route =
+  AlmanaqueDigitalCapitulo1RouteImport.update({
+    id: '/almanaque-digital/capitulo-1',
+    path: '/almanaque-digital/capitulo-1',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
+  '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
+  '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
@@ -159,6 +168,7 @@ export interface FileRoutesById {
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/testes': typeof TestesRoute
+  '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/referencias'
     | '/sobre-o-projeto'
     | '/testes'
+    | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/referencias'
     | '/sobre-o-projeto'
     | '/testes'
+    | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
@@ -215,6 +227,7 @@ export interface FileRouteTypes {
     | '/referencias'
     | '/sobre-o-projeto'
     | '/testes'
+    | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/glossario'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
@@ -234,6 +247,7 @@ export interface RootRouteChildren {
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   TestesRoute: typeof TestesRoute
+  AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
@@ -354,6 +368,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalGlossarioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/capitulo-1': {
+      id: '/almanaque-digital/capitulo-1'
+      path: '/almanaque-digital/capitulo-1'
+      fullPath: '/almanaque-digital/capitulo-1'
+      preLoaderRoute: typeof AlmanaqueDigitalCapitulo1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -370,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   TestesRoute: TestesRoute,
+  AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,

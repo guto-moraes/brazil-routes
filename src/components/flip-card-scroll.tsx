@@ -189,7 +189,7 @@ function FlipCardScrollReveal() {
   return (
     <section
       className={cn(
-        "flip-card-scroll-reveal relative bg-[#424658] h-svh w-full flex justify-center items-center p-8",
+        "flip-card-scroll-reveal relative bg-gray-800 h-svh w-full flex justify-center items-center p-8",
         "max-lg:h-max max-lg:pt-8 max-lg:pb-16 max-lg:px-4 max-lg:flex-col",
       )}
       ref={flipCardsRevealRef}
@@ -202,17 +202,17 @@ function FlipCardScrollReveal() {
       >
         <h2
           className={cn(
-            "relative text-6xl text-[#f0daD5] text-center font-cabinet font-black leading-none",
+            "relative text-7xl text-gray-200 text-center font-cabinet font-black leading-none",
             "will-change-[transform,opacity] translate-y-5 opacity-0 max-lg:text-4xl max-lg:opacity-100",
           )}
         >
-          Histórias contadas por quem ajudou a construir a história de uma região
+          A história também narrada por quem ajudou a construí-la
         </h2>
       </div>
 
       <div
         className={cn(
-          "flip-card-scroll-reveal-container relative w-[75%] flex perspective-[1000px] translate-y-10 will-change-[width]",
+          "flip-card-scroll-reveal-container relative w-[75%] flex perspective-[1000px] translate-y-16 will-change-[width]",
           "max-lg:w-full max-lg:flex-col max-lg:gap-8",
         )}
       >
@@ -228,7 +228,7 @@ function FlipCardScrollReveal() {
           <div
             className={cn(
               "card-back absolute h-full w-full backface-hidden rounded-[inherit] overflow-hidden",
-              "bg-[#BABBB1] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
+              "bg-[#eed7a1] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
             )}
           >
             <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/30 font-light tabular-nums ">
@@ -236,7 +236,7 @@ function FlipCardScrollReveal() {
             </span>
             <div className="flex flex-col gap-y-6">
               <img
-                className="rounded-2xl border-4 border-[#a7a89f] shadow-xl"
+                className="rounded-2xl border-4 border-[#c4b185] shadow-xl"
                 src={expedicionarios}
                 alt="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
                 title="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
@@ -258,7 +258,7 @@ function FlipCardScrollReveal() {
           <div
             className={cn(
               "card-back absolute h-full w-full backface-hidden rounded-[inherit] overflow-hidden",
-              "bg-[#d9a69f] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
+              "bg-[#b5ab76] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
             )}
           >
             <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/30 font-light tabular-nums ">
@@ -266,7 +266,7 @@ function FlipCardScrollReveal() {
             </span>
             <div className="flex flex-col gap-y-6">
               <img
-                className="rounded-2xl border-4 border-[#c49892] shadow-xl"
+                className="rounded-2xl border-4 border-[#9a9165] shadow-xl"
                 src={operarios}
                 alt="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
                 title="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
@@ -288,7 +288,7 @@ function FlipCardScrollReveal() {
           <div
             className={cn(
               "card-back absolute h-full w-full backface-hidden rounded-[inherit] overflow-hidden",
-              "bg-[#f0daD5] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
+              "bg-[#e7bb8b] flex justify-center items-center text-center rotate-y-180 p-8 max-lg:transform-none",
             )}
           >
             <span className="absolute top-8 left-8 text-[clamp(1rem,4vw,1.75rem)] text-tan-800/30 font-light tabular-nums ">
@@ -296,7 +296,7 @@ function FlipCardScrollReveal() {
             </span>
             <div className="flex flex-col gap-y-6">
               <img
-                className="rounded-2xl border-4 border-[#dcc8c3] shadow-xl"
+                className="rounded-2xl border-4 border-[#cba67d] shadow-xl"
                 src={indigenas}
                 alt="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
                 title="Vila de garimpeiros as margens do Rio Araguaia, no lado de Mato Grosso"
