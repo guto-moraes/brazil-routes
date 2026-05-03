@@ -189,7 +189,7 @@ function FlipCardScrollReveal() {
   return (
     <section
       className={cn(
-        "flip-card-scroll-reveal relative bg-gray-800 h-svh w-full flex justify-center items-center p-8",
+        "flip-card-scroll-reveal relative bg-bone-950 h-svh w-full flex justify-center items-center p-8",
         "max-lg:h-max max-lg:pt-8 max-lg:pb-16 max-lg:px-4 max-lg:flex-col",
       )}
       ref={flipCardsRevealRef}
@@ -202,11 +202,11 @@ function FlipCardScrollReveal() {
       >
         <h2
           className={cn(
-            "relative text-7xl text-gray-200 text-center font-cabinet font-black leading-none",
+            "relative text-[clamp(1.8rem,5vw,4.75rem)] text-chocolate-300 text-center font-cabinet font-black leading-none",
             "will-change-[transform,opacity] translate-y-5 opacity-0 max-lg:text-4xl max-lg:opacity-100",
           )}
         >
-          A história também narrada por quem ajudou a construí-la
+          Histórias narradas por quem também ajudou a construí-las
         </h2>
       </div>
 

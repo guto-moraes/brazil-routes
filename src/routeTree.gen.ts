@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestesRouteImport } from './routes/testes'
+import { Route as TestandoRouteImport } from './routes/testando'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as ReferenciasRouteImport } from './routes/referencias'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
@@ -34,6 +35,11 @@ import { Route as AlmanaqueDigitalCapitulo1RouteImport } from './routes/almanaqu
 const TestesRoute = TestesRouteImport.update({
   id: '/testes',
   path: '/testes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestandoRoute = TestandoRouteImport.update({
+  id: '/testando',
+  path: '/testando',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
@@ -156,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/testando': typeof TestandoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -179,6 +186,7 @@ export interface FileRoutesByTo {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/testando': typeof TestandoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -203,6 +211,7 @@ export interface FileRoutesById {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/testando': typeof TestandoRoute
   '/testes': typeof TestesRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/testando'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -251,6 +261,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/testando'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
+    | '/testando'
     | '/testes'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -298,6 +310,7 @@ export interface RootRouteChildren {
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
+  TestandoRoute: typeof TestandoRoute
   TestesRoute: typeof TestesRoute
   AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
   AlmanaqueDigitalCapitulo2Route: typeof AlmanaqueDigitalCapitulo2Route
@@ -317,6 +330,13 @@ declare module '@tanstack/react-router' {
       path: '/testes'
       fullPath: '/testes'
       preLoaderRoute: typeof TestesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testando': {
+      id: '/testando'
+      path: '/testando'
+      fullPath: '/testando'
+      preLoaderRoute: typeof TestandoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre-o-projeto': {
@@ -474,6 +494,7 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
+  TestandoRoute: TestandoRoute,
   TestesRoute: TestesRoute,
   AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,
   AlmanaqueDigitalCapitulo2Route: AlmanaqueDigitalCapitulo2Route,

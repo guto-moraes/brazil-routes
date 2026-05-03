@@ -117,7 +117,7 @@ const ActivityAreas = () => {
               <h2 className="text-8xl text-bone-600 font-cabinet font-black">{title}</h2>
             </hgroup>
             <p className="text-2xl text-bone-600 text-center text-balance font-medium w-1/2">{presentation}</p>
-            <img className="absolute top-0 left-0 -z-2 opacity-25" src={brush} alt="" />
+            <img className="absolute top-0 left-0 w-full -z-2 opacity-25" src={brush} alt="" />
           </div>
         )}
 

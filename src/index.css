@@ -14,6 +14,13 @@ body {
   position: relative;
 }
 
+
+            .svg-clipped {
+                -webkit-clip-path: url(#svgPath);
+                clip-path: url(#svgPath);
+            }
+        
+
 @font-face {
   font-family: "CabinetGrotesk Variable";
   font-style: normal;
@@ -128,6 +135,17 @@ body {
   --color-mate-800: oklch(0.374 0.049 148.45);
   --color-mate-900: oklch(0.254 0.033 149.48);
   --color-mate-950: oklch(0.194 0.026 148.73);
+  --color-mate-duo-50: oklch(0.962 0.037 139.12);
+  --color-mate-duo-100: oklch(0.913 0.097 137.85);
+  --color-mate-duo-200: oklch(0.834 0.105 137.92);
+  --color-mate-duo-300: oklch(0.767 0.096 138.02);
+  --color-mate-duo-400: oklch(0.689 0.087 137.61);
+  --color-mate-duo-500: oklch(0.612 0.076 138.18);
+  --color-mate-duo-600: oklch(0.539 0.068 137.84);
+  --color-mate-duo-700: oklch(0.434 0.054 138.27);
+  --color-mate-duo-800: oklch(0.339 0.041 138.36);
+  --color-mate-duo-900: oklch(0.238 0.03 136.97);
+  --color-mate-duo-950: oklch(0.185 0.022 136.53);
   --color-tan-50: oklch(0.965 0.009 84.52);
   --color-tan-100: oklch(0.94 0.018 92.64);
   --color-tan-200: oklch(0.879 0.031 92.32);
