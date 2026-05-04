@@ -28,3 +28,37 @@ export const PaginationSchema = z.object({
 });
 
 export type PaginationTypes = z.infer<typeof PaginationSchema>;
+
+//Tipagem do componente de efeito de revelação líquida
+export const LiquidImageRevealPropsSchema = z.object({
+  src: z.string(),
+  alt: z.string(),
+  width: z.number().optional(),
+  height: z.number().optional(),
+  duration: z.number().optional(),
+  delay: z.number().optional(),
+  className: z.string().optional(),
+  centerX: z.number().optional(),
+  centerY: z.number().optional(),
+  turbulenceFrequency: z.number().optional(),
+  turbulenceOctaves: z.number().optional(),
+  displacementScale: z.number().optional(),
+  maxRadius: z.number().optional(),
+});
+
+export type LiquidImageRevealPropsTypes = z.infer<typeof LiquidImageRevealPropsSchema>;
+
+//Tipagem do componente de rolagem horizontal de telas
+export const HorizontalSlideItemSchema = z.object({
+  bgColor: z.string(),
+  className: z.string().optional(),
+  children: z.custom<React.ReactNode>(),
+});
+
+export type HorizontalSlideItemTypes = z.infer<typeof HorizontalSlideItemSchema>
+
+export const HorizontalSlidesSchema = z.object({
+  children: z.custom<React.ReactNode>(),
+});
+
+export type HorizontalSlidesType = z.infer<typeof HorizontalSlidesSchema>
