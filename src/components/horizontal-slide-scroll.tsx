@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HorizontalSlideItem = ({ bgColor, className, children }: HorizontalSlideItemTypes) => {
+const HorizontalSlideItem = ({ id, bgColor, className, children }: HorizontalSlideItemTypes) => {
   return (
-    <div className={cn("horizontal-slides-scroll-item h-full w-full shrink-0", className)} style={{ backgroundColor: bgColor }}>
+    <div id={id} className={cn("horizontal-slides-scroll-item h-full w-full shrink-0", className)} style={{ backgroundColor: bgColor }}>
       {children}
     </div>
   );

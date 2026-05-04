@@ -45,7 +45,7 @@ const TextLoader: React.FC<TextLoaderPropsTypes> = ({
 
       // Set initial state
       gsap.set(letters, {
-        y: 100,
+        y: 140,
         "--clipPath": "inset(100% 0 0 0)",
       });
 

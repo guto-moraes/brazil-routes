@@ -50,6 +50,7 @@ export type LiquidImageRevealPropsTypes = z.infer<typeof LiquidImageRevealPropsS
 
 //Tipagem do componente HorizontalSlidesScroll
 export const HorizontalSlideItemSchema = z.object({
+  id: z.string().optional(),
   bgColor: z.string(),
   className: z.string().optional(),
   children: z.custom<React.ReactNode>(),
