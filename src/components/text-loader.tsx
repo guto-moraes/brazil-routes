@@ -3,27 +3,13 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import type { TextLoaderPropsTypes } from "@/types/components-types";
 
-interface TextLoaderProps {
-  text: string;
-  className?: string;
-  onComplete?: () => void;
-  gradientColors?: string[];
-  backgroundColor?: string;
-  duration?: {
-    slideUp?: number;
-    reveal?: number;
-    slideDown?: number;
-  };
-  delays?: {
-    stagger?: number;
-    betweenAnimations?: number;
-    beforeSlideDown?: number;
-  };
-}
+gsap.registerPlugin(ScrollTrigger);
 
-const TextLoader: React.FC<TextLoaderProps> = ({
+const TextLoader: React.FC<TextLoaderPropsTypes> = ({
   text,
   className = "",
   onComplete,
@@ -45,13 +31,15 @@ const TextLoader: React.FC<TextLoaderProps> = ({
 
   useGSAP(
     () => {
-
       if (!textRef.current) return;
-
       const letters = textRef.current.querySelectorAll(".letter");
+
       const tl = gsap.timeline({
-        onComplete: () => {
-          onComplete?.();
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          pin: true,
+          scrub: 1,
         },
       });
 
@@ -76,7 +64,7 @@ const TextLoader: React.FC<TextLoaderProps> = ({
         })
         .to(letters, {
           duration: duration.slideDown,
-          y: -100,
+          y: -140,
           stagger: delays.stagger,
           delay: delays.beforeSlideDown,
           ease: "power2.in",
@@ -84,16 +72,13 @@ const TextLoader: React.FC<TextLoaderProps> = ({
         .to(
           containerRef.current,
           {
-            y: "-100%",
+            y: "-140%",
             duration: 0.8,
             ease: "power2.inOut",
             delay: 0.3,
           },
           "-=0.2",
         );
-
-        tl.kill();
-        tl.play(0)
     },
     { scope: containerRef, dependencies: [text, duration, delays, onComplete] },
   );
@@ -103,31 +88,22 @@ const TextLoader: React.FC<TextLoaderProps> = ({
   return (
     <div
       ref={containerRef}
-      className={cn("absolute inset-0 flex items-center justify-center overflow-hidden z-50", className)}
+      className={cn("text-loader-wrapper absolute inset-0 h-full w-full flex items-center justify-center overflow-hidden z-10", className)}
       style={{ backgroundColor }}
     >
       <div
         ref={textRef}
-        className="text-container flex relative overflow-hidden"
-        style={{
-          fontFamily: '"Oswald", "Bebas Neue", sans-serif',
-          fontSize: "clamp(3rem, 12vw, 6.5rem)",
-          fontWeight: 700,
-          lineHeight: 1,
-        }}
+        className={cn(
+          "text-container font-black leading-none xl:text-[clamp(3rem,12vw,9rem)] max-[22.5rem]:text-[clamp(1.2rem,14vw,2.5rem)]",
+          "max-sm:text-[clamp(2rem,10vw,4rem)] max-[30rem]:text-[clamp(1.5rem,12vw,3rem)] flex relative overflow-hidden",
+        )}
       >
         {text.split("").map((char, index) => (
           <span
             key={`${char}-${index}`}
-            className="letter inline-block relative"
+            className={cn("letter inline-block relative translate-y-25 text-white/20 max-md:-tracking-[0.02em]")}
             data-text={char}
-            style={
-              {
-                color: "rgba(255, 255, 255, 0.2)",
-                transform: "translateY(100px)",
-                "--clipPath": "inset(100% 0 0 0)",
-              } as React.CSSProperties
-            }
+            style={{ "--clipPath": "inset(100% 0 0 0)" } as React.CSSProperties}
           >
             {char}
             <span
@@ -148,40 +124,6 @@ const TextLoader: React.FC<TextLoaderProps> = ({
           </span>
         ))}
       </div>
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
-        
-        .text-container {
-          /* Responsive font sizing */
-          font-size: clamp(2.5rem, 8vw, 6.5rem);
-        }
-        
-        @media (max-width: 640px) {
-          .text-container {
-            font-size: clamp(2rem, 10vw, 4rem);
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .text-container {
-            font-size: clamp(1.5rem, 12vw, 3rem);
-          }
-        }
-        
-        @media (max-width: 360px) {
-          .text-container {
-            font-size: clamp(1.2rem, 14vw, 2.5rem);
-          }
-        }
-        
-        /* Ensure proper spacing on mobile */
-        @media (max-width: 768px) {
-          .letter {
-            letter-spacing: -0.02em;
-          }
-        }
-      `}</style>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-/* Text Reveal Hidden Types */
+//Tipagem do componente TextRevealHidden
 export const TextRevealHiddenSchema = z.object({
   animateOnScroll: z.boolean(),
   delay: z.number().optional(),
@@ -12,7 +12,7 @@ export const TextRevealHiddenSchema = z.object({
 
 export type TextRevealHiddenTypes = z.infer<typeof TextRevealHiddenSchema>;
 
-//Tipagem do componente de paginação
+//Tipagem do componente Pagination
 export const PaginationSchema = z.object({
   hasPrevious: z.boolean(),
   hasNext: z.boolean(),
@@ -29,7 +29,7 @@ export const PaginationSchema = z.object({
 
 export type PaginationTypes = z.infer<typeof PaginationSchema>;
 
-//Tipagem do componente de efeito de revelação líquida
+//Tipagem do componente LiquidImageReveal
 export const LiquidImageRevealPropsSchema = z.object({
   src: z.string(),
   alt: z.string(),
@@ -48,17 +48,44 @@ export const LiquidImageRevealPropsSchema = z.object({
 
 export type LiquidImageRevealPropsTypes = z.infer<typeof LiquidImageRevealPropsSchema>;
 
-//Tipagem do componente de rolagem horizontal de telas
+//Tipagem do componente HorizontalSlidesScroll
 export const HorizontalSlideItemSchema = z.object({
   bgColor: z.string(),
   className: z.string().optional(),
   children: z.custom<React.ReactNode>(),
 });
 
-export type HorizontalSlideItemTypes = z.infer<typeof HorizontalSlideItemSchema>
+export type HorizontalSlideItemTypes = z.infer<typeof HorizontalSlideItemSchema>;
 
 export const HorizontalSlidesSchema = z.object({
   children: z.custom<React.ReactNode>(),
 });
 
-export type HorizontalSlidesType = z.infer<typeof HorizontalSlidesSchema>
+export type HorizontalSlidesType = z.infer<typeof HorizontalSlidesSchema>;
+
+//Tipagem do componente de TextLoader
+export const TextLoaderSchema = z.object({
+  text: z.string(),
+  className: z.string().optional(),
+  onComplete: z.function({
+    output: z.void(),
+  }).optional(),
+  gradientColors: z.array(z.string()).optional(),
+  backgroundColor: z.string().optional(),
+  duration: z
+    .object({
+      slideUp: z.number().optional(),
+      reveal: z.number().optional(),
+      slideDown: z.number().optional(),
+    })
+    .optional(),
+  delays: z
+    .object({
+      stagger: z.number().optional(),
+      betweenAnimations: z.number().optional(),
+      beforeSlideDown: z.number().optional(),
+    })
+    .optional(),
+});
+
+export type TextLoaderPropsTypes = z.infer<typeof TextLoaderSchema>;
