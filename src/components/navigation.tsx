@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@tanstack/react-router";
-import { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -131,7 +131,7 @@ const Navigation = ({
   );
 
   return (
-    <Fragment>
+    <div className="container-navigation">
       <header
         className={cn(
           "p-4 lg:px-0 h-26 w-full overflow-hidden",
@@ -300,7 +300,7 @@ const Navigation = ({
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

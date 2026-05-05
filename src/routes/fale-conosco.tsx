@@ -49,13 +49,13 @@ const subjects = [
 
 function ContactUs() {
   return (
-    <Main className="container mx-auto pb:12 xl:pb-28 px-4">
+    <Main className="container mx-auto pb:12 xl:pb-32 px-4">
       <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
         Fale <span className="text-tan-400">Conosco</span>
       </Title>
 
       <section className="flex gap-12 min-h-96 w-full">
-        <div className="flex-1 min-h-96 relative rounded-4xl bg-mate-duo-600/30 p-6 overflow-hidden">
+        <div className="flex-1 min-h-96 relative rounded-4xl bg-mate-duo-600/25 p-6 overflow-hidden">
           <LogoSvg className="fill-mate-duo-900/7.5 size-72 absolute -bottom-25 -left-25" />
           <h2 className="text-4xl text-bone-600 font-cabinet font-black tracking-tight">Queremos sua participação!</h2>
           <div className="flex flex-col gap-y-6 [&_p]:text-xl [&_p]:text-bone-700 [&_p]:font-medium [&_p]:text-justify [&_p]:hyphens-auto mt-12">

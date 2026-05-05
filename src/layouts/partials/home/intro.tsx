@@ -145,7 +145,7 @@ const Intro = () => {
             </div>
             <h2
               className={cn(
-                "hero-slogan text-3xl text-tan-800 text-center font-cintarini",
+                "hero-slogan text-3xl text-tan-700 text-center font-cintarini",
                 "font-semibold leading-16 text-balance whitespace-nowrap tracking-wider",
               )}
             >

@@ -123,7 +123,7 @@ const timeline: TimelineTypes[] = [
   },
 ];
 
-const TimelineSlide = () => {
+const TimelineSlide = ({ id }: { id: string }) => {
   return (
     timeline &&
     timeline.map((item) => { 
@@ -138,7 +138,7 @@ const TimelineSlide = () => {
         } as React.CSSProperties
 
         return (
-      <HorizontalSlideItem bgColor="#c1c9b8" className="h-svh w-full flex flex-col" id={item.year} key={item.year}>
+      <HorizontalSlideItem id={id} bgColor="#c1c9b8" className="h-svh w-full flex flex-col" key={item.year}>
         <div className="h-7 w-full flex divide-x [&:not(last-child)]:divide-x divide-dashed" style={styleHeaderBar}>
           {item.headers.map((date, idx) => (
             <ColHeader className={idx === 1 ? "flex-4" : "flex-2"} text={date} key={idx} />
@@ -146,7 +146,7 @@ const TimelineSlide = () => {
           <ColHeader className="flex-1 justify-center" text="Ano" />
         </div>
         <div className="grow w-full flex divide-x divide-dashed" style={ styleContentBorder }>
-          <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-8">
+          <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-32">
             <hr className="h-px border-px border-dashed bg-none" style={{ borderColor: `${item.borderColor}` }} />
             <div className="w-full flex flex-col gap-y-4">
               <Badge text={item.firstCol.badgeText} />
@@ -159,7 +159,7 @@ const TimelineSlide = () => {
               caption={item.firstCol.figure.caption}
             />
           </div>
-          <div className="flex-4 flex flex-col justify-end gap-y-8 px-8 pb-8">
+          <div className="flex-4 flex flex-col justify-end gap-y-8 px-8 pb-32">
             <hr className="h-px border-px border-dashed bg-none" style={{ borderColor: item.borderColor }} />
             <div className="w-full flex flex-col gap-y-4">
               <Badge text={item.secondCol.badgeText} />
@@ -172,7 +172,7 @@ const TimelineSlide = () => {
               caption={item.secondCol.figure.caption}
             />
           </div>
-          <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-8">
+          <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-32">
             <hr className="h-px border-px border-dashed bg-none" style={{ borderColor: item.borderColor }} />
             <div className="w-full flex flex-col gap-y-4">
               <Badge text={item.thirdCol.badgeText} />
