@@ -14,6 +14,7 @@ import { Route as TestandoRouteImport } from './routes/testando'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as ReferenciasRouteImport } from './routes/referencias'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as MascaraRouteImport } from './routes/mascara'
 import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
@@ -55,6 +56,11 @@ const ReferenciasRoute = ReferenciasRouteImport.update({
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   id: '/politica-de-privacidade',
   path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MascaraRoute = MascaraRouteImport.update({
+  id: '/mascara',
+  path: '/mascara',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapaInterativoRoute = MapaInterativoRouteImport.update({
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -208,6 +216,7 @@ export interface FileRoutesById {
   '/fale-conosco': typeof FaleConoscoRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
   '/mapa-interativo': typeof MapaInterativoRoute
+  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -234,6 +243,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -258,6 +268,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -282,6 +293,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/linha-do-tempo'
     | '/mapa-interativo'
+    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -307,6 +319,7 @@ export interface RootRouteChildren {
   FaleConoscoRoute: typeof FaleConoscoRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
   MapaInterativoRoute: typeof MapaInterativoRoute
+  MascaraRoute: typeof MascaraRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       path: '/politica-de-privacidade'
       fullPath: '/politica-de-privacidade'
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mascara': {
+      id: '/mascara'
+      path: '/mascara'
+      fullPath: '/mascara'
+      preLoaderRoute: typeof MascaraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mapa-interativo': {
@@ -491,6 +511,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaleConoscoRoute: FaleConoscoRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
   MapaInterativoRoute: MapaInterativoRoute,
+  MascaraRoute: MascaraRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,

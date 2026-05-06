@@ -45,3 +45,59 @@ export const GLOSSARY = gql`
     }
   }
 `;
+
+//Query da Linha do Tempo
+export const TIMELINE = gql`
+  query Timeline {
+    timelines(where: {orderby: {field: TITLE, order: ASC}}) {
+      nodes {
+        id
+        title
+        info {
+          bgColor
+          theadBgColor
+          textColor
+          eventsDate
+          firstCol {
+            tagText
+            heading
+            heightImage
+            image {
+              node {
+                guid
+                altText
+                caption
+              }
+            }
+          }
+          secondCol {
+            tagText
+            heading
+            heightImage
+            image {
+              node {
+                guid
+                altText
+                caption
+              }
+            }
+          }
+          thirdCol {
+            textTag
+            title
+            lead
+            heightImage
+            image {
+              node {
+                guid
+                altText
+                caption
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+

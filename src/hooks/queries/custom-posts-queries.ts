@@ -1,7 +1,8 @@
 import request from "graphql-request";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { GLOSSARY, INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION } from "@/graphql/custom-types-graphql";
-import type { GlossaryTypes, InteractiveMapLocationTypes, InteractiveMapTypes } from "@/types/custom-post-types";
+import type { GlossaryTypes, InteractiveMapLocationTypes, InteractiveMapTypes, TimelineTypes } from "@/types/custom-post-types";
+import { TIMELINE } from "@/graphql/custom-types-graphql";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
@@ -45,5 +46,18 @@ export const useQueryGlossary = () => {
     queryKey: ["glossary"],
     queryFn: () => fetchGlossary(),
     staleTime: 60 * 5 * 1000,
+  });
+};
+
+//Fetch da Linha do Tempo
+const fetchTimeline = async () => {
+  return await request<TimelineTypes>(GRAPHQL_URL, TIMELINE);
+};
+
+//Query da Linha do Tempo
+export const useQueryTimeline = () => {
+  return useSuspenseQuery<TimelineTypes>({
+    queryKey: ["timeline"],
+    queryFn: () => fetchTimeline(),
   });
 };

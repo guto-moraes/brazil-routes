@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -24,6 +24,24 @@ const Navigation = ({
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   const [screenWidth] = useState<number | null>(typeof window !== "undefined" ? window.innerWidth : 0);
   const navigationRef = useRef<HTMLDivElement | null>(null);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const chapters = [
+    "/almanaque-digital/capitulo-1",
+    "/almanaque-digital/capitulo-1/",
+    "/almanaque-digital/capitulo-2",
+    "/almanaque-digital/capitulo-2/",
+    "/almanaque-digital/capitulo-3",
+    "/almanaque-digital/capitulo-3/",
+    "/almanaque-digital/capitulo-4",
+    "/almanaque-digital/capitulo-4/",
+    "/almanaque-digital/capitulo-5",
+    "/almanaque-digital/capitulo-5/",
+  ];
+
+  const isChapter = chapters.includes(pathname);
 
   const handleActiveMenu = () => {
     if (isActiveMenu) {
@@ -131,13 +149,14 @@ const Navigation = ({
   );
 
   return (
-    <div className="container-navigation">
+    <div className={cn("container-navigation")}>
       <header
         className={cn(
           "p-4 lg:px-0 h-26 w-full overflow-hidden",
           (isActiveMenu && isHome) || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
           isActiveMenu || isHome ? "shadow-none bg-none" : "shadow-lg bg-white",
           className,
+          document.body.scrollHeight > 90 && isChapter ? "fixed z-40" : "",
         )}
       >
         <div className="container mx-auto">

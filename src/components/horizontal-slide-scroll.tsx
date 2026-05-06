@@ -19,21 +19,24 @@ const HorizontalSlideItem = ({ id, bgColor, className, children }: HorizontalSli
 
 const HorizontalSlidesScroll = ({ children }: HorizontalSlidesType) => {
   const slidesContainerRef = useRef<HTMLElement | null>(null);
-
+  
   useGSAP(
     () => {
       const container = document.querySelector(".horizontal-slides-scroll");
-      const sections = gsap.utils.toArray<HTMLDivElement>(".horizontal-slides-scroll .horizontal-slides-scroll-item");
+      const slides = gsap.utils.toArray<HTMLDivElement>(".horizontal-slides-scroll .horizontal-slides-scroll-item");
+      const rawScrollDistance = window.innerWidth * (slides.length - 1) + 500;
+      const adjustedEnd = rawScrollDistance - window.innerHeight;
 
-      gsap.to(sections, {
+      gsap.to(slides, {
         scrollTrigger: {
           trigger: slidesContainerRef.current,
           start: "top top",
-          end: "+=" + container!.scrollWidth,
-          scrub: 2, // parallax
+          end: adjustedEnd,
+          scrub: 2,
           pin: true,
+          invalidateOnRefresh: true,
         },
-        x: window.innerWidth - container!.scrollWidth,
+        x: -container!.scrollWidth + window.innerWidth,
         ease: "none",
       });
     },

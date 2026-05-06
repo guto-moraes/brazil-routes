@@ -64,7 +64,7 @@ export const GlossaryTermSchema = z.object({
   content: z.string(),
 });
 
-export type GlossaryTermTypes = z.infer<typeof GlossaryTermSchema>
+export type GlossaryTermTypes = z.infer<typeof GlossaryTermSchema>;
 
 export const GlossarySchema = z.object({
   glossarios: z.object({
@@ -73,3 +73,53 @@ export const GlossarySchema = z.object({
 });
 
 export type GlossaryTypes = z.infer<typeof GlossarySchema>;
+
+//Tipagem da Linha do tempo
+export const FirstAndSecondTimelineColumnsSchema = z.object({
+  tagText: z.string(),
+  heading: z.string(),
+  heightImage: z.number(),
+  image: z.object({
+    node: z.object({
+      guid: z.string(),
+      altText: z.string(),
+      caption: z.string(),
+    }),
+  }),
+});
+
+export const TimelineInfoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  info: z.object({
+    bgColor: z.string(),
+    theadBgColor: z.string(),
+    textColor: z.string(),
+    eventsDate: z.string(),
+    firstCol: FirstAndSecondTimelineColumnsSchema,
+    secondCol: FirstAndSecondTimelineColumnsSchema,
+    thirdCol: z.object({
+      textTag: z.string(),
+      title: z.string(),
+      lead: z.string(),
+      heightImage: z.number().optional(),
+      image: z
+        .object({
+          node: z.object({
+            guid: z.string(),
+            altText: z.string(),
+            caption: z.string(),
+          }),
+        })
+        .optional(),
+    }),
+  }),
+});
+
+export const TimelineSchema = z.object({
+  timelines: z.object({
+    nodes: z.array(TimelineInfoSchema),
+  }),
+});
+
+export type TimelineTypes = z.infer<typeof TimelineSchema>;

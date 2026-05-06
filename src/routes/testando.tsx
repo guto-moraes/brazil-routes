@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
+import { createFileRoute, Link } from "@tanstack/react-router";
 import Timeline from "@/components/timeline";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
@@ -13,18 +15,19 @@ function Testing() {
   const max = 1967;
   const skipInterval = 1;
   const ticks = Array.from({ length: (max - min) / skipInterval + 1 }, (_, index) => min + index * skipInterval);
-  const [value, setValue] = useState(min);
+  const [year, setYear] = useState(1930);
 
   return (
     <>
+      <h3 className="text-5xl text-bone-600">{year}</h3>
       <div className="bg-bone-900 h-20 w-full flex items-center fixed bottom-0 left-0 z-100 overflow-hidden">
         <div className="w-[95%] mx-auto py-20">
           <Slider
-            defaultValue={value}
+            // defaultValue={year}
             min={min}
             max={max}
             step={skipInterval}
-            onValueChange={(vals) => setValue(Number(vals))}
+            onValueChange={(vals) => setYear(Number(vals))}
             className="timeline-range"
           />
           <span
@@ -33,18 +36,19 @@ function Testing() {
           >
             {ticks.map((tick) => (
               <span key={tick} className="flex w-0 flex-col items-center justify-center gap-2">
-                <span className={cn("bg-bone-200 h-1.5 w-px", tick % skipInterval !== 0 && "h-1")} />
-                <a
-                  href={`#${tick}`}
+                <span className={cn("bg-bege-50 h-1.5 w-px", tick % skipInterval !== 0 && "h-1")} />
+                <Link
+                  to="/testando"
+                  hash={String(tick)}
                   className={cn(
-                    "transition-all duration-200",
+                    "hover:scale-150 transition-all duration-400 cursor-pointer",
                     tick % skipInterval !== 0 && "opacity-0",
-                    tick === value && "text-white font-bold scale-200",
+                    tick === Number(year) && "text-white font-bold scale-200",
                   )}
-                  onClick={() => setValue(tick)}
+                  onClick={() => setYear(tick)}
                 >
                   {tick}
-                </a>
+                </Link>
               </span>
             ))}
           </span>
