@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ChaptersMenu from "@/components/chapters-menu";
+// import ChaptersMenu from "@/components/chapters-menu";
 import ChapterTitle from "@/components/chapter-title";
-import { Section, SectionScrollRotate } from "@/components/section-scroll-rotate";
+// import { Section, SectionScrollRotate } from "@/components/section-scroll-rotate";
+import { ChapterAside, ChapterContent, ChapterWrapper } from "@/layouts/partials/chapter";
 
 export const Route = createFileRoute("/almanaque-digital/capitulo-1")({
   component: ChapterFour,
@@ -10,7 +11,21 @@ export const Route = createFileRoute("/almanaque-digital/capitulo-1")({
 function ChapterFour() {
   return (
     <>
-      <ChaptersMenu />
+    <ChapterWrapper>
+      <ChapterAside className="bg-tan-200">
+        Menu
+      </ChapterAside>
+      <ChapterContent>
+          <ChapterTitle
+            chapter="Capítulo 1"
+            firstTitle="Contextualizando"
+            lastTitle="o Brasil Central"
+            subtitle="Décadas de 1940 a 1960"
+            className="text-3xl"
+          />
+      </ChapterContent>
+    </ChapterWrapper>
+      {/* <ChaptersMenu />
       <SectionScrollRotate className="relative h-full w-full">
         <Section bgColor="#f6f3ed" className="container mx-auto px-4 ml-17.5">
           <ChapterTitle
@@ -25,7 +40,7 @@ function ChapterFour() {
         <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
         <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
         <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-      </SectionScrollRotate>
+      </SectionScrollRotate> */}
     </>
   );
 }

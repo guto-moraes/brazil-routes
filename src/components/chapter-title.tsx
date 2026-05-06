@@ -14,9 +14,9 @@ const ChapterTitle = ({
   className?: string;
 }) => {
   return (
-    <div className="absolute top-24 left-32">
+    <div className="absolute top-24 left-0">
       <h3 className="text-lg text-tan-500 uppercase tracking-tighter">{chapter}</h3>
-      <h1 className="text-8xl text-tan-600 font-cabinet font-black">
+      <h1 className="text-7xl text-tan-600 font-cabinet font-black">
         {firstTitle} <span className="text-tan-400">{lastTitle}</span>
       </h1>
       {subtitle && (<h2 className={cn("text-2xl text-bone-500 font-cintarini font-medium leading-12", className)}>{subtitle}</h2>)}

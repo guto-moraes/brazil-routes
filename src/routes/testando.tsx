@@ -1,25 +1,23 @@
-"use client";
-
-import { createFileRoute, Link } from "@tanstack/react-router";
-import Timeline from "@/components/timeline";
-import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ChapterAside, ChapterContent, ChapterWrapper } from "@/layouts/partials/chapter";
+// import Timeline from "@/components/timeline";
+// import { Slider } from "@/components/ui/slider";
+// import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/testando")({
   component: Testing,
 });
 
 function Testing() {
-  const min = 1930;
-  const max = 1967;
-  const skipInterval = 1;
-  const ticks = Array.from({ length: (max - min) / skipInterval + 1 }, (_, index) => min + index * skipInterval);
-  const [year, setYear] = useState(1930);
+  // const min = 1930;
+  // const max = 1967;
+  // const skipInterval = 1;
+  // const ticks = Array.from({ length: (max - min) / skipInterval + 1 }, (_, index) => min + index * skipInterval);
+  // const [year, setYear] = useState(1930);
 
   return (
     <>
-      <h3 className="text-5xl text-bone-600">{year}</h3>
+      {/* <h3 className="text-5xl text-bone-600">{year}</h3>
       <div className="bg-bone-900 h-20 w-full flex items-center fixed bottom-0 left-0 z-100 overflow-hidden">
         <div className="w-[95%] mx-auto py-20">
           <Slider
@@ -54,7 +52,93 @@ function Testing() {
           </span>
         </div>
       </div>
-      <Timeline />
+      <Timeline /> */}
+      <ChapterWrapper>
+        <ChapterAside>
+          <ul>
+            <li>Capítulo 1</li>
+            <li>Capítulo 2</li>
+            <li>Capítulo 3</li>
+            <li>Capítulo 4</li>
+            <li>Capítulo 5</li>
+          </ul>
+        </ChapterAside>
+
+        <ChapterContent>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti facere sapiente nihil
+            molestiae debitis magni iusto soluta voluptatum a? Corporis omnis exercitationem autem mollitia hic quo
+            dolore dolor nulla asperiores dolorum, a, sit illum atque ratione commodi nesciunt porro cum. Iusto
+            dignissimos laborum soluta temporibus ut vel iure saepe.
+          </p>
+        </ChapterContent>
+      </ChapterWrapper>
     </>
   );
 }
