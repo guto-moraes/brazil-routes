@@ -156,7 +156,7 @@ const Navigation = ({
           (isActiveMenu && isHome) || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
           isActiveMenu || isHome ? "shadow-none bg-none" : "shadow-lg bg-white",
           className,
-          document.body.scrollHeight > 90 && isChapter ? "fixed z-40" : "",
+          document.body.scrollHeight > 90 && isChapter ? "z-40" : "",
         )}
       >
         <div className="container mx-auto">

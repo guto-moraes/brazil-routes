@@ -1,29 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import { ChapterAside, ChapterContent, ChapterWrapper } from "@/components/chapter";
 import ChaptersMenu from "@/components/chapters-menu";
 import ChapterTitle from "@/components/chapter-title";
-import { Section, SectionScrollRotate } from "@/components/section-scroll-rotate";
+import ArticleChapterContent from "@/components/article-chapter-content";
+import DownloadNow from "@/components/download-now";
 
 export const Route = createFileRoute("/almanaque-digital/capitulo-2")({
-  component: ChapterFour,
+  component: ChapterTwo,
 });
 
-function ChapterFour() {
+function ChapterTwo() {
+  const { data } = useQueryPage("almanaque-digital/capitulo-2");
+
   return (
     <>
-      <ChaptersMenu />
-      <SectionScrollRotate className="relative h-full w-full">
-        <Section bgColor="#fbf6ea" className="container mx-auto px-4 ml-17.5">
-          <ChapterTitle
-            chapter="Capítulo 2"
-            firstTitle="Fundação"
-            lastTitle="Brasil Central"
-          />
-        </Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-      </SectionScrollRotate>
+      <ChapterWrapper>
+        <ChapterAside className="bg-tan-100 drop-shadow">
+          <ChaptersMenu />
+        </ChapterAside>
+        <ChapterContent>
+          <ChapterTitle chapter={data.page.title} firstTitle="A Fundação" lastTitle="Brasil Central" />
+          <ArticleChapterContent className="content mt-16" content={data.page.content} />
+        </ChapterContent>
+      </ChapterWrapper>
+      <DownloadNow link="/" />
     </>
   );
 }

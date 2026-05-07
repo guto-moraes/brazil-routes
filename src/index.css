@@ -80,6 +80,17 @@ body {
   --color-bege-800: oklch(0.318 0.028 92.77);
   --color-bege-900: oklch(0.222 0.019 93.36);
   --color-bege-950: oklch(0.177 0.016 95.8);
+  --color-blue-retro-50: oklch(0.956 0.022 250.2);
+  --color-blue-retro-100: oklch(0.921 0.04 248.25);
+  --color-blue-retro-200: oklch(0.841 0.084 243.08);
+  --color-blue-retro-300: oklch(0.761 0.138 237.69);
+  --color-blue-retro-400: oklch(0.683 0.143 235.9);
+  --color-blue-retro-500: oklch(0.606 0.127 235.85);
+  --color-blue-retro-600: oklch(0.529 0.111 236.2);
+  --color-blue-retro-700: oklch(0.452 0.095 235.69);
+  --color-blue-retro-800: oklch(0.351 0.073 235.04);
+  --color-blue-retro-900: oklch(0.238 0.05 235.7);
+  --color-blue-retro-950: oklch(0.185 0.04 236.26);
   --color-bone-50: oklch(0.956 0.018 127.05);
   --color-bone-100: oklch(0.913 0.028 126.78);
   --color-bone-200: oklch(0.825 0.025 127.59);

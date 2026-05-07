@@ -1,46 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
-// import ChaptersMenu from "@/components/chapters-menu";
+import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import { ChapterAside, ChapterContent, ChapterWrapper } from "@/components/chapter";
 import ChapterTitle from "@/components/chapter-title";
-// import { Section, SectionScrollRotate } from "@/components/section-scroll-rotate";
-import { ChapterAside, ChapterContent, ChapterWrapper } from "@/layouts/partials/chapter";
+import ArticleChapterContent from "@/components/article-chapter-content";
+import DownloadNow from "@/components/download-now";
+import ChaptersMenu from "@/components/chapters-menu";
 
 export const Route = createFileRoute("/almanaque-digital/capitulo-1")({
-  component: ChapterFour,
+  component: ChapterOne,
 });
 
-function ChapterFour() {
+function ChapterOne() {
+  const { data } = useQueryPage("almanaque-digital/capitulo-1");
+
   return (
     <>
     <ChapterWrapper>
-      <ChapterAside className="bg-tan-200">
-        Menu
+      <ChapterAside className="bg-tan-100 drop-shadow">
+        <ChaptersMenu />
       </ChapterAside>
       <ChapterContent>
           <ChapterTitle
-            chapter="Capítulo 1"
+            chapter={data.page.title}
             firstTitle="Contextualizando"
             lastTitle="o Brasil Central"
             subtitle="Décadas de 1940 a 1960"
             className="text-3xl"
           />
+          <ArticleChapterContent className="content mt-16" content={data.page.content} />
       </ChapterContent>
     </ChapterWrapper>
-      {/* <ChaptersMenu />
-      <SectionScrollRotate className="relative h-full w-full">
-        <Section bgColor="#f6f3ed" className="container mx-auto px-4 ml-17.5">
-          <ChapterTitle
-            chapter="Capítulo 1"
-            firstTitle="Contextualizando"
-            lastTitle="o Brasil Central"
-            subtitle="Décadas de 1940 a 1960"
-            className="text-3xl"
-          />
-        </Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-        <Section className=" w-[calc(100%-60px)] ml-17.5">Alguma coisa</Section>
-      </SectionScrollRotate> */}
+    <DownloadNow link="/" />
     </>
   );
 }
