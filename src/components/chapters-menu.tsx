@@ -22,6 +22,11 @@ const chapterIndex = [
     title: "Capítulo 5",
     link: "/almanaque-digital/capitulo-5",
   },
+  {
+    title: "Quiz de Perguntas",
+    link: "/almanaque-digital/quizz",
+  },
+
 ];
 
 const ChaptersMenu = () => {
