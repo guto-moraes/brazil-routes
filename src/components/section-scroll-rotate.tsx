@@ -8,49 +8,47 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Section = ({
+const ScrollRotateContent = ({
   className,
-  bgColor = "#c1c9b8",
   children,
 }: {
   className?: string;
-  bgColor?: string;
   children: React.ReactNode;
 }) => {
   return (
-    <section className="rotate-section relative h-svh min-h-svh w-full overflow-hidden">
-      <div
-        className={cn(
-          "container bg-bone-400 relative h-full w-full min-w-full p-8 flex",
-          "rotate-30 origin-bottom-left will-change-transform",
-          className,
-        )}
-        style={{ backgroundColor: bgColor }}
-      >
-        {children}
-      </div>
+    <div
+      className={cn(
+        "content-container relative h-full w-full min-w-full p-8 flex rotate-30",
+        "origin-bottom-left will-change-transform",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+const ScrollRotateSection = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+  return (
+    <section className={cn("rotate-section relative h-svh min-h-svh w-full overflow-hidden", className)}>
+      {children}
     </section>
   );
 };
 
-const SectionScrollRotate = ({ className, children }: { className?: string; children: React.ReactNode }) => {
-  const containersRef = useRef<HTMLDivElement>(null);
+const ScrollRotateWrapper = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+  const containersRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      const wrapper = document.querySelector<HTMLDivElement>(".wrapper");
       const sections = document.querySelectorAll<HTMLElement>(".rotate-section");
 
-      gsap.set(wrapper, { top: "104px" })
-      
       sections.forEach((section, index) => {
-        const container = section.querySelector<HTMLDivElement>(".container");
-        
-        gsap.set(container, { top: "104px" })
+        const container = section.querySelector<HTMLDivElement>(".content-container");
 
         gsap.to(container, {
           rotate: 0,
-          ease: "none",
+          ease: "note",
           scrollTrigger: {
             trigger: section,
             start: "top bottom",
@@ -72,13 +70,12 @@ const SectionScrollRotate = ({ className, children }: { className?: string; chil
     },
     { scope: containersRef },
   );
+
   return (
     <>
-      <div className={cn("section-wrapper", className)} ref={containersRef}>
-        {children}
-      </div>
+      <main className={cn(className)} ref={containersRef}>{children}</main>
     </>
   );
 };
 
-export { Section, SectionScrollRotate };
+export { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper };
