@@ -4,29 +4,34 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Observer } from "gsap/Observer";
 import type { HorizontalSlideItemTypes, HorizontalSlidesType } from "@/types/components-types";
 import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Observer, ScrollTrigger);
 
 const HorizontalSlideItem = ({ id, bgColor, className, children }: HorizontalSlideItemTypes) => {
   return (
-    <div id={id} className={cn("horizontal-slides-scroll-item h-full w-full shrink-0", className)} style={{ backgroundColor: bgColor }}>
+    <div
+      id={id}
+      className={cn("horizontal-slides-scroll-item h-full w-full shrink-0", className)}
+      style={{ backgroundColor: bgColor }}
+    >
       {children}
     </div>
   );
 };
 
-const HorizontalSlidesScroll = ({ children }: HorizontalSlidesType) => {
+const HorizontalSlidesScroll = ({ year, setYear, children }: HorizontalSlidesType) => {
   const slidesContainerRef = useRef<HTMLElement | null>(null);
-  
+
   useGSAP(
     () => {
       const container = document.querySelector(".horizontal-slides-scroll");
       const slides = gsap.utils.toArray<HTMLDivElement>(".horizontal-slides-scroll .horizontal-slides-scroll-item");
       const rawScrollDistance = window.innerWidth * (slides.length - 1) + 500;
       const adjustedEnd = rawScrollDistance - window.innerHeight;
-
+      
       gsap.to(slides, {
         scrollTrigger: {
           trigger: slidesContainerRef.current,
@@ -34,11 +39,19 @@ const HorizontalSlidesScroll = ({ children }: HorizontalSlidesType) => {
           end: adjustedEnd,
           scrub: 2,
           pin: true,
+          snap: 1 / (slides.length - 1),
           invalidateOnRefresh: true,
         },
         x: -container!.scrollWidth + window.innerWidth,
         ease: "none",
       });
+
+      Observer.create({
+        target: ".horizontal-slides-scroll-item",
+        onClick: (self) => {
+          console.log(self)
+        }
+      })
     },
     { scope: slidesContainerRef },
   );

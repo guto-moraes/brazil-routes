@@ -59,6 +59,11 @@ export const HorizontalSlideItemSchema = z.object({
 export type HorizontalSlideItemTypes = z.infer<typeof HorizontalSlideItemSchema>;
 
 export const HorizontalSlidesSchema = z.object({
+  year: z.number().min(4).max(4),
+  setYear: z.function({
+    input: [z.number().min(4).max(4)],
+    output: z.void(),
+  }),
   children: z.custom<React.ReactNode>(),
 });
 

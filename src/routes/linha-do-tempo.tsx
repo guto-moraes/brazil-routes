@@ -131,7 +131,7 @@ function Timeline() {
       </section>
 
       <div id="timeline">
-        <HorizontalSlidesScroll>
+        <HorizontalSlidesScroll year={year} setYear={setYear}>
           <TimelineSlide />
           <div className="bg-bone-900 h-20 w-full flex items-center fixed bottom-0 left-0 z-100 overflow-hidden">
             <div className="w-[95%] mx-auto py-20 border-t">
