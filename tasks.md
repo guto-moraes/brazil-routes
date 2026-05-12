@@ -15,3 +15,4 @@
 - [ ] Criar a página da agenda do projeto
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Responsividade do _site_
+- [ ] Resolver _bug_ com o **Mapa Interativo** após a renderização.

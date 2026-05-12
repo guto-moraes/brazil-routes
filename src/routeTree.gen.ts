@@ -17,6 +17,7 @@ import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as CarouselRouteImport } from './routes/carousel'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
+import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
@@ -69,6 +70,11 @@ const CarouselRoute = CarouselRouteImport.update({
 const ApoioFinanceiroRoute = ApoioFinanceiroRouteImport.update({
   id: '/apoio-financeiro',
   path: '/apoio-financeiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcessibilidadeRoute = AcessibilidadeRouteImport.update({
@@ -149,6 +155,7 @@ const AlmanaqueDigitalCapitulo1Route =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
+  '/agenda': typeof AgendaRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
@@ -172,6 +179,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
+  '/agenda': typeof AgendaRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
+  '/agenda': typeof AgendaRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
   '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
@@ -221,6 +230,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/acessibilidade'
+    | '/agenda'
     | '/apoio-financeiro'
     | '/carousel'
     | '/creditos'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/acessibilidade'
+    | '/agenda'
     | '/apoio-financeiro'
     | '/carousel'
     | '/creditos'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/acessibilidade'
+    | '/agenda'
     | '/apoio-financeiro'
     | '/carousel'
     | '/creditos'
@@ -291,6 +303,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcessibilidadeRoute: typeof AcessibilidadeRoute
+  AgendaRoute: typeof AgendaRoute
   ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
   CarouselRoute: typeof CarouselRoute
   CreditosRoute: typeof CreditosRoute
@@ -368,6 +381,13 @@ declare module '@tanstack/react-router' {
       path: '/apoio-financeiro'
       fullPath: '/apoio-financeiro'
       preLoaderRoute: typeof ApoioFinanceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/acessibilidade': {
@@ -467,6 +487,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcessibilidadeRoute: AcessibilidadeRoute,
+  AgendaRoute: AgendaRoute,
   ApoioFinanceiroRoute: ApoioFinanceiroRoute,
   CarouselRoute: CarouselRoute,
   CreditosRoute: CreditosRoute,
