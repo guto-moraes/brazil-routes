@@ -1,7 +1,6 @@
 "use client";
 
 import { cn, sanitizedData, stripHtml } from "@/lib/utils";
-import { HorizontalSlideItem } from "./horizontal-slide-scroll";
 import { useQueryTimeline } from "@/hooks/queries/custom-posts-queries";
 
 const ColHeader = ({ color, className, text }: { color: string; className: string; text: string }) => (
@@ -69,11 +68,11 @@ const TimelineSlide = () => {
       const events = timeline.info.eventsDate.split(",");
 
       return (
-        <HorizontalSlideItem
-          id={timeline.title}
-          bgColor={timeline.info.bgColor}
-          className="h-svh w-full flex flex-col"
+        <article
           key={timeline.id}
+          id={`slide-${timeline.title}`}
+          className="timeline-item h-[calc(100svh-64px)] w-svw flex flex-col"
+          style={{ backgroundColor: timeline.info.bgColor }}
         >
           <div
             className="h-7 w-full flex divide-x divide-bone-800/20 divide-dashed"
@@ -85,7 +84,7 @@ const TimelineSlide = () => {
             <ColHeader className="flex-1 justify-center" text="Ano" color={timeline.info.textColor} />
           </div>
           <div className="grow w-full flex divide-x divide-dashed divide-bone-900/20">
-            <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-32">
+            <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-8">
               <hr className="h-px border-px border-dashed border-bone-800/20 bg-none" />
               <div className="w-full flex flex-col gap-y-4">
                 <Badge text={timeline.info.firstCol.tagText} color={timeline.info.textColor} />
@@ -93,12 +92,12 @@ const TimelineSlide = () => {
               </div>
               <Figure
                 height={timeline.info.firstCol.heightImage}
-                image={timeline.info.firstCol.image.node.guid}
+                image={timeline.info.firstCol.image.node.sourceUrl}
                 imageAlt={timeline.info.firstCol.image.node.altText}
                 caption={timeline.info.firstCol.image.node.caption}
               />
             </div>
-            <div className="flex-4 flex flex-col justify-end gap-y-8 px-8 pb-32">
+            <div className="flex-4 flex flex-col justify-end gap-y-8 px-8 pb-8">
               <hr className="h-px border-px border-dashed border-bone-800/20 bg-none" />
               <div className="w-full flex flex-col gap-y-4">
                 <Badge text={timeline.info.secondCol.tagText} color={timeline.info.textColor} />
@@ -106,12 +105,12 @@ const TimelineSlide = () => {
               </div>
               <Figure
                 height={timeline.info.secondCol.heightImage}
-                image={timeline.info.secondCol.image.node.guid}
+                image={timeline.info.secondCol.image.node.sourceUrl}
                 imageAlt={timeline.info.secondCol.image.node.altText}
                 caption={timeline.info.secondCol.image.node.caption}
               />
             </div>
-            <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-32">
+            <div className="flex-2 flex flex-col justify-end gap-y-8 px-8 pb-8">
               <hr className="h-px border-px border-dashed border-bone-800/20 bg-none" />
               <div className="w-full flex flex-col gap-y-4">
                 <Badge text={timeline.info.thirdCol.textTag} color={timeline.info.textColor} />
@@ -120,7 +119,7 @@ const TimelineSlide = () => {
               {timeline.info.thirdCol.heightImage && timeline.info.thirdCol.image && (
                 <Figure
                   height={timeline.info.thirdCol.heightImage}
-                  image={timeline.info.thirdCol.image.node.guid}
+                  image={timeline.info.thirdCol.image.node.sourceUrl}
                   imageAlt={timeline.info.thirdCol.image.node.altText}
                   caption={timeline.info.thirdCol.image.node.caption}
                 />
@@ -139,7 +138,7 @@ const TimelineSlide = () => {
               </h2>
             </div>
           </div>
-        </HorizontalSlideItem>
+        </article>
       );
     })
   );

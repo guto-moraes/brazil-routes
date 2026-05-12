@@ -6,7 +6,7 @@ import Map from "@/components/map";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { X } from "lucide-react";
 
-export const Route = createFileRoute("/mapa-interativo")({
+export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
   head: () => ({
     meta: [
       {

@@ -12,19 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as ReferenciasRouteImport } from './routes/referencias'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
-import { Route as MascaraRouteImport } from './routes/mascara'
-import { Route as MapaInterativoRouteImport } from './routes/mapa-interativo'
-import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
+import { Route as CarouselRouteImport } from './routes/carousel'
 import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
 import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
-import { Route as AlmanaqueDigitalQuizzRouteImport } from './routes/almanaque-digital/quizz'
+import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/almanaque-digital/mapa-interativo'
+import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
 import { Route as AlmanaqueDigitalCapitulo5RouteImport } from './routes/almanaque-digital/capitulo-5'
 import { Route as AlmanaqueDigitalCapitulo4RouteImport } from './routes/almanaque-digital/capitulo-4'
@@ -47,21 +46,6 @@ const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MascaraRoute = MascaraRouteImport.update({
-  id: '/mascara',
-  path: '/mascara',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapaInterativoRoute = MapaInterativoRouteImport.update({
-  id: '/mapa-interativo',
-  path: '/mapa-interativo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
-  id: '/linha-do-tempo',
-  path: '/linha-do-tempo',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FaleConoscoRoute = FaleConoscoRouteImport.update({
   id: '/fale-conosco',
   path: '/fale-conosco',
@@ -75,6 +59,11 @@ const EquipeDoProjetoRoute = EquipeDoProjetoRouteImport.update({
 const CreditosRoute = CreditosRouteImport.update({
   id: '/creditos',
   path: '/creditos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarouselRoute = CarouselRouteImport.update({
+  id: '/carousel',
+  path: '/carousel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApoioFinanceiroRoute = ApoioFinanceiroRouteImport.update({
@@ -108,11 +97,18 @@ const BlogDoConhecimentoChar123SlugChar125Route =
     path: '/blog-do-conhecimento/{-$slug}',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AlmanaqueDigitalQuizzRoute = AlmanaqueDigitalQuizzRouteImport.update({
-  id: '/almanaque-digital/quizz',
-  path: '/almanaque-digital/quizz',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const AlmanaqueDigitalMapaInterativoRoute =
+  AlmanaqueDigitalMapaInterativoRouteImport.update({
+    id: '/almanaque-digital/mapa-interativo',
+    path: '/almanaque-digital/mapa-interativo',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AlmanaqueDigitalLinhaDoTempoRoute =
+  AlmanaqueDigitalLinhaDoTempoRouteImport.update({
+    id: '/almanaque-digital/linha-do-tempo',
+    path: '/almanaque-digital/linha-do-tempo',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AlmanaqueDigitalGlossarioRoute =
   AlmanaqueDigitalGlossarioRouteImport.update({
     id: '/almanaque-digital/glossario',
@@ -154,12 +150,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
+  '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
-  '/mapa-interativo': typeof MapaInterativoRoute
-  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -169,7 +163,8 @@ export interface FileRoutesByFullPath {
   '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
   '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
-  '/almanaque-digital/quizz': typeof AlmanaqueDigitalQuizzRoute
+  '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
+  '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -178,12 +173,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
+  '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
-  '/mapa-interativo': typeof MapaInterativoRoute
-  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -193,7 +186,8 @@ export interface FileRoutesByTo {
   '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
   '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
-  '/almanaque-digital/quizz': typeof AlmanaqueDigitalQuizzRoute
+  '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
+  '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento': typeof BlogDoConhecimentoIndexRoute
@@ -203,12 +197,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/acessibilidade': typeof AcessibilidadeRoute
   '/apoio-financeiro': typeof ApoioFinanceiroRoute
+  '/carousel': typeof CarouselRoute
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
-  '/linha-do-tempo': typeof LinhaDoTempoRoute
-  '/mapa-interativo': typeof MapaInterativoRoute
-  '/mascara': typeof MascaraRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
@@ -218,7 +210,8 @@ export interface FileRoutesById {
   '/almanaque-digital/capitulo-4': typeof AlmanaqueDigitalCapitulo4Route
   '/almanaque-digital/capitulo-5': typeof AlmanaqueDigitalCapitulo5Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
-  '/almanaque-digital/quizz': typeof AlmanaqueDigitalQuizzRoute
+  '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
+  '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -229,12 +222,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acessibilidade'
     | '/apoio-financeiro'
+    | '/carousel'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
-    | '/linha-do-tempo'
-    | '/mapa-interativo'
-    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -244,7 +235,8 @@ export interface FileRouteTypes {
     | '/almanaque-digital/capitulo-4'
     | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
-    | '/almanaque-digital/quizz'
+    | '/almanaque-digital/linha-do-tempo'
+    | '/almanaque-digital/mapa-interativo'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -253,12 +245,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acessibilidade'
     | '/apoio-financeiro'
+    | '/carousel'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
-    | '/linha-do-tempo'
-    | '/mapa-interativo'
-    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -268,7 +258,8 @@ export interface FileRouteTypes {
     | '/almanaque-digital/capitulo-4'
     | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
-    | '/almanaque-digital/quizz'
+    | '/almanaque-digital/linha-do-tempo'
+    | '/almanaque-digital/mapa-interativo'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
     | '/blog-do-conhecimento'
@@ -277,12 +268,10 @@ export interface FileRouteTypes {
     | '/'
     | '/acessibilidade'
     | '/apoio-financeiro'
+    | '/carousel'
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
-    | '/linha-do-tempo'
-    | '/mapa-interativo'
-    | '/mascara'
     | '/politica-de-privacidade'
     | '/referencias'
     | '/sobre-o-projeto'
@@ -292,7 +281,8 @@ export interface FileRouteTypes {
     | '/almanaque-digital/capitulo-4'
     | '/almanaque-digital/capitulo-5'
     | '/almanaque-digital/glossario'
-    | '/almanaque-digital/quizz'
+    | '/almanaque-digital/linha-do-tempo'
+    | '/almanaque-digital/mapa-interativo'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -302,12 +292,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcessibilidadeRoute: typeof AcessibilidadeRoute
   ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
+  CarouselRoute: typeof CarouselRoute
   CreditosRoute: typeof CreditosRoute
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
-  LinhaDoTempoRoute: typeof LinhaDoTempoRoute
-  MapaInterativoRoute: typeof MapaInterativoRoute
-  MascaraRoute: typeof MascaraRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
@@ -317,7 +305,8 @@ export interface RootRouteChildren {
   AlmanaqueDigitalCapitulo4Route: typeof AlmanaqueDigitalCapitulo4Route
   AlmanaqueDigitalCapitulo5Route: typeof AlmanaqueDigitalCapitulo5Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
-  AlmanaqueDigitalQuizzRoute: typeof AlmanaqueDigitalQuizzRoute
+  AlmanaqueDigitalLinhaDoTempoRoute: typeof AlmanaqueDigitalLinhaDoTempoRoute
+  AlmanaqueDigitalMapaInterativoRoute: typeof AlmanaqueDigitalMapaInterativoRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   BlogDoConhecimentoIndexRoute: typeof BlogDoConhecimentoIndexRoute
@@ -346,27 +335,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/mascara': {
-      id: '/mascara'
-      path: '/mascara'
-      fullPath: '/mascara'
-      preLoaderRoute: typeof MascaraRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mapa-interativo': {
-      id: '/mapa-interativo'
-      path: '/mapa-interativo'
-      fullPath: '/mapa-interativo'
-      preLoaderRoute: typeof MapaInterativoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/linha-do-tempo': {
-      id: '/linha-do-tempo'
-      path: '/linha-do-tempo'
-      fullPath: '/linha-do-tempo'
-      preLoaderRoute: typeof LinhaDoTempoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/fale-conosco': {
       id: '/fale-conosco'
       path: '/fale-conosco'
@@ -386,6 +354,13 @@ declare module '@tanstack/react-router' {
       path: '/creditos'
       fullPath: '/creditos'
       preLoaderRoute: typeof CreditosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carousel': {
+      id: '/carousel'
+      path: '/carousel'
+      fullPath: '/carousel'
+      preLoaderRoute: typeof CarouselRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apoio-financeiro': {
@@ -430,11 +405,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogDoConhecimentoChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/almanaque-digital/quizz': {
-      id: '/almanaque-digital/quizz'
-      path: '/almanaque-digital/quizz'
-      fullPath: '/almanaque-digital/quizz'
-      preLoaderRoute: typeof AlmanaqueDigitalQuizzRouteImport
+    '/almanaque-digital/mapa-interativo': {
+      id: '/almanaque-digital/mapa-interativo'
+      path: '/almanaque-digital/mapa-interativo'
+      fullPath: '/almanaque-digital/mapa-interativo'
+      preLoaderRoute: typeof AlmanaqueDigitalMapaInterativoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/almanaque-digital/linha-do-tempo': {
+      id: '/almanaque-digital/linha-do-tempo'
+      path: '/almanaque-digital/linha-do-tempo'
+      fullPath: '/almanaque-digital/linha-do-tempo'
+      preLoaderRoute: typeof AlmanaqueDigitalLinhaDoTempoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/almanaque-digital/glossario': {
@@ -486,12 +468,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcessibilidadeRoute: AcessibilidadeRoute,
   ApoioFinanceiroRoute: ApoioFinanceiroRoute,
+  CarouselRoute: CarouselRoute,
   CreditosRoute: CreditosRoute,
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
-  LinhaDoTempoRoute: LinhaDoTempoRoute,
-  MapaInterativoRoute: MapaInterativoRoute,
-  MascaraRoute: MascaraRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
@@ -501,7 +481,8 @@ const rootRouteChildren: RootRouteChildren = {
   AlmanaqueDigitalCapitulo4Route: AlmanaqueDigitalCapitulo4Route,
   AlmanaqueDigitalCapitulo5Route: AlmanaqueDigitalCapitulo5Route,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
-  AlmanaqueDigitalQuizzRoute: AlmanaqueDigitalQuizzRoute,
+  AlmanaqueDigitalLinhaDoTempoRoute: AlmanaqueDigitalLinhaDoTempoRoute,
+  AlmanaqueDigitalMapaInterativoRoute: AlmanaqueDigitalMapaInterativoRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,

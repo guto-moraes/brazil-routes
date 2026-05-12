@@ -14,12 +14,10 @@ body {
   position: relative;
 }
 
-
 .svg-clipped {
   -webkit-clip-path: url(#svgPath);
   clip-path: url(#svgPath);
 }
-
 
 @font-face {
   font-family: "CabinetGrotesk Variable";
@@ -760,22 +758,7 @@ html:active-view-transition-type(warp) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* QUIZZ */
 .game-started:after {
   transform: translateX(calc(-50% - 100px));
 }

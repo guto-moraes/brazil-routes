@@ -64,7 +64,7 @@ export const TIMELINE = gql`
             heightImage
             image {
               node {
-                guid
+                sourceUrl
                 altText
                 caption
               }
@@ -76,7 +76,7 @@ export const TIMELINE = gql`
             heightImage
             image {
               node {
-                guid
+                sourceUrl
                 altText
                 caption
               }
@@ -89,7 +89,7 @@ export const TIMELINE = gql`
             heightImage
             image {
               node {
-                guid
+                sourceUrl
                 altText
                 caption
               }

@@ -81,7 +81,7 @@ export const FirstAndSecondTimelineColumnsSchema = z.object({
   heightImage: z.number(),
   image: z.object({
     node: z.object({
-      guid: z.string(),
+      sourceUrl: z.string(),
       altText: z.string(),
       caption: z.string(),
     }),
@@ -106,7 +106,7 @@ export const TimelineInfoSchema = z.object({
       image: z
         .object({
           node: z.object({
-            guid: z.string(),
+            sourceUrl: z.string(),
             altText: z.string(),
             caption: z.string(),
           }),

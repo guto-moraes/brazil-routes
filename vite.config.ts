@@ -6,11 +6,8 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
-  mode: "development",
+  mode: "production",
   base:"./",
-  build: {
-    outDir: "dist", // Changes base output directory from 'dist' to 'build'
-  },
   environments: {
     client: {
       build: {
@@ -31,13 +28,13 @@ export default defineConfig({
         cssCodeSplit: true,
       },
       define: {
-        "process.env.NODE_ENV": "'development'"
+        "process.env.NODE_ENV": "'production'"
       },
     },
   },
   plugins: [
     tanstackRouter({
-      autoCodeSplitting: true,
+      autoCodeSplitting: false,
       target: "react",
     }),
     react(),

@@ -44,12 +44,12 @@ const primaryLinks: LinkTypes[] = [
   },
   {
     title: "Linha do Tempo",
-    url: "/linha-do-tempo",
+    url: "/almanaque-digital/linha-do-tempo",
     transition: ["slide-left"],
   },
   {
     title: "Mapa Interativo",
-    url: "/mapa-interativo",
+    url: "/almanaque-digital/mapa-interativo",
     transition: ["slide-right"],
   },
   {
