@@ -1,5 +1,5 @@
-import { BLOG, CALENDAR, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
-import type { BlogItemTypes, BlogTypes, CalendarTypes, PageTypes } from "@/types/page-and-post-types";
+import { BLOG, CALENDAR, GO_FURTHER, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes, BlogTypes, CalendarTypes, GoFurtherPageTypes, PageTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 
@@ -64,5 +64,18 @@ export const useQueryCalendar = (first: number, offset: number) => {
   return useSuspenseQuery<CalendarTypes>({
     queryKey: ["calendar"],
     queryFn: () => fetchCalendar(first, offset),
+  });
+};
+
+//Fetch do blog do conhecimento para todos os resultados
+const fetchGoFurther = async () => {
+  return await request<GoFurtherPageTypes>(GRAPHQL_URL, GO_FURTHER);
+};
+
+//Query do blog do conhecimento para todos os resultados
+export const useQueryGoFurther = () => {
+  return useSuspenseQuery<GoFurtherPageTypes>({
+    queryKey: ["go-further"],
+    queryFn: () => fetchGoFurther(),
   });
 };

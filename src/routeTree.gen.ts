@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
-import { Route as ReferenciasRouteImport } from './routes/referencias'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
@@ -23,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
+import { Route as AlmanaqueDigitalVaAlemRouteImport } from './routes/almanaque-digital/va-alem'
 import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/almanaque-digital/mapa-interativo'
 import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
@@ -35,11 +35,6 @@ import { Route as AlmanaqueDigitalCapitulo1RouteImport } from './routes/almanaqu
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
   path: '/sobre-o-projeto',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReferenciasRoute = ReferenciasRouteImport.update({
-  id: '/referencias',
-  path: '/referencias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -103,6 +98,11 @@ const BlogDoConhecimentoChar123SlugChar125Route =
     path: '/blog-do-conhecimento/{-$slug}',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AlmanaqueDigitalVaAlemRoute = AlmanaqueDigitalVaAlemRouteImport.update({
+  id: '/almanaque-digital/va-alem',
+  path: '/almanaque-digital/va-alem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AlmanaqueDigitalMapaInterativoRoute =
   AlmanaqueDigitalMapaInterativoRouteImport.update({
     id: '/almanaque-digital/mapa-interativo',
@@ -162,7 +162,6 @@ export interface FileRoutesByFullPath {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -172,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
+  '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -186,7 +186,6 @@ export interface FileRoutesByTo {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -196,6 +195,7 @@ export interface FileRoutesByTo {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
+  '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento': typeof BlogDoConhecimentoIndexRoute
@@ -211,7 +211,6 @@ export interface FileRoutesById {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/referencias': typeof ReferenciasRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
@@ -221,6 +220,7 @@ export interface FileRoutesById {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
+  '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -237,7 +237,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/politica-de-privacidade'
-    | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -247,6 +246,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
+    | '/almanaque-digital/va-alem'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -261,7 +261,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/politica-de-privacidade'
-    | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -271,6 +270,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
+    | '/almanaque-digital/va-alem'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
     | '/blog-do-conhecimento'
@@ -285,7 +285,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/politica-de-privacidade'
-    | '/referencias'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
@@ -295,6 +294,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
+    | '/almanaque-digital/va-alem'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -310,7 +310,6 @@ export interface RootRouteChildren {
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
-  ReferenciasRoute: typeof ReferenciasRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
   AlmanaqueDigitalCapitulo2Route: typeof AlmanaqueDigitalCapitulo2Route
@@ -320,6 +319,7 @@ export interface RootRouteChildren {
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   AlmanaqueDigitalLinhaDoTempoRoute: typeof AlmanaqueDigitalLinhaDoTempoRoute
   AlmanaqueDigitalMapaInterativoRoute: typeof AlmanaqueDigitalMapaInterativoRoute
+  AlmanaqueDigitalVaAlemRoute: typeof AlmanaqueDigitalVaAlemRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   BlogDoConhecimentoIndexRoute: typeof BlogDoConhecimentoIndexRoute
@@ -332,13 +332,6 @@ declare module '@tanstack/react-router' {
       path: '/sobre-o-projeto'
       fullPath: '/sobre-o-projeto'
       preLoaderRoute: typeof SobreOProjetoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/referencias': {
-      id: '/referencias'
-      path: '/referencias'
-      fullPath: '/referencias'
-      preLoaderRoute: typeof ReferenciasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -425,6 +418,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogDoConhecimentoChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/va-alem': {
+      id: '/almanaque-digital/va-alem'
+      path: '/almanaque-digital/va-alem'
+      fullPath: '/almanaque-digital/va-alem'
+      preLoaderRoute: typeof AlmanaqueDigitalVaAlemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/almanaque-digital/mapa-interativo': {
       id: '/almanaque-digital/mapa-interativo'
       path: '/almanaque-digital/mapa-interativo'
@@ -494,7 +494,6 @@ const rootRouteChildren: RootRouteChildren = {
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
-  ReferenciasRoute: ReferenciasRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,
   AlmanaqueDigitalCapitulo2Route: AlmanaqueDigitalCapitulo2Route,
@@ -504,6 +503,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   AlmanaqueDigitalLinhaDoTempoRoute: AlmanaqueDigitalLinhaDoTempoRoute,
   AlmanaqueDigitalMapaInterativoRoute: AlmanaqueDigitalMapaInterativoRoute,
+  AlmanaqueDigitalVaAlemRoute: AlmanaqueDigitalVaAlemRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,

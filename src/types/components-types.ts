@@ -144,8 +144,12 @@ export const TeamSocialsSchema = z.object({
 
 export type TeamSocialTypes = z.infer<typeof TeamSocialsSchema>;
 
+export type SocialsAndNameTypes = TeamSocialTypes & {
+  memberName: string,
+};
+
 export const CardStackSchema = z.object({
-    photo: z.string(),
+    image: z.string(),
     name: z.string(),
     role: z.string(),
     description: z.string(),

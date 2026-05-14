@@ -41,7 +41,7 @@ const date = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-bege-800 py-16 w-full">
+    <footer className="theme-footer bg-bege-800 py-16 w-full">
       <div className="max-w-384 mx-auto px-4 xl:px-0">
         <div className="h-full flex flex-col gap-y-4 content-center">
           {/* Footer Menu */}

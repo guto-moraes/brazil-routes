@@ -58,10 +58,10 @@ const primaryLinks: LinkTypes[] = [
     transition: ["slide-left"],
   },
   {
-    title: "Fale Conosco",
-    url: "/fale-conosco",
+    title: "Vá Além",
+    url: "/almanaque-digital/va-alem",
     transition: ["slide-right"],
-  },
+  }
 ];
 
 const secondaryLinks: LinkTypes[] = [
@@ -86,10 +86,10 @@ const secondaryLinks: LinkTypes[] = [
     transition: ["slide-left"],
   },
   {
-    title: "Referências",
-    url: "/referencias",
+    title: "Fale Conosco",
+    url: "/fale-conosco",
     transition: ["slide-right"],
-  },
+  }
 ];
 
 export { socials, legals, primaryLinks, secondaryLinks };

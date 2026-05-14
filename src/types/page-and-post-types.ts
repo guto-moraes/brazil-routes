@@ -95,7 +95,7 @@ export const BlogItemSchema = z.object({
 
 export type BlogItemTypes = z.infer<typeof BlogItemSchema>;
 
-//Tipage da Query para consultas das postagens na categoria Agenda
+//Tipagem da Query para consultas das postagens na categoria Agenda
 export const CalendarItemSchema = z.object({
   id: z.string(),
   modified: z.string(),
@@ -150,3 +150,26 @@ export const CalendarSchema = z.object({
 });
 
 export type CalendarTypes = z.infer<typeof CalendarSchema>;
+
+//Tipagem da página Vá Além
+export const GoFurtherSchema = z.object({
+  subject: z.string(),
+  name: z.string(),
+  description: z.string(),
+  link: z.string(),
+});
+
+export type GoFurtherTypes = z.infer<typeof GoFurtherSchema>;
+
+export const GoFurtherPageSchema = z.object({
+  nodeByUri: z.object({
+    id: z.string(),
+    title: z.string(),
+    content: z.string(),
+    goFurther: z.object({
+      goFurther: z.array(GoFurtherSchema),
+    }),
+  }),
+});
+
+export type GoFurtherPageTypes = z.infer<typeof GoFurtherPageSchema>;

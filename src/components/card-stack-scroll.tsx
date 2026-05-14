@@ -7,7 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Instagram from "./instagram";
 import { Mail } from "lucide-react";
 import { sanitizedData } from "@/lib/utils";
-import type { MemberCardDetailsTypes, TeamItemTypes, TeamSocialTypes } from "@/types/components-types";
+import type {
+  CardStackTypes,
+  MemberCardDetailsTypes,
+  SocialsAndNameTypes,
+  TeamItemTypes,
+} from "@/types/components-types";
 import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,11 +28,7 @@ const MemberDetails = ({ memberName, memberRole, memberDescription }: MemberCard
   </div>
 );
 
-type SocialsTypes = TeamSocialTypes & {
-  memberName: string;
-};
-
-const SocialMedia = ({ socialUrl, socialName, socialAt, memberName }: SocialsTypes) => {
+const SocialMedia = ({ socialUrl, socialName, socialAt, memberName }: SocialsAndNameTypes) => {
   const title =
     socialName[0] === "Email" ? `Entre em contato com ${memberName}` : `Siga ${memberName} no ${socialName}`;
   return (
@@ -44,15 +45,7 @@ const SocialMedia = ({ socialUrl, socialName, socialAt, memberName }: SocialsTyp
   );
 };
 
-type CardStackTypes = {
-  image: string;
-  title: string;
-  content: string;
-  role: string;
-  socials: TeamSocialTypes[];
-};
-
-const CardStack = ({ image, title, content, role, socials }: CardStackTypes) => {
+const CardStack = ({ image, name, description, role, socials }: CardStackTypes) => {
   return (
     <div className="team-member bg-tan-100 rounded-2xl drop-shadow-xl absolute top-0 left-1/2 -translate-x-1/2 xl:h-2/3 xl:w-2/3">
       <div className="relative h-full w-full flex justify-center items-center gap-8 p-6">
@@ -60,7 +53,7 @@ const CardStack = ({ image, title, content, role, socials }: CardStackTypes) => 
           <img className="h-full w-full object-cover" src={image} alt="" />
         </figure>
         <div className="flex-2 h-full w-full flex flex-col justify-between items-start gap-y-4">
-          <MemberDetails memberName={title} memberRole={role} memberDescription={content} />
+          <MemberDetails memberName={name} memberRole={role} memberDescription={description} />
           <ul className="text-sm flex gap-x-4">
             {socials.map((social, index) => (
               <SocialMedia
@@ -68,7 +61,7 @@ const CardStack = ({ image, title, content, role, socials }: CardStackTypes) => 
                 socialUrl={social.socialUrl}
                 socialName={social.socialName}
                 socialAt={social.socialAt ? social.socialAt : social.socialUrl}
-                memberName={title}
+                memberName={name}
               />
             ))}
           </ul>
@@ -129,9 +122,9 @@ const CardStackScroll = ({ children }: { children: React.ReactNode }) => {
             <CardStack
               key={member.id}
               image={member.featuredImage.node.sourceUrl}
-              title={member.title}
+              name={member.title}
               role={member.team.role}
-              content={member.content}
+              description={member.content}
               socials={member.team.socials}
             />
           ))}

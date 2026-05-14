@@ -4,9 +4,11 @@
 - [X] Função para selecionar o slide da linha do tempo durante da rolagem 
 - [X] Criar a página da agenda do projeto
 - [X] Finalizar páginas da Equipe do Projeto
-- [ ] Finalizar página de Referências
+- [X] Corrigir _bug_ da página dos capítulos
+- [X] Remover a página de Referências e criar a página de Vá Além
 - [ ] Finalizar página de Créditos
 - [ ] Criar uma página com informações do impacto social do projeto
+- [ ] Integrar o menu principal com o WordPress
 - [ ] Corrigir _bug_ do botão fechar menu
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda

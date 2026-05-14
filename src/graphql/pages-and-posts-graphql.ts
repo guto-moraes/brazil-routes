@@ -125,3 +125,24 @@ export const CALENDAR = gql`
     }
   }
 `;
+
+//Query para a página Vá Além
+export const GO_FURTHER = gql`
+  query GoFurhter {
+    nodeByUri(uri: "almanaque-digital/va-alem") {
+      id
+      ... on Page {
+        title(format: RENDERED)
+        content(format: RENDERED)
+        goFurther {
+          goFurther {
+            subject
+            name
+            description
+            link
+          }
+        }
+      }
+    }
+  }
+`;
