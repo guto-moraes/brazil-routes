@@ -24,3 +24,16 @@ export const stripHtml = (html: string) => {
   // textContent returns the plain text without tags
   return tempDiv.textContent || tempDiv.innerText || "";
 };
+
+export const calendarDateFormat = (formatDate: string) => {
+  const fullDate = new Intl.DateTimeFormat("pt-BR", { month: "short", day: "numeric", timeZone: "UTC" }).format(
+    new Date(formatDate),
+  );
+  const date = fullDate.split(" de ");
+  const day = date[0].length < 2 ? `0${date[0]}` : date[0];
+  const month = date[1].slice(0, -1);
+  return {
+    day,
+    month,
+  };
+};

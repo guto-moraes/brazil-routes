@@ -1,29 +1,30 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useQueryState } from "nuqs";
+import { useQueryCalendar } from "@/hooks/queries/pages-and-posts-queries";
 import Title from "@/components/title";
 import Main from "@/layouts/main";
-import { createFileRoute } from "@tanstack/react-router";
-import photo from "@/assets/images/agenda/encontro-pioneiros_nova-xavantina_mar-2026.webp";
-import { MapPin } from "lucide-react";
+import EventCard from "@/components/event-card";
+import Pagination from "@/components/pagination";
+import { calendarDateFormat } from "@/lib/utils";
 
 export const Route = createFileRoute("/agenda")({
   component: Events,
 });
 
-type TimeProps = {
-  datetime: string;
-  day: string;
-  month: string;
-};
-
-const Time = ({ datetime, day, month }: TimeProps) => {
-  return (
-    <time className="text-tan-400 flex flex-col justify-center items-end gap-y-px pr-12" dateTime={datetime}>
-      <span className="text-5xl font-bold -tracking-widest">{day}</span>
-      <span className="text-xl font-bold uppercase tracking-tight">{month}</span>
-    </time>
-  );
-};
+const MAX_ITEMS = 5; // Max pages listing in pagination
+const MAX_LEFT = (MAX_ITEMS - 1) / 2;
+const LIMIT = 1; // Number of posts to fetch per request
 
 function Events() {
+  const [offset, setOffset] = useQueryState("offset");
+  const { posts } = useQueryCalendar(LIMIT, offset ? Number(offset) : 0).data || {};
+
+  const pages = posts ? Math.ceil((posts.pageInfo.offsetPagination.total ?? 0) / LIMIT) : 0; // Check if total pages is bigger that LIMIT
+
+  const handlePagination = (page: number) => {
+    setOffset(String(Number((page - 1) * LIMIT)));
+  };
+
   return (
     <>
       <Main className="max-w-5xl mx-auto pb:12 xl:pb-24">
@@ -31,26 +32,37 @@ function Events() {
           Agenda <span className="text-tan-400">de Eventos</span>
         </Title>
         <section className="flex flex-col items-center gap-y-6">
-          <article className="rounded-2xl shadow-lg bg-tan-100 flex divide-x divide-dashed divide-tan-200 py-4 px-8">
-            <Time datetime="2026-03-07T19:00-08:00" day="07" month="Mar" />
-            <div className="flex-1 flex justify-center items-center">
-              <div className="rounded-2xl h-24 w-32 overflow-hidden">
-                <img className="h-full w-full object-cover" src={photo} alt="" />
-              </div>
-            </div>
-            <div className="flex-2 flex flex-col justify-center items-start gap-y-2.5 pl-12">
-              <h2 className="text-2xl text-bone-800 font-inter font-bold uppercase leading-none -tracking-wide">
-                Participação no XXXV Encontro dos Pioneiros da Marcha para o Oeste
-              </h2>
-              <ul className="text-bone-600 font-medium leading-5">
-                <li className="flex justify-start items-center gap-x-1">
-                  <MapPin className="text-mate-duo-400" />
-                  Pavilhão de Eventos da EUBIOSE, Nova Xavantina - MT
-                </li>
-              </ul>
-            </div>
-          </article>
+          {
+            posts.nodes.map((calendar, index) => {
+              // console.log(calendar.agenda.eventDate.split("-"))
+              return(
+                <EventCard
+                  key={index}
+                  eventTime={calendar.date}
+                  eventDay={calendarDateFormat(calendar.agenda.eventDate).day}
+                  eventMonth={calendarDateFormat(calendar.agenda.eventDate).month}
+                  eventImageUrl={calendar.featuredImage.node.sourceUrl}
+                  eventUrl={calendar.link}
+                  eventTitle={calendar.title}
+                  eventPlace={calendar.agenda.eventPlace}
+                />
+              )}
+            )
+          }
         </section>
+
+        {posts && pages > 1 && (
+          <Pagination
+            hasPrevious={posts.pageInfo.offsetPagination.hasPrevious}
+            hasNext={posts.pageInfo.offsetPagination.hasMore}
+            offset={Number(offset)}
+            total={posts.pageInfo.offsetPagination.total}
+            limit={LIMIT}
+            maxItems={MAX_ITEMS}
+            maxLeft={MAX_LEFT}
+            handlePagination={handlePagination}
+          />
+        )}
       </Main>
     </>
   );

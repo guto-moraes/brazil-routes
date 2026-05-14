@@ -10,10 +10,10 @@ export const PAGE = gql`
   }
 `;
 
-//GraphQl Query para todos os posts do Blog do Conhecimento
+//GraphQl Query para todos os posts publicados nas categorias Agenda e Blog
 export const BLOG = gql`
   query Blog {
-    posts {
+    posts(where: { categoryName: "agenda, blog" }) {
       pageInfo {
         offsetPagination {
           hasMore
@@ -25,6 +25,11 @@ export const BLOG = gql`
         id
         modified
         date
+        categories {
+          nodes {
+            name
+          }
+        }
         author {
           node {
             name
@@ -75,6 +80,48 @@ export const SINGLE_BLOG = gql`
       }
       title(format: RENDERED)
       content(format: RENDERED)
+    }
+  }
+`;
+
+//Query para todos os posts publicados na categoria Agenda
+export const CALENDAR = gql`
+  query Calendar {
+    posts(where: { categoryName: "agenda" }) {
+      pageInfo {
+        offsetPagination {
+          hasMore
+          hasPrevious
+          total
+        }
+      }
+      nodes {
+        id
+        modified
+        date
+        author {
+          node {
+            name
+          }
+        }
+        tags {
+          nodes {
+            name
+          }
+        }
+        agenda {
+          eventDate
+          eventPlace
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        title(format: RENDERED)
+        content(format: RENDERED)
+        link
+      }
     }
   }
 `;

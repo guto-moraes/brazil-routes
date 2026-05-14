@@ -17,7 +17,8 @@ const ArticleContent = ({ className, content }: { className?: string; content: s
         "[&_h2.wp-block-heading]:font-black [&_h2.wp-block-heading]:mb-8 [&_p_a]:text-chocolate-300 [&_p_a]:hover:text-chocolate-400",
         "[&_p_a]:transition-colors [&_p_a]:duration-300 [&_.wp-block-image_img]:max-w-full! [&_.size-large_img]:max-w-full",
         "[&_ol]:list-decimal [&_ul]:not-last:mb-12 [&_ul]:ml-6 [&_ul]:list-disc [&_ul_li]:text-lg [&_ul_li]:mb-2",
-        "[&_strong]:text-tan-800",
+        "[&_strong]:text-tan-800 [&_.wp-block-gallery_.wp-block-image]:mb-0! [&_.wp-block-gallery]:grid",
+        "[&_.wp-block-gallery]:grid-cols-3 [&_.wp-block-gallery]:gap-6 [&_.wp-block-gallery]:mt-16",
         className
       )}
       dangerouslySetInnerHTML={sanitizedData(content)}

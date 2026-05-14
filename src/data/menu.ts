@@ -33,29 +33,34 @@ const primaryLinks: LinkTypes[] = [
     transition: ["slide-right"],
   },
   {
+    title: "Agenda do Projeto",
+    url: "/agenda",
+    transition: ["slide-left"],
+  },
+  {
     title: "Blog do Conhecimento",
     url: "/blog-do-conhecimento/",
-    transition: ["slide-left"],
+    transition: ["slide-right"],
   },
   {
     title: "Alamanaque Digital",
     url: "/almanaque-digital",
-    transition: ["slide-right"],
+    transition: ["slide-left"],
   },
   {
     title: "Linha do Tempo",
     url: "/almanaque-digital/linha-do-tempo",
-    transition: ["slide-left"],
+    transition: ["slide-right"],
   },
   {
     title: "Mapa Interativo",
     url: "/almanaque-digital/mapa-interativo",
-    transition: ["slide-right"],
+    transition: ["slide-left"],
   },
   {
     title: "Fale Conosco",
     url: "/fale-conosco",
-    transition: ["slide-left"],
+    transition: ["slide-right"],
   },
 ];
 

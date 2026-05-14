@@ -68,7 +68,7 @@ const Timeline = () => {
           });
         });
 
-        /* Panels */
+        /* Scroll slides */
         tween = gsap.to(slides, {
           xPercent: -100 * (slides.length - 1),
           ease: "none",
@@ -85,6 +85,24 @@ const Timeline = () => {
             end: () => "+=" + (timelineContainer!.offsetWidth - innerWidth),
           },
         });
+
+        //Viewport slide observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target;
+                // Get element id in viewport
+                const elementId = element.getAttribute("id")?.split("-")[1];
+                //Set year of current slide
+                setCurrentSlide(Number(elementId));
+              }
+            });
+          },
+          { threshold: 0.5 }, //Slide percentage to get id
+        );
+
+        slides.forEach((section) => observer.observe(section));
       }
     },
     { scope: scopeRef },
@@ -100,10 +118,7 @@ const Timeline = () => {
             role="navigation"
           >
             <hr className="bg-none border-chocolate-300 w-[99%] mx-auto" />
-            <span
-              aria-hidden="true"
-              className="text-bone-200 flex w-full items-center justify-between gap-1 px-2.5 text-xs font-medium"
-            >
+            <span className="text-bone-200 flex w-full items-center justify-between gap-1 px-2.5 text-xs font-medium">
               {years.map((year) => (
                 <span key={year} className="flex w-0 flex-col items-center justify-center gap-2">
                   <span className={cn("bg-chocolate-300 h-1.5 w-px", year % skipInterval !== 0 && "h-1")} />

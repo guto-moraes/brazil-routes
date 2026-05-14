@@ -49,7 +49,7 @@ export const GLOSSARY = gql`
 //Query da Linha do Tempo
 export const TIMELINE = gql`
   query Timeline {
-    timelines(where: {orderby: {field: TITLE, order: ASC}}) {
+    timelines(where: { orderby: { field: TITLE, order: ASC } }) {
       nodes {
         id
         title
@@ -101,3 +101,28 @@ export const TIMELINE = gql`
   }
 `;
 
+//Query da Equipe do Projeto
+export const TEAM = gql`
+  query Team {
+    equipes(where: { orderby: { field: DATE, order: ASC } }) {
+      nodes {
+        id
+        title(format: RENDERED)
+        content(format: RENDERED)
+        team {
+          role
+          socials {
+            socialName
+            socialAt
+            socialUrl
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;

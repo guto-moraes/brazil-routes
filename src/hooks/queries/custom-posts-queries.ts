@@ -1,8 +1,9 @@
 import request from "graphql-request";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import { GLOSSARY, INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION } from "@/graphql/custom-types-graphql";
+import { GLOSSARY, INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION, TEAM } from "@/graphql/custom-types-graphql";
 import type { GlossaryTypes, InteractiveMapLocationTypes, InteractiveMapTypes, TimelineTypes } from "@/types/custom-post-types";
 import { TIMELINE } from "@/graphql/custom-types-graphql";
+import type { TeamTypes } from "@/types/components-types";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
@@ -59,5 +60,19 @@ export const useQueryTimeline = () => {
   return useSuspenseQuery<TimelineTypes>({
     queryKey: ["timeline"],
     queryFn: () => fetchTimeline(),
+  });
+};
+
+//Fetch da Equipe do Projeto
+const fetchTeam = async () => {
+  return await request<TeamTypes>(GRAPHQL_URL, TEAM);
+};
+
+//Query da Equipe do Projeto
+export const useQueryTeam = () => {
+  return useSuspenseQuery<TeamTypes>({
+    queryKey: ["glossary"],
+    queryFn: () => fetchTeam(),
+    staleTime: 60 * 5 * 1000,
   });
 };

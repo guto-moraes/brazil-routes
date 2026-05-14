@@ -77,10 +77,14 @@ function RouteComponent() {
                           {post.news.author ? post.news.author : post.author.node.name}
                         </span>
                       </li>
-                      <li className="flex items-center gap-x-2">
-                        <Tag className="text-bone-300" />{" "}
-                        <span className="text-mate-600/60 tracking-tighter">{post.tags.nodes[0].name}</span>
-                      </li>
+                      {
+                        post.tags.nodes && (
+                          <li className="flex items-center gap-x-2">
+                            <Tag className="text-bone-300" />{" "}
+                            <span className="text-mate-600/60 tracking-tighter">{post.tags.nodes[0].name}</span>
+                          </li>
+                        )
+                      }
                       <li className="flex items-center gap-x-2">
                         <MapPin className="text-bone-300" />{" "}
                         <span className="text-mate-600/60 tracking-tighter">{post.news.location}</span>
@@ -90,7 +94,7 @@ function RouteComponent() {
                   <div className="flex-5 flex-col gap-y-16">
                     <h2 className="text-5xl text-tan-700 font-black leading-13 -mt-2">{post.title}</h2>
                     <div className="mt-16 flex gap-8">
-                      <div className="rounded-lg h-100 flex-2">
+                      <div className="rounded-lg h-100 flex-3">
                         <img
                           className="rounded-lg h-full w-full object-cover"
                           src={post.featuredImage.node.guid}

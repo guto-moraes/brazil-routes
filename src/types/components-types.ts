@@ -73,9 +73,11 @@ export type HorizontalSlidesType = z.infer<typeof HorizontalSlidesSchema>;
 export const TextLoaderSchema = z.object({
   text: z.string(),
   className: z.string().optional(),
-  onComplete: z.function({
-    output: z.void(),
-  }).optional(),
+  onComplete: z
+    .function({
+      output: z.void(),
+    })
+    .optional(),
   gradientColors: z.array(z.string()).optional(),
   backgroundColor: z.string().optional(),
   duration: z
@@ -95,3 +97,84 @@ export const TextLoaderSchema = z.object({
 });
 
 export type TextLoaderPropsTypes = z.infer<typeof TextLoaderSchema>;
+
+//Tipagem do componente EventCard
+export const EventCardSchema = z.object({
+  eventTime: z.string(),
+  eventDay: z.string().or(z.number()),
+  eventMonth: z.string(),
+  eventImageUrl: z.string(),
+  eventUrl: z.string(),
+  eventTitle: z.string(),
+  eventPlace: z.string(),
+});
+
+export type EventCardTypes = z.infer<typeof EventCardSchema>;
+
+export const EventTimeSchema = z.object({
+  datetime: z.string(),
+  day: z.string().or(z.number()),
+  month: z.string(),
+});
+
+export type EventTimeTypes = z.infer<typeof EventTimeSchema>;
+
+export const EventTextSchema = z.object({
+  eventUrl: z.string(),
+  eventTitle: z.string(),
+  eventPlace: z.string(),
+});
+
+export type EventTextTypes = z.infer<typeof EventTextSchema>;
+
+//Tipagem do componente CardStackScroll
+export const MemberCardDetailsSchema = z.object({
+  memberName: z.string(),
+  memberRole: z.string(),
+  memberDescription: z.string(),
+});
+
+export type MemberCardDetailsTypes = z.infer<typeof MemberCardDetailsSchema>;
+
+export const TeamSocialsSchema = z.object({
+  socialName: z.string(),
+  socialAt: z.string().optional(),
+  socialUrl: z.string(),
+});
+
+export type TeamSocialTypes = z.infer<typeof TeamSocialsSchema>;
+
+export const CardStackSchema = z.object({
+    photo: z.string(),
+    name: z.string(),
+    role: z.string(),
+    description: z.string(),
+    socials: z.array(TeamSocialsSchema)
+})
+
+export type CardStackTypes = z.infer<typeof CardStackSchema>;
+
+export const TeamItemSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string(),
+  team: z.object({
+    role: z.string(),
+    socials: z.array(TeamSocialsSchema),
+  }),
+  featuredImage: z.object({
+    node: z.object({
+      sourceUrl: z.string(),
+    }),
+  }),
+});
+
+export type TeamItemTypes = z.infer<typeof TeamItemSchema>;
+
+export const TeamSchema = z.object({
+  equipes: z.object({
+    nodes: z.array(TeamItemSchema),
+  }),
+});
+
+export type TeamTypes = z.infer<typeof TeamSchema>;

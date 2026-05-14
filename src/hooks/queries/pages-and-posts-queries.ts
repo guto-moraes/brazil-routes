@@ -1,5 +1,5 @@
-import { BLOG, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
-import type { BlogItemTypes, BlogTypes, PageTypes } from "@/types/page-and-post-types";
+import { BLOG, CALENDAR, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes, BlogTypes, CalendarTypes, PageTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 
@@ -20,7 +20,7 @@ export const useQueryPage = (slug: string) => {
   });
 };
 
-//Fetch do blog de notícias para todos os resultados
+//Fetch do blog do conhecimento para todos os resultados
 const fetchBlogNews = async (per_page: number, offset: number) => {
   return await request<BlogTypes>(GRAPHQL_URL, BLOG, {
     per_page,
@@ -28,7 +28,7 @@ const fetchBlogNews = async (per_page: number, offset: number) => {
   });
 };
 
-//Query do blog de notícias para todos os resultados
+//Query do blog do conhecimento para todos os resultados
 export const useQueryBlogNews = (first: number, offset: number) => {
   return useQuery<BlogTypes>({
     queryKey: ["blog-posts"],
@@ -48,5 +48,21 @@ export const useQueryNews = (slug: string) => {
   return useQuery<BlogItemTypes>({
     queryKey: ["single-blog-post"],
     queryFn: () => fetchNews(slug),
+  });
+};
+
+//Fetch do blog do conhecimento para todos os resultados
+const fetchCalendar = async (per_page: number, offset: number) => {
+  return await request<CalendarTypes>(GRAPHQL_URL, CALENDAR, {
+    per_page,
+    offset,
+  });
+};
+
+//Query do blog do conhecimento para todos os resultados
+export const useQueryCalendar = (first: number, offset: number) => {
+  return useSuspenseQuery<CalendarTypes>({
+    queryKey: ["calendar"],
+    queryFn: () => fetchCalendar(first, offset),
   });
 };
