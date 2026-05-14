@@ -35,7 +35,7 @@ const SocialMedia = ({ socialUrl, socialName, socialAt, memberName }: SocialsTyp
       <a
         href={socialUrl}
         title={title}
-        className="flex gap-x-1 text-blue-retro-600 hover:text-bone-300 transition-colors duration-300"
+        className="flex gap-x-1 text-terracotta-700 hover:text-bone-300 transition-colors duration-300"
       >
         {socialName[0] === "Email" ? <Mail className="size-5" /> : <Instagram className="size-5" />}
         {socialAt}
@@ -54,7 +54,7 @@ type CardStackTypes = {
 
 const CardStack = ({ image, title, content, role, socials }: CardStackTypes) => {
   return (
-    <div className="team-member bg-white rounded-2xl drop-shadow-2xl absolute top-0 left-1/2 -translate-x-1/2 xl:h-2/3 xl:w-2/3">
+    <div className="team-member bg-tan-100 rounded-2xl drop-shadow-xl absolute top-0 left-1/2 -translate-x-1/2 xl:h-2/3 xl:w-2/3">
       <div className="relative h-full w-full flex justify-center items-center gap-8 p-6">
         <figure className="member-photo flex-1 xl:h-full xl:w-full rounded-2xl overflow-hidden">
           <img className="h-full w-full object-cover" src={image} alt="" />
@@ -90,7 +90,7 @@ const CardStackScroll = ({ children }: { children: React.ReactNode }) => {
         scrollTrigger: {
           trigger: cardStackRef.current,
           start: "top top",
-          end: `"+=${window.innerHeight}`,
+          end: `"+=${window.innerHeight * cards.length}`,
           pin: true,
           scrub: 1,
         },
@@ -101,7 +101,7 @@ const CardStackScroll = ({ children }: { children: React.ReactNode }) => {
           gsap.set(card, {
             xPercent: 200,
             rotate: 30,
-            duration: 0.75,
+            duration: 1,
             ease: "expo.inOut",
           });
         }
@@ -121,23 +121,22 @@ const CardStackScroll = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-        <section className="team-wrapper h-svh w-full flex flex-col" ref={cardStackRef}>
-{children}
+      <section className="team-wrapper h-svh w-full flex flex-col" ref={cardStackRef}>
+        {children}
 
         <div className="team-member-container grow container mx-auto relative overflow-hidden">
-      {equipes.nodes.map((member: TeamItemTypes) => (
-        <CardStack
-          key={member.id}
-          image={member.featuredImage.node.sourceUrl}
-          title={member.title}
-          role={member.team.role}
-          content={member.content}
-          socials={member.team.socials}
-        />
-      ))}
+          {equipes.nodes.map((member: TeamItemTypes) => (
+            <CardStack
+              key={member.id}
+              image={member.featuredImage.node.sourceUrl}
+              title={member.title}
+              role={member.team.role}
+              content={member.content}
+              socials={member.team.socials}
+            />
+          ))}
         </div>
       </section>
-
     </>
   );
 };

@@ -3,9 +3,10 @@
 
 - [X] Função para selecionar o slide da linha do tempo durante da rolagem 
 - [X] Criar a página da agenda do projeto
-- [ ] Finalizar páginas da Equipe do Projeto
+- [X] Finalizar páginas da Equipe do Projeto
 - [ ] Finalizar página de Referências
 - [ ] Finalizar página de Créditos
+- [ ] Criar uma página com informações do impacto social do projeto
 - [ ] Corrigir _bug_ do botão fechar menu
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
@@ -20,6 +21,7 @@
 - [ ] Padronizar SEO das páginas
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Responsividade do _site_
+- [ ] Transição de páginas
 - [ ] Inserir comentários nos códigos
 - [ ] Mudar `autoCodeSpliting` para `false`
 - [ ] Compilar a versão do tema para WordPress
