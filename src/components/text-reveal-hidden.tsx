@@ -56,7 +56,7 @@ const TextRevealHidden = ({
 
           const block = document.createElement("div");
           block.className =
-            "block-revealer absolute top-0 left-0 h-[110%] w-[110%] will-change-transform pointer-events-none z-1";
+            "block-revealer absolute top-0 left-0 xl:h-[110%] xl:w-[110%] will-change-transform pointer-events-none z-1";
           block.style.backgroundColor = blockColor;
           wrapper.appendChild(block);
 

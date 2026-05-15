@@ -1,6 +1,6 @@
 "use client";
 
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -24,24 +24,6 @@ const Navigation = ({
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   const [screenWidth] = useState<number | null>(typeof window !== "undefined" ? window.innerWidth : 0);
   const navigationRef = useRef<HTMLDivElement | null>(null);
-  const pathname = useRouterState({
-    select: (state) => state.location.pathname,
-  });
-
-  const chapters = [
-    "/almanaque-digital/capitulo-1",
-    "/almanaque-digital/capitulo-1/",
-    "/almanaque-digital/capitulo-2",
-    "/almanaque-digital/capitulo-2/",
-    "/almanaque-digital/capitulo-3",
-    "/almanaque-digital/capitulo-3/",
-    "/almanaque-digital/capitulo-4",
-    "/almanaque-digital/capitulo-4/",
-    "/almanaque-digital/capitulo-5",
-    "/almanaque-digital/capitulo-5/",
-  ];
-
-  const isChapter = chapters.includes(pathname);
 
   const handleActiveMenu = () => {
     if (isActiveMenu) {
@@ -152,27 +134,26 @@ const Navigation = ({
     <div className={cn("container-navigation")}>
       <header
         className={cn(
-          "p-4 lg:px-0 h-26 w-full overflow-hidden",
+          "p-4 lg:px-0 h-22 xl:h-26 w-full overflow-hidden",
           (isActiveMenu && isHome) || !isNegativeLogo ? "shadow-none bg-none" : "shadow-lg bg-white",
           isActiveMenu || isHome ? "shadow-none bg-none" : "shadow-lg bg-white",
           className,
-          document.body.scrollHeight > 90 && isChapter ? "z-40" : "",
         )}
       >
         <div className="container mx-auto">
-          <nav className="navigation absolute top-0 w-full max-w-384 flex justify-between items-center overflow-x-hidden z-70">
-            <div className="nav-logo py-4 text-left border-none z-50">
+          <nav className="navigation absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-full xl:max-w-384 flex justify-between items-center overflow-x-hidden z-70">
+            <div className="nav-logo py-4 pl-3 xl:pl-0 text-left border-none z-50">
               <a role="menu-item" href="/" title="Página Inicial">
                 <img
                   src={isActiveMenu || isNegativeLogo ? negativeLogo : logo}
                   alt="Logotipo do Projeto Caminhos do Brasil Central"
                   title="Logotipo do Projeto Caminhos do Brasil Central"
-                  className={cn("w-32 md:w-48 lg:w-52")}
+                  className={cn("w-40 md:w-48 lg:w-52")}
                 />
               </a>
             </div>
             <button
-              className="nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80"
+              className={cn("nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80", isActiveMenu && "open")}
               id="menubutton"
               aria-haspopup="true"
               aria-controls="menu"
@@ -189,10 +170,10 @@ const Navigation = ({
               >
                 Menu
               </span>
-              <div className="h-12 flex flex-col justify-center items-center gap-1.25 overflow-hidden z-75">
+              <div className=" h-full xl:h-12 flex flex-col justify-center items-center gap-y-1.25 overflow-hidden z-75">
                 <span
                   className={cn(
-                    "mw-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
+                    "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
                     "group-[.open]:translate-y-2 group-[.open]:rotate-45",
                     isActiveMenu || (isHome && isNegativeLogo) ? "bg-white" : "bg-chocolate-800",
                   )}
@@ -233,7 +214,7 @@ const Navigation = ({
             "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
-          <div className="nav-items-col flex-2 flex flex-col justify-between gap-8">
+          <div className="nav-items-col xl:flex-2 flex flex-col justify-between gap-8">
             <ul role="menu" className="nav-socials z-2">
               {socials.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
@@ -263,6 +244,7 @@ const Navigation = ({
                       "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
                     )}
                     activeProps={{ className: "font-bold" }}
+                    activeOptions={{ exact: true }}
                     to={url}
                     title={title}
                     onClick={handleCloseMenu}
@@ -273,7 +255,7 @@ const Navigation = ({
               ))}
             </ul>
           </div>
-          <div className="nav-items-col flex-4 flex justify-between gap-8">
+          <div className="nav-items-col xl:flex-4 flex justify-between gap-8">
             <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-5">
               {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
@@ -284,6 +266,7 @@ const Navigation = ({
                       "tracking-[-2%] leading-[1.1] no-underline block transition-colors duration-300",
                     )}
                     activeProps={{ className: "font-bold" }}
+                    activeOptions={{ exact: true }}
                     to={url}
                     title={title}
                     onClick={handleCloseMenu}
@@ -307,6 +290,7 @@ const Navigation = ({
                         "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
                       )}
                       activeProps={{ className: "font-bold" }}
+                      activeOptions={{ exact: true }}
                       viewTransition={{ types: transition }}
                       onClick={handleCloseMenu}
                     >

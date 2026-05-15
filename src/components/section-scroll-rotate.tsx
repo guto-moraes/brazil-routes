@@ -37,7 +37,7 @@ const ScrollRotateSection = ({ className, children }: { className?: string; chil
 };
 
 const ScrollRotateWrapper = ({ className, children }: { className?: string; children: React.ReactNode }) => {
-  const containersRef = useRef<HTMLElement>(null);
+  const containersRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
@@ -73,7 +73,7 @@ const ScrollRotateWrapper = ({ className, children }: { className?: string; chil
 
   return (
     <>
-      <main className={cn(className)} ref={containersRef}>{children}</main>
+      <div className={cn(className)} ref={containersRef}>{children}</div>
     </>
   );
 };

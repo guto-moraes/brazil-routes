@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as ImpactoSocialRouteImport } from './routes/impacto-social'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as CreditosRouteImport } from './routes/creditos'
@@ -40,6 +41,11 @@ const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   id: '/politica-de-privacidade',
   path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactoSocialRoute = ImpactoSocialRouteImport.update({
+  id: '/impacto-social',
+  path: '/impacto-social',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaleConoscoRoute = FaleConoscoRouteImport.update({
@@ -161,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
+  '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
@@ -185,6 +192,7 @@ export interface FileRoutesByTo {
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
+  '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
@@ -210,6 +218,7 @@ export interface FileRoutesById {
   '/creditos': typeof CreditosRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
+  '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
@@ -236,6 +245,7 @@ export interface FileRouteTypes {
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
+    | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
@@ -260,6 +270,7 @@ export interface FileRouteTypes {
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
+    | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
@@ -284,6 +295,7 @@ export interface FileRouteTypes {
     | '/creditos'
     | '/equipe-do-projeto'
     | '/fale-conosco'
+    | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-1'
@@ -309,6 +321,7 @@ export interface RootRouteChildren {
   CreditosRoute: typeof CreditosRoute
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
+  ImpactoSocialRoute: typeof ImpactoSocialRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
@@ -339,6 +352,13 @@ declare module '@tanstack/react-router' {
       path: '/politica-de-privacidade'
       fullPath: '/politica-de-privacidade'
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impacto-social': {
+      id: '/impacto-social'
+      path: '/impacto-social'
+      fullPath: '/impacto-social'
+      preLoaderRoute: typeof ImpactoSocialRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fale-conosco': {
@@ -493,6 +513,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreditosRoute: CreditosRoute,
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
+  ImpactoSocialRoute: ImpactoSocialRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,

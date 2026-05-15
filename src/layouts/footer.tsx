@@ -18,11 +18,11 @@ const footerSections: FooterData[] = [
   },
   {
     title: "Linha do Tempo",
-    href: "/linha-do-tempo",
+    href: "/almanaque-digital/linha-do-tempo",
   },
   {
-    title: "Recursos Educativos",
-    href: "/recursos-educativos",
+    title: "Mapa Interativo",
+    href: "/almanaque-digital/mapa-interativo",
   },
   {
     title: "Fale Conosco",
@@ -45,7 +45,7 @@ const Footer = () => {
       <div className="max-w-384 mx-auto px-4 xl:px-0">
         <div className="h-full flex flex-col gap-y-4 content-center">
           {/* Footer Menu */}
-          <div className="flex items-center justify-between">
+          <div className="hidden lg:flex items-center justify-between">
             <ul className="flex items-center justify-start gap-3">
               {footerSections.map(({ title, href }, index) => (
                 <li key={index}>
@@ -89,7 +89,7 @@ const Footer = () => {
           <Separator className="bg-white/25 h-px" />
 
           {/* Copy Rights */}
-          <div className="text-xs text-white font-light flex justify-between items-center gap-4">
+          <div className="text-xs text-white font-light flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="w-max">
               &copy;{date()} <strong>Caminhos do Brasil Central</strong> .
               Alguns direitos reservados.

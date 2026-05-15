@@ -33,6 +33,16 @@ const primaryLinks: LinkTypes[] = [
     transition: ["slide-right"],
   },
   {
+    title: "Alamanaque Digital",
+    url: "/almanaque-digital",
+    transition: ["slide-left"],
+  },
+    {
+    title: "Impacto Social",
+    url: "/impacto-social/",
+    transition: ["slide-right"],
+  },
+  {
     title: "Agenda do Projeto",
     url: "/agenda",
     transition: ["slide-left"],
@@ -41,11 +51,6 @@ const primaryLinks: LinkTypes[] = [
     title: "Blog do Conhecimento",
     url: "/blog-do-conhecimento/",
     transition: ["slide-right"],
-  },
-  {
-    title: "Alamanaque Digital",
-    url: "/almanaque-digital",
-    transition: ["slide-left"],
   },
   {
     title: "Linha do Tempo",

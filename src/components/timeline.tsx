@@ -110,9 +110,9 @@ const Timeline = () => {
 
   return (
     <section id="timeline" ref={scopeRef}>
-      <div id="timeline-container" className="relative h-svh flex overflow-hidden" style={{ width: "500%" }}>
+      <div id="timeline-container" className="relative h-full xl:h-svh flex overflow-hidden" style={{ width: "500%" }}>
         <TimelineSlide />
-        <div className="absolute bottom-0 left-0 h-16 w-full bg-gray-800">
+        <div className="hidden xl:block absolute bottom-0 left-0 h-16 w-full bg-gray-800">
           <nav
             className="h-full w-full max-w-svw bg-gray-900 text-white flex flex-col justify-center items-center gap-x-3 px-8"
             role="navigation"
