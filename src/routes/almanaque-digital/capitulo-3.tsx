@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
 import { ChapterAside, ChapterContent, ChapterWrapper } from "@/components/chapter";
 import ChapterTitle from "@/components/chapter-title";
-import ArticleChapterContent from "@/components/article-chapter-content";
+import Article from "@/components/article";
 import DownloadNow from "@/components/download-now";
 import ChaptersMenu from "@/components/chapters-menu";
 
@@ -27,7 +27,7 @@ function ChapterThree() {
             subtitle="A Expedição Roncador-Xingu"
             className="text-3xl"
           />
-          <ArticleChapterContent className="content mt-16" content={data.page.content} />
+          <Article className="content mt-16" content={data.page.content} />
       </ChapterContent>
     </ChapterWrapper>
     <DownloadNow link="/" />

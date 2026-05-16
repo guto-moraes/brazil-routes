@@ -1,6 +1,6 @@
 import { cn, sanitizedData } from "@/lib/utils"
 
-const ArticleChapterContent = ({ className, content }: { className?: string; content: string }) => {
+const Article = ({ className, content }: { className?: string; content: string }) => {
     return(
         <article
             className={cn(
@@ -32,4 +32,4 @@ const ArticleChapterContent = ({ className, content }: { className?: string; con
     )
 }
 
-export default ArticleChapterContent;
+export default Article;

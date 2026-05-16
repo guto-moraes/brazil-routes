@@ -18,7 +18,7 @@ const ScrollRotateContent = ({
   return (
     <div
       className={cn(
-        "content-container relative h-full w-full min-w-full p-8 flex rotate-30",
+        "content-container relative h-full w-full min-w-full p-8 rotate-30",
         "origin-bottom-left will-change-transform",
         className,
       )}
@@ -30,7 +30,7 @@ const ScrollRotateContent = ({
 
 const ScrollRotateSection = ({ className, children }: { className?: string; children: React.ReactNode }) => {
   return (
-    <section className={cn("rotate-section relative h-svh min-h-svh w-full overflow-hidden", className)}>
+    <section className={cn("rotate-section relative min-h-svh h-full xl:h-svh w-full overflow-hidden", className)}>
       {children}
     </section>
   );

@@ -7,8 +7,8 @@
 - [X] Corrigir _bug_ da página dos capítulos
 - [X] Remover a página de Referências e criar a página de Vá Além
 - [X] Corrigir _bug_ do botão fechar menu
+- [ ] Finalizar a página com informações do impacto social do projeto
 - [ ] Finalizar página de Créditos
-- [ ] Criar uma página com informações do impacto social do projeto
 - [ ] Finalizar a página de acessibilidade
 - [ ] Integrar o menu principal com o WordPress
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
@@ -20,9 +20,10 @@
 - [ ] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
 - [ ] Inserir o código para envio do formulário
 - [ ] Resolver _bug_ com o **Mapa Interativo** após a renderização
-- [ ] Criar o _quizz_ e inserir _link_ no menu principal
+- [ ] Criar o _Quizz_ e inserir _link_ no menu principal
 - [ ] Padronizar SEO das páginas
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
+- [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Responsividade do _site_
 - [ ] Transição de páginas
 - [ ] Inserir comentários nos códigos
