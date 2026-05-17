@@ -141,7 +141,12 @@ const Navigation = ({
         )}
       >
         <div className="container mx-auto">
-          <nav className="navigation absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-full xl:max-w-384 flex justify-between items-center overflow-x-hidden z-70">
+          <nav
+            className={cn(
+              "navigation absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-full",
+              "xl:max-w-384 flex justify-between items-center overflow-x-hidden z-70",
+            )}
+          >
             <div className="nav-logo py-4 pl-3 xl:pl-0 text-left border-none z-50">
               <a role="menu-item" href="/" title="Página Inicial">
                 <img
@@ -153,7 +158,10 @@ const Navigation = ({
               </a>
             </div>
             <button
-              className={cn("nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80", isActiveMenu && "open")}
+              className={cn(
+                "nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80",
+                isActiveMenu && "open",
+              )}
               id="menubutton"
               aria-haspopup="true"
               aria-controls="menu"
@@ -198,7 +206,7 @@ const Navigation = ({
       </header>
 
       <div
-        className={cn("nav-content w-full absolute top-0 left-0 overflow-hidden", isActiveMenu ? "z-60" : "z-0")}
+        className={cn("nav-content max-lg:h-svh w-full absolute top-0 left-0 z-1")}
         aria-labelledby="menubutton"
         tabIndex={-1}
         ref={navigationRef}
@@ -210,38 +218,42 @@ const Navigation = ({
 
         <div
           className={cn(
-            "nav-items flex gap-8 xl:pt-64 xl:px-48 xl:pb-32 bg-tan-800 pointer-events-auto",
-            "will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
+            "nav-items min-h-svh h-full lg:container lg:mx-auto mt-16 flex flex-col lg:flex-row gap-8 py-12 px-8 md:py-24 md:px-0",
+            "pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
-          <div className="nav-items-col xl:flex-2 flex flex-col justify-between gap-8">
-            <ul role="menu" className="nav-socials z-2">
-              {socials.map(({ title, url }, index) => (
-                <li className="line" role="presentation" key={index}>
-                  <a
-                    role="menuitem"
-                    className={cn(
-                      "text-2xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
-                      "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
-                    )}
-                    href={url}
-                    title={title}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    {title}
-                  </a>
-                </li>
-              ))}
+          <div className="nav-items-col lg:flex-4 flex flex-col lg:flex-row lg:justify-between gap-6 md:gap-8">
+            <ul role="menu" className="nav-secondary-links z-2">
+              {secondaryLinks.map(({ url, title, transition }, index) => {
+                return (
+                  <li className="line" role="presentation" key={index}>
+                    <Link
+                      role="menuitem"
+                      to={url}
+                      title={title}
+                      className={cn(
+                        "text-[clamp(1rem,3vw,1.75rem)] text-white hover:text-darkgreen-500 no-underline mb-2 block",
+                        "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
+                      )}
+                      activeProps={{ className: "font-bold" }}
+                      activeOptions={{ exact: true }}
+                      viewTransition={{ types: transition }}
+                      onClick={handleCloseMenu}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-            <ul role="menu" className="nav-legal z-2">
-              {legals.map(({ title, url }, index) => (
+            <ul role="menu" className="nav-primary-links flex flex-col gap-y-2 lg:gap-y-4 z-5">
+              {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className={cn(
-                      "text-2xl text-darkgreen-500 hover:text-white data-[status=active]:text-chocolate-300",
-                      "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
+                      "text-[clamp(1.25rem,5vw,2.5rem)] text-white hover:text-darkgreen-500 no-underline block",
+                      "tracking-[-2%] leading-[1.1] data-[status=active]:text-chocolate-300 transition-colors duration-300",
                     )}
                     activeProps={{ className: "font-bold" }}
                     activeOptions={{ exact: true }}
@@ -255,15 +267,15 @@ const Navigation = ({
               ))}
             </ul>
           </div>
-          <div className="nav-items-col xl:flex-4 flex justify-between gap-8">
-            <ul role="menu" className="nav-primary-links flex flex-col gap-y-4 z-5">
-              {primaryLinks.map(({ title, url }, index) => (
+          <div className="nav-items-col lg:flex-2 flex flex-col lg:justify-between lg:items-end gap-6 md:gap-8">
+            <ul role="menu" className="nav-legal z-2">
+              {legals.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className={cn(
-                      "text-3xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
-                      "tracking-[-2%] leading-[1.1] no-underline block transition-colors duration-300",
+                      "text-[clamp(1rem,3vw,1.75rem)] md:text-right text-darkgreen-500 hover:text-white no-underline mb-2 block",
+                      "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
                     )}
                     activeProps={{ className: "font-bold" }}
                     activeOptions={{ exact: true }}
@@ -276,29 +288,24 @@ const Navigation = ({
                 </li>
               ))}
             </ul>
-
-            <ul role="menu" className="nav-secondary-links z-2">
-              {secondaryLinks.map(({ url, title, transition }, index) => {
-                return (
-                  <li className="line" role="presentation" key={index}>
-                    <Link
-                      role="menuitem"
-                      to={url}
-                      title={title}
-                      className={cn(
-                        "text-2xl text-white hover:text-darkgreen-500 data-[status=active]:text-chocolate-300",
-                        "tracking-[-2%] leading-[1.1] no-underline mb-2 block transition-colors duration-300",
-                      )}
-                      activeProps={{ className: "font-bold" }}
-                      activeOptions={{ exact: true }}
-                      viewTransition={{ types: transition }}
-                      onClick={handleCloseMenu}
-                    >
-                      {title}
-                    </Link>
-                  </li>
-                );
-              })}
+            <ul role="menu" className="nav-socials z-2">
+              {socials.map(({ title, url }, index) => (
+                <li className="line" role="presentation" key={index}>
+                  <a
+                    role="menuitem"
+                    className={cn(
+                      "text-[clamp(1rem,3vw,1.75rem)] text-white hover:text-darkgreen-500 no-underline mb-2 block",
+                      "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
+                    )}
+                    href={url}
+                    title={title}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

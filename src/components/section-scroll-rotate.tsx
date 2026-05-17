@@ -30,7 +30,7 @@ const ScrollRotateContent = ({
 
 const ScrollRotateSection = ({ className, children }: { className?: string; children: React.ReactNode }) => {
   return (
-    <section className={cn("rotate-section relative min-h-svh h-full xl:h-svh w-full overflow-hidden", className)}>
+    <section className={cn("rotate-section relative min-h-svh w-full overflow-hidden", className)}>
       {children}
     </section>
   );

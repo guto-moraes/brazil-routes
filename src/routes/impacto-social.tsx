@@ -3,6 +3,8 @@ import Title from "@/components/title";
 import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
 import { SocialImpactSectionTitle, SocialImpactStatsCard } from "@/components/social-impact-stats-card";
 import Article from "@/components/article";
+import image from "@/assets/images/tablet-cover-book.png"
+import LiquidImageReveal from "@/components/liquid-image-reveal";
 
 export const Route = createFileRoute("/impacto-social")({
   component: SocialImpact,
@@ -11,24 +13,28 @@ export const Route = createFileRoute("/impacto-social")({
 function SocialImpact() {
   return (
     <ScrollRotateWrapper>
-      <ScrollRotateSection>
+      <ScrollRotateSection className="h-[200svh]">
         <ScrollRotateContent>
           <Title className="max-w-7xl mx-auto text-tan-700 font-cabinet font-black">
             Impacto <span className="text-tan-400">Social</span>
           </Title>
-          <div className="container mx-auto bg-bone-200 xl:py-32">
-            <div className="max-w-7xl mx-auto py-16 px-8 bg-bone-600">
-              <Article
-                className="[&_p]:text-white"
-                content={`
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ipsa, porro provident ad placeat maxime, minus optio impedit soluta pariatur mollitia reprehenderit laudantium harum dolores omnis dolorum illum dicta asperiores fuga? Nemo consequuntur nihil accusamus eius facilis atque, quasi voluptates accusantium ullam, ut dicta, deserunt sed asperiores quibusdam numquam consequatur.
-                </p>
-              
-              `}
-              />
+          <div className="max-w-7xl mx-auto flex gap-8">
+            <LiquidImageReveal src={image} height={720} width={550} alt="" className="flex-2" />
+
+            <div className="flex-3 bg-bone-200 xl:py-12 xl:px-12">
+              <div className="max-w-7xl mx-auto py-16 px-8 bg-bone-600">
+                <Article
+                  className="[&_p]:text-white"
+                  content={`
+                  <p>
+                    Mudanças na sociedade parecem ter seus efeitos mais impactantes quando podem ser observados. No caso do Projeto Caminhos do Brasil Central, perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se conhecer, valorizar e preservar a história, a memória e o patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar.
+                
+                `}
+                />
+              </div>
             </div>
           </div>
+
         </ScrollRotateContent>
       </ScrollRotateSection>
       <ScrollRotateSection>

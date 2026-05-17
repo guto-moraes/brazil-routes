@@ -25,6 +25,7 @@
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Responsividade do _site_
+- [ ] Versão _dark_ do site
 - [ ] Transição de páginas
 - [ ] Inserir comentários nos códigos
 - [ ] Mudar `autoCodeSpliting` para `false`
