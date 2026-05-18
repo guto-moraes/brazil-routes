@@ -29,10 +29,10 @@ function About() {
   const { data } = useQueryPage("sobre-o-projeto");
 
   return (
-    <Main className="w-full xl:pb-24">
+    <Main className="w-full mb-12 md:mb-18 lg:mb-24">
       <div className="w-full max-w-5xl mx-auto px-4 xl:px:0">
-        <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
-          Sobre <span className="text-tan-400">o Projeto</span>
+        <Title>
+          Sobre o <span className="text-tan-400">Projeto</span>
         </Title>
         <ArticleContent content={data.page.content} />
       </div>

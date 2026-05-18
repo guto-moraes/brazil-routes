@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Main from "@/layouts/main";
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn, sanitizedData } from "@/lib/utils";
 import { useQueryGlossary } from "@/hooks/queries/custom-posts-queries";

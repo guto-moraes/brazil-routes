@@ -1,5 +1,5 @@
 import ArticleContent from "@/components/article-content";
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
 import Main from "@/layouts/main";
 import { createFileRoute } from "@tanstack/react-router";

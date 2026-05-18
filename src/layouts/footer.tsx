@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Separator } from "@/components/ui/separator";
+import logo from "@/assets/images/logo-negative.webp"
 import builtby from "@/assets/images/builtby.webp";
 
 type FooterData = {
@@ -41,7 +42,7 @@ const date = () => {
 
 const Footer = () => {
   return (
-    <footer className="theme-footer bg-bege-800 py-16 w-full">
+    <footer className="theme-footer bg-bege-800 py-8 sm:py-16 w-full">
       <div className="max-w-384 mx-auto px-4 xl:px-0">
         <div className="h-full flex flex-col gap-y-4 content-center">
           {/* Footer Menu */}
@@ -66,31 +67,16 @@ const Footer = () => {
               title="Siga-nos no Instagram"
               target="_blank"
             >
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-chocolate-300 hover:text-chocolate-400 transition-colors duration-300"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg> */}
               Instagram
             </a>
           </div>
+          <img src={logo} className="h-16 mx-auto opacity-40 md:hidden" />
           {/* Separator */}
           <Separator className="bg-white/25 h-px" />
 
           {/* Copy Rights */}
-          <div className="text-xs text-white font-light flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="w-max">
+          <div className="text-xs text-white whitespace-break-spaces font-light flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="max-sm:text-center w-max max-w-full">
               &copy;{date()} <strong>Caminhos do Brasil Central</strong> .
               Alguns direitos reservados.
             </p>

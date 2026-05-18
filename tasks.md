@@ -7,9 +7,11 @@
 - [X] Corrigir _bug_ da página dos capítulos
 - [X] Remover a página de Referências e criar a página de Vá Além
 - [X] Corrigir _bug_ do botão fechar menu
+- [X] Responsividade do menu
 - [ ] Finalizar a página com informações do impacto social do projeto
 - [ ] Finalizar página de Créditos
-- [ ] Finalizar a página de acessibilidade
+- [ ] Criar uma única página dinâmica para os capítulos do Almanaque
+- [ ] Criar um laiaute para uma página e uma postagem padrão
 - [ ] Integrar o menu principal com o WordPress
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
@@ -25,6 +27,7 @@
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Responsividade do _site_
+- [ ] Finalizar a página de acessibilidade
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
 - [ ] Inserir comentários nos códigos

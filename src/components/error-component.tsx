@@ -1,6 +1,6 @@
 import { ErrorComponent } from "@tanstack/react-router";
 import Main from "@/layouts/main";
-import Title from "./title";
+import { Title } from "./title";
 import { cn } from "@/lib/utils";
 
 const ErrorComponentTheme = ({ error, reset }: { error: Error; reset: () => void }) => {

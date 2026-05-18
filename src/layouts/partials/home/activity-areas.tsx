@@ -26,19 +26,19 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
   return (
     <article
       className={cn(
-        "activity-card rounded-2xl h-120 w-120 absolute top-1/2 left-1/2",
-        "-translate-1/2 py-8 px-10 flex flex-col justify-between items-start",
+        "activity-card rounded-2xl h-80 md:h-120 w-80 md:w-120 absolute top-1/2 left-1/2",
+        "-translate-1/2 p-4 sm:py-8 sm:px-10 flex flex-col justify-between items-start",
         className,
       )}
       style={{ background }}
     >
       <div className="text-tan-800 flex flex-col justify-items-start gap-y-10">
-        <h2 className="text-[clamp(1.5rem,3.75vw,2.25rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.055em]">
+        <h2 className="text-[clamp(1.25rem,3.75vw,2.25rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.055em]">
           {title}
         </h2>
-        <p className="text-base md:text-[1.2rem font-medium leading-snug]">{description}</p>
+        <p className="text-base text-[clamp(0.85rem,2vw,1.25rem)] font-medium leading-snug">{description}</p>
       </div>
-      <ul className="text-lg md:text-xl text-tan-800 font-bold uppercase tracking-[-0.02em]">
+      <ul className="text-[clamp(0.85rem,1.75vw,1.125rem)] text-tan-800 font-bold uppercase tracking-[-0.02em]">
         {splitTags && splitTags.map((tag: string) => <li key={tag}>{tag}</li>)}
       </ul>
       <span
@@ -113,10 +113,12 @@ const ActivityAreas = () => {
         {project && title && presentation && (
           <div className="activities-heading h-full w-full flex flex-col justify-center items-center gap-y-8">
             <hgroup className="flex flex-col gap-y-1 text-center">
-              <h3 className="text-xl text-bone-600 uppercase">{project}</h3>
-              <h2 className="text-8xl text-bone-600 font-cabinet font-black">{title}</h2>
+              <h3 className="text-[clamp(0.75rem,3vw,1.25rem)] text-bone-600 uppercase">{project}</h3>
+              <h2 className="text-[clamp(2.25rem,8vw,6rem)] text-bone-600 font-cabinet font-black max-sm:leading-none">{title}</h2>
             </hgroup>
-            <p className="text-2xl text-bone-600 text-center text-balance font-medium w-1/2">{presentation}</p>
+            <p className="text-[clamp(0.9rem,4vw,1.5rem)] text-bone-600 text-center text-balance font-medium w-full sm:w-1/2 max-sm:px-4">
+              {presentation}
+            </p>
             <img className="absolute top-0 left-0 w-full -z-2 opacity-25" src={brush} alt="" />
           </div>
         )}

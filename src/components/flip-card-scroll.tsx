@@ -213,7 +213,7 @@ function FlipCardScrollReveal() {
       <div
         className={cn(
           "flip-card-scroll-reveal-container relative w-[75%] flex perspective-[1000px] translate-y-16 will-change-[width]",
-          "max-lg:w-full max-lg:flex-col max-lg:gap-8",
+          "max-lg:w-full max-lg:flex-col max-lg:gap-8 max-sm:mb-16",
         )}
       >
         <div

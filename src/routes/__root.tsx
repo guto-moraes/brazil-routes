@@ -9,7 +9,6 @@ const queryClient = new QueryClient();
 import QueryLoadingBoundary from "@/components/query-loading-boundary";
 import NotFound from "@/components/not-found";
 import ErrorComponentTheme from "@/components/error-component";
-import VLibras from "@/components/vlibras";
 import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
 
@@ -59,7 +58,6 @@ function App({ children }: { children: React.ReactNode }) {
       <QueryLoadingBoundary>
         <SmoothScroller>
           <NuqsAdapter>
-            <VLibras />
             {!isHome && <Navigation />}
             {children}
             <Partners />

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Main from "@/layouts/main";
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/creditos")({

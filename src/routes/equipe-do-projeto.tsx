@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import CardStackScroll from "@/components/card-stack-scroll";
 
 export const Route = createFileRoute("/equipe-do-projeto")({

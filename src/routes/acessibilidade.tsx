@@ -1,4 +1,4 @@
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import Main from "@/layouts/main";
 import { createFileRoute } from "@tanstack/react-router";
 

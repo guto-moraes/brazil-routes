@@ -22,6 +22,7 @@ const Intro = () => {
   useGSAP(
     () => {
       const approaches = document.querySelectorAll<HTMLDivElement>(".approaches .approach");
+
       const heroTitleSplit = SplitText.create(".hero-title", {
         type: "chars",
       });
@@ -68,6 +69,7 @@ const Intro = () => {
           sloganSplit.chars,
           {
             yPercent: 200,
+            height: 40,
             stagger: 0.02,
             ease: "power2.out",
           },
@@ -130,23 +132,23 @@ const Intro = () => {
             alt="Mapa da Expedição Roncador-Xingu"
           />
           <div className="container mx-auto h-max w-fit flex flex-col justify-center items-center overflow-hidden">
-            <h2 className="hero-title text-[9rem] text-chocolate-700 font-bold uppercase leading-32 -tracking-[0.08em]">
+            <h2 className="hero-title text-[clamp(3.5rem,5vw,9rem)] text-chocolate-700 font-bold uppercase leading-32 -tracking-[0.08em]">
               Caminhos
             </h2>
             <div
               className={cn(
-                "hero-text-scroll rounded-xl bg-chocolate-400 border-8 border-tan-100 -mt-8 ml-3 mb-2",
-                "[clip-path:polygon(50%_0%,50%_0%,50%_100%,50%_100%)] scale-90 -rotate-3",
+                "hero-text-scroll rounded-xl bg-chocolate-400 border-4 md:border-8 border-tan-100 -mt-12 sm:-mt-8 ml-3 mb-2",
+                "[clip-path:polygon(50%_0%,50%_0%,50%_100%,50%_100%)] sm:scale-90 -rotate-3",
               )}
             >
-              <div className="hero-subtitle py-4 px-8">
-                <h2 className="text-[5rem] text-white font-bold uppercase -tracking-[0.09em]">do Brasil Central</h2>
+              <div className="hero-subtitle py-4 px-4 sm:px-8">
+                <h2 className="text-[clamp(1.75rem,5vw,5rem)] text-white font-bold uppercase -tracking-[0.09em]">do Brasil Central</h2>
               </div>
             </div>
             <h2
               className={cn(
-                "hero-slogan text-3xl text-tan-700 text-center font-cintarini",
-                "font-semibold leading-16 text-balance whitespace-nowrap tracking-wider",
+                "hero-slogan max-sm:h-12 text-[clamp(1.15rem,3vw,1.875rem)] text-tan-700 text-center font-cintarini",
+                "font-semibold max-sm:leading-none leading-16 sm:whitespace-nowrap tracking-wider max-sm:mt-3",
               )}
             >
               Onde o sertão se fez caminho e a memória se faz patrimônio
@@ -156,15 +158,15 @@ const Intro = () => {
         <Video videoSrc={videoSrc} className="scale-0" />
         <ResearchApproaches>
           <ApproachContainer>
-            <Hourglass size={64} className="text-bege-200 opacity-50" />
+            <Hourglass className="size-6 md:size-12 lg:size-16 text-bege-200 opacity-50" />
             <Approach text="História" />
           </ApproachContainer>
           <ApproachContainer>
-            <MessagesSquare size={64} className="text-bege-200 opacity-50" />
+            <MessagesSquare className="size-6 md:size-12 lg:size-16 text-bege-200 opacity-50" />
             <Approach text="Memória" />
           </ApproachContainer>
           <ApproachContainer>
-            <Landmark size={64} className="text-bege-200 opacity-50" />
+            <Landmark className="size-6 md:size-12 lg:size-16 text-bege-200 opacity-50" />
             <Approach text="Patrimônio" />
           </ApproachContainer>
         </ResearchApproaches>

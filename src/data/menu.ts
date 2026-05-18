@@ -10,7 +10,7 @@ const socials: LinkTypes[] = [
 
 const legals: LinkTypes[] = [
   {
-    title: "Accessibilidade",
+    title: "Acessibilidade",
     url: "/acessibilidade",
     transition: ["slide-left"],
   },

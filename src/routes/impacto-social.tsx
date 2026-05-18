@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 // import Title from "@/components/title";
 import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
-import { SocialImpactSectionTitle, SocialImpactStatsCard } from "@/components/social-impact-stats-card";
+import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
 import { cn } from "@/lib/utils";
+import { Title } from "@/components/title";
 
 export const Route = createFileRoute("/impacto-social")({
   component: SocialImpact,
@@ -33,9 +34,9 @@ function SocialImpact() {
       </ScrollRotateSection> */}
       <ScrollRotateSection className="h-full">
         <ScrollRotateContent className="bg-[#d8d9bc]">
-          <div className="max-w-7xl mx-auto py-24 px-4">
-            <SocialImpactSectionTitle text="O Alcance do projeto" className="text-bone-600 mb-16" />
-            <p className="text-[clamp(1.25rem,5vw,1.65rem)] mb-16">
+          <div className="max-w-7xl mx-auto py-24">
+            <Title className="text-bone-600 max-sm:-mt-24">Alcance do Projeto</Title>
+            <p className="text-[clamp(1rem,5vw,1.65rem)] sm:text-justify mb-16">
               Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
               <strong className="text-terracotta-700">conhecer, valorizar e preservar</strong> a história, a memória e o
               patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar. Por isso, o Projeto Caminhos
@@ -48,14 +49,14 @@ function SocialImpact() {
               )}
             >
               <SocialImpactStatsCard
-                value="20+"
+                value="1"
                 title="Palestras realizadas"
-                description="Por meio da concientização, buscamos incentivar e valorizar a história da região do Vale do Araguaia, em Mato Grosso."
+                description="Para divulgação do Almanaque e para incentivar a valorização da história da região do Vale do Araguaia, em Mato Grosso."
               />
               <SocialImpactStatsCard
-                value="500+"
+                value="100+"
                 title="Público Presencial"
-                description="As ações presenciais são fundamentais para viabilizar mais interação com o público e aprofundar a troca de saberes."
+                description="As ações presenciais são fundamentais para promover e aprofundas a troca de saberes e viabilizar mais interação com o público."
               />
               <SocialImpactStatsCard
                 value="2000+"
@@ -66,7 +67,7 @@ function SocialImpact() {
           </div>
         </ScrollRotateContent>
       </ScrollRotateSection>
-      <ScrollRotateSection>
+      <ScrollRotateSection className="h-svh">
         <ScrollRotateContent className="bg-bone-200">
           <div className="container mx-auto py-24">Terceira</div>
         </ScrollRotateContent>

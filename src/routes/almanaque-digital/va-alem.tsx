@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Main from "@/layouts/main";
-import Title from "@/components/title";
+import { Title } from "@/components/title";
 import { cn, sanitizedData } from "@/lib/utils";
 import { useQueryGoFurther } from "@/hooks/queries/pages-and-posts-queries";
 
