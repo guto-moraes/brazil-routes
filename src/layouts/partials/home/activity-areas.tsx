@@ -87,7 +87,7 @@ const ActivityAreas = () => {
         cards.forEach((card, i) => {
           const cardItem = activities[i];
           gsap.set(card, {
-            yPercent: 100 + 1 * 50,
+            yPercent: 100 + 1 * 30,
             opacity: 1,
             scale: 1.25,
             rotate: cardItem.fieldActivityRotateFrom,

@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Title from "@/components/title";
+// import Title from "@/components/title";
 import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
 import { SocialImpactSectionTitle, SocialImpactStatsCard } from "@/components/social-impact-stats-card";
-import Article from "@/components/article";
-import image from "@/assets/images/tablet-cover-book.png"
-import LiquidImageReveal from "@/components/liquid-image-reveal";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/impacto-social")({
   component: SocialImpact,
@@ -13,35 +11,42 @@ export const Route = createFileRoute("/impacto-social")({
 function SocialImpact() {
   return (
     <ScrollRotateWrapper>
-      <ScrollRotateSection className="h-[200svh]">
+      {/* <ScrollRotateSection>
         <ScrollRotateContent>
-          <Title className="max-w-7xl mx-auto text-tan-700 font-cabinet font-black">
+          <Title className="max-w-7xl mx-auto text-tan-700 text-center font-cabinet font-black -mt-14 lg:-mt-8">
             Impacto <span className="text-tan-400">Social</span>
           </Title>
-          <div className="max-w-7xl mx-auto flex gap-8">
-            <LiquidImageReveal src={image} height={720} width={550} alt="" className="flex-2" />
-
-            <div className="flex-3 bg-bone-200 xl:py-12 xl:px-12">
-              <div className="max-w-7xl mx-auto py-16 px-8 bg-bone-600">
-                <Article
-                  className="[&_p]:text-white"
-                  content={`
-                  <p>
-                    Mudanças na sociedade parecem ter seus efeitos mais impactantes quando podem ser observados. No caso do Projeto Caminhos do Brasil Central, perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se conhecer, valorizar e preservar a história, a memória e o patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar.
-                
-                `}
-                />
-              </div>
-            </div>
+          <div className="max-w-7xl mx-auto mt-16 text-center">
+            <h2
+              className={cn(
+                "w-full text-[clamp(2rem,5vw,3.5rem)] text-center text-balance font-semibold text-white",
+                "bg-tan-900 z-1 leading-17 inline relative px-4 after:content-none after:block",
+                "after:border-b-8 after:relative after:z-0 after:-mt-1.75",
+              )}
+            >
+              Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
+              <span className="text-chocolate-300">conhecer, valorizar e preservar</span> a história, a memória e o
+              patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar.
+            </h2>
           </div>
-
         </ScrollRotateContent>
-      </ScrollRotateSection>
-      <ScrollRotateSection>
+      </ScrollRotateSection> */}
+      <ScrollRotateSection className="h-full">
         <ScrollRotateContent className="bg-[#d8d9bc]">
           <div className="max-w-7xl mx-auto py-24 px-4">
-            <SocialImpactSectionTitle text="O Alcance do projeto" className="text-bone-600 mb-24" />
-            <div className="grid grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-mate-duo-50 bg-mate-duo-700 py-16 px-8 rounded-4xl">
+            <SocialImpactSectionTitle text="O Alcance do projeto" className="text-bone-600 mb-16" />
+            <p className="text-[clamp(1.25rem,5vw,1.65rem)] mb-16">
+              Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
+              <strong className="text-terracotta-700">conhecer, valorizar e preservar</strong> a história, a memória e o
+              patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar. Por isso, o Projeto Caminhos
+              do Brasil Central está engajado em, cada vez mais, ampliar o número de pessoas alcançadas.
+            </p>
+            <div
+              className={cn(
+                "grid grid-cols-1 xl:grid-cols-3 gap-8 divide-y md:divide-y-0",
+                "md:divide-x divide-mate-duo-50 bg-mate-duo-700 py-10 px-8 rounded-4xl",
+              )}
+            >
               <SocialImpactStatsCard
                 value="20+"
                 title="Palestras realizadas"
