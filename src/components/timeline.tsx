@@ -5,10 +5,11 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Observer } from "gsap/Observer";
 import { cn } from "@/lib/utils";
 import TimelineSlide from "@/components/timeline-slide";
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+gsap.registerPlugin(Observer, ScrollToPlugin, ScrollTrigger);
 
 const Timeline = () => {
   const scopeRef = useRef<HTMLElement | null>(null);
@@ -104,6 +105,41 @@ const Timeline = () => {
 
         slides.forEach((section) => observer.observe(section));
       }
+
+      Observer.create({
+        target: window,
+        type: "wheel,touch",
+        preventDefault: true,
+        wheelSpeed: -1,
+        tolerance: 5,
+        onDown: () => {
+          if (currentSlide >= 1930 && currentSlide < 1967) {
+            setCurrentSlide(currentSlide + 1);
+          }
+          console.log("Oi")
+        },
+        onUp: () => {
+          if (currentSlide > 1930 && currentSlide <= 1967) {
+            setCurrentSlide(currentSlide - 1);
+          }
+        },
+      });
+
+      /**
+       * Handles slide navigation via keyboard arrow keys.
+       */
+      document.addEventListener("keydown", (event: KeyboardEvent) => {
+        // Check for specific arrow keys
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+          if (currentSlide >= 1930 && currentSlide < 1967) {
+            setCurrentSlide(currentSlide + 1);
+          }
+        } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          if (currentSlide > 1930 && currentSlide <= 1967) {
+            setCurrentSlide(currentSlide - 1);
+          }
+        }
+      });
     },
     { scope: scopeRef },
   );

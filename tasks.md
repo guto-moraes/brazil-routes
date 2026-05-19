@@ -28,6 +28,7 @@
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Responsividade do _site_
 - [ ] Finalizar a página de acessibilidade
+- [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
 - [ ] Inserir comentários nos códigos
