@@ -11,6 +11,20 @@ import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
 import type { LocationTypes } from "@/types/custom-post-types";
 
+import {
+  Dialog,
+  DialogClose,
+  DialogFooter,
+  DialogHeader,
+  DialogPanel,
+  DialogPopup,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "./ui/button";
+import { useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
+import { ScrollArea } from "./ui/scroll-area";
+import ArticleContent from "./article-content";
+
 const MapResizer = () => {
   const map = useMap();
 
@@ -23,65 +37,34 @@ const MapResizer = () => {
     observer.observe(map.getContainer());
     return () => {
       observer.disconnect();
-    }
+    };
   }, [map]);
 
   return null;
 };
 
-const ButtonClosePopup = ({ show, setShow }: { show: boolean; setShow: () => void }) => {
+const ClosePopup = () => {
   const button = useMap();
 
   const handleToggle = () => {
     button.closePopup();
-    setShow();
   };
 
-  useEffect(() => {
-    if (!show) {
-      button.closePopup();
-    }
-  }, [show, button]);
-
   return (
-    <div className="flex justify-center items-center gap-6 -mt-4 mb-4">
-      {show ? (
-        <button
-          className={cn(
-            "rounded-2xl bg-white hover:bg-darkgreen-600 border border-darkgreen-500 hover:border-darkgreen-600",
-            "text-darkgreen-500 hover:text-white text-xs font-semibold uppercase py-2 px-4  transition-colors duration-300 cursor-pointer",
-          )}
-          onClick={handleToggle}
-        >
-          Fechar
-        </button>
-      ) : (
-        <button
-          className={cn(
-            "rounded-2xl bg-white hover:bg-darkgreen-600 border border-darkgreen-500 hover:border-darkgreen-600",
-            "text-darkgreen-500 hover:text-white text-xs font-semibold uppercase py-2 px-4  transition-colors duration-300 cursor-pointer",
-          )}
-          onClick={setShow}
-        >
-          Mais Informações
-        </button>
-      )}
-    </div>
+    <DialogClose className={cn(
+      "cursor-pointer rounded-sm bg-darkgreen-400 hover:bg-darkgreen-600",
+      "text-white py-1.5 px-5 transition-colors! duration-500"
+    )} onClick={handleToggle}>
+      Fechar
+    </DialogClose>
   );
 };
 
-const Map = ({
-  locations,
-  show,
-  setShow,
-  setId,
-}: {
-  locations: LocationTypes[];
-  show: boolean;
-  setShow: () => void;
-  setId: (id: string) => void;
-}) => {
+const Map = ({ locations }: { locations: LocationTypes[] }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [locationId, setLocationId] = useState<string>("");
   const [geoLocation, setGeoLocation] = useState<LatLngTuple>([-15.006, -52.108]);
+  const { location: selectedLocation } = useQueryInteractiveMapLocation(locationId).data || {};
 
   const LeafIcon = icon({
     iconUrl: mapIcon,
@@ -90,14 +73,27 @@ const Map = ({
     popupAnchor: [3, -50],
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("h-svh");
+    } else {
+      document.body.classList.remove("h-svh");
+    }
+  }, [isOpen]);
+
+  const handleButton = () => {
+    setIsOpen(true);
+    document.body.classList.add("overflow-hidden");
+  };
+
   return (
     <MapContainer
       center={geoLocation}
       zoom={9}
       zoomControl={false}
-      scrollWheelZoom={show}
+      // scrollWheelZoom={show}
       dragging={true}
-      className="h-full w-full z-40"
+      className="h-full w-full z-0!"
     >
       <ZoomControl position="topright" />
       <TileLayer
@@ -119,33 +115,56 @@ const Map = ({
                 click: (e) => {
                   e.originalEvent.preventDefault();
                   setGeoLocation([Number(coordinates[0]), Number(coordinates[1])]);
-                  setId(location.id);
+                  setLocationId(location.id);
                 },
               }}
             >
-              <Popup className="w-[320px]! relative">
-                <span className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
-                  Fonte: {location.places.featuredImageCopy}
-                </span>
-                <img
-                  src={location.featuredImage.node.guid}
-                  className="aspect-video h-50 min-w-[320px]! rounded-t-xl object-cover"
-                  alt={location.title}
-                  title={location.title}
-                />
-                <h3 className="text-base text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
+              <Popup className="w-72!">
+                <figure className="rounded-t-xl h-30 sm:h-50 w-full relative overflow-hidden">
+                  <img
+                    src={location.featuredImage.node.guid}
+                    className="aspect-video h-full w-full object-cover"
+                    alt={location.title}
+                    title={location.title}
+                  />
+                  <figcaption className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
+                    Fonte: {location.places.featuredImageCopy}
+                  </figcaption>
+                </figure>
+                <h3 className="text-base max-sm:text-center text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
                   {location.title}
                 </h3>
                 <p
-                  className="text-sm text-tan-900 text-justify hyphens-auto px-4"
+                  className="hidden sm:block text-sm text-tan-900 text-justify hyphens-auto max-w-full px-4"
                   dangerouslySetInnerHTML={sanitizedData(location.places.description)}
                 />
-                <ButtonClosePopup show={show} setShow={setShow} />
+                <Button className={cn(
+                  "border-none bg-darkgreen-500 hover:bg-darkgreen-600 mx-auto mb-6",
+                  "text-[0.625rem] sm:text-xs font-inter font-semibold uppercase transition-colors duration-500"
+                )} onClick={handleButton}>Mais informações</Button>
               </Popup>
+
             </Marker>
           );
         })}
       </MarkerClusterGroup>
+        {isOpen && selectedLocation && (
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogPopup className="max-sm:px-4">
+              <DialogHeader className="max-sm:px-0 max-sm:mt-4">
+                <DialogTitle>{selectedLocation.title}</DialogTitle>
+              </DialogHeader>
+              <DialogPanel className="min-h-[70svh]">
+                <ScrollArea className="px-0">
+                  <ArticleContent className="[&_p]:text-base!" content={selectedLocation.content} />
+                </ScrollArea>
+              </DialogPanel>
+              <DialogFooter>
+                <ClosePopup />
+              </DialogFooter>
+            </DialogPopup>
+          </Dialog>
+        )}
       <MapResizer />
     </MapContainer>
   );

@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TesteRouteImport } from './routes/teste'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as ImpactoSocialRouteImport } from './routes/impacto-social'
@@ -32,6 +33,11 @@ import { Route as AlmanaqueDigitalCapitulo3RouteImport } from './routes/almanaqu
 import { Route as AlmanaqueDigitalCapitulo2RouteImport } from './routes/almanaque-digital/capitulo-2'
 import { Route as AlmanaqueDigitalCapitulo1RouteImport } from './routes/almanaque-digital/capitulo-1'
 
+const TesteRoute = TesteRouteImport.update({
+  id: '/teste',
+  path: '/teste',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
   path: '/sobre-o-projeto',
@@ -163,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
   '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
   '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
@@ -212,6 +220,7 @@ export interface FileRoutesById {
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
+  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-1': typeof AlmanaqueDigitalCapitulo1Route
   '/almanaque-digital/capitulo-2': typeof AlmanaqueDigitalCapitulo2Route
   '/almanaque-digital/capitulo-3': typeof AlmanaqueDigitalCapitulo3Route
@@ -238,6 +247,7 @@ export interface FileRouteTypes {
     | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
+    | '/teste'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
     | '/almanaque-digital/capitulo-3'
@@ -262,6 +272,7 @@ export interface FileRouteTypes {
     | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
+    | '/teste'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
     | '/almanaque-digital/capitulo-3'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/impacto-social'
     | '/politica-de-privacidade'
     | '/sobre-o-projeto'
+    | '/teste'
     | '/almanaque-digital/capitulo-1'
     | '/almanaque-digital/capitulo-2'
     | '/almanaque-digital/capitulo-3'
@@ -311,6 +323,7 @@ export interface RootRouteChildren {
   ImpactoSocialRoute: typeof ImpactoSocialRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
+  TesteRoute: typeof TesteRoute
   AlmanaqueDigitalCapitulo1Route: typeof AlmanaqueDigitalCapitulo1Route
   AlmanaqueDigitalCapitulo2Route: typeof AlmanaqueDigitalCapitulo2Route
   AlmanaqueDigitalCapitulo3Route: typeof AlmanaqueDigitalCapitulo3Route
@@ -327,6 +340,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/teste': {
+      id: '/teste'
+      path: '/teste'
+      fullPath: '/teste'
+      preLoaderRoute: typeof TesteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre-o-projeto': {
       id: '/sobre-o-projeto'
       path: '/sobre-o-projeto'
@@ -495,6 +515,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImpactoSocialRoute: ImpactoSocialRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
+  TesteRoute: TesteRoute,
   AlmanaqueDigitalCapitulo1Route: AlmanaqueDigitalCapitulo1Route,
   AlmanaqueDigitalCapitulo2Route: AlmanaqueDigitalCapitulo2Route,
   AlmanaqueDigitalCapitulo3Route: AlmanaqueDigitalCapitulo3Route,

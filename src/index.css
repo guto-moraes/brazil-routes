@@ -5,13 +5,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html,
-body {
-  overflow: hidden;
-}
-
 #app {
   position: relative;
+  overflow: hidden;
 }
 
 .svg-clipped {
@@ -220,6 +216,7 @@ body {
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-destructive-foreground: var(--destructive-foreground);
 }
 
 :root {
@@ -255,6 +252,7 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --destructive-foreground: var(--color-red-700);
 }
 
 .dark {
@@ -289,6 +287,7 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --destructive-foreground: var(--color-red-400);
 }
 
 @layer base {
@@ -418,7 +417,6 @@ html:active-view-transition-type(warp) {
   background-image: linear-gradient(245deg, rgba(27, 27, 27, 0.04) 0%, rgba(27, 27, 27, 0.04) 93%, rgba(92, 92, 92, 0.04) 93%, rgba(92, 92, 92, 0.04) 100%), linear-gradient(44deg, rgba(11, 11, 11, 0.04) 0%, rgba(11, 11, 11, 0.04) 39%, rgba(186, 186, 186, 0.04) 39%, rgba(186, 186, 186, 0.04) 100%), linear-gradient(134deg, rgba(178, 178, 178, 0.04) 0%, rgba(178, 178, 178, 0.04) 95%, rgba(237, 237, 237, 0.04) 95%, rgba(237, 237, 237, 0.04) 100%), linear-gradient(322deg, rgba(56, 56, 56, 0.04) 0%, rgba(56, 56, 56, 0.04) 58%, rgba(232, 232, 232, 0.04) 58%, rgba(232, 232, 232, 0.04) 100%), linear-gradient(139deg, rgba(51, 51, 51, 0.04) 0%, rgba(51, 51, 51, 0.04) 62%, rgba(35, 35, 35, 0.04) 62%, rgba(35, 35, 35, 0.04) 100%), linear-gradient(252deg, rgba(9, 9, 9, 0.04) 0%, rgba(9, 9, 9, 0.04) 39%, rgba(174, 174, 174, 0.04) 39%, rgba(174, 174, 174, 0.04) 100%), linear-gradient(229deg, rgba(241, 241, 241, 0.04) 0%, rgba(241, 241, 241, 0.04) 2%, rgba(140, 140, 140, 0.04) 2%, rgba(140, 140, 140, 0.04) 100%), linear-gradient(223deg, rgba(82, 82, 82, 0.04) 0%, rgba(82, 82, 82, 0.04) 36%, rgba(229, 229, 229, 0.04) 36%, rgba(229, 229, 229, 0.04) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.0025), rgba(255, 255, 255, 0.0025));
 }
 
-
 /* Animação de Introdução */
 .card .char span {
   position: relative;
@@ -460,7 +458,6 @@ html:active-view-transition-type(warp) {
     margin-top: 0.5rem;
   }
 }
-
 
 /* Mapa */
 .leaflet-layer {
@@ -533,6 +530,11 @@ html:active-view-transition-type(warp) {
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   border-color: transparent !important;
+}
+
+.leaflet-popup-content-wrapper {
+  max-width: 300px;
+  width: 100%;
 }
 
 /* Fim das configurações do Mapa */
@@ -665,7 +667,6 @@ html:active-view-transition-type(warp) {
 #card-4 {
   background-color: var(--color-card-accent-5);
 }
-
 
 .experience {
   position: relative;

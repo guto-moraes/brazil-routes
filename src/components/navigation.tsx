@@ -144,10 +144,10 @@ const Navigation = ({
           <nav
             className={cn(
               "navigation absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-full",
-              "xl:max-w-384 flex justify-between items-center overflow-x-hidden z-70",
+              "xl:max-w-384 flex justify-between items-center overflow-x-hidden z-8",
             )}
           >
-            <div className="nav-logo py-4 pl-3 xl:pl-0 text-left border-none z-50">
+            <div className="nav-logo py-4 pl-3 xl:pl-0 text-left border-none">
               <a role="menu-item" href="/" title="Página Inicial">
                 <img
                   src={isActiveMenu || isNegativeLogo ? negativeLogo : logo}
@@ -159,7 +159,7 @@ const Navigation = ({
             </div>
             <button
               className={cn(
-                "nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5 z-80",
+                "nav-toggler p-4 cursor-pointer border-0 group flex items-center gap-x-1.5",
                 isActiveMenu && "open",
               )}
               id="menubutton"
@@ -178,7 +178,7 @@ const Navigation = ({
               >
                 Menu
               </span>
-              <div className=" h-full xl:h-12 flex flex-col justify-center items-center gap-y-1.25 overflow-hidden z-75">
+              <div className=" h-full xl:h-12 flex flex-col justify-center items-center gap-y-1.25 overflow-hidden">
                 <span
                   className={cn(
                     "w-8 sm:w-10 h-0.75 transition-all ease-in-out duration-400 pointer-events-none",
@@ -206,7 +206,7 @@ const Navigation = ({
       </header>
 
       <div
-        className={cn("nav-content min-h-svh max-h-max md:h-auto w-full absolute top-0 left-0", isActiveMenu ? "z-60" : "z-0")}
+        className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-7" : "z-0")}
         aria-labelledby="menubutton"
         tabIndex={-1}
         ref={navigationRef}
@@ -218,8 +218,8 @@ const Navigation = ({
 
         <div
           className={cn(
-            "nav-items min-h-svh max-h-max md:h-auto lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 md:px-0",
-            "mt-16 pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
+            "nav-items lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 md:px-0",
+            "mt-16 xl:mt-24 pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
           <div className="nav-items-col md:flex-2 flex flex-col md:justify-between gap-y-6">

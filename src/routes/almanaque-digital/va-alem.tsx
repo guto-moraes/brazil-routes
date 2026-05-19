@@ -8,18 +8,18 @@ export const Route = createFileRoute("/almanaque-digital/va-alem")({
   head: () => ({
     meta: [
       {
-        title: "Referências | Projeto Caminhos do Brasil Central",
+        title: "Vá Além | Projeto Caminhos do Brasil Central",
       },
       {
         name: "description",
         content:
-          "Informações das fontes ou dos direitos autorais de obras ou imagens citadas ou incluídas no site do Projeto Caminhos do Brasil Central",
+          "Aprofunde seus conhecimentos acessando sites externos com vídeos, fotos, textos e diversos outros materiais",
       },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://caminhosdobrasilcentral.com/referencias",
+        href: "https://caminhosdobrasilcentral.com/va-alem",
       },
     ],
   }),
@@ -37,21 +37,21 @@ const GoFurtherItem = ({
   title: string;
   link: string;
 }) => (
-  <div className="h-40 relative overflow-hidden flex justify-start items-center group">
+  <div className="h-auto lg:h-40 relative overflow-hidden flex justify-start items-center group max-sm:py-4">
     <div
       className={cn(
-        "h-40 w-full absolute top-0 left-0 -translate-y-full bg-chocolate-900 group-hover:translate-y-0",
+        "h-full lg:h-40 w-full absolute top-0 left-0 -translate-y-full bg-chocolate-900 group-hover:translate-y-0",
         "transition-tranform duration-500 will-change-transform z-8",
       )}
     ></div>
-    <div className="h-full w-full flex gap-4 px-8 z-10">
+    <div className="h-full w-full flex flex-col md:flex-row gap-4 px-4 md:px-8 z-10">
       <div className="flex-2 h-full w-full flex justify-start items-center">
         <h2 className="text-terracotta-700 text-xl font-semibold font-cabinet group-hover:text-chocolate-300 transition-colors duration-500">
           {subject}
         </h2>
       </div>
       <div className="flex-3 h-full flex justify-center items-center">
-        <p className="text-sm font-light group-hover:text-white px-6">{description}</p>
+        <p className="text-sm font-light group-hover:text-white md:px-6">{description}</p>
       </div>
       <div className="flex-1 h-full flex justify-center items-center">
         <a
@@ -77,13 +77,13 @@ function GoFurther() {
 
   return (
     <>
-      <Main className="max-w-6xl mx-auto pb:12 xl:pb-24">
-        <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
+      <Main className="max-w-6xl mx-auto pb:12 xl:pb-24 max-sm:px-4 max-sm:mb-16">
+        <Title>
           Vá <span className="text-tan-400">Além</span>
         </Title>
 
         <div
-          className="w-full mb-24 [&_p]:text-xl [&_p]:text-tan-800 [&_p]:text-justify [&_p]:hyphens-auto"
+          className="w-full mb-12 sm:mb-16 md:mb-20 lg:mb-24 [&_p]:text-[clamp(1rem,3vw,1.25)] [&_p]:text-tan-800 sm:[&_p]:text-justify [&_p]:hyphens-auto"
           dangerouslySetInnerHTML={sanitizedData(page.content)}
         />
 

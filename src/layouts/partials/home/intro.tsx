@@ -125,7 +125,7 @@ const Intro = () => {
     <>
       <section className="hero-container relative bg-tan-100 h-svh w-full overflow-hidden" ref={heroContainer}>
         <Navigation isHome={true} isNegativeLogo={isNegativeLogo} />
-        <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10">
+        <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10 z-0">
           <img
             className="hero-image invert scale-0 opacity-7.5 absolute top-1/2 left-1/2 -translate-1/2 h-1/2 w-1/2 object-cover -z-1"
             src={map}

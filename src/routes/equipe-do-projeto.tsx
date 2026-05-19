@@ -10,7 +10,7 @@ function ProjectTeam() {
   return (
     <CardStackScroll>
       <div className="max-w-5xl mx-auto flex flex-col justify-start items-start uppercase px-4">
-        <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
+        <Title>
           Equipe do <span className="text-tan-400">Projeto</span>
         </Title>
       </div>
