@@ -10,6 +10,21 @@ export const PageSchema = z.object({
 
 export type PageTypes = z.infer<typeof PageSchema>;
 
+//Tipagem da consulta dos capítulos do Alamanque
+export const ChapterPageSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+    chaptersCustom: z.object({
+      firstPartTitle: z.string(),
+      secondPartTitle: z.string(),
+      subtitle: z.string(),
+    }),
+  }),
+});
+
+export type ChapterPageTypes = z.infer<typeof ChapterPageSchema>;
+
 //Tipagem da consulta de todas as postagens no Blog de Notícias
 export const BlogItemsSchema = z.object({
   id: z.string(),

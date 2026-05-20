@@ -1,10 +1,9 @@
 import { Marquee } from "@/components/ui/marquee";
-// import LogoSvg from "@/components/logo-svg";
 import xpoint from "@/assets/images/press/o-x-da-questao.webp";
 import baggas from "@/assets/images/press/baggas-cast.webp";
 import seciteci from "@/assets/images/press/secitec.webp";
-import sevenWeek from "@/assets/images/press/semana-7.webp"
-import behindTheScenes from "@/assets/images/press/bastidores-do-poder.webp"
+import sevenWeek from "@/assets/images/press/semana-7.webp";
+import behindTheScenes from "@/assets/images/press/bastidores-do-poder.webp";
 
 const press = [
   {
@@ -43,7 +42,9 @@ const Press = () => {
   return (
     <section className="flex flex-col gap-y-16 py-12 sm:py-18 md:py-24 lg:py-32 max-sm:px-4">
       <div className="container mx-auto flex flex-col justify-center items-center gap-y-8">
-        <h2 className="text-[clamp(2rem,5vw,3.75rem)] text-bone-600 max-sm:text-center font-cabinet font-black max-sm:leading-none">Divulgação do Almanaque nas Mídias</h2>
+        <h2 className="text-[clamp(2rem,5vw,3.75rem)] text-bone-600 max-sm:text-center font-cabinet font-black max-sm:leading-none">
+          Divulgação do Almanaque nas Mídias
+        </h2>
         <p className="max-w-5xl mx-auto text-[clamp(1rem,1.75vw,1.125rem)] text-center text-bone-700">
           Desde de 2025, o <strong>Almanaque Desbravando o sertão, descobrindo o Brasil</strong> tem sido publicizado em
           diferentes mídias. Uma ação importante e que serviu de motivação para alçar o{" "}

@@ -8,20 +8,20 @@
 - [X] Remover a página de Referências e criar a página de Vá Além
 - [X] Corrigir _bug_ do botão fechar menu
 - [X] Responsividade do menu
+- [X] Incluir **VLibras** no site
+- [X] Resolver _bug_ com o **Mapa Interativo** após a renderização
+- [X] Criar uma única página dinâmica para os capítulos do Almanaque
 - [ ] Finalizar a página com informações do impacto social do projeto
 - [ ] Finalizar página de Créditos
-- [ ] Criar uma única página dinâmica para os capítulos do Almanaque
 - [ ] Criar um laiaute para uma página e uma postagem padrão
-- [ ] Integrar o menu principal com o WordPress
+- [ ] Revisar todas as integrações com o WordPress (Menus, imprensa,)
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
-- [ ] Incluir **VLibras** no site (testar incluir _plugin_ pelo arquivo `functions.php`)
 - [ ] Implementar áreas de configurações do tema para o rodapé
 - [ ] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
 - [ ] Inserir o código para envio do formulário
-- [ ] Resolver _bug_ com o **Mapa Interativo** após a renderização
 - [ ] Criar o _Quizz_ e inserir _link_ no menu principal
 - [ ] Padronizar SEO das páginas
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
@@ -31,6 +31,7 @@
 - [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
+- [ ] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Inserir comentários nos códigos
 - [ ] Mudar `autoCodeSpliting` para `false`
 - [ ] Compilar a versão do tema para WordPress

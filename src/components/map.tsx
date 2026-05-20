@@ -43,7 +43,7 @@ const MapResizer = () => {
   return null;
 };
 
-const ClosePopup = () => {
+const ButtonClosePopup = () => {
   const button = useMap();
 
   const handleToggle = () => {
@@ -51,12 +51,36 @@ const ClosePopup = () => {
   };
 
   return (
-    <DialogClose className={cn(
-      "cursor-pointer rounded-sm bg-darkgreen-400 hover:bg-darkgreen-600",
-      "text-white py-1.5 px-5 transition-colors! duration-500"
-    )} onClick={handleToggle}>
+    <DialogClose
+      className={cn(
+        "cursor-pointer rounded-sm bg-darkgreen-400 hover:bg-darkgreen-600",
+        "text-white py-1.5 px-5 transition-colors! duration-500",
+      )}
+      onClick={handleToggle}
+    >
       Fechar
     </DialogClose>
+  );
+};
+
+const ButtonOpenPopup = ({ setOpenPopup }: { setOpenPopup: (value: boolean) => void }) => {
+  const button = useMap();
+
+  const handleOpenPopup = () => {
+    button.closePopup();
+    setOpenPopup(true);
+  };
+
+  return (
+    <Button
+      className={cn(
+        "border-none bg-darkgreen-500 hover:bg-darkgreen-600 mx-auto mb-6",
+        "text-[0.625rem] sm:text-xs font-inter font-semibold uppercase transition-colors duration-500",
+      )}
+      onClick={handleOpenPopup}
+    >
+      Mais informações
+    </Button>
   );
 };
 
@@ -81,19 +105,14 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
     }
   }, [isOpen]);
 
-  const handleButton = () => {
-    setIsOpen(true);
-    document.body.classList.add("overflow-hidden");
-  };
-
   return (
     <MapContainer
       center={geoLocation}
       zoom={9}
       zoomControl={false}
-      // scrollWheelZoom={show}
+      scrollWheelZoom={true}
       dragging={true}
-      className="h-full w-full z-0!"
+      className="h-[calc(100svh-104px)] w-full z-0!"
     >
       <ZoomControl position="topright" />
       <TileLayer
@@ -138,33 +157,31 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
                   className="hidden sm:block text-sm text-tan-900 text-justify hyphens-auto max-w-full px-4"
                   dangerouslySetInnerHTML={sanitizedData(location.places.description)}
                 />
-                <Button className={cn(
-                  "border-none bg-darkgreen-500 hover:bg-darkgreen-600 mx-auto mb-6",
-                  "text-[0.625rem] sm:text-xs font-inter font-semibold uppercase transition-colors duration-500"
-                )} onClick={handleButton}>Mais informações</Button>
+                <ButtonOpenPopup setOpenPopup={setIsOpen} />
               </Popup>
-
             </Marker>
           );
         })}
       </MarkerClusterGroup>
-        {isOpen && selectedLocation && (
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogPopup className="max-sm:px-4">
-              <DialogHeader className="max-sm:px-0 max-sm:mt-4">
-                <DialogTitle>{selectedLocation.title}</DialogTitle>
-              </DialogHeader>
-              <DialogPanel className="min-h-[70svh]">
-                <ScrollArea className="px-0">
-                  <ArticleContent className="[&_p]:text-base!" content={selectedLocation.content} />
-                </ScrollArea>
-              </DialogPanel>
-              <DialogFooter>
-                <ClosePopup />
-              </DialogFooter>
-            </DialogPopup>
-          </Dialog>
-        )}
+      {isOpen && selectedLocation && (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogPopup className="max-sm:px-4">
+            <DialogHeader className="max-sm:px-0 max-sm:mt-4">
+              <DialogTitle className="text-[clamp(1.25rem,5vw,1.5rem)] text-chocolate-700 font-bold uppercase leading-none tracking-tighter">
+                {selectedLocation.title}
+              </DialogTitle>
+            </DialogHeader>
+            <DialogPanel className="min-h-[70svh]">
+              <ScrollArea className="px-0">
+                <ArticleContent className="[&_p]:text-base!" content={selectedLocation.content} />
+              </ScrollArea>
+            </DialogPanel>
+            <DialogFooter>
+              <ButtonClosePopup />
+            </DialogFooter>
+          </DialogPopup>
+        </Dialog>
+      )}
       <MapResizer />
     </MapContainer>
   );

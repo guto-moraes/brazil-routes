@@ -95,6 +95,27 @@ function cbc__theme()
 	);
 
 	wp_enqueue_style(
+		"react-leaflet",
+		"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+		"1.9.4",
+		null
+	);
+
+	wp_enqueue_style(
+		"react-leaflet-marker-cluster",
+		"https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css",
+		"1.5.3",
+		null
+	);
+
+	wp_enqueue_style(
+		"react-leaflet-marker-cluster-default",
+		"https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css",
+		"1.5.3",
+		null
+	);
+
+	wp_enqueue_style(
 		"cbc",
 		get_stylesheet_directory_uri() . '/dist/assets/index.css',
 		wp_get_theme()->get("Version"), //time()

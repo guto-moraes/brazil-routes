@@ -10,6 +10,21 @@ export const PAGE = gql`
   }
 `;
 
+//GraphQl Query para pegar uma página baseada no slug
+export const CHAPTER_PAGE = gql`
+  query ChapterPage($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      chaptersCustom {
+        firstPartTitle
+        secondPartTitle
+        subtitle
+      }
+    }
+  }
+`;
+
 //GraphQl Query para todos os posts publicados nas categorias Agenda e Blog
 export const BLOG = gql`
   query Blog {

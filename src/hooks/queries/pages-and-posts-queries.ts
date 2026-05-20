@@ -1,5 +1,5 @@
-import { BLOG, CALENDAR, GO_FURTHER, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
-import type { BlogItemTypes, BlogTypes, CalendarTypes, GoFurtherPageTypes, PageTypes } from "@/types/page-and-post-types";
+import { BLOG, CALENDAR, CHAPTER_PAGE, GO_FURTHER, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes, BlogTypes, CalendarTypes, ChapterPageTypes, GoFurtherPageTypes, PageTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 
@@ -17,6 +17,22 @@ export const useQueryPage = (slug: string) => {
   return useSuspenseQuery<PageTypes>({
     queryKey: ["single-page"],
     queryFn: () => fetchPages(slug),
+  });
+};
+
+//Fetch de uma única página
+const fetchChapterPage = async (slug: string) => {
+  return await request<ChapterPageTypes>(GRAPHQL_URL, CHAPTER_PAGE, {
+    slug,
+  });
+};
+
+//Query de uma única página
+export const useQueryChapterPage = (slug: string) => {
+  return useSuspenseQuery<ChapterPageTypes>({
+    queryKey: ["chapter-page"],
+    queryFn: () => fetchChapterPage(slug),
+    refetchInterval: 500,
   });
 };
 

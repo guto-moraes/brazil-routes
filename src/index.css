@@ -460,6 +460,7 @@ html:active-view-transition-type(warp) {
 }
 
 /* Mapa */
+
 .leaflet-layer {
   filter: grayscale(80%);
 }
