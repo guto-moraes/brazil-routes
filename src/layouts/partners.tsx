@@ -10,7 +10,7 @@ const Partners = () => {
       <div className="h-full max-w-7xl w-full px-4 xl:px-0 md:px-8 mx-auto flex items-center justify-center">
         <div className="flex flex-col gap-y-2">
           <h3>Realização</h3>
-          <ul className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 content-center">
+          <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 content-center">
             {partners &&
               partners.map((partner: PartnerType, index: number) => {
                 const height = index === 2 ? "w-[85%] max-w-full" : "w-full max-w-full";

@@ -84,7 +84,7 @@ function ProjectTeam() {
 
   return (
     <Main ref={teamCardRef}>
-      <Title className="max-w-300 mx-auto pb-0!">
+      <Title className="max-w-300 mx-auto max-sm:pb-10! pb-0! max-sm:px-4">
         Equipe do <span className="text-tan-400">Projeto</span>
       </Title>
       <section className="team-card-wrapper relative h-svh lg:h-[calc(100svh-280px)] overflow-hidden mx-4">

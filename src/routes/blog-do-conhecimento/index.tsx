@@ -46,18 +46,18 @@ function RouteComponent() {
   };
 
   return (
-    <Main className="w-full pb-12 lg:py-24">
+    <Main className="w-full pb-12">
       <div className="max-w-6xl mx-auto xl:pb-16 px-4 xl:px-2">
         <Title>
           Blog do <span className="text-tan-400">Conhecimento</span>
         </Title>
 
-        <div className="w-full flex flex-col gap-y-10 sm:gap-y-16 md:gap-y-20 lg:gap-y-24 xl:gap-y-32 divide-y divide-dashed divide-tan-300">
+        <div className="w-full flex flex-col gap-y-10 sm:gap-y-8 md:gap-y-12 lg:gap-y-16 divide-y divide-dashed divide-tan-300">
           {posts &&
             posts.nodes.map((post) => {
               const isUpdadatedPost = post.modified !== post.date ? true : false;
               return (
-                <article className="w-full flex flex-col md:flex-row gap-12 not-last:pb-10 lg:not-last:pb-32" key={post.id}>
+                <article className="w-full flex flex-col md:flex-row gap-12 not-last:pb-10 lg:not-last:pb-16" key={post.id}>
                   <aside className="flex md:flex-2">
                     <ul className="text-xs sm:text-sm font-mono leading-none h-5 flex flex-col gap-2 sm:gap-y-4">
                       <li className="flex items-center gap-x-2">
@@ -89,9 +89,9 @@ function RouteComponent() {
                     </ul>
                   </aside>
                   <div className="flex-1: md:flex-5 flex-col gap-y-8 md:gap-y-16">
-                    <TitleH2 className="max-sm:mt-16">{post.title}</TitleH2>
+                    <TitleH2 className="text-[clamp(1.5rem,5vw,3.25rem)] leading-none max-sm:mt-16 py-0!">{post.title}</TitleH2>
                     <div className="md:mt-16 flex flex-col md:flex-row gap-8">
-                      <figure className="rounded-lg h-40 md:h-100 flex-1 md:flex-3 overflow-hidden">
+                      <figure className="rounded-lg h-40 md:h-80 flex-1 md:flex-3 overflow-hidden">
                         <img
                           className="h-full w-full object-cover"
                           src={post.featuredImage.node.guid}
@@ -101,7 +101,7 @@ function RouteComponent() {
                       <div className="flex-4 flex flex-col gap-y-8 justify-between">
                         <div
                           className={cn(
-                            "w-full flex flex-col gap-y-8 justify-between sm:[&_p]:text-lg [&_p]:text-tan-700",
+                            "w-full flex flex-col gap-y-8 justify-between text-[1rem,5vw,1.5rem] [&_p]:text-tan-700",
                             "[&_p]:font-medium [&_p]:leading-7 [&_p]:text-justify [&_p]:hyphens-auto",
                           )}
                           dangerouslySetInnerHTML={sanitizedData(post.excerpt)}

@@ -218,11 +218,11 @@ const Navigation = ({
 
         <div
           className={cn(
-            "nav-items lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 md:px-0",
+            "nav-items lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 xl:px-0",
             "mt-16 xl:mt-24 pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
-          <div className="nav-items-col md:flex-2 flex flex-col md:justify-between gap-y-6">
+          <div className="nav-items-col md:flex-2 flex flex-col md:flex-row md:justify-between gap-y-6">
             <ul role="menu" className="nav-socials z-2">
               {socials.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
@@ -242,7 +242,7 @@ const Navigation = ({
                 </li>
               ))}
             </ul>
-            <ul role="menu" className="nav-legal flex flex-col gap-y-2 lg:gap-y-4 z-2">
+            <ul role="menu" className="nav-legal flex flex-col md:items-end lg:items-start gap-y-2 lg:gap-y-4 z-2">
               {legals.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
@@ -263,7 +263,7 @@ const Navigation = ({
               ))}
             </ul>
           </div>
-          <div className="nav-items-col lg:flex-4 flex flex-col lg:flex-row lg:justify-between gap-6 md:gap-8">
+          <div className="nav-items-col lg:flex-4 flex flex-col md:flex-row md:justify-between gap-6 md:gap-8">
             <ul role="menu" className="nav-primary-links flex flex-col gap-y-2 lg:gap-y-4 z-5">
               {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
@@ -284,7 +284,7 @@ const Navigation = ({
                 </li>
               ))}
             </ul>
-            <ul role="menu" className="nav-secondary-links z-2">
+            <ul role="menu" className="nav-secondary-links md:flex md:flex-col md:items-end lg:flex-row lg:justify-start z-2">
               {secondaryLinks.map(({ url, title, transition }, index) => {
                 return (
                   <li className="line" role="presentation" key={index}>

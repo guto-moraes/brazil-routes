@@ -4,8 +4,8 @@ const ArticleContent = ({ className, content }: { className?: string; content: s
   return (
     <div
       className={cn(
-        "[&_p]:text-base [&_p]:md:text-lg [&_p]:xl:text-xl [&_p]:text-tan-700 [&_p]:leading-7 [&_p]:text-justify",
-        "[&_p]:hyphens-auto [&_p]:not-last:mb-8 [&_blockquote_p]:text-[clamp(1.25rem,5vw,1.75rem)] [&_blockquote_p]:leading-8 [&_blockquote_p]:text-left",
+        "text-[1rem,5vw,1.5rem] [&_p]:text-tan-700 [&_p]:leading-7 [&_p]:text-justify[&_p]:hyphens-auto [&_p]:not-last:mb-8",
+        "[&_blockquote_p]:text-[clamp(1.25rem,5vw,1.75rem)] [&_blockquote_p]:leading-8 [&_blockquote_p]:text-left",
         " [&_blockquote]:pl-4 [&_blockquote]:mb-12 [&_blockquote]:border-l-5 [&_blockquote]:border-mate-500",
         "[&_hr.wp-block-separator]:border-tan-600/25 [&_sup.fn]:text-mate-500 [&_sup.fn]:font-semibold [&_hr.wp-block-separator]:mb-6",
         "[&_ol.wp-block-footnotes]:text-tan-600 [&_ol.wp-block-footnotes]:list-decimal [&_ol.wp-block-footnotes]:text-sm",
