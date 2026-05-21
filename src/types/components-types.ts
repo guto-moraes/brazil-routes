@@ -129,9 +129,9 @@ export type EventTextTypes = z.infer<typeof EventTextSchema>;
 
 //Tipagem do componente CardStackScroll
 export const MemberCardDetailsSchema = z.object({
-  memberName: z.string(),
-  memberRole: z.string(),
-  memberDescription: z.string(),
+  name: z.string(),
+  role: z.string(),
+  resume: z.string(),
 });
 
 export type MemberCardDetailsTypes = z.infer<typeof MemberCardDetailsSchema>;

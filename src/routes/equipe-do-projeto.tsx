@@ -1,20 +1,115 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
-import Main from "@/layouts/main";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useQueryTeam } from "@/hooks/queries/custom-posts-queries";
 import { Title } from "@/components/title";
-import CardStackScroll from "@/components/card-stack-scroll";
+import Main from "@/layouts/main";
+import {
+  TeamCard,
+  TeamMemberDetails,
+  TeamMemberDetailsContainer,
+  TeamMemberPhoto,
+  TeamMemberSocialItem,
+  TeamMemberSocialList,
+} from "@/components/team-cards";
 
 export const Route = createFileRoute("/equipe-do-projeto")({
   component: ProjectTeam,
 });
 
 function ProjectTeam() {
+  const { equipes } = useQueryTeam().data || {};
+  const teamCardRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const cards = gsap.utils.toArray<HTMLDivElement>(".team-card");
+
+      cards.forEach((card, index) => {
+        if (index !== 0) {
+          gsap.set(card, {
+            x: () => window.innerWidth + 100,
+            autoAlpha: 1,
+          });
+        }
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: teamCardRef.current,
+          start: "top top",
+          end: `+=${cards.length * 250}%`,
+          pin: true,
+          scrub: window.innerWidth < 768 ? 1 : 2,
+        },
+      });
+
+      cards.forEach((card, index) => {
+        const memberPhoto = card.querySelector(".team-card-image");
+        const isMobile = window.innerWidth < 768;
+
+        const cardTimeline = gsap.timeline({});
+
+        if (index !== 0) {
+          cardTimeline
+            .to(card, {
+              x: index * 3,
+              duration: 2.5,
+              ease: "power2.out",
+              force3D: true,
+            })
+            .to(
+              memberPhoto,
+              {
+                y: isMobile ? 0 : -10,
+                scale: isMobile ? 1 : 1.1,
+                duration: 1,
+                ease: "power1.out",
+              },
+              "-=1",
+            );
+        }
+
+        tl.add(cardTimeline, "+=0.5");
+      });
+    },
+    { scope: teamCardRef },
+  );
+
   return (
-    <Main className="mb-16 lg:pb-32 px-4">
-      <Title className="max-w-6xl mx-auto">
+    <Main ref={teamCardRef}>
+      <Title className="max-w-300 mx-auto pb-0!">
         Equipe do <span className="text-tan-400">Projeto</span>
       </Title>
-
-      <CardStackScroll />
+      <section className="team-card-wrapper relative h-svh lg:h-[calc(100svh-280px)] overflow-hidden mx-4">
+        <div className="team-card-container h-170 sm:h-125 lg:max-h-140 w-full lg:max-w-300 m-[auto_auto] absolute top-1/2 left-1/2 -translate-1/2">
+          {equipes.nodes.map((member, index) => (
+            <TeamCard key={index}>
+              <TeamMemberPhoto imgSrc={member.featuredImage.node.sourceUrl} altText={member.title} />
+              <TeamMemberDetailsContainer>
+                <TeamMemberDetails name={member.title} role={member.team.role} resume={member.content} />
+                <TeamMemberSocialList>
+                  {member.team.socials.map((social, index) => (
+                    <TeamMemberSocialItem
+                      key={index}
+                      socialUrl={social.socialUrl}
+                      socialName={social.socialName}
+                      socialAt={social.socialAt ? social.socialAt : social.socialUrl}
+                      memberName={member.title}
+                    />
+                  ))}
+                </TeamMemberSocialList>
+              </TeamMemberDetailsContainer>
+            </TeamCard>
+          ))}
+        </div>
+      </section>
     </Main>
   );
 }

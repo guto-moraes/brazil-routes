@@ -34,9 +34,9 @@ function SocialImpact() {
       </ScrollRotateSection> */}
       <ScrollRotateSection className="h-full">
         <ScrollRotateContent className="bg-[#d8d9bc]">
-          <div className="max-w-7xl mx-auto py-24">
-            <Title className="text-bone-600 max-sm:-mt-24">Alcance do Projeto</Title>
-            <p className="text-[clamp(1rem,5vw,1.65rem)] sm:text-justify mb-16">
+          <div className="max-w-7xl mx-auto pb-24">
+            <Title className="text-bone-600">Alcance <span className="text-bone-400">do Projeto</span></Title>
+            <p className="text-[clamp(1rem,4vw,1.65rem)] sm:text-justify mb-16">
               Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
               <strong className="text-terracotta-700">conhecer, valorizar e preservar</strong> a história, a memória e o
               patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar. Por isso, o Projeto Caminhos
@@ -59,7 +59,7 @@ function SocialImpact() {
                 description="As ações presenciais são fundamentais para promover e aprofundas a troca de saberes e viabilizar mais interação com o público."
               />
               <SocialImpactStatsCard
-                value="2000+"
+                value="1000+"
                 title="Downloads do Almanaque"
                 description="O aumento da circulação do Almanaque é uma forma de fortaler a história, a memória e a preservação do patrimônio."
               />

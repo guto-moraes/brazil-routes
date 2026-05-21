@@ -31,6 +31,7 @@
 - [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
+- [ ] Remover pasts com imagens não utilizadas
 - [ ] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Inserir comentários nos códigos
 - [ ] Mudar `autoCodeSpliting` para `false`
