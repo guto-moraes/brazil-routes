@@ -1,5 +1,5 @@
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
-import almanaqueSrc from "@/assets/images/tablet-cover-book.png";
+import almanaqueSrc from "@/assets/images/tablet-cover-book.webp";
 
 const DownloadNow = ({ link }: { link: string }) => {
   return (

@@ -23,8 +23,8 @@ const chapterIndex = [
     link: "/almanaque-digital/capitulo-5",
   },
   {
-    title: "Quiz de Perguntas",
-    link: "/almanaque-digital/quizz",
+    title: "Teste de conhecimento",
+    link: "/almanaque-digital/teste-de-conhecimento",
   },
 
 ];
@@ -37,7 +37,7 @@ const ChaptersMenu = () => {
         role="menu"
         className={cn(
           "w-full flex flex-col",
-          "[&_a]:text-[clamp(1.5rem,5vw,1.85rem)] [&_li]:text-bone-600 [&_li:hover]:text-bone-50",
+          "[&_a]:text-[clamp(1.25rem,4.5vw,1.5rem)] [&_li]:text-bone-600 [&_li:hover]:text-bone-50",
           "[&_a]:font-semibold [&_a]:uppercase [&_a]:leading-8 [&_a]:tracking-tighter [&_li]:transition-all [&_li]:duration-500",
           "[&_li:hover]:bg-bone-400 [&_li]:py-2 [&_li:hover]:translate-x-4 [&_li_a]:pl-4",
         )}

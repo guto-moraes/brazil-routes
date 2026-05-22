@@ -66,6 +66,11 @@ const primaryLinks: LinkTypes[] = [
     title: "Vá Além",
     url: "/almanaque-digital/va-alem",
     transition: ["slide-right"],
+  },
+  {
+    title: "Teste de Conhecimento",
+    url: "/almanaque-digital/teste-de-conhecimento",
+    transition: ["slide-left"],
   }
 ];
 

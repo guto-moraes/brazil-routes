@@ -222,8 +222,8 @@ const Navigation = ({
             "mt-16 xl:mt-24 pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
-          <div className="nav-items-col md:flex-2 flex flex-col md:flex-row md:justify-between gap-y-6">
-            <ul role="menu" className="nav-socials z-2">
+          <div className="nav-items-col flex-2 flex flex-col justify-between">
+            <ul role="menu" className="nav-socials flex flex-col gap-y-2 z-2">
               {socials.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <a
@@ -242,7 +242,7 @@ const Navigation = ({
                 </li>
               ))}
             </ul>
-            <ul role="menu" className="nav-legal flex flex-col md:items-end lg:items-start gap-y-2 lg:gap-y-4 z-2">
+            <ul role="menu" className="nav-legal flex flex-col gap-y-2 mz-2">
               {legals.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
@@ -263,14 +263,14 @@ const Navigation = ({
               ))}
             </ul>
           </div>
-          <div className="nav-items-col lg:flex-4 flex flex-col md:flex-row md:justify-between gap-6 md:gap-8">
-            <ul role="menu" className="nav-primary-links flex flex-col gap-y-2 lg:gap-y-4 z-5">
+          <div className="nav-items-col flex-4 flex justify-between gap-8">
+            <ul role="menu" className="nav-primary-links w-full flex flex-col gap-y-3 z-5">
               {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
                     className={cn(
-                      "text-[clamp(1.25rem,5vw,2rem)] text-white hover:text-darkgreen-500 no-underline block",
+                      "text-[clamp(1.25rem,5vw,1.75rem)] text-white hover:text-darkgreen-500 no-underline block whitespace-nowrap",
                       "tracking-[-2%] leading-[1.1] data-[status=active]:text-chocolate-300 transition-colors duration-300",
                     )}
                     activeProps={{ className: "font-bold" }}
@@ -284,7 +284,7 @@ const Navigation = ({
                 </li>
               ))}
             </ul>
-            <ul role="menu" className="nav-secondary-links md:flex md:flex-col md:items-end lg:flex-row lg:justify-start z-2">
+            <ul role="menu" className="nav-secondary-links z-2">
               {secondaryLinks.map(({ url, title, transition }, index) => {
                 return (
                   <li className="line" role="presentation" key={index}>
@@ -293,7 +293,7 @@ const Navigation = ({
                       to={url}
                       title={title}
                       className={cn(
-                        "text-[clamp(1rem,3vw,1.5rem)] text-white hover:text-darkgreen-500 no-underline mb-2 block",
+                        "text-[clamp(1rem,3vw,1.5rem)] text-white hover:text-darkgreen-500 no-underline mb-2 block whitespace-nowrap",
                         "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
                       )}
                       activeProps={{ className: "font-bold" }}

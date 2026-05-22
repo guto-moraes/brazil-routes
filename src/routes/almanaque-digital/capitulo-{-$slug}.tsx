@@ -5,7 +5,7 @@ import ChapterTitle from "@/components/chapter-title";
 import Article from "@/components/article";
 import DownloadNow from "@/components/download-now";
 import ChaptersMenu from "@/components/chapters-menu";
-export const Route = createFileRoute("/almanaque-digital/capitulo-{$-slug}")({
+export const Route = createFileRoute("/almanaque-digital/capitulo-{-$slug}")({
   component: Chapter,
 });
 

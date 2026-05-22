@@ -81,7 +81,7 @@ function RouteComponent() {
                 {data.post.title}
               </Title>
               <div className={cn(
-                "md:mb-8 *:not-last:mb-6 max-[500px]:w-[99%]! sm:max-w-full!", //Todos os elementos
+                "md:mb-8 *:not-last:mb-6 max-[500px]:w-[99%]! sm:max-w-full! selection:bg-darkgreen-400 selection:text-white", //Todos os elementos
                 "[&_h2.wp-block-heading]:text-[clamp(1.25rem,8vw,1.25rem)] [&_h2.wp-block-heading]:text-mate-duo-500", //Elementos H2
                 "[&_h2.wp-block-heading]:-tracking-wider [&_h2.wp-block-heading]:font-semibold",
                 "[&_h2.wp-block-heading]:uppercase [&_h2.wp-block-heading]:leading-none",
