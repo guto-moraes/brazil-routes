@@ -4,6 +4,7 @@ import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@
 import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
 import { cn } from "@/lib/utils";
 import { Title } from "@/components/title";
+import Testimonials from "@/components/testimonials";
 
 export const Route = createFileRoute("/impacto-social")({
   component: SocialImpact,
@@ -35,8 +36,8 @@ function SocialImpact() {
       <ScrollRotateSection className="h-full">
         <ScrollRotateContent className="bg-[#d8d9bc]">
           <div className="max-w-7xl mx-auto pb-24">
-            <Title className="text-bone-600">Alcance <span className="text-bone-400">do Projeto</span></Title>
-            <p className="text-[clamp(1rem,4vw,1.65rem)] sm:text-justify mb-16">
+            <Title className="text-bone-600 text-center">Alcance <span className="text-bone-400">do Projeto</span></Title>
+            <p className="text-[clamp(1rem,4vw,1.5rem)] sm:text-justify leading-7 mb-16">
               Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
               <strong className="text-terracotta-700">conhecer, valorizar e preservar</strong> a história, a memória e o
               patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar. Por isso, o Projeto Caminhos
@@ -68,8 +69,11 @@ function SocialImpact() {
         </ScrollRotateContent>
       </ScrollRotateSection>
       <ScrollRotateSection className="h-svh">
-        <ScrollRotateContent className="bg-bone-200">
-          <div className="container mx-auto py-24">Terceira</div>
+        <ScrollRotateContent className="bg-tan-300">
+          <div className="max-w-7xl mx-auto pb-24">
+            <Title className="text-tan-700 text-center">O que dizem <span className="text-tan-500">sobre o Projeto</span></Title>
+            <Testimonials />
+          </div>
         </ScrollRotateContent>
       </ScrollRotateSection>
     </ScrollRotateWrapper>

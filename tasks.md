@@ -11,9 +11,10 @@
 - [X] Incluir **VLibras** no site
 - [X] Resolver _bug_ com o **Mapa Interativo** após a renderização
 - [X] Criar uma única página dinâmica para os capítulos do Almanaque
-- [ ] Finalizar a página com informações do impacto social do projeto
+- [X] Finalizar a página com informações do impacto social do projeto
 - [ ] Finalizar página de Créditos
-- [ ] Criar um laiaute para uma página e uma postagem padrão
+- [ ] Estilização do conteúdo do modal do Mapa Interativo
+- [ ] Criar um leiaute para uma página e uma postagem padrão
 - [ ] Revisar todas as integrações com o WordPress (Menus, imprensa,)
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
@@ -31,6 +32,7 @@
 - [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
+- [ ] Banner de Consentimento de Cookies
 - [ ] Fechar menu quando clicar fora da área
 - [ ] Remover pasts com imagens não utilizadas
 - [ ] Remover importação dos arquivos CSS do Leaflet Map

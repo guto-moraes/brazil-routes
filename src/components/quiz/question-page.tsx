@@ -11,7 +11,7 @@ import {
   QuestionContainer,
   QuestionBadge,
   QuestionStatement,
-  QuestionAnswerGroup,
+  QuestionAnswerForm,
   QuestionAnswerList,
   QuestionAnswerOption,
   QuestionAnswerExplain,
@@ -29,7 +29,7 @@ const shuffle = (array: QuestionTypes[]) => {
 const QuestionPage = ({ isStartCountDown }: { isStartCountDown: boolean }) => {
   const [questions, setQuestions] = useState<QuestionTypes[]>([]);
   // const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(2);
   // const [score, setScore] = useState(0);
   // const [isCompleted, setIsCompleted] = useState(false);
 
@@ -39,9 +39,13 @@ const QuestionPage = ({ isStartCountDown }: { isStartCountDown: boolean }) => {
     setQuestions(data);
   }, [data]);
 
-  // const handleStartQuiz = () => {
-  //   setStartQuiz(!startQuiz)
-  // }
+const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  event.preventDefault();
+}
+
+const handleSelected = (index: number) => {
+  setSelected(index);
+}
 
   return (
     <QuestionWrapper>
@@ -49,7 +53,7 @@ const QuestionPage = ({ isStartCountDown }: { isStartCountDown: boolean }) => {
         {questions.slice(0, 1).map((question) => {
           console.log(selected, question.answer)
           return(
-          <QuestionAnswerGroup key={question.questionId}>
+          <QuestionAnswerForm onSubmit={handleSubmit} key={question.questionId}>
             <QuestionBadge questionNumber={question.questionId} />
             <QuestionStatement statement={question.question} />
             <QuestionAnswerList>
@@ -61,22 +65,22 @@ const QuestionPage = ({ isStartCountDown }: { isStartCountDown: boolean }) => {
                     index={index}
                     text={option}
                     key={index}
-                    onAnswer={() => setSelected(index)}
+                    onAnswer={() => handleSelected(index)}
                   />
                 );
               })}
             </QuestionAnswerList>
-            <QuestionAnswerExplain correct={question.answer} selected={selected} />
-          </QuestionAnswerGroup>
+            {selected !== -1 && <QuestionAnswerExplain correct={question.answer} selected={selected} />}
+            <Button
+              className={cn(
+                "rounded-none bg-tan-500 hover:bg-blue-retro-500 text-lg! py-6! uppercase",
+                "border-0 transition-colorstatements duration-500 w-72 mx-auto tracking-tighter",
+              )}
+            >
+              Enviar Resposta
+            </Button>
+          </QuestionAnswerForm>
         )})}
-        <Button
-          className={cn(
-            "rounded-none bg-tan-500 hover:bg-blue-retro-500 text-lg! py-6! uppercase",
-            "border-0 transition-colorstatements duration-500 w-72 mx-auto tracking-tighter",
-          )}
-        >
-          Enviar Resposta
-        </Button>
       </QuestionContainer>
 
       <QuestionSidebar>

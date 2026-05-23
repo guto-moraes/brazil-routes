@@ -3,14 +3,17 @@ import { CircleCheck, CircleX } from "lucide-react";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
 
+//Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="h-full w-full md:w-[90%] flex gap-8 px-8">{children}</div>
 );
 
+//Container do componente
 const QuestionContainer = ({ children }: { children: React.ReactNode }) => (
   <section className="flex-3 max-w-full flex flex-col justify-between items-center gap-y-8">{children}</section>
 );
 
+//Marcador do número da Questão
 const QuestionBadge = ({ questionNumber }: { questionNumber: string | number }) => (
   <span
     className={cn(
@@ -22,18 +25,26 @@ const QuestionBadge = ({ questionNumber }: { questionNumber: string | number }) 
   </span>
 );
 
+// Enunciado da Questão
 const QuestionStatement = ({ statement }: { statement: string }) => (
   <p className={cn("text-[clamp(1rem,4vw,1.45rem)] text-tan-700 font-medium leading-7")}>{statement}</p>
 );
 
-const QuestionAnswerGroup = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-full w-full flex flex-col gap-y-12">{children}</div>
+//Formulário
+interface QuestionAnswerFormTypes extends React.ComponentPropsWithoutRef<"form">{
+  children: React.ReactNode,
+}
+
+const QuestionAnswerForm = ({ children }: QuestionAnswerFormTypes) => (
+  <form className="h-full w-full flex flex-col gap-y-12">{children}</form>
 );
 
+//Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
   <ul className="w-full flex flex-col gap-y-5">{children}</ul>
 );
 
+//Opção de Resposta
 const QuestionAnswerOption = ({
   correct,
   selected,
@@ -50,34 +61,33 @@ const QuestionAnswerOption = ({
   return (
     <li
       className={cn(
-        "rounded-xs outline-2  outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5",
-        correct === index && "outline-darkgreen-500",
-        correct !== index && "outline-terracotta-700",
-        correct !== index && selected !== index && "outline-tan-600",
+        "rounded-xs outline-2  outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
+        "outline-tan-600 data-[correct=true]:outline-darkgreen-500 data-[selected=true]:outline-terracotta-700",
       )}
+      data-correct={(correct === index && selected !== -1) || (correct === index && correct === selected)}
+      data-selected={(correct !== selected && selected === -1) || (correct !== selected && selected === index)}
     >
       <button
+        role="radio"
+        aria-checked={correct === index}
+        aria-pressed={selected === index}
         className={cn(
-          "text-lg flex justify-start items-center gap-x-1.5 cursor-pointer",
-          correct === index && "text-darkgreen-500",
-          correct !== index && "text-terracotta-700",
-          correct !== index && selected !== index && "text-tan-600",
+          "text-lg flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600",
+          "group-data-[correct=true]:text-darkgreen-500 group-data-[selected=true]:text-terracotta-700",
         )}
         onClick={() => onAnswer}
       >
         <span
           className={cn(
-            "rounded-xs h-full w-8 text-white font-medium",
-            correct === index && "bg-darkgreen-500",
-            correct !== index && "bg-terracotta-700",
-            correct !== index && selected !== index && "bg-tan-600",
+            "rounded-xs h-full w-8 text-white font-medium bg-tan-600",
+            "group-data-[correct=true]:bg-darkgreen-500 group-data-[selected=true]:bg-terracotta-700",
           )}
         >
           {indexes[index]}
         </span>
         {text}
       </button>
-      {correct === index && <CircleCheck className="text-darkgreen-500" />}
+      {correct === index && selected === index && <CircleCheck className="text-darkgreen-500" />}
       {correct !== index && selected === index && <CircleX className="text-terracotta-600" />}
     </li>
   );
@@ -123,7 +133,7 @@ export {
   QuestionContainer,
   QuestionBadge,
   QuestionStatement,
-  QuestionAnswerGroup,
+  QuestionAnswerForm,
   QuestionAnswerList,
   QuestionAnswerOption,
   QuestionAnswerExplain,

@@ -89,8 +89,8 @@ function RouteComponent() {
                     </ul>
                   </aside>
                   <div className="flex-1: md:flex-5 flex-col gap-y-8 md:gap-y-16">
-                    <TitleH2 className="text-[clamp(1.5rem,5vw,3.25rem)] leading-none max-sm:mt-16 py-0!">{post.title}</TitleH2>
-                    <div className="md:mt-16 flex flex-col md:flex-row gap-8">
+                    <TitleH2 className="text-[clamp(1.5rem,5vw,2.5rem)] leading-none max-sm:mt-16 py-0!">{post.title}</TitleH2>
+                    <div className="md:mt-8 flex flex-col md:flex-row gap-8">
                       <figure className="rounded-lg h-40 md:h-80 flex-1 md:flex-3 overflow-hidden">
                         <img
                           className="h-full w-full object-cover"

@@ -23,7 +23,7 @@ import {
 import { Button } from "./ui/button";
 import { useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
 import { ScrollArea } from "./ui/scroll-area";
-import ArticleContent from "./article-content";
+import ModalContent from "./modal-content";
 
 const MapResizer = () => {
   const map = useMap();
@@ -165,15 +165,15 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
       </MarkerClusterGroup>
       {isOpen && selectedLocation && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogPopup className="max-sm:px-4">
+          <DialogPopup className="max-sm:px-4 lg:min-w-160">
             <DialogHeader className="max-sm:px-0 max-sm:mt-4">
-              <DialogTitle className="text-[clamp(1.25rem,5vw,1.5rem)] text-chocolate-700 font-bold uppercase leading-none tracking-tighter">
+              <DialogTitle className="text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 font-bold uppercase leading-none tracking-tighter">
                 {selectedLocation.title}
               </DialogTitle>
             </DialogHeader>
             <DialogPanel className="min-h-[70svh]">
               <ScrollArea className="px-0">
-                <ArticleContent className="[&_p]:text-base!" content={selectedLocation.content} />
+                <ModalContent content={selectedLocation.content} /> 
               </ScrollArea>
             </DialogPanel>
             <DialogFooter>
