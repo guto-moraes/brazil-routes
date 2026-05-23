@@ -1,54 +1,30 @@
 import { cn } from "@/lib/utils";
-import { CircleCheck, CircleX } from "lucide-react";
+// import { CircleCheck, CircleX } from "lucide-react";
 
 const ButtonOption = ({
   index,
-  isSubmitted,
-  check,
-  answer,
+  choice,
+  onClick,
 }: {
   index: string | number;
-  isSubmitted: boolean;
-  check: boolean;
-  answer: string;
+  answer: number;
+  choice: string;
+  onClick: () => void;
 }) => (
   <button
     role="listitem"
     className={cn(
-      "rounded-sm outline-2  outline-offset-2 flex justify-between items-center gap-2",
-      !isSubmitted
-        ? "outline-tan-500"
-        : isSubmitted && check
-          ? "outline-darkgreen-500 bg-bege-50/70"
-          : "outline-terracotta-600 bg-bege-50/70",
+      "rounded-sm outline-2  outline-offset-2 flex justify-between items-center gap-2 cursor-pointer outline-tan-500",
     )}
+    onClick={onClick}
   >
-    <span
-      className={cn(
-        "size-11 rounded-sm text-lg font-semibold grid place-content-center",
-        !isSubmitted
-          ? "bg-tan-300 text-tan-800"
-          : isSubmitted && check
-            ? "bg-darkgreen-500 text-white"
-            : "bg-terracotta-600 text-white",
-      )}
-    >
+    <span className={cn("size-11 rounded-sm text-lg font-semibold grid place-content-center bg-tan-300 text-tan-800")}>
       {index}
     </span>
-    <p
-      className={cn(
-        "h-full grow text-left font-medium leading-5 flex items-center",
-        !isSubmitted ? "text-tan-800" : isSubmitted && check ? "text-darkgreen-800" : "text-terracotta-800",
-      )}
-    >
-      {answer}
-    </p>
-    {isSubmitted &&
-      (check ? (
-        <CircleCheck className="size-7 text-darkgreen-500" />
-      ) : (
-        <CircleX className="size-7 text-terracotta-600" />
-      ))}
+    <p className={cn("h-full grow text-left font-medium leading-5 flex items-center text-tan-800")}>{choice}</p>
+
+    {/* <CircleCheck className="size-7 text-darkgreen-500" />
+        <CircleX className="size-7 text-terracotta-600" /> */}
   </button>
 );
 

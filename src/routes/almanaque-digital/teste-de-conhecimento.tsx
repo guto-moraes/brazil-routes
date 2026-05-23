@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Main from "@/layouts/main";
-import quizz from "@/assets/images/quizz.webp";
+import quizz from "@/assets/images/quiz.webp";
 import { cn } from "@/lib/utils";
 import Quiz from "@/components/quiz";
 

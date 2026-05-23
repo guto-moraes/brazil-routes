@@ -37,52 +37,54 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({ initi
     return undefined;
   }, [isStart, totalSeconds]);
 
-  // Calculate SVG circumference and dash offset for clockwise fill
+  // Calcula a circunferência do SVG e o deslocamento do preenchimento no sentido horário
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (timeLeft / totalSeconds) * circumference;
+  const strokeDashoffset = -circumference + (timeLeft / totalSeconds) * circumference;
 
-  // Format time as MM:SS
+  // Formatação do tempo em MM:SS
   const minutesStr = Math.floor(timeLeft / 60)
     .toString()
     .padStart(2, "0");
   const secondsStr = (timeLeft % 60).toString().padStart(2, "0");
 
   return (
-    <div className="relative flex items-center justify-center size-48">
-      <svg className="w-full h-full transform -rotate-90">
-        {/* Background Circle */}
-        <circle
-          cx="96"
-          cy="96"
-          r={radius}
-          className="text-tan-200"
-          strokeWidth="8"
-          stroke="currentColor"
-          fill="transparent"
-        />
-        {/* Animated Countdown Circle */}
-        <circle
-          cx="96"
-          cy="96"
-          r={radius}
-          className="text-blue-retro-600 transition-all duration-1000 ease-linear"
-          strokeWidth="8"
-          stroke="currentColor"
-          fill="transparent"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-        />
-      </svg>
-      {/* Center Timer Text */}
-      <div className="absolute flex flex-col items-center">
-        <span className="timer text-4xl font-bold text-tan-700 font-mono -tracking-wider">
-          {minutesStr}:{secondsStr}
-        </span>
-        <span className="text-[0.625rem] text-tan-500 font-medium uppercase -tracking-wider">
-          {minutesStr === "00" && secondsStr === "00" ? "Tempo Encerrado" : "Tempo Restante"}
-        </span>
+    <div className="rounded-xl shadow-lg size-48 bg-bege-50 flex justify-center items-center">
+      <div className="relative flex items-center justify-center size-48">
+        <svg className="w-full h-full transform -rotate-90">
+          {/* Círculo de fundo */}
+          <circle
+            cx="96"
+            cy="96"
+            r={radius}
+            className="text-tan-200"
+            strokeWidth="5"
+            stroke="currentColor"
+            fill="transparent"
+          />
+          {/* Círculo de contagem regressiva animado */}
+          <circle
+            cx="96"
+            cy="96"
+            r={radius}
+            className="text-blue-retro-500 transition-all duration-1000 ease-linear"
+            strokeWidth="8"
+            stroke="currentColor"
+            fill="transparent"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+          />
+        </svg>
+        {/* Contador */}
+        <div className="absolute flex flex-col items-center">
+          <span className="timer text-4xl font-bold text-tan-700 font-mono -tracking-widest">
+            {minutesStr}:{secondsStr}
+          </span>
+          <span className="text-[0.625rem] text-tan-500 font-medium uppercase -tracking-wider">
+            {minutesStr === "00" && secondsStr === "00" ? "Tempo Encerrado" : "Tempo Restante"}
+          </span>
+        </div>
       </div>
     </div>
   );
