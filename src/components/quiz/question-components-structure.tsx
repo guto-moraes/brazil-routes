@@ -30,32 +30,23 @@ const QuestionStatement = ({ statement }: { statement: string }) => (
   <p className={cn("text-[clamp(1rem,4vw,1.45rem)] text-tan-700 font-medium leading-7")}>{statement}</p>
 );
 
-//Formulário
-interface QuestionAnswerFormTypes extends React.ComponentPropsWithoutRef<"form">{
-  children: React.ReactNode,
-}
-
-const QuestionAnswerForm = ({ children }: QuestionAnswerFormTypes) => (
-  <form className="h-full w-full flex flex-col gap-y-12">{children}</form>
-);
-
 //Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="w-full flex flex-col gap-y-5">{children}</ul>
+  <ul className="w-full flex flex-col gap-y-5 z-10">{children}</ul>
 );
 
 //Opção de Resposta
 const QuestionAnswerOption = ({
-  correct,
-  selected,
   index,
-  text,
+  correct,
+  selectedAnswer,
+  option,
   onAnswer,
 }: {
-  correct: number;
-  selected: number;
   index: number;
-  text: string;
+  correct: number;
+  selectedAnswer: number;
+  option: string;
   onAnswer: (selected: number) => void;
 }) => {
   return (
@@ -64,31 +55,32 @@ const QuestionAnswerOption = ({
         "rounded-xs outline-2  outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
         "outline-tan-600 data-[correct=true]:outline-darkgreen-500 data-[selected=true]:outline-terracotta-700",
       )}
-      data-correct={(correct === index && selected !== -1) || (correct === index && correct === selected)}
-      data-selected={(correct !== selected && selected === -1) || (correct !== selected && selected === index)}
+      data-correct={correct === index && selectedAnswer !== -1}
+      data-selected={selectedAnswer === index && selectedAnswer !== correct}
     >
       <button
         role="radio"
         aria-checked={correct === index}
-        aria-pressed={selected === index}
+        aria-pressed={selectedAnswer === index}
         className={cn(
-          "text-lg flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600",
+          "flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600",
           "group-data-[correct=true]:text-darkgreen-500 group-data-[selected=true]:text-terracotta-700",
         )}
-        onClick={() => onAnswer}
+        onClick={() => onAnswer(index)}
       >
+        {" "}
         <span
           className={cn(
-            "rounded-xs h-full w-8 text-white font-medium bg-tan-600",
+            "rounded-xs h-full size-10 text-xl text-white font-medium bg-tan-600 flex justify-center items-center",
             "group-data-[correct=true]:bg-darkgreen-500 group-data-[selected=true]:bg-terracotta-700",
           )}
         >
           {indexes[index]}
         </span>
-        {text}
+        {option}
       </button>
-      {correct === index && selected === index && <CircleCheck className="text-darkgreen-500" />}
-      {correct !== index && selected === index && <CircleX className="text-terracotta-600" />}
+      {correct === index && selectedAnswer === index && <CircleCheck className="text-darkgreen-500" />}
+      {correct !== index && selectedAnswer === index && <CircleX className="text-terracotta-600" />}
     </li>
   );
 };
@@ -133,7 +125,6 @@ export {
   QuestionContainer,
   QuestionBadge,
   QuestionStatement,
-  QuestionAnswerForm,
   QuestionAnswerList,
   QuestionAnswerOption,
   QuestionAnswerExplain,

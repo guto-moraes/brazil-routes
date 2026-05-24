@@ -11,7 +11,6 @@ import {
   QuestionContainer,
   QuestionBadge,
   QuestionStatement,
-  QuestionAnswerForm,
   QuestionAnswerList,
   QuestionAnswerOption,
   QuestionAnswerExplain,
@@ -53,7 +52,7 @@ const handleSelected = (index: number) => {
         {questions.slice(0, 1).map((question) => {
           console.log(selected, question.answer)
           return(
-          <QuestionAnswerForm onSubmit={handleSubmit} key={question.questionId}>
+          <>
             <QuestionBadge questionNumber={question.questionId} />
             <QuestionStatement statement={question.question} />
             <QuestionAnswerList>
@@ -61,9 +60,9 @@ const handleSelected = (index: number) => {
                 return (
                   <QuestionAnswerOption
                     correct={question.answer}
-                    selected={selected}
+                    selectedAnswer={selected}
                     index={index}
-                    text={option}
+                    option={option}
                     key={index}
                     onAnswer={() => handleSelected(index)}
                   />
@@ -79,7 +78,7 @@ const handleSelected = (index: number) => {
             >
               Enviar Resposta
             </Button>
-          </QuestionAnswerForm>
+          </>
         )})}
       </QuestionContainer>
 
