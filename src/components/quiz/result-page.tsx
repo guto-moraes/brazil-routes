@@ -71,14 +71,14 @@ const QuestionNotice = ({ amount }: { amount: number }) => {
   );
 };
 
-const QuestionItem = ({ isCorrect, questionText }: { isCorrect: boolean; questionText: string }) => (
+const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; questionNumber: number }) => (
   <li
     className={cn(
       "rounded-md bg-bege-50 border-2 uppercase -tracking-wider py-2 px-3 flex justify-between items-center",
       isCorrect ? "border-darkgreen-500 text-darkgreen-600" : "border-terracotta-500 text-terracotta-600",
     )}
   >
-    <span>{questionText}</span>
+    <span>Questão {questionNumber.toString().padStart(2, '0')}</span>
     {isCorrect ? (
       <CircleCheck className="size-5 text-darkgreen-500" />
     ) : (
@@ -87,29 +87,32 @@ const QuestionItem = ({ isCorrect, questionText }: { isCorrect: boolean; questio
   </li>
 );
 
-const ResultPage = () => {
+type ResultQuizTypes = {
+  questionNumber: number,
+  isCorrect: boolean,
+}
+
+const ResultPage = ({ results, onPage }: { results: ResultQuizTypes[], onPage: (page: string) => void }) => {
+  const totalCorrectAnswer = results.filter(item => item.isCorrect);
+
   return (
     <div className="h-full w-full md:w-[90%] flex flex-col justify-around gap-y-6 px-8">
-      <QuestionNotice amount={10} />
+      <QuestionNotice amount={totalCorrectAnswer.length} />
       <div className="w-full">
         <ul className="columns-2 space-y-2.5">
-          <QuestionItem isCorrect={false} questionText="Questão 1" />
-          <QuestionItem isCorrect={false} questionText="Questão 2" />
-          <QuestionItem isCorrect={true} questionText="Questão 3" />
-          <QuestionItem isCorrect={false} questionText="Questão 4" />
-          <QuestionItem isCorrect={false} questionText="Questão 5" />
-          <QuestionItem isCorrect={false} questionText="Questão 6" />
-          <QuestionItem isCorrect={true} questionText="Questão 7" />
-          <QuestionItem isCorrect={false} questionText="Questão 8" />
-          <QuestionItem isCorrect={false} questionText="Questão 9" />
-          <QuestionItem isCorrect={true} questionText="Questão 10" />
+          {
+            results.map((item, index) => (
+              <QuestionItem key={index} questionNumber={item.questionNumber}  isCorrect={item.isCorrect} />
+            ))
+          }
         </ul>
       </div>
       <Button
         className={cn(
-          "rounded-none text-white bg-bone-500 hover:bg-blue-retro-500 text-lg! py-5! uppercase",
-          "border-0 transition-colors duration-500 w-86 mx-auto tracking-tighter cursor-pointer",
+          "rounded-none text-white bg-bone-500 hover:bg-blue-retro-500 text-lg! py-4! uppercase",
+          "border-0 transition-colors duration-500 w-74 mx-auto tracking-tighter cursor-pointer",
         )}
+        onClick={() => onPage("initial")}
       >
         Fazer um novo Questionário
       </Button>

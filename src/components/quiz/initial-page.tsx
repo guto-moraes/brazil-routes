@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BadgeCheck, CircleQuestionMark, Clock } from "lucide-react";
 
-const InitialPage = () => {
+const InitialPage = ({ onStart }: { onStart: () => void}) => {
   return (
     <div className="w-2/3 max-w-full mx-auto flex flex-col gap-y-8">
       <h2 className="text-[clamp(1.25rem,4vw,2rem)] text-tan-700 font-cabinet font-black text-center">
@@ -37,9 +37,10 @@ const InitialPage = () => {
       </div>
       <Button
         className={cn(
-          "rounded-none bg-tan-500 hover:bg-tan-600 text-lg! py-6! uppercase",
+          "rounded-none bg-tan-500 hover:bg-tan-600 text-lg! py-6! uppercase cursor-pointer",
           "border-0 transition-colors duration-500 w-72 mx-auto tracking-tighter",
         )}
+        onClick={onStart}
       >
         Responder Questões
       </Button>

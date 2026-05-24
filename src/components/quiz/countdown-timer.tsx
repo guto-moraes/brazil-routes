@@ -3,46 +3,48 @@ import React, { useState, useEffect } from "react";
 interface CircleCuntdownTimerProps {
   initialMinutes: number;
   isStart: boolean;
+  isPaused: boolean;
   onComplete?: () => void;
 }
 
-export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({ initialMinutes, isStart, onComplete }) => {
+export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
+  initialMinutes,
+  isStart,
+  isPaused = false, // Padrão é não pausado
+  onComplete,
+}) => {
   const totalSeconds = initialMinutes * 60;
   const [timeLeft, setTimeLeft] = useState(totalSeconds);
 
+  // Lógica do intervalo do cronômetro (só roda se iniciar E NÃO estiver pausado)
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
 
-    if (isStart && timeLeft > 0) {
+    if (isStart && !isPaused && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
-    } else if (timeLeft === 0) {
+    } else if (isStart && timeLeft === 0) {
       onComplete?.();
     }
 
     return () => clearInterval(interval);
-  }, [isStart, timeLeft, onComplete]);
+  }, [isStart, isPaused, timeLeft, onComplete]);
 
-  // Reset timer if the start prop is toggled off
+  // Reseta o cronômetro se o botão iniciar for desligado
   useEffect(() => {
-    if (!isStart) {
-      const timeout = window.setTimeout(() => {
-        setTimeLeft(totalSeconds);
-      }, 0);
-
-      return () => window.clearTimeout(timeout);
+    if (!isStart && timeLeft !== totalSeconds) {
+      const timeout = setTimeout(() => setTimeLeft(totalSeconds), 0);
+      return () => clearTimeout(timeout);
     }
+  }, [isStart, totalSeconds, timeLeft]);
 
-    return undefined;
-  }, [isStart, totalSeconds]);
-
-  // Calcula a circunferência do SVG e o deslocamento do preenchimento no sentido horário
+  // Cálculos do SVG
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = -circumference + (timeLeft / totalSeconds) * circumference;
 
-  // Formatação do tempo em MM:SS
+  // Formatação do tempo (MM:SS)
   const minutesStr = Math.floor(timeLeft / 60)
     .toString()
     .padStart(2, "0");
@@ -76,7 +78,7 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({ initi
             strokeLinecap="round"
           />
         </svg>
-        {/* Contador */}
+        {/* Contador centralizado */}
         <div className="absolute flex flex-col items-center">
           <span className="timer text-4xl font-bold text-tan-700 font-mono -tracking-widest">
             {minutesStr}:{secondsStr}
