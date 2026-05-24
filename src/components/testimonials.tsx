@@ -54,8 +54,6 @@ const testimonials: TestimonialsTypes[] = [
   },
 ];
 
-console.log(testimonials.length)
-
 const Testimonials = () => {
   const [api, setApi] = React.useState<CarouselApi | null>(null);
   const [current, setCurrent] = React.useState(0);

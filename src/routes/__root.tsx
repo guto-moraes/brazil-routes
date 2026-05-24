@@ -55,16 +55,16 @@ function App({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <QueryLoadingBoundary>
-        <SmoothScroller>
-          <NuqsAdapter>
+      <NuqsAdapter>
+        <QueryLoadingBoundary>
+          <SmoothScroller>
             {!isHome && <Navigation />}
             {children}
             <Partners />
             <Footer />
-          </NuqsAdapter>
-        </SmoothScroller>
-      </QueryLoadingBoundary>
+          </SmoothScroller>
+        </QueryLoadingBoundary>
+      </NuqsAdapter>
     </QueryClientProvider>
   );
 }

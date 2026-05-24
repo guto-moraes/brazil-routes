@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ButtonLinkWithIcon from "@/components/button-link-with-icon";
 import { sanitizedData } from "@/lib/utils";
+import ebook from "@/assets/images/tablet-cover-book.webp";
 
 const AboveTheFold = ({ content, link }: { content: string; link: string }) => {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -50,7 +51,7 @@ const AboveTheFold = ({ content, link }: { content: string; link: string }) => {
         </div>
         <div className="flex-1 h-full w-full max-w-full flex justify-end items-center">
           <div className="perspective-dramatic perspective-origin-center transform-3d">
-            <img className="page-image w-100 xl:w-120 -rotate-y-4 xl:mr-8" src="/images/tablet-cover-book.png" alt="" />
+            <img className="page-image w-100 xl:w-120 -rotate-y-4 xl:mr-8" src={ebook} alt="" />
           </div>
         </div>
       </div>

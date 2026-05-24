@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
 import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
-import ArticleContent from "@/components/article-content";
+// import ArticleContent from "@/components/article-content";
+import { cn, sanitizedData } from "@/lib/utils";
 
 export const Route = createFileRoute("/sobre-o-projeto")({
   head: () => ({
@@ -34,7 +35,16 @@ function About() {
         <Title>
           Sobre o <span className="text-tan-400">Projeto</span>
         </Title>
-        <ArticleContent content={data.page.content} />
+        <div 
+          className={cn(
+            "*:not-last:mb-8", //Geral
+            "[&_.wp-block-paragraph]:text-[clamp(0.9rem,5vw,1.15rem)] [&_.wp-block-paragraph]:text-justify", //Pagágrafos
+            "[&_.wp-block-paragraph]:text-pretty [&_.wp-block-paragraph]:text-tan-700 [&_.wp-block-paragraph]:hyphens-auto",
+            "[&_a]:text-blue-retro-500 [&_a]:hover:text-chocolate-300 [&_a]:transition-colors [&_a]:duration-300", //Link
+            "font-features-['smcp'] ",
+          )}
+          dangerouslySetInnerHTML={sanitizedData(data.page.content)} 
+        />
       </div>
     </Main>
   );

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
+import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as ImpactoSocialRouteImport } from './routes/impacto-social'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
@@ -32,6 +33,11 @@ import { Route as AlmanaqueDigitalCapituloChar123SlugChar125RouteImport } from '
 const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
   id: '/sobre-o-projeto',
   path: '/sobre-o-projeto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuizRoute = QuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/quiz': typeof QuizRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/quiz': typeof QuizRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/quiz': typeof QuizRoute
   '/sobre-o-projeto': typeof SobreOProjetoRoute
   '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/impacto-social'
     | '/politica-de-privacidade'
+    | '/quiz'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-{-$slug}'
     | '/almanaque-digital/glossario'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/impacto-social'
     | '/politica-de-privacidade'
+    | '/quiz'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-{-$slug}'
     | '/almanaque-digital/glossario'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/fale-conosco'
     | '/impacto-social'
     | '/politica-de-privacidade'
+    | '/quiz'
     | '/sobre-o-projeto'
     | '/almanaque-digital/capitulo-{-$slug}'
     | '/almanaque-digital/glossario'
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   FaleConoscoRoute: typeof FaleConoscoRoute
   ImpactoSocialRoute: typeof ImpactoSocialRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  QuizRoute: typeof QuizRoute
   SobreOProjetoRoute: typeof SobreOProjetoRoute
   AlmanaqueDigitalCapituloChar123SlugChar125Route: typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
@@ -290,6 +303,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-o-projeto'
       fullPath: '/sobre-o-projeto'
       preLoaderRoute: typeof SobreOProjetoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -431,6 +451,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaleConoscoRoute: FaleConoscoRoute,
   ImpactoSocialRoute: ImpactoSocialRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  QuizRoute: QuizRoute,
   SobreOProjetoRoute: SobreOProjetoRoute,
   AlmanaqueDigitalCapituloChar123SlugChar125Route:
     AlmanaqueDigitalCapituloChar123SlugChar125Route,
