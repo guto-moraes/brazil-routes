@@ -141,7 +141,8 @@ const QuestionAnswerExplain = ({
           <DialogContent
             className={cn(
               "[&_button]:rounded-full border-bege-300 bg-bege-50 p-6 [&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 ",
-              "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300 [&_button]:cursor-pointer",
+              "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300",
+              "[&_button]:cursor-pointer [&_button]:p-1",
             )}
           >
             <h3 className="text-lg text-tan-800 font-bold">Explicação da Resposta</h3>

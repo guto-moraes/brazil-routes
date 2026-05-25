@@ -190,6 +190,18 @@ export const GoFurtherPageSchema = z.object({
 export type GoFurtherPageTypes = z.infer<typeof GoFurtherPageSchema>;
 
 //Tipagem da página do Teste de Conhecimento
+export const QuizResultNoticeSchema = z.object({
+  imgSrc: z.object({
+    node: z.object({
+      sourceUrl: z.string(),
+    }),
+  }),
+  title: z.string(),
+  message: z.string(),
+});
+
+export type QuizResultNoticeTypes = z.infer<typeof QuizResultNoticeSchema>;
+
 export const QuizHomeSchema = z.object({
   page: z.object({
     title: z.string(),
@@ -198,6 +210,7 @@ export const QuizHomeSchema = z.object({
       totalQuestions: z.number(),
       countdown: z.number(),
       rules: z.array(z.object({ message: z.string() })),
+      content: z.array(QuizResultNoticeSchema),
     }),
   }),
 });

@@ -34,11 +34,10 @@ const QuestionPage = ({
   onPause: (pause: boolean) => void;
   onPage: (page: string) => void;
 }) => {
-
   const { nodes: dataQuestions } = useQueryQuestions().data.questions;
 
   const [index, setIndex] = useState(0);
-  const questions = useMemo(() => shuffle(dataQuestions), [dataQuestions]);
+  const questions = useMemo(() => shuffle(dataQuestions).slice(0, 10), [dataQuestions]);
   const currentQuestion: QuizQuestion = questions[index];
   const [answeredQuestions, setAnsweredQuestions] = useState<number[]>([]);
   const [score, setScore] = useState(0);
@@ -50,26 +49,22 @@ const QuestionPage = ({
 
   const handleSelectAnswer = (answer: number) => {
     if (isLocked) return;
-    
+
     const isCorrect = Number(currentQuestion.answers.correctAnswer) === answer;
 
     if (isCorrect) {
       setScore(score + 1);
     }
-    
+
     setAnswerCorrect(Number(currentQuestion.answers.correctAnswer));
     setSelectedAnswer(answer);
     setIsLocked(true);
     setAnsweredQuestions((prevItems) => [...prevItems, index + 1]);
-    setUserAnswers((prevUserAnswers) => [
-      ...prevUserAnswers,
-      { question: index + 1, correct: isCorrect }
-    ])
+    setUserAnswers((prevUserAnswers) => [...prevUserAnswers, { question: index + 1, correct: isCorrect }]);
   };
-  
 
   const handleNextQuestion = () => {
-    if (index + 1 < dataQuestions.length) {
+    if (index + 1 < questions.length) {
       setIndex(index + 1);
       setSelectedAnswer(-1);
       setIsLocked(false);
@@ -98,29 +93,52 @@ const QuestionPage = ({
           })}
         </QuestionAnswerList>
 
-        {isLocked && (
-          <Button
-            className={cn(
-              "rounded-sm bg-blue-retro-500 hover:bg-tan-500 text-white uppercase h-12 px-4",
-              "transition-colors duration-500 cursor-pointer mx-auto",
-            )}
-            onClick={handleNextQuestion}
-            disabled={isQuizCompleted}
-          >
-            {index + 1 < dataQuestions.length ? "Próxima Questão" : "Questionário Concluído"}
-          </Button>
-        )}
-
+        <div className="w-full text-center space-x-2!">
+          {isLocked && !isQuizCompleted && (
+            <Button
+              className={cn(
+                "rounded-sm bg-blue-retro-500 hover:bg-tan-500 text-white uppercase h-12 px-4",
+                "transition-colors duration-500 cursor-pointer mx-auto inline-block disabled:cursor-not-allowed",
+              )}
+              onClick={handleNextQuestion}
+              disabled={isQuizCompleted}
+            >
+              {index + 1 < questions.length ? "Próxima Questão" : "Concluir Questionário"}
+            </Button>
+          )}
+          {isQuizCompleted && (
+            <Dialog>
+              <DialogTrigger
+                render={
+                  <Button
+                    className={cn(
+                      "rounded-sm bg-blue-retro-500 hover:bg-blue-retro-600 text-white uppercase h-12 px-4",
+                      "transition-colors duration-500 cursor-pointer mx-auto inline-block",
+                    )}
+                  />
+                }
+              >
+                Ver Resultado
+              </DialogTrigger>
+              <DialogContent
+                className={cn(
+                  "bg-tan-100 md:min-w-1/2! p-8 flex items-center justify-center!",
+                  "[&>button]:bg-bone-600 [&>button]:hover:bg-bone-500 [&>button]:text-white",
+                  "[&>button]:hover:text-white [&>button]:rounded-full [&>button]:cursor-pointer:transition-colors",
+                  "[&>button]:duration-500 [&>button]:cursor-pointer [&>button]:p-1",
+                )}
+              >
+                <ResultPage totalQuestions={questions.length} results={userAnswers} onPage={onPage} />
+              </DialogContent>
+            </Dialog>
+          )}
+        </div>
         {!isQuizCompleted && selectedAnswer !== -1 && (
-          <QuestionAnswerExplain correctAnswer={answerCorrect} selectedAnswer={selectedAnswer} explain={currentQuestion.answers.answerExplain} />
-        )}
-        {isQuizCompleted && (
-          <Dialog>
-            <DialogTrigger render={<Button />}>Ver Resultados</DialogTrigger>
-            <DialogContent className="bg-tan-100 md:min-w-1/2! p-8 flex items-center justify-center!">
-              <ResultPage results={userAnswers} onPage={onPage} />
-            </DialogContent>
-          </Dialog>
+          <QuestionAnswerExplain
+            correctAnswer={answerCorrect}
+            selectedAnswer={selectedAnswer}
+            explain={currentQuestion.answers.answerExplain}
+          />
         )}
       </QuestionContainer>
       <QuestionSidebar>

@@ -174,6 +174,15 @@ export const QUIZ_HOME = gql`
         rules {
           message
         }
+        content {
+          imgSrc {
+            node {
+              sourceUrl
+            }
+          }
+          title
+          message
+        }
       }
     }
   }

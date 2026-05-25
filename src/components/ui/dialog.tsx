@@ -6,7 +6,6 @@ import { useRender } from "@base-ui/react/use-render";
 import { XIcon } from "lucide-react";
 import type React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const DialogCreateHandle: typeof DialogPrimitive.createHandle =
@@ -99,7 +98,6 @@ export function DialogPopup({
             <DialogPrimitive.Close
               aria-label="Close"
               className="absolute top-2 right-2"
-              render={<Button size="icon" variant="ghost" />}
               {...closeProps}
             >
               <XIcon />
