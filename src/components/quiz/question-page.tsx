@@ -18,9 +18,9 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import ResultPage from "./result-page";
 
-type ResultQuizTypes = {
-  questionNumber: number;
-  isCorrect: boolean;
+type UserQuizResultsTypes = {
+  question: number;
+  correct: boolean;
 };
 
 const QuestionPage = ({
@@ -34,6 +34,7 @@ const QuestionPage = ({
   onPause: (pause: boolean) => void;
   onPage: (page: string) => void;
 }) => {
+
   const [index, setIndex] = useState(0);
   const questions = useMemo(() => shuffle(questionsData), []);
   const [currentQuestion, setCurrentQuestion] = useState<QuestionTypes>(questions[index]);
@@ -43,23 +44,27 @@ const QuestionPage = ({
   const [answerCorrect, setAnswerCorrect] = useState<number>(-1);
   const [isQuizCompleted, setIsQuizCompleted] = useState<boolean>(false);
   const [isLocked, setIsLocked] = useState<boolean | null>(null);
-  const [resultQuestions, setResultQuestions] = useState<ResultQuizTypes[]>([]);
+  const [userAnswers, setUserAnswers] = useState<UserQuizResultsTypes[]>([]);
 
   const handleSelectAnswer = (answer: number) => {
     if (isLocked) return;
-    if (currentQuestion.answer === answer) {
+    
+    const isCorrect = currentQuestion.answer === answer;
+
+    if (isCorrect) {
       setScore(score + 1);
     }
-
+    
     setAnswerCorrect(currentQuestion.answer);
     setAnswerSelected(answer);
     setIsLocked(true);
     setAnsweredQuestions((prevItems) => [...prevItems, index + 1]);
-    setResultQuestions((prevResults) => [
-      ...prevResults,
-      { questionNumber: index + 1, isCorrect: answerCorrect === answerSelected },
-    ]);
+    setUserAnswers((prevUserAnswers) => [
+      ...prevUserAnswers,
+      { question: index + 1, correct: isCorrect }
+    ])
   };
+  
 
   const handleNextQuestion = () => {
     if (index + 1 < questionsData.length) {
@@ -113,7 +118,7 @@ const QuestionPage = ({
           <Dialog>
             <DialogTrigger render={<Button className="mt-4" />}>Ver Resultados</DialogTrigger>
             <DialogContent className="bg-tan-100 md:min-w-1/2! p-8 flex items-center justify-center!">
-              <ResultPage results={resultQuestions} onPage={onPage} />
+              <ResultPage results={userAnswers} onPage={onPage} />
             </DialogContent>
           </Dialog>
         )}

@@ -188,3 +188,18 @@ export const GoFurtherPageSchema = z.object({
 });
 
 export type GoFurtherPageTypes = z.infer<typeof GoFurtherPageSchema>;
+
+//Tipagem da página do Teste de Conhecimento
+export const QuizHomeSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+    quiz: z.object({
+      totalQuestions: z.number(),
+      countdown: z.number(),
+      rules: z.array(z.object({ message: z.string() })),
+    }),
+  }),
+});
+
+export type QuizHomeTypes = z.infer<typeof QuizHomeSchema>;

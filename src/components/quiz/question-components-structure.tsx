@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, sanitizedData } from "@/lib/utils";
 import { CircleCheck, CircleX } from "lucide-react";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
@@ -27,7 +27,10 @@ const QuestionBadge = ({ questionNumber }: { questionNumber: string | number }) 
 
 // Enunciado da Questão
 const QuestionStatement = ({ statement }: { statement: string }) => (
-  <p className={cn("text-[clamp(1rem,4vw,1.45rem)] text-tan-700 font-medium leading-7")}>{statement}</p>
+  <div
+    className={cn("[&_p]:text-[clamp(1rem,4vw,1.45rem)] [&_p]:text-tan-700 [&_p]:font-medium [&_p]:leading-7")}
+    dangerouslySetInnerHTML={sanitizedData(statement)}
+  />
 );
 
 //Lista de Respostas

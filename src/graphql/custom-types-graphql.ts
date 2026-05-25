@@ -126,3 +126,21 @@ export const TEAM = gql`
     }
   }
 `;
+
+//Query das Questões do Teste de Conhecimento
+export const QUIZ_QUESTIONS = gql`
+  query QuizQuestions {
+    questions {
+      nodes {
+        title
+        excerpt
+        answers {
+          answersOptions {
+            answer
+          }
+          correctAnswer
+        }
+      }
+    }
+  }
+`;

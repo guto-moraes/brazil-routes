@@ -87,13 +87,13 @@ const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; quest
   </li>
 );
 
-type ResultQuizTypes = {
-  questionNumber: number,
-  isCorrect: boolean,
-}
+type QuizResultsTypes = {
+  question: number;
+  correct: boolean;
+};
 
-const ResultPage = ({ results, onPage }: { results: ResultQuizTypes[], onPage: (page: string) => void }) => {
-  const totalCorrectAnswer = results.filter(item => item.isCorrect);
+const ResultPage = ({ results, onPage }: { results: QuizResultsTypes[], onPage: (page: string) => void }) => {
+  const totalCorrectAnswer = results.filter(item => item.correct);
 
   return (
     <div className="h-full w-full md:w-[90%] flex flex-col justify-around gap-y-6 px-8">
@@ -101,8 +101,8 @@ const ResultPage = ({ results, onPage }: { results: ResultQuizTypes[], onPage: (
       <div className="w-full">
         <ul className="columns-2 space-y-2.5">
           {
-            results.map((item, index) => (
-              <QuestionItem key={index} questionNumber={item.questionNumber}  isCorrect={item.isCorrect} />
+            results.map((item) => (
+              <QuestionItem key={item.question} questionNumber={item.question}  isCorrect={item.correct} />
             ))
           }
         </ul>

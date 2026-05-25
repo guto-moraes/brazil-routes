@@ -161,3 +161,20 @@ export const GO_FURTHER = gql`
     }
   }
 `;
+
+//Query para a página inicial do Teste de Conhecimento
+export const QUIZ_HOME = gql`
+  query Quiz($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      quiz {
+        totalQuestions
+        countdown
+        rules {
+          message
+        }
+      }
+    }
+  }
+`;

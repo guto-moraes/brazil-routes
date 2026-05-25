@@ -123,3 +123,27 @@ export const TimelineSchema = z.object({
 });
 
 export type TimelineTypes = z.infer<typeof TimelineSchema>;
+
+//Tipagem das Questões do Teste de Conhecimento
+export const QuizQuestionAnswerSchema = z.object({
+  answer: z.string(),
+});
+
+export const QuizQuestionSchema = z.object({
+  title: z.string(),
+  excerpt: z.string(),
+  answers: z.object({
+    answersOptions: z.array(QuizQuestionAnswerSchema),
+    correctAnswer: z.string(),
+  }),
+});
+
+export type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
+
+export const QuizQuestionsSchema = z.object({
+  questions: z.object({
+    nodes: z.array(QuizQuestionSchema),
+  }),
+});
+
+export type QuizQuestionsTypes = z.infer<typeof QuizQuestionsSchema>;

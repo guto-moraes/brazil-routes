@@ -1,7 +1,19 @@
 import request from "graphql-request";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import { GLOSSARY, INTERACTIVE_MAP, INTERACTIVE_MAP_LOCATION, TEAM } from "@/graphql/custom-types-graphql";
-import type { GlossaryTypes, InteractiveMapLocationTypes, InteractiveMapTypes, TimelineTypes } from "@/types/custom-post-types";
+import {
+  GLOSSARY,
+  INTERACTIVE_MAP,
+  INTERACTIVE_MAP_LOCATION,
+  QUIZ_QUESTIONS,
+  TEAM,
+} from "@/graphql/custom-types-graphql";
+import type {
+  GlossaryTypes,
+  InteractiveMapLocationTypes,
+  InteractiveMapTypes,
+  QuizQuestionsTypes,
+  TimelineTypes,
+} from "@/types/custom-post-types";
 import { TIMELINE } from "@/graphql/custom-types-graphql";
 import type { TeamTypes } from "@/types/components-types";
 
@@ -73,6 +85,19 @@ export const useQueryTeam = () => {
   return useSuspenseQuery<TeamTypes>({
     queryKey: ["glossary"],
     queryFn: () => fetchTeam(),
+    staleTime: 60 * 5 * 1000,
+  });
+};
+
+//Query das Questões do Teste de Conhecimento
+const fecthQuizQuestion = async () => {
+  return await request<QuizQuestionsTypes>(GRAPHQL_URL, QUIZ_QUESTIONS);
+};
+
+export const useQueryQuestions = () => {
+  return useSuspenseQuery<QuizQuestionsTypes>({
+    queryKey: ["questions"],
+    queryFn: () => fecthQuizQuestion(),
     staleTime: 60 * 5 * 1000,
   });
 };

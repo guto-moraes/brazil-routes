@@ -1,5 +1,5 @@
-import { BLOG, CALENDAR, CHAPTER_PAGE, GO_FURTHER, PAGE, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
-import type { BlogItemTypes, BlogTypes, CalendarTypes, ChapterPageTypes, GoFurtherPageTypes, PageTypes } from "@/types/page-and-post-types";
+import { BLOG, CALENDAR, CHAPTER_PAGE, GO_FURTHER, PAGE, QUIZ_HOME, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes, BlogTypes, CalendarTypes, ChapterPageTypes, GoFurtherPageTypes, PageTypes, QuizHomeTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
 
@@ -93,5 +93,20 @@ export const useQueryGoFurther = () => {
   return useSuspenseQuery<GoFurtherPageTypes>({
     queryKey: ["go-further"],
     queryFn: () => fetchGoFurther(),
+  });
+};
+
+//Fetch da Página Inicial do Teste de Conhecimento
+const fetchQuizHome = async (slug: string) => {
+  return await request<QuizHomeTypes>(GRAPHQL_URL, QUIZ_HOME, {
+    slug,
+  });
+};
+
+//Query do blog do conhecimento para todos os resultados
+export const useQueryQuizHome = (slug: string) => {
+  return useSuspenseQuery<QuizHomeTypes>({
+    queryKey: ["quiz-home"],
+    queryFn: () => fetchQuizHome(slug),
   });
 };
