@@ -3,9 +3,9 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { ChevronRight, CircleCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const QuestionProgress = ({ answeredQuestions }: { answeredQuestions: number[] }) => {
+const QuestionProgress = ({ totalQuestions, answeredQuestions }: { totalQuestions: number; answeredQuestions: number[] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const totalQuestions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
+  const amount: number[] = Array.from({ length: totalQuestions }, (_, i) => i + 1);
 
   return (
     <Collapsible className="w-full data-open:shadow-lg data-open:rounded-b-lg" open={isOpen} onOpenChange={setIsOpen}>
@@ -26,7 +26,7 @@ const QuestionProgress = ({ answeredQuestions }: { answeredQuestions: number[] }
           "divide-tan-200 -tracking-wider rounded-b-lg transition-all duration-300",
         )}
       >
-        {totalQuestions.map((questionNumber) => (
+        {amount.map((questionNumber) => (
           <div className="w-full flex gap-x-2 items-center justify-between py-2.5 px-2" key={questionNumber}>
             <span className={cn(answeredQuestions.includes(questionNumber) ? "text-blue-retro-700" : undefined)}>
               Questão {questionNumber}

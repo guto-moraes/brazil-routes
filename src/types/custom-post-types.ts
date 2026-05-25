@@ -135,6 +135,7 @@ export const QuizQuestionSchema = z.object({
   answers: z.object({
     answersOptions: z.array(QuizQuestionAnswerSchema),
     correctAnswer: z.string(),
+    answerExplain: z.string(),
   }),
 });
 

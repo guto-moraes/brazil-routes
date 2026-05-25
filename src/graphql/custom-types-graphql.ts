@@ -139,6 +139,7 @@ export const QUIZ_QUESTIONS = gql`
             answer
           }
           correctAnswer
+          answerExplain
         }
       }
     }

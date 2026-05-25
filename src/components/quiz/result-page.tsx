@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@base-ui/react";
+import { Button } from "@/components/ui/button";
 import { CircleCheck, CircleX } from "lucide-react";
 import belowAverage from "@/assets/images/quiz/below-average.svg";
 import average from "@/assets/images/quiz/average.svg";
@@ -109,7 +109,7 @@ const ResultPage = ({ results, onPage }: { results: QuizResultsTypes[], onPage: 
       </div>
       <Button
         className={cn(
-          "rounded-none text-white bg-bone-500 hover:bg-blue-retro-500 text-lg! py-4! uppercase",
+          "rounded-none text-white bg-bone-500 hover:bg-blue-retro-500 text-lg! py-6! uppercase",
           "border-0 transition-colors duration-500 w-74 mx-auto tracking-tighter cursor-pointer",
         )}
         onClick={() => onPage("initial")}

@@ -206,7 +206,7 @@ const Navigation = ({
       </header>
 
       <div
-        className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-7" : "z-0")}
+        className={cn("nav-content w-full absolute top-0 left-0", isActiveMenu ? "z-7" : "-z-1")}
         aria-labelledby="menubutton"
         tabIndex={-1}
         ref={navigationRef}

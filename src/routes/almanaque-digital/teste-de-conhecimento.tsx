@@ -30,7 +30,7 @@ function QuizzPage() {
           />
         </div>
       </div>
-      <div className="col-span1 bg-tan-200/50 flex justify-center items-center py-16">
+      <div className="col-span1 bg-tan-200/50 flex justify-center items-center py-16 overflow-hidden">
         <Quiz />
       </div>
     </Main>

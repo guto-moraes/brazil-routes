@@ -1,56 +1,55 @@
 import { cn, sanitizedData } from "@/lib/utils";
 import { CircleCheck, CircleX } from "lucide-react";
+import { Dialog, DialogContent, DialogPopup, DialogTrigger } from "../ui/dialog";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
 
 //Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-full w-full md:w-[90%] flex gap-8 px-8">{children}</div>
+  <div className="h-full w-full md:w-[90%] flex gap-8 px-8 overflow-hidden">{children}</div>
 );
 
 //Container do componente
 const QuestionContainer = ({ children }: { children: React.ReactNode }) => (
-  <section className="flex-3 max-w-full flex flex-col justify-start items-center gap-y-8">{children}</section>
-);
-
-//Marcador do número da Questão
-const QuestionBadge = ({ questionNumber }: { questionNumber: string | number }) => (
-  <span
-    className={cn(
-      "rounded-full border-2 border-blue-retro-500 text-sm text-blue-retro-500",
-      "font-medium uppercase -tracking-wide w-max py-1.5 px-3",
-    )}
-  >
-    Questão {questionNumber}
-  </span>
+  <section className="flex-3 max-w-full flex flex-col justify-start items-start gap-y-10">{children}</section>
 );
 
 // Enunciado da Questão
-const QuestionStatement = ({ statement }: { statement: string }) => (
-  <div
-    className={cn("[&_p]:text-[clamp(1rem,4vw,1.45rem)] [&_p]:text-tan-700 [&_p]:font-medium [&_p]:leading-7")}
-    dangerouslySetInnerHTML={sanitizedData(statement)}
-  />
+const QuestionBadgeAndStatement = ({ questionNumber, statement }: { questionNumber: number | string; statement: string }) => (
+  <div className="flex flex-col gap-y-2.5">
+    <span
+      className={cn(
+        "rounded-full border-2 border-blue-retro-500 text-xs text-blue-retro-500",
+        "font-medium uppercase -tracking-wide w-max py-1 px-3",
+      )}
+    >
+      Questão {questionNumber}
+    </span>
+    <div 
+      className="[&_p]:text-[clamp(1rem,4vw,1.15rem)] [&_p]:text-tan-700 [&_p]:font-medium [&_p]:leading-7"
+      dangerouslySetInnerHTML={sanitizedData(statement)}
+    />
+  </div>
 );
 
 //Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="w-full flex flex-col gap-y-5 z-10">{children}</ul>
+  <ul className="w-full flex flex-col gap-y-5">{children}</ul>
 );
 
 //Opção de Resposta
 const QuestionAnswerOption = ({
   index,
-  answerCorrect,
-  answerSelected,
+  correctAnswer,
+  selectedAnswer,
   option,
   onAnswer,
 }: {
   index: number;
-  answerCorrect: number;
-  answerSelected: number;
+  correctAnswer: number;
+  selectedAnswer: number;
   option: string;
-  onAnswer: (answerSelected: number, index: number) => void;
+  onAnswer: (selectedAnswer: number, index: number) => void;
 }) => {
   return (
     <li
@@ -58,15 +57,15 @@ const QuestionAnswerOption = ({
         "rounded-xs outline-2  outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
         "outline-tan-600 data-[correct=true]:outline-darkgreen-500 data-[selected=true]:outline-terracotta-700",
       )}
-      data-correct={answerCorrect === index && answerSelected !== -1}
-      data-selected={answerCorrect !== answerSelected && answerSelected === index}
+      data-correct={correctAnswer === index && selectedAnswer !== -1}
+      data-selected={correctAnswer !== selectedAnswer && selectedAnswer === index}
     >
       <button
         role="radio"
-        aria-checked={answerCorrect === index}
-        aria-pressed={answerSelected === index}
+        aria-checked={correctAnswer === index}
+        aria-pressed={selectedAnswer === index}
         className={cn(
-          "w-full flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600",
+          "w-full flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600 text-sm text-left",
           "group-data-[correct=true]:text-darkgreen-500 group-data-[selected=true]:text-terracotta-700",
         )}
         onClick={() => onAnswer(index, index)}
@@ -81,8 +80,8 @@ const QuestionAnswerOption = ({
         </span>
         {option}
       </button>
-      {answerCorrect === index && answerSelected !== -1 && <CircleCheck className="text-darkgreen-500" />}
-      {answerCorrect !== answerSelected && answerSelected === index && <CircleX className="text-terracotta-600" />}
+      {correctAnswer === index && selectedAnswer !== -1 && <CircleCheck className="text-darkgreen-500" />}
+      {correctAnswer !== selectedAnswer && selectedAnswer === index && <CircleX className="text-terracotta-600" />}
     </li>
   );
 };
@@ -100,17 +99,19 @@ const QuestionAnswerExplainBullet = ({ alert, text }: { alert: boolean; text: st
 );
 
 const QuestionAnswerExplain = ({
-  answerCorrect,
-  answerSelected,
+  correctAnswer,
+  selectedAnswer,
+  explain,
 }: {
-  answerCorrect: number;
-  answerSelected: number;
+  correctAnswer: number;
+  selectedAnswer: number;
+  explain: string;
 }) => {
-  const alert = answerCorrect === answerSelected;
+  const alert = correctAnswer === selectedAnswer;
   return (
     <div
       className={cn(
-        "rounded-sm border-l-3 shadow-lg py-4 px-3 text-center w-full",
+        "rounded-sm border-l-3 shadow-md py-2 px-3 text-center w-full",
         alert
           ? "border-blue-retro-600 bg-blue-retro-50 text-blue-retro-600"
           : "border-chocolate-600 bg-bege-100 text-chocolate-600",
@@ -122,11 +123,35 @@ const QuestionAnswerExplain = ({
         <>
           <h3 className="font-semibold">Você errou esta questão!</h3>
           <p className="leading-8">
-            A resposta marcada foi a letra <QuestionAnswerExplainBullet alert={alert} text={indexes[answerSelected]} />,
-            porém, a correta é <QuestionAnswerExplainBullet alert={alert} text={indexes[answerCorrect]} />.
+            A resposta marcada foi a letra <QuestionAnswerExplainBullet alert={alert} text={indexes[selectedAnswer]} />,
+            porém, a correta é <QuestionAnswerExplainBullet alert={alert} text={indexes[correctAnswer]} />.
           </p>
         </>
       )}
+      <Dialog>
+        <DialogTrigger
+          className={cn(
+            "rounded-xs bg-bone-500 hover:bg-bone-600 text-xs text-white",
+            "font-medium uppercase py-1.5 px-3 mt-3 cursor-pointer transition-colors duration-300",
+          )}
+        >
+          Ver Explicação
+        </DialogTrigger>
+        <DialogPopup>
+          <DialogContent
+            className={cn(
+              "[&_button]:rounded-full border-bege-300 bg-bege-50 p-6 [&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 ",
+              "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300 [&_button]:cursor-pointer",
+            )}
+          >
+            <h3 className="text-lg text-tan-800 font-bold">Explicação da Resposta</h3>
+            <div
+              className="text-sm text-tan-700 text-justify text-pretty hyphens-auto mt-4"
+              dangerouslySetInnerHTML={sanitizedData(explain)}
+            />
+          </DialogContent>
+        </DialogPopup>
+      </Dialog>
     </div>
   );
 };
@@ -138,8 +163,7 @@ const QuestionSidebar = ({ children }: { children: React.ReactNode }) => (
 export {
   QuestionWrapper,
   QuestionContainer,
-  QuestionBadge,
-  QuestionStatement,
+  QuestionBadgeAndStatement,
   QuestionAnswerList,
   QuestionAnswerOption,
   QuestionAnswerExplain,
