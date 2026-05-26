@@ -74,12 +74,14 @@ const QuestionPage = ({
     }
   };
 
+  const quizAnswers = currentQuestion.answers.answersOptions;
+
   return (
     <QuestionWrapper>
       <QuestionContainer>
         <QuestionBadgeAndStatement questionNumber={index + 1} statement={currentQuestion.excerpt} />
         <QuestionAnswerList>
-          {currentQuestion.answers.answersOptions.map((option, index) => {
+          {quizAnswers.map((option, index) => {
             return (
               <QuestionAnswerOption
                 key={index}

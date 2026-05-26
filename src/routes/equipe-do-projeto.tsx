@@ -28,8 +28,17 @@ function ProjectTeam() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
 
       const cards = gsap.utils.toArray<HTMLDivElement>(".team-card");
+
+      mm.add("(max-width: 640px)", () => {
+        cards.forEach((card) => {
+          gsap.set(card, {
+            y: 0,
+          });
+        });
+      });
 
       cards.forEach((card, index) => {
         if (index !== 0) {
@@ -55,6 +64,12 @@ function ProjectTeam() {
         const isMobile = window.innerWidth < 768;
 
         const cardTimeline = gsap.timeline({});
+
+        mm.add("(min-width: 1280px)", () => {
+          cardTimeline.to(card, {
+            y: "15%",
+          });
+        });
 
         if (index !== 0) {
           cardTimeline
@@ -83,11 +98,11 @@ function ProjectTeam() {
   );
 
   return (
-    <Main ref={teamCardRef}>
-      <Title className="max-w-300 mx-auto max-sm:pb-10! pb-0! max-sm:px-4">
+    <Main className="py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
+      <Title className="max-w-300 mx-auto max-sm:mb-12">
         Equipe do <span className="text-tan-400">Projeto</span>
       </Title>
-      <section className="team-card-wrapper relative h-svh lg:h-[calc(100svh-280px)] overflow-hidden mx-4">
+      <section className="team-card-wrapper relative h-svh lg:h-[calc(100svh-280px)] overflow-hidden" ref={teamCardRef}>
         <div className="team-card-container h-170 sm:h-125 lg:max-h-140 w-full lg:max-w-300 m-[auto_auto] absolute top-1/2 left-1/2 -translate-1/2">
           {equipes.nodes.map((member, index) => (
             <TeamCard key={index}>

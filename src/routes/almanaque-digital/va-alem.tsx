@@ -77,13 +77,16 @@ function GoFurther() {
 
   return (
     <>
-      <Main className="max-w-6xl mx-auto pb:12 xl:pb-24 max-sm:px-4 max-sm:mb-16">
-        <Title>
+      <Main className="max-w-6xl mx-auto py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
+        <Title className="text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700 font-cabinet font-black pb-8 sm:pb-16">
           Vá <span className="text-tan-400">Além</span>
         </Title>
 
         <div
-          className="w-full mb-12 sm:mb-16 md:mb-20 lg:mb-24 [&_p]:text-[clamp(1rem,3vw,1.25)] [&_p]:text-tan-800 sm:[&_p]:text-justify [&_p]:hyphens-auto"
+          className={cn(
+            "w-full mb-12 sm:mb-16 md:mb-20 lg:mb-24 [&_p]:text-[clamp(1rem,3vw,1.25)]",
+            "[&_p]:text-tan-800 sm:[&_p]:text-justify [&_p]:text-pretty [&_p]:hyphens-auto"
+          )}
           dangerouslySetInnerHTML={sanitizedData(page.content)}
         />
 

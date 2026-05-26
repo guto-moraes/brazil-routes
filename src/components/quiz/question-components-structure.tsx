@@ -6,7 +6,7 @@ const indexes: string[] = ["A", "B", "C", "D", "E"];
 
 //Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-full w-full md:w-[90%] flex gap-8 px-8 overflow-hidden">{children}</div>
+  <div className="h-full w-full md:w-[90%] flex flex-col md:flex-row gap-8 px-8 overflow-hidden">{children}</div>
 );
 
 //Container do componente
@@ -54,7 +54,7 @@ const QuestionAnswerOption = ({
   return (
     <li
       className={cn(
-        "rounded-xs outline-2  outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
+        "rounded-xs outline-2 outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
         "outline-tan-600 data-[correct=true]:outline-darkgreen-500 data-[selected=true]:outline-terracotta-700",
       )}
       data-correct={correctAnswer === index && selectedAnswer !== -1}

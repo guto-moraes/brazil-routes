@@ -12,6 +12,8 @@
 - [X] Resolver _bug_ com o **Mapa Interativo** após a renderização
 - [X] Criar uma única página dinâmica para os capítulos do Almanaque
 - [X] Finalizar a página com informações do impacto social do projeto
+- [X] Criar o _Quizz_ e inserir _link_ no menu principal
+- [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Finalizar página de Créditos
 - [ ] Estilização do conteúdo do modal do Mapa Interativo
 - [ ] Criar um leiaute para uma página e uma postagem padrão
@@ -19,11 +21,9 @@
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
-- [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Implementar áreas de configurações do tema para o rodapé
 - [ ] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
 - [ ] Inserir o código para envio do formulário
-- [ ] Criar o _Quizz_ e inserir _link_ no menu principal
 - [ ] Padronizar SEO das páginas
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato

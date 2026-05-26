@@ -17,7 +17,7 @@ const Pagination = ({
   const first = Math.min(Math.max(currentPage - maxLeft, 1), maxFirst);
 
   return (
-    <div className="pagination flex justify-end items-center text-sm mt-24">
+    <div className="pagination flex justify-end items-center text-sm mt-12">
       <ul className="flex gap-x-2">
         {hasPrevious && (
           <li>

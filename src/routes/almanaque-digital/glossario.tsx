@@ -31,8 +31,8 @@ function Glossary() {
   const { glossarios: terms } = data;
 
   return (
-    <Main className="max-w-5xl mx-auto pb-12 xl:pb-24">
-      <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black">
+    <Main className="max-w-5xl mx-auto py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
+      <Title className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 font-cabinet font-black pb-8 sm:pb-16">
         Glos<span className="text-tan-300">sário</span>
       </Title>
       <section className="glossary-container">

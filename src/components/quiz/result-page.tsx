@@ -16,8 +16,8 @@ const QuestionNotice = ({
     percentage < 50 ? 0 : percentage >= 50 && percentage <= 70 ? 1 : percentage > 70 && percentage <= 90 ? 2 : 3;
 
   return (
-    <div className="rounded-2xl bg-bege-50 p-6 flex gap-8">
-      <figure className="flex-2 h-[95%] w-full flex justify-center items-center my-auto">
+    <div className="rounded-2xl bg-bege-50 p-6 flex flex-col md:flex-row gap-8">
+      <figure className="flex-2 h-[95%] w-full hidden md:flex justify-center items-center my-auto">
         <img
           className="h-full w-full object-cover object-center"
           src={notice[index].imgSrc.node.sourceUrl}
@@ -40,7 +40,7 @@ const QuestionNotice = ({
     </div>
   );
 };
- 
+
 const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; questionNumber: number }) => (
   <li
     className={cn(
@@ -77,7 +77,7 @@ const ResultPage = ({
     <div className="h-full w-full flex flex-col justify-around gap-y-6">
       <QuestionNotice totalQuestions={totalQuestions} amountCorrectAnswer={totalCorrectAnswer.length} />
       <div className="w-full">
-        <ul className="columns-1 sm:columns-3 lg:columns-5 space-y-2.5">
+        <ul className="columns-2 sm:columns-3 lg:columns-5 space-y-2.5">
           {results.map((item) => (
             <QuestionItem key={item.question} questionNumber={item.question} isCorrect={item.correct} />
           ))}

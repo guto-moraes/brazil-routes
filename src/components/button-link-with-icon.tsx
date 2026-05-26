@@ -20,22 +20,22 @@ const ButtonLinkWithIcon = ({
       to={link}
       viewTransition={{ types: ["slide-right"] }}
       className={cn(
-        "relative text-base font-medium rounded-full h-12 p-1 ps-6 pe-14 group flex items-center",
-        "transition-all duration-500 hover:ps-14 hover:pe-6 w-fit overflow-hidden cursor-pointer",
+        "relative text-sm font-medium rounded-full h-10 p-1 ps-6 pe-14 group transition-all",
+        "duration-500 hover:ps-14 hover:pe-6 w-fit overflow-hidden cursor-pointer flex items-center",
         bgColor,
       )}
       target={target ? "_blank" : "_parent"}
     >
       <span className="relative z-10 transition-all duration-500">{textButton}</span>
-      <div
+      <span
         className={cn(
-          "absolute right-1 size-10 rounded-full flex items-center justify-center",
-          "transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45",
+          "absolute right-1 size-8 bg-background text-foreground rounded-full grid place-content-center",
+          "transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45",
           iconColor,
         )}
       >
-        <ArrowUpRight size={24} />
-      </div>
+        <ArrowUpRight className="size-5 sm:size-6" />
+      </span>
     </Link>
   );
 };

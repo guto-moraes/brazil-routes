@@ -51,7 +51,7 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
   const secondsStr = (timeLeft % 60).toString().padStart(2, "0");
 
   return (
-    <div className="rounded-xl shadow-lg size-48 bg-bege-50 flex justify-center items-center">
+    <div className="countdown-timer rounded-xl shadow-lg size-48 bg-bege-50 flex justify-center items-center">
       <div className="relative flex items-center justify-center size-48">
         <svg className="w-full h-full transform -rotate-90">
           {/* Círculo de fundo */}

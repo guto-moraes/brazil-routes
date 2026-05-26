@@ -263,7 +263,7 @@ const Navigation = ({
               ))}
             </ul>
           </div>
-          <div className="nav-items-col flex-4 flex justify-between gap-8">
+          <div className="nav-items-col flex-4 flex flex-col md:flex-row justify-between gap-8">
             <ul role="menu" className="nav-primary-links w-full flex flex-col gap-y-3 z-5">
               {primaryLinks.map(({ title, url }, index) => (
                 <li className="line" role="presentation" key={index}>

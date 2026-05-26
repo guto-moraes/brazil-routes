@@ -59,18 +59,21 @@ const AlmanaqueChapters = () => {
           return (
             <section
               key={index}
-              className="chapter-card relative h-svh w-full flex flex-col border-b border-black/25 bg-bege-50 px-[6vw] py-[5vh] transform-3d perspective-[1000px] md:flex-row md:justify-between md:gap-0 md:px-[8vw] md:py-[10vh]"
+              className={cn(
+                "chapter-card relative h-[150svh] sm:h-svh w-full flex flex-col border-b border-black/25 bg-bege-50 px-[6vw] py-[5vh]",
+                "transform-3d perspective-[1000px] md:flex-row md:justify-between md:gap-0 md:px-[8vw] md:py-[10vh]"
+              )}
             >
-              <div className="h-full w-full grid grid-cols-6">
-                <div className="col-span-1 relative py-8 overflow-hidden">
+              <div className="h-full w-full grid grid-cols-1 xl:grid-cols-6">
+                <div className="max-sm:h-max md:col-span-1 relative py-4 sm:py-8 overflow-hidden">
                   <h3 className="text-xl text-mate-600 font-light border-b border-tan-200">{tag}</h3>
-                  <p className="text-3xl text-tan-700 absolute bottom-0 left-0">
+                  <p className="text-3xl text-tan-700 absolute bottom-0 left-0 max-md:hidden">
                     <span className="font-extralight">
                       [<span className="font-normal">{`0${index + 1}`}</span>]
                     </span>
                   </p>
                 </div>
-                <div className="col-span-3 py-8 px-16 flex flex-col gap-12">
+                <div className="col-span-1 xl:col-span-3 py-4 sm:py-8 xl:px-16 flex flex-col gap-12">
                   <h2 className="text-3xl font-light">{title}</h2>
                   <p className="indent-8 text-lg text-tan-800 text-justify hyphens-auto font-light">{synopsis}</p>
                   <ButtonLinkWithIcon
@@ -82,7 +85,7 @@ const AlmanaqueChapters = () => {
                   />
                 </div>
                 <div
-                  className="col-span-2 rounded-2xl bg-cover bg-center bg-no-repeat"
+                  className="max-md:hidden col-span-2 rounded-2xl bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url(${image.node.guid})` }}
                 ></div>
               </div>
