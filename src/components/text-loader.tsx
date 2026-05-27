@@ -101,7 +101,7 @@ const TextLoader: React.FC<TextLoaderPropsTypes> = ({
         {text.split("").map((char, index) => (
           <span
             key={`${char}-${index}`}
-            className={cn("letter inline-block relative translate-y-25 text-white/20 max-md:-tracking-[0.02em]")}
+            className={cn("letter inline-block relative translate-y-25 text-white/20 max-md:tracking-[-0.02em]")}
             data-text={char}
             style={{ "--clipPath": "inset(100% 0 0 0)" } as React.CSSProperties}
           >

@@ -267,7 +267,7 @@ const VerticalSlideSections = () => {
           </div>
         </Col>
 
-        <div className="progress-bar bg-chocolate-100 absolute -top-[15%] lg:top-1/2 left-1/2 -translate-1/2 h-[50%] lg:h-[60%] w-[2.5px] max-lg:-rotate-90">
+        <div className="progress-bar bg-chocolate-100 absolute top-[-15%] lg:top-1/2 left-1/2 -translate-1/2 h-[50%] lg:h-[60%] w-[2.5px] max-lg:-rotate-90">
           <div className="progress bg-chocolate-800 absolute top-0 left-0 h-full w-full origin-top scale-y-0 will-change-transform"></div>
         </div>
 

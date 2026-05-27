@@ -129,7 +129,7 @@ const TimelineSlide = () => {
             <div className="flex-1 relative flex flex-col justify-end gap-y-8 px-8 pb-8">
               <h2
                 className={cn(
-                  "text-[clamp(2rem,10vw,18rem)] font-mono font-black leading-[1.125] -tracking-[0.085em]",
+                  "text-[clamp(2rem,10vw,18rem)] font-mono font-black leading-[1.125] tracking-[-0.085em]",
                   "absolute top-28 left-1/2 -translate-x-1/2 rotate-90 will-change-transform",
                 )}
                 style={{ color: timeline.info.textColor, opacity: 0.2 }}

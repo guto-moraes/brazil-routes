@@ -29,7 +29,7 @@ const InitialPage = ({ onStart }: { onStart: () => void}) => {
         </div>
       </div>
       <div className="shadow-lg rounded-2xl bg-tan-100 max-w-full gap-2 flex flex-col gap-y-8 p-4 md:p-8">
-        <h2 className="text-xl text-tan-700 font-bold uppercase -tracking-wider w-max mx-auto">Regras e Informes</h2>
+        <h2 className="text-xl text-tan-700 font-bold uppercase tracking-tighter w-max mx-auto">Regras e Informes</h2>
         <ol className="list-decimal text-sm text-tan-800 font-inter max-w-full space-y-1.5 pl-6">
           {
             data.page.quiz.rules.map((rule, index) => (

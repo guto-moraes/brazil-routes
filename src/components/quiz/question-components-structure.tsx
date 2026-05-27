@@ -1,6 +1,6 @@
 import { cn, sanitizedData } from "@/lib/utils";
 import { CircleCheck, CircleX } from "lucide-react";
-import { Dialog, DialogContent, DialogPopup, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
 
@@ -15,17 +15,23 @@ const QuestionContainer = ({ children }: { children: React.ReactNode }) => (
 );
 
 // Enunciado da Questão
-const QuestionBadgeAndStatement = ({ questionNumber, statement }: { questionNumber: number | string; statement: string }) => (
+const QuestionBadgeAndStatement = ({
+  questionNumber,
+  statement,
+}: {
+  questionNumber: number | string;
+  statement: string;
+}) => (
   <div className="flex flex-col gap-y-2.5">
     <span
       className={cn(
         "rounded-full border-2 border-blue-retro-500 text-xs text-blue-retro-500",
-        "font-medium uppercase -tracking-wide w-max py-1 px-3",
+        "font-medium uppercase tracking-tight w-max py-1 px-3",
       )}
     >
       Questão {questionNumber}
     </span>
-    <div 
+    <div
       className="[&_p]:text-[clamp(1rem,4vw,1.15rem)] [&_p]:text-tan-700 [&_p]:font-medium [&_p]:leading-7"
       dangerouslySetInnerHTML={sanitizedData(statement)}
     />
@@ -137,21 +143,19 @@ const QuestionAnswerExplain = ({
         >
           Ver Explicação
         </DialogTrigger>
-        <DialogPopup>
-          <DialogContent
-            className={cn(
-              "[&_button]:rounded-full border-bege-300 bg-bege-50 p-6 [&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 ",
-              "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300",
-              "[&_button]:cursor-pointer [&_button]:p-1",
-            )}
-          >
-            <h3 className="text-lg text-tan-800 font-bold">Explicação da Resposta</h3>
-            <div
-              className="text-sm text-tan-700 text-justify text-pretty hyphens-auto mt-4"
-              dangerouslySetInnerHTML={sanitizedData(explain)}
-            />
-          </DialogContent>
-        </DialogPopup>
+        <DialogContent
+          className={cn(
+            "[&_button]:rounded-full border-bege-300 bg-bege-50 p-6 [&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 ",
+            "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300",
+            "[&_button]:cursor-pointer [&_button]:p-1",
+          )}
+        >
+          <h3 className="text-lg text-tan-800 font-bold">Explicação da Resposta</h3>
+          <div
+            className="text-sm text-tan-700 text-justify text-pretty hyphens-auto mt-4"
+            dangerouslySetInnerHTML={sanitizedData(explain)}
+          />
+        </DialogContent>
       </Dialog>
     </div>
   );

@@ -7,7 +7,7 @@ const CitiesMarquee = () => {
         <section className="text-white uppercase h-32 w-full flex justify-start items-center gap-16 px-8">
           <div className="flex flex-col">
             <h2 className="text-6xl font-black">General</h2>
-            <h2 className="text-6xl -tracking-wider">Carneiro</h2>
+            <h2 className="text-6xl tracking-tighter">Carneiro</h2>
           </div>
           <div className="flex flex-col">
             <h2 className="text-6xl -tracking-widest">Barra do</h2>
@@ -31,7 +31,7 @@ const CitiesMarquee = () => {
           </div>
           <div className="flex flex-col items-center">
             <h2 className="text-6xl font-black">Nova</h2>
-            <h2 className="text-6xl -tracking-wider">Xavantina</h2>
+            <h2 className="text-6xl tracking-tighter">Xavantina</h2>
           </div>
         </section>
       </Marquee>
@@ -39,7 +39,7 @@ const CitiesMarquee = () => {
         <section className="text-white uppercase h-32 w-full flex justify-start items-center gap-16 px-8">
           <div className="flex flex-col">
             <h2 className="text-6xl font-black">General</h2>
-            <h2 className="text-6xl -tracking-wider">Carneiro</h2>
+            <h2 className="text-6xl tracking-tighter">Carneiro</h2>
           </div>
           <div className="flex flex-col">
             <h2 className="text-6xl -tracking-widest">Barra do</h2>
@@ -63,7 +63,7 @@ const CitiesMarquee = () => {
           </div>
           <div className="flex flex-col items-center">
             <h2 className="text-6xl font-black">Nova</h2>
-            <h2 className="text-6xl -tracking-wider">Xavantina</h2>
+            <h2 className="text-6xl tracking-tighter">Xavantina</h2>
           </div>
         </section>
       </Marquee>

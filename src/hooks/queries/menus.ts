@@ -1,18 +1,20 @@
 import request from "graphql-request"
 import { useSuspenseQuery } from "@tanstack/react-query";
-import type { AlmanaqueMenuTypes } from "@/types/menus";
-import { ALMANAQUE_MENU } from "@/graphql/menus";
+import type { MenuTypes } from "@/types/menus";
+import { MENU } from "@/graphql/menus";
 
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 
-const fetchAlmanaqueMenu = async () => {
-    return await request<AlmanaqueMenuTypes>(GRAPHQL_URL, ALMANAQUE_MENU)
+const fetchMenu = async (name: string) => {
+    return await request<MenuTypes>(GRAPHQL_URL, MENU, {
+        name
+    })
 }
 
-export const useQueryAlmanqueMenu = () => {
-    return useSuspenseQuery<AlmanaqueMenuTypes>({
-        queryKey: ["almanaque-menu"],
-        queryFn: () => fetchAlmanaqueMenu(),
+export const useQueryMenu = (name: string) => {
+    return useSuspenseQuery<MenuTypes>({
+        queryKey: ["menus", name],
+        queryFn: () => fetchMenu(name),
     })
 }

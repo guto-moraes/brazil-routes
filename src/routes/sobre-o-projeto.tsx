@@ -30,10 +30,9 @@ function About() {
   const { data } = useQueryPage("sobre-o-projeto");
 
   return (
-    <Main className="w-full mb-12 md:mb-18 lg:mb-24">
-      <div className="w-full max-w-5xl mx-auto px-4 xl:px:0">
-        <Title>
-          Sobre o <span className="text-tan-400">Projeto</span>
+    <Main className="max-w-5xl mx-auto py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
+        <Title className="text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700 font-cabinet font-black pb-8 sm:pb-16">
+          Sobre <span className="text-tan-400">o Projeto</span>
         </Title>
         <div 
           className={cn(
@@ -45,7 +44,6 @@ function About() {
           )}
           dangerouslySetInnerHTML={sanitizedData(data.page.content)} 
         />
-      </div>
     </Main>
   );
 }

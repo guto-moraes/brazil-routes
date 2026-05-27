@@ -16,14 +16,14 @@ const QuestionProgress = ({ totalQuestions, answeredQuestions }: { totalQuestion
           "transition-all duration-300 shadow-lg aria-expanded:shadow-none",
         )}
       >
-        <p className="text-xs text-white font-medium uppercase -tracking-wider">Visualizar Progresso</p>
+        <p className="text-xs text-white font-medium uppercase tracking-tighter">Visualizar Progresso</p>
         <ChevronRight className="size-4 text-white rotate-90 group-aria-expanded:-rotate-90 transition-transform duration-500" />
         <span className="sr-only">Toggle details</span>
       </CollapsibleTrigger>
       <CollapsibleContent
         className={cn(
           "bg-bege-50 text-xs text-tan-600 font-medium uppercase divide-y",
-          "divide-tan-200 -tracking-wider rounded-b-lg transition-all duration-300",
+          "divide-tan-200 tracking-tighter rounded-b-lg transition-all duration-300",
         )}
       >
         {amount.map((questionNumber) => (

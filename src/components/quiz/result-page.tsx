@@ -29,7 +29,7 @@ const QuestionNotice = ({
           {notice[index].title}
         </h2>
         <div className="rounded-full bg-bone-500 size-32 flex flex-col justify-center items-center">
-          <h3 className="text-xs text-bone-100 font-semibold uppercase -tracking-wider">Você acertou</h3>
+          <h3 className="text-xs text-bone-100 font-semibold uppercase tracking-tighter">Você acertou</h3>
           <p className="text-4xl text-bone-100">
             <span className="font-black">{amountCorrectAnswer}</span>
             <span className="opacity-50">/{totalQuestions}</span>
@@ -44,7 +44,7 @@ const QuestionNotice = ({
 const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; questionNumber: number }) => (
   <li
     className={cn(
-      "rounded-md bg-bege-50 border-2 uppercase -tracking-wider py-2 px-3 flex justify-between items-center",
+      "rounded-md bg-bege-50 border-2 uppercase tracking-tighter py-2 px-3 flex justify-between items-center",
       isCorrect ? "border-darkgreen-500 text-darkgreen-600" : "border-terracotta-500 text-terracotta-600",
     )}
   >

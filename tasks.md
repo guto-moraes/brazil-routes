@@ -13,27 +13,26 @@
 - [X] Criar uma única página dinâmica para os capítulos do Almanaque
 - [X] Finalizar a página com informações do impacto social do projeto
 - [X] Criar o _Quizz_ e inserir _link_ no menu principal
+- [X] Estilização do conteúdo do modal do Mapa Interativo
+- [ ] Responsividade do _site_
+- [ ] Inserir o código para envio do formulário
+- [ ] Implementar áreas de configurações do tema para o rodapé
+- [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Finalizar página de Créditos
-- [ ] Estilização do conteúdo do modal do Mapa Interativo
 - [ ] Criar um leiaute para uma página e uma postagem padrão
 - [ ] Revisar todas as integrações com o WordPress (Menus, imprensa,)
 - [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
 - [ ] Colocar paginação na página da Agenda
-- [ ] Incluir a opção de áudio descrição (_text to speech_)
-- [ ] Implementar áreas de configurações do tema para o rodapé
 - [ ] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
-- [ ] Inserir o código para envio do formulário
 - [ ] Padronizar SEO das páginas
 - [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
-- [ ] Responsividade do _site_
 - [ ] Finalizar a página de acessibilidade
-- [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Versão _dark_ do site
 - [ ] Transição de páginas
-- [ ] Banner de Consentimento de Cookies
 - [ ] Fechar menu quando clicar fora da área
+- [ ] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Remover pasts com imagens não utilizadas
 - [ ] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Inserir comentários nos códigos

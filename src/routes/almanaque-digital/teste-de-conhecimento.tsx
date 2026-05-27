@@ -10,7 +10,8 @@ export const Route = createFileRoute("/almanaque-digital/teste-de-conhecimento")
 });
 
 function QuizzPage() {
-  const { data } = useQueryQuizHome("/almanaque-digital/teste-de-conhecimento")
+  const { data } = useQueryQuizHome("/almanaque-digital/teste-de-conhecimento");
+  console.log(data)
   return (
     <Main className="grid grid-cols-1 md:grid-cols-2 lg:h-[calc(100svh-104px)]">
       <div className="col-span-1 flex justify-center items-center py-16">

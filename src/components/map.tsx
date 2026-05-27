@@ -4,26 +4,21 @@ import { useEffect, useState } from "react";
 import { icon, type LatLngTuple } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, useMap, ZoomControl } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import { useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
 import { cn, sanitizedData } from "@/lib/utils";
 import mapIcon from "@/assets/images/pin.png";
+import type { LocationTypes } from "@/types/custom-post-types";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "./ui/button";
+import Article from "./article"
+
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.Default.css";
-import type { LocationTypes } from "@/types/custom-post-types";
 
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "./ui/button";
-import { useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
-import { ScrollArea } from "./ui/scroll-area";
-import ModalContent from "./modal-content";
+const multiToggle = (element: HTMLElement, ...classes: string[]) => {
+  classes.forEach((cls) => element.classList.toggle(cls));
+};
 
 const MapResizer = () => {
   const map = useMap();
@@ -45,9 +40,13 @@ const MapResizer = () => {
 
 const ButtonClosePopup = () => {
   const button = useMap();
+  const body = document.body;
 
   const handleToggle = () => {
     button.closePopup();
+    if (body) {
+      multiToggle(body, "fixed", "inset-0");
+    }
   };
 
   return (
@@ -65,10 +64,14 @@ const ButtonClosePopup = () => {
 
 const ButtonOpenPopup = ({ setOpenPopup }: { setOpenPopup: (value: boolean) => void }) => {
   const button = useMap();
+  const body = document.body;
 
   const handleOpenPopup = () => {
     button.closePopup();
     setOpenPopup(true);
+    if (body) {
+      multiToggle(body, "fixed", "inset-0");
+    }
   };
 
   return (
@@ -165,17 +168,20 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
       </MarkerClusterGroup>
       {isOpen && selectedLocation && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="max-sm:px-4 lg:min-w-160">
+          <DialogContent className="max-sm:px-4 lg:min-w-160 max-h-[90%]">
             <DialogHeader className="max-sm:px-0 max-sm:mt-4">
-              <DialogTitle className="text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 font-bold uppercase leading-none tracking-tighter">
+              <DialogTitle
+                className={cn(
+                  "text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 font-bold",
+                  "uppercase leading-none tracking-tighter max-w-[90%]",
+                )}
+              >
                 {selectedLocation.title}
               </DialogTitle>
             </DialogHeader>
-            <DialogDescription className="min-h-[70svh]">
-              <ScrollArea className="px-0">
-                <ModalContent content={selectedLocation.content} /> 
-              </ScrollArea>
-            </DialogDescription>
+            <div className="-mx-4 max-h-[65svh] overflow-y-auto px-4 scrollbar-thumb-darkgreen-500 scrollbar-thin">
+              <Article content={selectedLocation.content} />
+            </div>
             <DialogFooter>
               <ButtonClosePopup />
             </DialogFooter>

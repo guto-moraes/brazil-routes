@@ -41,7 +41,7 @@ const EventCardText = ({ eventUrl, eventTitle, eventPlace }: EventTextTypes) => 
       title={eventTitle}
       className={cn(
         "text-[clamp(1rem,3vw,1.5rem)] text-bone-800 hover:text-chocolate-300 font-inter",
-        "font-bold uppercase leading-none -tracking-wide transition-colors duration-300"
+        "font-bold uppercase leading-none tracking-tight transition-colors duration-300"
       )}
     >
       {eventTitle}

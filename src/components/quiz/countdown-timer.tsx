@@ -83,7 +83,7 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
           <span className="timer text-4xl font-bold text-tan-700 font-mono -tracking-widest">
             {minutesStr}:{secondsStr}
           </span>
-          <span className="text-[0.625rem] text-tan-500 font-medium uppercase -tracking-wider">
+          <span className="text-[0.625rem] text-tan-500 font-medium uppercase tracking-tighter">
             {minutesStr === "00" && secondsStr === "00" ? "Tempo Encerrado" : "Tempo Restante"}
           </span>
         </div>

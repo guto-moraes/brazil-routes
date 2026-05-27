@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 //Tipagem do Menu dos Capítulos do Almanaque
-export const AlmanaqueMenuSchema = z.object({
+export const MenuSchema = z.object({
   menu: z.object({
     menuItems: z.object({
       nodes: z.array(
@@ -14,4 +14,4 @@ export const AlmanaqueMenuSchema = z.object({
   }),
 });
 
-export type AlmanaqueMenuTypes = z.infer<typeof AlmanaqueMenuSchema>;
+export type MenuTypes = z.infer<typeof MenuSchema>;

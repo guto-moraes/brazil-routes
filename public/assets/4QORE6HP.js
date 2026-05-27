@@ -173,7 +173,7 @@ import{c as Q,i as Kt,n as Je,o as M,r as Zt,s as H}from"./index.js";import{A as
       display: grid;
       place-items: center;
       transition: all 0.15s ease;
-      flex-shrink: 0;
+      shrink: 0;
       margin-top: 0.125rem;
 
       &:hover {
@@ -672,7 +672,7 @@ import{c as Q,i as Kt,n as Je,o as M,r as Zt,s as H}from"./index.js";import{A as
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      flex-shrink: 0;
+      shrink: 0;
       object-fit: contain;
       overflow: hidden;
       display: flex;
@@ -683,7 +683,7 @@ import{c as Q,i as Kt,n as Je,o as M,r as Zt,s as H}from"./index.js";import{A as
       height: 28px;
       background-color: ${r(e.gray[200],e.gray[800])};
       border-radius: 50%;
-      flex-shrink: 0;
+      shrink: 0;
       object-fit: contain;
       overflow: hidden;
       display: flex;
@@ -912,7 +912,7 @@ import{c as Q,i as Kt,n as Je,o as M,r as Zt,s as H}from"./index.js";import{A as
         color: ${e.gray[300]};
       }
       & > svg {
-        flex-shrink: 0;
+        shrink: 0;
       }
     `,tabContent:n`
       transition: all 0.2s ease-in-out;
@@ -1172,7 +1172,7 @@ import{c as Q,i as Kt,n as Je,o as M,r as Zt,s as H}from"./index.js";import{A as
       display: flex;
       align-items: center;
       max-width: 400px;
-      flex-shrink: 0;
+      shrink: 0;
 
       svg {
         position: absolute;

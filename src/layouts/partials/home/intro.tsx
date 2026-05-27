@@ -132,7 +132,7 @@ const Intro = () => {
             alt="Mapa da Expedição Roncador-Xingu"
           />
           <div className="container mx-auto h-max w-fit flex flex-col justify-center items-center overflow-hidden">
-            <h2 className="hero-title text-[clamp(3.5rem,7.5vw,9rem)] text-chocolate-700 font-bold uppercase leading-32 -tracking-[0.08em]">
+            <h2 className="hero-title text-[clamp(3.5rem,7.5vw,9rem)] text-chocolate-700 font-bold uppercase leading-32 tracking-[-0.08em]">
               Caminhos
             </h2>
             <div
@@ -142,7 +142,7 @@ const Intro = () => {
               )}
             >
               <div className="hero-subtitle py-4 px-4 sm:px-8">
-                <h2 className="text-[clamp(1.75rem,5vw,5rem)] text-white font-bold uppercase -tracking-[0.09em]">do Brasil Central</h2>
+                <h2 className="text-[clamp(1.75rem,5vw,5rem)] text-white font-bold uppercase tracking-[-0.09em]">do Brasil Central</h2>
               </div>
             </div>
             <h2

@@ -5,10 +5,10 @@ import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { socials, legals, primaryLinks, secondaryLinks } from "@/data/menu";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/images/logo.webp";
 import negativeLogo from "@/assets/images/logo-negative.webp";
+import { useQueryMenu } from "@/hooks/queries/menus";
 
 gsap.registerEffect(SplitText);
 
@@ -24,6 +24,12 @@ const Navigation = ({
   const [isActiveMenu, setIsActiveMenu] = useState(false);
   const [screenWidth] = useState<number | null>(typeof window !== "undefined" ? window.innerWidth : 0);
   const navigationRef = useRef<HTMLDivElement | null>(null);
+
+  //Carrega dados dos menus
+  const { menuItems: primary } = useQueryMenu("Principal").data.menu;
+  const { menuItems: secondary } = useQueryMenu("Secundário").data.menu;
+  const { menuItems: legals } = useQueryMenu("Legal").data.menu;
+  const { menuItems: socials } = useQueryMenu("Social").data.menu;
 
   const handleActiveMenu = () => {
     if (isActiveMenu) {
@@ -224,7 +230,7 @@ const Navigation = ({
         >
           <div className="nav-items-col flex-2 flex flex-col justify-between">
             <ul role="menu" className="nav-socials flex flex-col gap-y-2 z-2">
-              {socials.map(({ title, url }, index) => (
+              {socials.nodes.map(({ label, uri }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <a
                     role="menuitem"
@@ -232,18 +238,18 @@ const Navigation = ({
                       "text-[clamp(1rem,3vw,1.5rem)] text-white hover:text-darkgreen-500 no-underline block",
                       "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
                     )}
-                    href={url}
-                    title={title}
+                    href={uri}
+                    title={label}
                     target="_blank"
                     rel="noopener"
                   >
-                    {title}
+                    {label}
                   </a>
                 </li>
               ))}
             </ul>
-            <ul role="menu" className="nav-legal flex flex-col gap-y-2 mz-2">
-              {legals.map(({ title, url }, index) => (
+            <ul role="menu" className="nav-legal flex flex-col gap-y-2 z-2">
+              {legals.nodes.map(({ label, uri }, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
@@ -253,11 +259,11 @@ const Navigation = ({
                     )}
                     activeProps={{ className: "font-bold" }}
                     activeOptions={{ exact: true }}
-                    to={url}
-                    title={title}
+                    to={uri}
+                    title={label}
                     onClick={handleCloseMenu}
                   >
-                    {title}
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -265,7 +271,7 @@ const Navigation = ({
           </div>
           <div className="nav-items-col flex-4 flex flex-col md:flex-row justify-between gap-8">
             <ul role="menu" className="nav-primary-links w-full flex flex-col gap-y-3 z-5">
-              {primaryLinks.map(({ title, url }, index) => (
+              {primary.nodes.map(({label, uri}, index) => (
                 <li className="line" role="presentation" key={index}>
                   <Link
                     role="menuitem"
@@ -275,33 +281,32 @@ const Navigation = ({
                     )}
                     activeProps={{ className: "font-bold" }}
                     activeOptions={{ exact: true }}
-                    to={url}
-                    title={title}
+                    to={uri}
+                    title={label}
                     onClick={handleCloseMenu}
                   >
-                    {title}
+                    {label}
                   </Link>
                 </li>
               ))}
             </ul>
             <ul role="menu" className="nav-secondary-links z-2">
-              {secondaryLinks.map(({ url, title, transition }, index) => {
+              {secondary.nodes.map(({ label, uri }, index) => {
                 return (
                   <li className="line" role="presentation" key={index}>
                     <Link
                       role="menuitem"
-                      to={url}
-                      title={title}
+                      to={uri}
+                      title={label}
                       className={cn(
                         "text-[clamp(1rem,3vw,1.5rem)] text-white hover:text-darkgreen-500 no-underline mb-2 block whitespace-nowrap",
                         "tracking-[-2%] leading-[1.1] transition-colors duration-300 data-[status=active]:text-chocolate-300",
                       )}
                       activeProps={{ className: "font-bold" }}
                       activeOptions={{ exact: true }}
-                      viewTransition={{ types: transition }}
                       onClick={handleCloseMenu}
                     >
-                      {title}
+                      {label}
                     </Link>
                   </li>
                 );

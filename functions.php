@@ -67,6 +67,9 @@ if (!function_exists('cbc_setup')):
 		add_theme_support('menus');
 		register_nav_menus(array(
 			'main' => "Menu Principal",
+			'secondary' => "Menu Secundário",
+			'social' => "Menu de Mídias Sociais",
+			'legal' => "Menu do Exigências Legais",
 			'footer' => "Menu do Rodapé",
 			'almanaque' => "Menu do Almanaque",
 		));

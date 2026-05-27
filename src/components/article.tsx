@@ -6,9 +6,9 @@ const Article = ({ className, content }: { className?: string; content: string }
             className={cn(
                 "md:mb-8 *:not-last:mb-8 max-[500px]:w-[99%]! sm:max-w-full! selection:bg-darkgreen-400 selection:text-white", //Todos os elementos
                 "[&_h2.wp-block-heading]:text-[clamp(1.25rem,8vw,1.5rem)] [&_h2.wp-block-heading]:text-mate-duo-500", //Elementos H2
-                "[&_h2.wp-block-heading]:-tracking-wider [&_h2.wp-block-heading]:font-semibold",
+                "[&_h2.wp-block-heading]:tracking-tighter [&_h2.wp-block-heading]:font-semibold",
                 "[&_h2.wp-block-heading]:uppercase [&_h2.wp-block-heading]:leading-none",
-                "[&_p]:text-[clamp(0.9rem,4vw,1.15rem)]! [&_p]:text-tan-800 sm:[&_p]:text-justify", //Elemento Parágrafo
+                "[&_p]:text-[clamp(0.9rem,4vw,1.05rem)]! [&_p]:text-tan-800 sm:[&_p]:text-justify", //Elemento Parágrafo
                 "[&_p]:text-pretty sm:[&_p]:indent-8 [&_p]:hyphens-auto",
                 "[&_.wp-block-image]:h-52 md:[&_.wp-block-image]:h-auto md:[&_.wp-block-image]:max-h-150", //Elemento Figure
                 "[&_.wp-block-image]:max-w-svw [&_.wp-block-image]:rounded-2xl",
@@ -43,6 +43,17 @@ const Article = ({ className, content }: { className?: string; content: string }
                 "[&_.aspect-horizontal_div_iframe]:left-0",
                 "md:[&_.wp-block-media-text]:columns-2 [&_.wp-block-media-text]:space-x-6", //Bloco com texto e mídia
                 "[&_.wp-block-media-text_div_p]:not-last:mb-6 max-sm:[&_.wp-block-media-text_div]:not-last:mb-6",
+                "max-md:[&_.wp-block-media-text_figure]:mb-6 max-md:[&_.wp-block-media-text_figure]:rounded-2xl",
+                "max-md:[&_.wp-block-media-text_figure]:overflow-hidden max-md:[&_.wp-block-media-text_figure_img]:h-full",
+                "max-md:[&_.wp-block-media-text_figure_img]:w-full max-md:[&_.wp-block-media-text_figure_img]:object-cover",
+                "[&_.wp-block-table]:overflow-x-auto [&_.wp-block-table::-webkit-scrollbar]:h-2 [&_.wp-block-table::-webkit-scrollbar-thumb]:rounded-none", //Tabela
+                "max-md:[&_.wp-block-table]:scroll-thumb-sky-500 [&_.wp-block-table_table]:min-w-full [&_.wp-block-table_table]:divide-y",
+                "[&_.wp-block-table_table]:divide-table-line [&_.wp-block-table_table_th]:px-6 [&_.wp-block-table_table_th]:py-3 [&_.wp-block-table_table_th]:text-start",
+                "[&_.wp-block-table_table_thead]:bg-tan-200 [&_.wp-block-table_table_th]:text-xs [&_.wp-block-table_table_th]:font-semibol",
+                "[&_.wp-block-table_table_th]:text-bone-800 [&_.wp-block-table_table_th]:uppercase [&_.wp-block-table_table_tbody_tr]:odd:bg-tan-100/25",
+                "[&_.wp-block-table_table_tbody_tr]:even:bg-tan-100 [&_.wp-block-table_table_tbody_td]:px-6 [&_.wp-block-table_table_tbody_td]:py-4",
+                "[&_.wp-block-table_table_tbody_td]:whitespace-nowrap [&_.wp-block-table_table_tbody_td]:text-sm [&_.wp-block-table_table_tbody_td]:font-medium",
+                "[&_.wp-block-table_table_tbody_td]:text-bone-700",
                 className
             )}
             dangerouslySetInnerHTML={sanitizedData(content)}

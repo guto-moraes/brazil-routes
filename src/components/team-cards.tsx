@@ -38,7 +38,7 @@ const TeamMemberDetails = ({ name, role, resume }: MemberCardDetailsTypes) => {
   return (
     <>
       <hgroup>
-        <h2 className="text-[clamp(1.5rem,4vw,2.75rem)] text-terracotta-700 font-cabinet font-bold -tracking-wider leading-none">
+        <h2 className="text-[clamp(1.5rem,4vw,2.75rem)] text-terracotta-700 font-cabinet font-bold tracking-tighter leading-none">
           {name}
         </h2>
         <h3 className="text-[clamp(0.8rem,3vw,1.25rem)] text-chocolate-500 font-semibold max-[400px]:mt-1">{role}</h3>
