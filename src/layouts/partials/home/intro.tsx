@@ -163,15 +163,15 @@ const Intro = () => {
         <Video videoSrc={videoSrc} className="scale-0" />
         <ResearchApproaches>
           <ApproachContainer>
-            <Hourglass className="size-6 md:size-8 lg:size-10 text-bege-200 opacity-50" />
+            <Hourglass className="size-6 md:size-8 lg:size-12 text-bege-200 opacity-50" />
             <Approach text="História" />
           </ApproachContainer>
           <ApproachContainer>
-            <MessagesSquare className="size-6 md:size-8 lg:size-10 text-bege-200 opacity-50" />
+            <MessagesSquare className="size-6 md:size-8 lg:size-12 text-bege-200 opacity-50" />
             <Approach text="Memória" />
           </ApproachContainer>
           <ApproachContainer>
-            <Landmark className="size-6 md:size-8 lg:size-10 text-bege-200 opacity-50" />
+            <Landmark className="size-6 md:size-8 lg:size-12 text-bege-200 opacity-50" />
             <Approach text="Patrimônio" />
           </ApproachContainer>
         </ResearchApproaches>

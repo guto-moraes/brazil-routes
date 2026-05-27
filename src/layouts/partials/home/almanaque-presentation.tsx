@@ -79,7 +79,7 @@ const AlamanaquePresentation = () => {
   return (
     <>
       <section
-        className="almanaque-presentation bg-bone-200 relative h-full lg:h-svh w-full max-sm:py-12 overflow-hidden"
+        className="almanaque-presentation bg-bone-200 relative h-auto lg:h-svh w-full max-sm:py-12 overflow-hidden"
         ref={almanaquePresentationRef}
       >
         <img
@@ -88,7 +88,7 @@ const AlamanaquePresentation = () => {
           alt="Marca do Projeto"
         />
         <div className="container mx-auto h-full flex flex-col md:flex-row max-md:gap-y-6 justify-around items-center">
-          <div className="perspective-dramatic max-sm:px-4">
+          <div className="perspective-dramatic max-sm:px-4 sm:hidden md:block">
             <img
               src={almanaque && almanaque.ebookCover.node.guid}
               alt="E-book no formato PDF"
@@ -97,8 +97,8 @@ const AlamanaquePresentation = () => {
             />
           </div>
           <div className={cn(
-            "almanaque-presentation h-full min-h-125 w-full max-w-180 flex",
-            "flex-col justify-center items-end gap-y-10 sm:gap-y-16 max-sm:mt-2"
+            "almanaque-presentation h-full min-h-125 w-full max-w-180 flex flex-col justify-center",
+            "items-end gap-y-10 sm:gap-y-16 max-sm:mt-2 sm:px-4 md:px-0"
           )}>
             <div className="flex flex-col md:items-end gap-y-10 ms:gap-y-14">
               <h2 className={cn(
@@ -108,11 +108,14 @@ const AlamanaquePresentation = () => {
                 Almanaque <span className="text-bone-400">Digital</span>
               </h2>
               <p
-                className="md:text-xl text-bone-800 md:text-justify text-balance w-full max-sm:px-4"
+                className="md:text-xl text-bone-800 sm:text-justify text-balance w-full max-sm:px-4"
                 dangerouslySetInnerHTML={almanaque && sanitizedData(almanaque.ebookSynopsis)}
               />
             </div>
-            <div className="w-full max-w-full flex flex-col sm:flex-row justify-end items-center gap-y-2.5 sm:gap-8 max-sm:px-4">
+            <div className={cn(
+              "w-full max-w-full flex flex-col sm:flex-row justify-center",
+              "md:justify-end items-center gap-y-2.5 sm:gap-8 max-sm:px-4"
+            )}>
               <ButtonLinkWithIcon
                 textButton="Saiba mais"
                 link={almanaque && almanaque.almanaqueUrlPage}
