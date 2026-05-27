@@ -79,7 +79,7 @@ const AlamanaquePresentation = () => {
   return (
     <>
       <section
-        className="almanaque-presentation bg-bone-200 relative h-auto lg:h-svh w-full max-sm:py-12 overflow-hidden"
+        className="almanaque-presentation bg-bone-200 relative h-auto lg:h-svh w-full max-lg:py-12 overflow-hidden"
         ref={almanaquePresentationRef}
       >
         <img
@@ -87,34 +87,37 @@ const AlamanaquePresentation = () => {
           src={almanaque && almanaque.projectIcon.node.guid}
           alt="Marca do Projeto"
         />
-        <div className="container mx-auto h-full flex flex-col md:flex-row max-md:gap-y-6 justify-around items-center">
-          <div className="perspective-dramatic max-sm:px-4 sm:hidden md:block">
+        <div className="container mx-auto h-full flex flex-col md:flex-row max-md:gap-y-6 md:gap-x-6 justify-around items-center md:px-4">
+          <figure className="perspective-dramatic max-sm:px-4 sm:hidden md:block md:ml-4">
             <img
               src={almanaque && almanaque.ebookCover.node.guid}
               alt="E-book no formato PDF"
               title="E-book no formato PDF"
-              className="almanaque-cover w-full max-w-full lg:w-120 md:rotate-y-4"
+              className="almanaque-cover w-full max-w-full lg:w-90 xl:w-120 md:rotate-y-4"
             />
-          </div>
+          </figure>
           <div className={cn(
-            "almanaque-presentation h-full min-h-125 w-full max-w-180 flex flex-col justify-center",
-            "items-end gap-y-10 sm:gap-y-16 max-sm:mt-2 sm:px-4 md:px-0"
+            "almanaque-presentation flex-1 h-full min-h-125 w-full max-w-180 flex flex-col justify-center",
+            "items-end gap-y-10 md:gap-4 lg:gap-y-8 sm:gap-y-16 max-sm:mt-2 sm:px-4 md:px-0"
           )}>
-            <div className="flex flex-col md:items-end gap-y-10 ms:gap-y-14">
+            <div className="flex flex-col md:items-end gap-y-10 lg:gap-y-14">
               <h2 className={cn(
-                "text-[clamp(2rem,8vw,6rem)] text-center md:text-right text-bone-700",
-                "text-balance font-cabinet font-black xl:whitespace-nowrap"
+                "text-[clamp(1.75rem,5.5vw,6rem)] text-center md:text-right text-bone-700",
+                "text-balance font-cabinet font-black md:whitespace-nowrap md:leading-none "
               )}>
                 Almanaque <span className="text-bone-400">Digital</span>
               </h2>
               <p
-                className="md:text-xl text-bone-800 sm:text-justify text-balance w-full max-sm:px-4"
+                className={cn(
+                  "md:text-base lg:text-lg xl:text-xl text-bone-800 sm:text-justify",
+                  "md:text-left lg:text-justify text-pretty w-full max-sm:px-4"
+                )}
                 dangerouslySetInnerHTML={almanaque && sanitizedData(almanaque.ebookSynopsis)}
               />
             </div>
             <div className={cn(
-              "w-full max-w-full flex flex-col sm:flex-row justify-center",
-              "md:justify-end items-center gap-y-2.5 sm:gap-8 max-sm:px-4"
+              "w-full max-w-full flex flex-col lg:flex-row justify-center",
+              "md:justify-end items-center gap-y-2.5 sm:gap-x-8 max-sm:px-4"
             )}>
               <ButtonLinkWithIcon
                 textButton="Saiba mais"

@@ -26,7 +26,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
   return (
     <article
       className={cn(
-        "activity-card rounded-2xl h-80 md:h-120 w-80 md:w-120 absolute top-1/2 left-1/2",
+        "activity-card rounded-2xl h-80 sm:h-120 w-80 sm:w-120 absolute top-1/2 left-1/2",
         "-translate-1/2 p-4 sm:py-8 sm:px-10 flex flex-col justify-between items-start",
         className,
       )}
@@ -116,7 +116,7 @@ const ActivityAreas = () => {
               <h3 className="text-[clamp(0.75rem,3vw,1.25rem)] text-bone-600 uppercase">{project}</h3>
               <h2 className="text-[clamp(2.25rem,8vw,6rem)] text-bone-600 font-cabinet font-black max-sm:leading-none">{title}</h2>
             </hgroup>
-            <p className="text-[clamp(0.9rem,4vw,1.5rem)] text-bone-600 text-center text-balance font-medium w-full sm:w-1/2 max-sm:px-4">
+            <p className="text-[clamp(0.9rem,3vw,1.5rem)] text-bone-600 text-center text-balance font-medium w-full sm:w-2/3 max-sm:px-4">
               {presentation}
             </p>
             <img className="absolute top-0 left-0 w-full -z-2 opacity-25" src={brush} alt="" />
