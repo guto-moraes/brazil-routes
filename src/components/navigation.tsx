@@ -224,11 +224,14 @@ const Navigation = ({
 
         <div
           className={cn(
-            "nav-items lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 xl:px-0",
+            "nav-items max-lg:min-h-svh lg:max-h-[calc(100svh-104px)] lg:container lg:mx-auto flex flex-col lg:flex-row gap-8 py-12 px-8 xl:px-0",
             "mt-16 xl:mt-24 pointer-events-auto will-change-[clip-path] [clip-path:polygon(0%_0%,100%_0%,100%_0,0%_0%)]",
           )}
         >
-          <div className="nav-items-col flex-2 flex flex-col justify-between">
+          <div className={cn(
+            "nav-items-col flex-2 flex flex-col justify-between",
+            "max-[350px]:gap-y-1"
+          )}>
             <ul role="menu" className="nav-socials flex flex-col gap-y-2 z-2">
               {socials.nodes.map(({ label, uri }, index) => (
                 <li className="line" role="presentation" key={index}>

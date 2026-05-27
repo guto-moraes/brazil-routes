@@ -57,7 +57,7 @@ const Press = () => {
         {press && press.length > 3 ? (
           <Marquee className="[--duration:20s] p-0" pauseOnHover>
             {press.map((item, index) => (
-              <a href={item.link} title={item.title} target="_black" rel="noopener noreferrer">
+              <a key={index} href={item.link} title={item.title} target="_black" rel="noopener noreferrer">
                 <img className="rounded-lg h-32" src={item.imageSrc} alt={item.imageAlt} key={index} />
               </a>
             ))}

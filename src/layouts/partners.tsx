@@ -15,7 +15,7 @@ const Partners = () => {
               partners.map((partner: PartnerType, index: number) => {
                 const height = index === 2 ? "w-[85%] max-w-full" : "w-full max-w-full";
                 return (
-                  <li key={partner.name}>
+                  <li key={index}>
                     <a
                       href={partner.url}
                       className="flex items-center justify-center"
