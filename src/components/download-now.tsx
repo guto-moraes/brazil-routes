@@ -3,13 +3,13 @@ import almanaqueSrc from "@/assets/images/tablet-cover-book.webp";
 
 const DownloadNow = ({ link }: { link: string }) => {
   return (
-    <section className="donwload-now-container bg-bone-200/60 h-[75svh] w-full">
-      <div className="h-full max-w-6xl mx-auto grid grid-cols-2 place-content-center overflow-hidden">
-        <figure className="perspective-midrange transform-3d">
+    <section className="donwload-now-container bg-bone-200/60 max-md:py-8 h-auto lg:h-[75svh] w-full">
+      <div className="h-full max-w-6xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 place-content-center overflow-hidden">
+        <figure className="md:perspective-midrange md:transform-3d max-md:mx-auto max-md:overflow-hidden">
           <img
-            className="almanaque-cover xl:w-100 rotate-y-40 ml-6"
+            className="almanaque-cover w-full xl:w-100 rotate-y-40 md:ml-6 max-md:h-full max-md:w-full max:object-cover max-md:object-center"
             src={almanaqueSrc}
-            title="Baix o Almanaque agora!"
+            title="Baixe o Almanaque agora!"
           />
         </figure>
         <div className="flex flex-col justify-center items-end gap-y-12">

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
 import AboveTheFold from "@/layouts/partials/almanaque/above-the-fold";
-import AlmanaqueChapters from "@/components/almanaque-chapters";
+import AlmanaqueChapters from "@/components/perspective-sections";
 import PioneersTribute from "@/layouts/partials/home/pioneers-tribute";
 
 export const Route = createFileRoute("/almanaque-digital/")({

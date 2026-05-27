@@ -11,7 +11,6 @@ const ModalContent = ({ content }: { content: string }) => {
         "[&_.wp-element-caption]:bg-black/60 [&_.wp-element-caption]:py-1 [&_.wp-element-caption]:px-3", //Legenda
         "[&_.wp-element-caption]:text-xs [&_.wp-element-caption]:text-white [&_.wp-element-caption]:w-full",
         "[&_.wp-element-caption]:absolute [&_.wp-element-caption]:bottom-0 [&_.wp-element-caption]:left-0",
-        "[&_.wp-block-video]:w-full [&_.wp-block-video]:aspect-video", //Vídeo Vertical
         "[&_.aspect-vertical]:relative [&_.aspect-vertical]:w-full [&_.aspect-vertical]:max-w-sm! [&_.wp-block-video]:mb-8", //Vídeo Vertical
         "[&_.aspect-vertical]:aspect-9/16 [&_.aspect-vertical]:h-[80svh] [&_.aspect-vertical]:max-h-180 [&_.aspect-vertical]:my-0",
         "[&_.aspect-vertical]:mx-auto [&_.aspect-vertical_video]:w-full [&_.aspect-vertical_video]:h-full",

@@ -1,7 +1,7 @@
-import { BLOG, CALENDAR, CHAPTER_PAGE, GO_FURTHER, PAGE, QUIZ_HOME, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
-import type { BlogItemTypes, BlogTypes, CalendarTypes, ChapterPageTypes, GoFurtherPageTypes, PageTypes, QuizHomeTypes } from "@/types/page-and-post-types";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
+import { BLOG, CALENDAR, CHAPTER_PAGE, GO_FURTHER, PAGE, QUIZ_HOME, SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes, BlogTypes, CalendarTypes, ChapterPageTypes, GoFurtherPageTypes, PageTypes, QuizHomeTypes } from "@/types/page-and-post-types";
 
 const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
 

@@ -32,13 +32,13 @@ const AboveTheFold = ({ content, link }: { content: string; link: string }) => {
 
   return (
     <section className="bg-bone-200/60 h-[150svh] sm:h-[calc(100svh-104px)] w-full" ref={containerRef}>
-      <div className="container mx-auto h-full w-full flex flex-col px-4">
+      <div className="container mx-auto h-full w-full flex flex-col lg:flex-row px-4">
         <div className="flex-1 w-full max-w-full flex flex-col justify-center items-start gap-y-8 xl:gap-y-14">
-          <h1 className="page-title text-[clamp(3rem,16vw,6.5rem)] font-cabinet font-black leading-[0.85] text-bone-600 [&_span]:text-bone-400">
+          <h1 className="page-title text-[clamp(2rem,12vw,6.5rem)] font-cabinet font-black leading-[0.85] text-bone-600 [&_span]:text-bone-400">
             Alamanaque <span>Digital</span>
           </h1>
           <div
-            className="page-content text-[clamp(1.25rem,1.25vw,2.5rem)] text-bone-700 text-balance font-inter font-medium leading-8 scale-0"
+            className="page-content text-[clamp(1rem,1.25vw,2.5rem)] text-bone-700 text-balance font-inter font-medium leading-8 max-sm:leading-6 scale-0"
             dangerouslySetInnerHTML={sanitizedData(content)}
           />
           <ButtonLinkWithIcon

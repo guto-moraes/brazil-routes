@@ -68,6 +68,7 @@ if (!function_exists('cbc_setup')):
 		register_nav_menus(array(
 			'main' => "Menu Principal",
 			'footer' => "Menu do Rodapé",
+			'almanaque' => "Menu do Almanaque",
 		));
 
 		/**

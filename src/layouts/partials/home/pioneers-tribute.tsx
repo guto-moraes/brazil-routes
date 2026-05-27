@@ -106,7 +106,7 @@ const PioneersTribute = () => {
         <h1 className="text-[clamp(1.8rem,5vw,8rem)] text-darkgreen-500 text-center font-black italic uppercase leading-none">
           {firstScreen && firstScreen.title}
         </h1>
-        <p className="text-2xl text-bone-100 text-center text-pretty hyphens-auto w-full xl:max-w-5xl">
+        <p className="lg:text-2xl text-bone-100 text-center text-pretty hyphens-auto w-full xl:max-w-5xl max-lg:px-4">
           {firstScreen && firstScreen.description}
         </p>
       </div>

@@ -4,13 +4,13 @@ const Article = ({ className, content }: { className?: string; content: string }
     return(
         <article
             className={cn(
-                "md:mb-8 *:not-last:mb-6 max-[500px]:w-[99%]! sm:max-w-full! selection:bg-darkgreen-400 selection:text-white", //Todos os elementos
-                "[&_h2.wp-block-heading]:text-[clamp(1.25rem,8vw,1.25rem)] [&_h2.wp-block-heading]:text-mate-duo-500", //Elementos H2
+                "md:mb-8 *:not-last:mb-8 max-[500px]:w-[99%]! sm:max-w-full! selection:bg-darkgreen-400 selection:text-white", //Todos os elementos
+                "[&_h2.wp-block-heading]:text-[clamp(1.25rem,8vw,1.5rem)] [&_h2.wp-block-heading]:text-mate-duo-500", //Elementos H2
                 "[&_h2.wp-block-heading]:-tracking-wider [&_h2.wp-block-heading]:font-semibold",
                 "[&_h2.wp-block-heading]:uppercase [&_h2.wp-block-heading]:leading-none",
                 "[&_p]:text-[clamp(0.9rem,4vw,1.15rem)]! [&_p]:text-tan-800 sm:[&_p]:text-justify", //Elemento Parágrafo
                 "[&_p]:text-pretty sm:[&_p]:indent-8 [&_p]:hyphens-auto",
-                "[&_.wp-block-image]:h-52 md:[&_.wp-block-image]:h-100", //Elemento Figure
+                "[&_.wp-block-image]:h-52 md:[&_.wp-block-image]:h-auto md:[&_.wp-block-image]:max-h-150", //Elemento Figure
                 "[&_.wp-block-image]:max-w-svw [&_.wp-block-image]:rounded-2xl",
                 "[&_.wp-block-image]:overflow-hidden max-[500px]:[&_.wp-block-image]:max-w-full [&_.wp-block-image]:relative",
                 "[&_.wp-block-image_img]:h-full [&_.wp-block-image_img]:w-full", //Elemento Img
@@ -32,6 +32,17 @@ const Article = ({ className, content }: { className?: string; content: string }
                 "[&_.wp-block-gallery]:grid [&_.wp-block-gallery]:grid-cols-2 [&_.wp-block-gallery]:gap-4",//Galeria de Imagens
                 "[&_.wp-block-gallery_.wp-block-image]:h-32 sm:[&_.wp-block-gallery_.wp-block-image]:h-52",
                 "md:[&_.wp-block-gallery_.wp-block-image]:h-64 sm:[&_.wp-block-gallery]:grid-cols-3 sm:[&_.wp-block-gallery]:gap-8",
+                "[&_.aspect-vertical]:relative [&_.aspect-vertical]:w-full [&_.aspect-vertical]:max-w-sm! [&_.wp-block-video]:mb-8", //Vídeo Vertical
+                "[&_.aspect-vertical]:aspect-9/16 [&_.aspect-vertical]:h-[80svh] [&_.aspect-vertical]:max-h-180 [&_.aspect-vertical]:my-0",
+                "[&_.aspect-vertical]:mx-auto [&_.aspect-vertical_video]:w-full [&_.aspect-vertical_video]:h-full",
+                "[&_.aspect-vertical_video]:object-cover [&_.aspect-vertical_video]:absolute [&_.aspect-vertical_video]:top-0",
+                "[&_.aspect-vertical_video]:left-0 [&_.aspect-vertical_video]:object-cover",
+                "[&_.aspect-horizontal_div]:relative [&_.aspect-horizontal_div]:rounded-2xl [&_.aspect-horizontal_div]:h-0", //Video Horizontal
+                "[&_.aspect-horizontal_div]:pb-[56.25%] [&_.aspect-horizontal_div]:overflow-hidden [&_.aspect-horizontal_div_iframe]:h-full",
+                " [&_.aspect-horizontal_div_iframe]:w-full [&_.aspect-horizontal_div_iframe]:absolute [&_.aspect-horizontal_div_iframe]:top-0",
+                "[&_.aspect-horizontal_div_iframe]:left-0",
+                "md:[&_.wp-block-media-text]:columns-2 [&_.wp-block-media-text]:space-x-6", //Bloco com texto e mídia
+                "[&_.wp-block-media-text_div_p]:not-last:mb-6 max-sm:[&_.wp-block-media-text_div]:not-last:mb-6",
                 className
             )}
             dangerouslySetInnerHTML={sanitizedData(content)}

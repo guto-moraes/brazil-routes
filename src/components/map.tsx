@@ -14,10 +14,10 @@ import type { LocationTypes } from "@/types/custom-post-types";
 import {
   Dialog,
   DialogClose,
+  DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogPanel,
-  DialogPopup,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
@@ -165,21 +165,21 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
       </MarkerClusterGroup>
       {isOpen && selectedLocation && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogPopup className="max-sm:px-4 lg:min-w-160">
+          <DialogContent className="max-sm:px-4 lg:min-w-160">
             <DialogHeader className="max-sm:px-0 max-sm:mt-4">
               <DialogTitle className="text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 font-bold uppercase leading-none tracking-tighter">
                 {selectedLocation.title}
               </DialogTitle>
             </DialogHeader>
-            <DialogPanel className="min-h-[70svh]">
+            <DialogDescription className="min-h-[70svh]">
               <ScrollArea className="px-0">
                 <ModalContent content={selectedLocation.content} /> 
               </ScrollArea>
-            </DialogPanel>
+            </DialogDescription>
             <DialogFooter>
               <ButtonClosePopup />
             </DialogFooter>
-          </DialogPopup>
+          </DialogContent>
         </Dialog>
       )}
       <MapResizer />
