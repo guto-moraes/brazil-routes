@@ -218,7 +218,7 @@ export const QuizHomeSchema = z.object({
 export type QuizHomeTypes = z.infer<typeof QuizHomeSchema>;
 
 //Tipagem do Formulário de Contato
-export const FormSelectSchema = z.enum(["Contato Geral", "Crítica", "Elogio", "Palestra", "Sugestão"]);
+export const FormSelectSchema = z.string().or(z.literal(""));
 
 export type FormSelectType = z.infer<typeof FormSelectSchema>;
 

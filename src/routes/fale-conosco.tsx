@@ -45,7 +45,6 @@ export const Route = createFileRoute("/fale-conosco")({
 });
 
 const subjects = [
-  { label: "Selecione um assunto", value: null },
   { label: "Contato Geral", value: "contato" },
   { label: "Crítica", value: "critica" },
   { label: "Elogio", value: "elogio" },
@@ -72,11 +71,12 @@ function ContactUs() {
   const form = useForm({
     validators: { onBlur: FormFieldsSchema },
     defaultValues: {
+      subject: "" as FormSelectType,
       fullName: "",
       email: "",
       message: "",
     } as FormTypes,
-    onSubmit: ({ value }) => console.log(value),
+    onSubmit: async ({ value }) => console.log(value),
   });
 
   return (
@@ -107,16 +107,14 @@ function ContactUs() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             form.handleSubmit();
           }}
           className="flex-1 flex flex-col gap-y-6 max-sm:mb-12"
           ref={contactForm}
         >
           <form.Field 
-            name="subject" 
-            listeners={{
-              onChange: () => form.setFieldValue("subject", "Contato Geral")
-            }}
+            name="subject"
           >
             {({ state, handleBlur, handleChange }) => (
               <div className="flex flex-col gap-y-1.5">
@@ -127,10 +125,12 @@ function ContactUs() {
                   items={subjects}
                   aria-invalid={state.meta.errors.length > 0 && state.meta.isTouched}
                   value={state.value} 
+                  onValueChange={(value) => handleChange(value as FormSelectType)}
+                  defaultValue="Selecione um assunto"
                   required 
                 >
                   <SelectTrigger className="h-12! w-full bg-white" onBlur={handleBlur}>
-                    <SelectValue />
+                    <SelectValue placeholder="Selecione um assunto" />
                   </SelectTrigger>
                   <SelectContent title="Selecione um assunto" autoFocus>
                     <SelectGroup>
