@@ -216,3 +216,27 @@ export const QuizHomeSchema = z.object({
 });
 
 export type QuizHomeTypes = z.infer<typeof QuizHomeSchema>;
+
+//Tipagem do Formulário de Contato
+export const FormSelectSchema = z.enum(["Contato Geral", "Crítica", "Elogio", "Palestra", "Sugestão"]);
+
+export type FormSelectType = z.infer<typeof FormSelectSchema>;
+
+export const FormFieldsSchema = z.object({
+  subject: FormSelectSchema,
+  fullName: z
+    .string()
+    .nonempty("O campo nome completo é de preenchimento obrigatório.")
+    .min(10, "O campo nome completo precisa ter, no mínimo, 10 caracteres."),
+  email: z
+    .string()
+    .email("Formato de e-mail inválido.")
+    .nonempty("O campo e-mail é de preenchimento obrigatório.")
+    .min(12, "O campo e-mail precisa ter, no mínimo, 10 caracteres."),
+  message: z
+    .string()
+    .nonempty("O campo mensagem é de preenchimento obrigatório.")
+    .min(20, "O campo mensagem deve ter no mínimo 20 caracteres."),
+});
+
+export type FormTypes = z.infer<typeof FormFieldsSchema>;
