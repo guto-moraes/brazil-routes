@@ -1,13 +1,14 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import type { ClassValue } from 'clsx'
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 import DOMPurify from "isomorphic-dompurify";
 
-//Merge tailwind class
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
-//Prevent remove specific tags to sanitize
+
+// Prevent remove specific tags to sanitize
 export const sanitizedData = (data: string) => {
   const sanitizedHtml = DOMPurify.sanitize(data, {
     ADD_TAGS: ["iframe", "video", "source"],
@@ -17,7 +18,7 @@ export const sanitizedData = (data: string) => {
   return { __html: sanitizedHtml };
 };
 
-//Remove HTML code
+// Remove HTML code
 export const stripHtml = (html: string) => {
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = html;

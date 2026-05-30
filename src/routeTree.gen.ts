@@ -22,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
+import { Route as ApiEmailRouteImport } from './routes/api/email'
 import { Route as AlmanaqueDigitalVaAlemRouteImport } from './routes/almanaque-digital/va-alem'
 import { Route as AlmanaqueDigitalTesteDeConhecimentoRouteImport } from './routes/almanaque-digital/teste-de-conhecimento'
 import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/almanaque-digital/mapa-interativo'
@@ -95,6 +96,11 @@ const BlogDoConhecimentoChar123SlugChar125Route =
     path: '/blog-do-conhecimento/{-$slug}',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiEmailRoute = ApiEmailRouteImport.update({
+  id: '/api/email',
+  path: '/api/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AlmanaqueDigitalVaAlemRoute = AlmanaqueDigitalVaAlemRouteImport.update({
   id: '/almanaque-digital/va-alem',
   path: '/almanaque-digital/va-alem',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
+  '/api/email': typeof ApiEmailRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
+  '/api/email': typeof ApiEmailRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento': typeof BlogDoConhecimentoIndexRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
+  '/api/email': typeof ApiEmailRoute
   '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
+    | '/api/email'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -235,6 +245,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
+    | '/api/email'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital'
     | '/blog-do-conhecimento'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
+    | '/api/email'
     | '/blog-do-conhecimento/{-$slug}'
     | '/almanaque-digital/'
     | '/blog-do-conhecimento/'
@@ -278,6 +290,7 @@ export interface RootRouteChildren {
   AlmanaqueDigitalMapaInterativoRoute: typeof AlmanaqueDigitalMapaInterativoRoute
   AlmanaqueDigitalTesteDeConhecimentoRoute: typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   AlmanaqueDigitalVaAlemRoute: typeof AlmanaqueDigitalVaAlemRoute
+  ApiEmailRoute: typeof ApiEmailRoute
   BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   BlogDoConhecimentoIndexRoute: typeof BlogDoConhecimentoIndexRoute
@@ -376,6 +389,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogDoConhecimentoChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/email': {
+      id: '/api/email'
+      path: '/api/email'
+      fullPath: '/api/email'
+      preLoaderRoute: typeof ApiEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/almanaque-digital/va-alem': {
       id: '/almanaque-digital/va-alem'
       path: '/almanaque-digital/va-alem'
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlmanaqueDigitalTesteDeConhecimentoRoute:
     AlmanaqueDigitalTesteDeConhecimentoRoute,
   AlmanaqueDigitalVaAlemRoute: AlmanaqueDigitalVaAlemRoute,
+  ApiEmailRoute: ApiEmailRoute,
   BlogDoConhecimentoChar123SlugChar125Route:
     BlogDoConhecimentoChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,

@@ -1,5 +1,7 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
@@ -19,8 +21,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { cn, sanitizedData } from "@/lib/utils";
 import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
-// import { CheckCheck } from "lucide-react";
-// import Alert from "@/components/alert";
+import { CheckCheck } from "lucide-react";
+import Alert from "@/components/alert";
 import { FormFieldsSchema, type FormSelectType, type FormTypes } from "@/types/page-and-post-types";
 
 export const Route = createFileRoute("/fale-conosco")({
@@ -64,8 +66,8 @@ const ErrorMessage = ({ message }: { message: string }) => (
 );
 
 function ContactUs() {
+  const [isSendMail, setIsSendMail] = useState(false);
   const contactForm = useRef<HTMLFormElement | null>(null);
-
   const { data } = useQueryPage("/fale-conosco");
 
   const form = useForm({
@@ -76,7 +78,24 @@ function ContactUs() {
       email: "",
       message: "",
     } as FormTypes,
-    onSubmit: async ({ value }) => console.log(value),
+    onSubmit: async ({ value }) => {
+      try {
+        const response = await fetch('/api/email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(value),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send the message.');
+        }
+
+        setIsSendMail(true);
+        form.reset();
+      } catch (error) {
+        alert(error instanceof Error ? error.message : 'Something went wrong.');
+      }
+    },
   });
 
   return (
@@ -84,12 +103,12 @@ function ContactUs() {
       <Title className="text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700 font-cabinet font-black pb-8 sm:pb-16">
         Fale <span className="text-tan-400">Conosco</span>
       </Title>
-      {/* {isSubmitSuccessful && success && (
+      {isSendMail && (
         <Alert className="py-2 w-full border-transparent bg-darkgreen-500 dark:bg-transparent dark:border-blue-retro-600">
           <CheckCheck className="stroke-white dark:stroke-blue-retron-600" size={32} />{" "}
           <p className="lg:text-lg xl:text-xl text-white font-medium">Mensagem enviada com sucesso!</p>
         </Alert>
-      )} */}
+      )}
       <section className="flex flex-row gap-12 min-h-96 w-full">
         <div className="flex-1 min-h-96 relative rounded-4xl bg-mate-duo-600/25 p-6 overflow-hidden">
           <LogoSvg className="fill-mate-duo-900/7.5 size-72 absolute -bottom-25 -left-25" />
@@ -122,7 +141,6 @@ function ContactUs() {
                   Assunto:
                 </Label>
                 <Select 
-                  items={subjects}
                   aria-invalid={state.meta.errors.length > 0 && state.meta.isTouched}
                   value={state.value} 
                   onValueChange={(value) => handleChange(value as FormSelectType)}

@@ -1,5 +1,7 @@
 import { createRootRoute, useRouterState } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
+import applyGoogleTranslateDOMPatch from "@/lib/applyGoogleTranslateDOMPatch";
 
 // Import Tanstack Query Provider and Initialize QueryClient
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,17 +9,15 @@ const queryClient = new QueryClient();
 
 // Import Static Layout Components
 import QueryLoadingBoundary from "@/components/query-loading-boundary";
+import SmoothScroller from "@/components/smooth-scroller";
 import NotFound from "@/components/not-found";
 import ErrorComponentTheme from "@/components/error-component";
 import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
+import Partners from "@/layouts/partners";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
-import Partners from "@/layouts/partners";
-import SmoothScroller from "@/components/smooth-scroller";
-import { useEffect } from "react";
-import applyGoogleTranslateDOMPatch from "@/lib/applyGoogleTranslateDOMPatch";
 
 export const Route = createRootRoute({
   head: () => ({
