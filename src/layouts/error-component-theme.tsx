@@ -1,5 +1,5 @@
-import { ErrorComponent } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import { ErrorComponent } from "@tanstack/react-router";
 
 const ErrorComponentTheme = ({ error, reset }: { error: Error; reset: () => void }) => {
   return (

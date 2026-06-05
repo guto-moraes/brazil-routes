@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import AboveTheFold from "@/layouts/partials/almanaque/above-the-fold";
-import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
 import AlmanaqueChapters from "@/layouts/partials/almanaque/almanaque-chapters";
 import PioneersTribute from "@/layouts/partials/almanaque/pioneers-tribute";
 

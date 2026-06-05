@@ -207,7 +207,7 @@ function FlipCardScrollReveal() {
 
       initAnimations();
 
-      let resizeTimer: NodeJS.Timeout;
+      let resizeTimer: number | undefined;
 
       window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);

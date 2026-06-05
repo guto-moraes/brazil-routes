@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryState } from "nuqs";
 import { useQueryAppointment } from "@/hooks/queries/pages-and-posts-queries";
+import { calendarDateFormat, cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
 import AppointmentCard from "@/components/appointment-card";
 import Pagination from "@/components/pagination";
-import { calendarDateFormat, cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/agenda-do-projeto")({
   head: () => ({

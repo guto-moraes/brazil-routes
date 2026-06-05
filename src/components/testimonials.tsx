@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +10,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
 import { useQuerySocialImpactPage } from "@/hooks/queries/pages-and-posts-queries";
 
 const Testimonials = () => {

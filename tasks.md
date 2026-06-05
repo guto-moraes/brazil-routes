@@ -14,27 +14,30 @@
 - [X] Finalizar a página com informações do impacto social do projeto
 - [X] Criar o _Quizz_ e inserir _link_ no menu principal
 - [X] Estilização do conteúdo do modal do Mapa Interativo
-- [ ] Responsividade do _site_
-- [ ] Inserir o código para envio do formulário
-- [ ] Implementar áreas de configurações do tema para o rodapé
-- [ ] Melhorar a navegação da Linha do Tempo pelas setas do teclado
+- [X] Inserir o código para envio do formulário
+- [X] Criar um leiaute para uma página e uma postagem padrão
+- [X] Completar desenho do componente Article (listas)
+- [X] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
+- [X] Mudar endereço dos capítulos na página do Almanaque Digital (WP)
+- [X] Responsividade do _site_
+- [X] Criar tema de cores para acessibilidade de contraste ao usar o site
+- [X] Implementar áreas de configurações do tema para o rodapé
+- [X] Colocar paginação na página da Agenda
+- [X] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento e na Agenda
+- [X] Revisar todas as integrações com o WordPress (Menus, imprensa,)
+- [X] Ampliar imagens quando uma postagem ou página possuir um galeria
+- [X] Padronizar SEO das páginas
+- [X] Melhorar a navegação da Linha do Tempo pelas setas do teclado
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
-- [ ] Finalizar página de Créditos
-- [ ] Criar um leiaute para uma página e uma postagem padrão
-- [ ] Revisar todas as integrações com o WordPress (Menus, imprensa,)
-- [ ] Corrigir o _bug_ que não permite a paginação no Blog do Conhecimento
-- [ ] Colocar paginação na página da Agenda
-- [ ] Implementar um menu estilo _breadcrumb_ ou um botão de voltar na área do post
-- [ ] Padronizar SEO das páginas
-- [ ] Mudar _slug_ para _link_ no **Blog do Conhecimento** e na **Agenda**
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Finalizar a página de acessibilidade
-- [ ] Versão _dark_ do site
 - [ ] Transição de páginas
 - [ ] Fechar menu quando clicar fora da área
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Remover pasts com imagens não utilizadas
 - [ ] Remover importação dos arquivos CSS do Leaflet Map
+- [ ] Descomentar código de envio do formulário de contato
 - [ ] Inserir comentários nos códigos
+- [ ] Mudar url do GraphQl no arquivo .env
 - [ ] Mudar `autoCodeSpliting` para `false`
 - [ ] Compilar a versão do tema para WordPress

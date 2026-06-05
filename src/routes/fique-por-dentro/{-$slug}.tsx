@@ -1,14 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryNews } from "@/hooks/queries/pages-and-posts-queries";
-import { TitleH2 } from "@/components/title";
-import Main from "@/layouts/main";
-import Footer from "@/layouts/footer";
-import Header from "@/layouts/header";
-import Article from "@/components/article";
 import request from "graphql-request";
-import type { BlogItemTypes } from "@/types/page-and-post-types";
-import { SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
 import { GRAPHQL_URL } from "@/lib/graphql";
+import { SINGLE_BLOG } from "@/graphql/pages-and-posts-graphql";
+import type { BlogItemTypes } from "@/types/page-and-post-types";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
+import { TitleH2 } from "@/components/title";
+import Article from "@/components/article";
 
 export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
   head: () => ({
@@ -52,7 +51,6 @@ function Post() {
           {data && <Article className="mt-8" content={data.post.content} />}
         </section>
       </Main>
-      <Footer />
     </>
   );
 }

@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
-import SmoothScroller from "@/components/smooth-scroller";
-import { cn } from "@/lib/utils";
 import TextRevealHidden from "@/components/text-reveal-hidden";
 import Timeline from "@/components/timeline";
 
@@ -89,10 +88,7 @@ function TimelinePage() {
             <TimelineBoxResume period="1960-1967" text="Expansão e declínio" />
           </div>
         </section>
-
-        <SmoothScroller>
-          <Timeline />
-        </SmoothScroller>
+        <Timeline />
       </Main>
     </>
   );

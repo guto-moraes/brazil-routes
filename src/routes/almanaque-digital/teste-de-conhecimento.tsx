@@ -1,11 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Main from "@/layouts/main";
-import quizz from "@/assets/images/quiz.webp";
 import { cn, sanitizedData } from "@/lib/utils";
-import Quiz from "@/components/quiz";
 import { useQueryQuizHome } from "@/hooks/queries/pages-and-posts-queries";
 import Header from "@/layouts/header";
-import Footer from "@/layouts/footer";
+import Main from "@/layouts/main";
+import Quiz from "@/components/quiz";
+import quizz from "@/assets/images/quiz.webp";
 
 export const Route = createFileRoute("/almanaque-digital/teste-de-conhecimento")({
   head: () => ({
@@ -57,7 +56,6 @@ function QuizzPage() {
           <Quiz />
         </div>
       </Main>
-      <Footer />
     </>
   );
 }

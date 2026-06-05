@@ -2,9 +2,9 @@
 
 import { useRef, useId } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
 import type { LiquidImageRevealPropsTypes } from "@/types/components-types";
-import { useGSAP } from "@gsap/react";
 
 const LiquidImageReveal: React.FC<LiquidImageRevealPropsTypes> = ({
   src,

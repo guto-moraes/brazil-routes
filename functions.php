@@ -40,7 +40,7 @@ if (!function_exists('br_setup')):
 		 * Make theme available for translation.
 		 * Translations can be placed in the /languages/ directory.
 		 */
-		load_theme_textdomain('cbc', get_template_directory() . '/languages');
+		load_theme_textdomain('brazil-routes', get_template_directory() . '/languages');
 
 		// Add support for block styles.
 		add_theme_support('wp-block-styles');
@@ -120,14 +120,14 @@ function br__theme()
 	);
 
 	wp_enqueue_style(
-		"cbc",
-		get_stylesheet_directory_uri() . '/dist/assets/styles.css',
+		"br",
+		get_stylesheet_directory_uri() . '/dist/assets/index.css',
 		wp_get_theme()->get("Version"), //time()
 		true
 	);
 
 	wp_enqueue_style(
-		"cbc",
+		"br",
 		get_stylesheet_uri(),
 		wp_get_theme()->get("Version"), //time()
 		true

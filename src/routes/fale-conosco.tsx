@@ -4,6 +4,10 @@ import { useForm } from "@tanstack/react-form";
 import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
 import { cn, sanitizedData } from "@/lib/utils";
 import { FormFieldsSchema } from "@/types/page-and-post-types";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
+import { Title } from "@/components/title";
+import LogoSvg from "@/components/logo-svg";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -17,10 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import LogoSvg from "@/components/logo-svg";
-import Header from "@/layouts/header";
-import Main from "@/layouts/main";
-import { Title } from "@/components/title";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/fale-conosco")({

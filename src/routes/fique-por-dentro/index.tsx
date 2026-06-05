@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryState } from "nuqs";
+import { useQueryBlogNews } from "@/hooks/queries/pages-and-posts-queries";
+import { cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
-import Pagination from "@/components/pagination";
-import { useQueryBlogNews } from "@/hooks/queries/pages-and-posts-queries";
 import BlogCard from "@/components/blog-card";
-import { cn } from "@/lib/utils";
+import Pagination from "@/components/pagination";
 
 export const Route = createFileRoute("/fique-por-dentro/")({
   head: () => ({

@@ -1,14 +1,14 @@
 import { createFileRoute, useLocation } from "@tanstack/react-router";
+import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import request from "graphql-request";
+import { GRAPHQL_URL } from "@/lib/graphql";
+import { PAGE } from "@/graphql/pages-and-posts-graphql";
+import { cn, pageTitle } from "@/lib/utils";
+import type { PageTypes } from "@/types/page-and-post-types";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
-import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
 import Article from "@/components/article";
-import { GRAPHQL_URL } from "@/lib/graphql";
-import request from "graphql-request";
-import type { PageTypes } from "@/types/page-and-post-types";
-import { PAGE } from "@/graphql/pages-and-posts-graphql";
-import { cn, pageTitle } from "@/lib/utils";
 import NotFound from "@/layouts/not-found";
 
 export const Route = createFileRoute("/$slug")({

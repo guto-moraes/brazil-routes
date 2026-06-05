@@ -1,10 +1,10 @@
-import GoFurtherItem from "@/components/go-further-item";
-import { Title } from "@/components/title";
-import { useQueryGoFurther } from "@/hooks/queries/pages-and-posts-queries";
-import Header from "@/layouts/header";
-import Main from "@/layouts/main";
-import { cn, sanitizedData } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
+import { useQueryGoFurther } from "@/hooks/queries/pages-and-posts-queries";
+import { cn, sanitizedData } from "@/lib/utils";
+import Header from "@/layouts/header";
+import { Title } from "@/components/title";
+import Main from "@/layouts/main";
+import GoFurtherItem from "@/components/go-further-item";
 
 export const Route = createFileRoute("/almanaque-digital/va-alem")({
   head: () => ({

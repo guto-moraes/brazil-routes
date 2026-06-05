@@ -1,22 +1,20 @@
 "use client";
 
 import { createFileRoute } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import { useRef, useState } from "react";
+import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import { useQueryTeam } from "@/hooks/queries/custom-posts-queries";
+import type { TeamItemTypes } from "@/types/components-types";
+import { cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
-import TeamCard from "@/components/team-card";
-import { useQueryTeam } from "@/hooks/queries/custom-posts-queries";
-import Article from "@/components/article";
-import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
-import { cn } from "@/lib/utils";
 import LiquidImageReveal from "@/components/liquid-image-reveal";
-import SmoothScroller from "@/components/smooth-scroller";
-import type { TeamItemTypes } from "@/types/components-types";
+import TeamCard from "@/components/team-card";
+import Article from "@/components/article";
 
 gsap.registerPlugin(ScrollTrigger);
 export const Route = createFileRoute("/equipe-do-projeto")({
@@ -236,7 +234,6 @@ function ProjectTeam() {
             </div>
           </div>
         </section>
-        <SmoothScroller>
           <div className="bg-tan-200 dark:bg-dark-950 w-full">
             <section
               className={cn(
@@ -258,7 +255,6 @@ function ProjectTeam() {
               ))}
             </section>
           </div>
-        </SmoothScroller>
       </Main>
     </>
   );

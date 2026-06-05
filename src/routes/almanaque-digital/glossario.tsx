@@ -1,11 +1,11 @@
-import { Title } from "@/components/title";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useQueryGlossary } from "@/hooks/queries/custom-posts-queries";
-import Footer from "@/layouts/footer";
-import Header from "@/layouts/header";
-import Main from "@/layouts/main";
-import { cn, sanitizedData } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
+import { useQueryGlossary } from "@/hooks/queries/custom-posts-queries";
+import { cn, sanitizedData } from "@/lib/utils";
+import Header from "@/layouts/header";
+import { Title } from "@/components/title";
+import Main from "@/layouts/main";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Footer from "@/layouts/footer";
 
 export const Route = createFileRoute("/almanaque-digital/glossario")({
   loader: () => ({

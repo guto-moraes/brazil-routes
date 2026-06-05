@@ -10,7 +10,7 @@ export default defineConfig({
   ssr: {
     
   },
-  mode: "development",
+  mode: "production",
   base:"./",
   environments: {
     client: {
@@ -22,6 +22,9 @@ export default defineConfig({
             entryFileNames: "assets/[name].js",
             chunkFileNames: "assets/[name].js",
             assetFileNames: "assets/[name][extname]",
+            codeSplitting: {
+              minSize: 20000
+            },
           },
         },
         // Minification
@@ -32,13 +35,13 @@ export default defineConfig({
         cssCodeSplit: true,
       },
       define: {
-        "process.env.NODE_ENV": "'development'"
+        "process.env.NODE_ENV": "'production'"
       },
     },
   },
   plugins: [
     tanstackRouter({
-      autoCodeSplitting: true,
+      autoCodeSplitting: false,
       target: "react",
     }),
     react(),

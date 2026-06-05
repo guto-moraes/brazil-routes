@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -9,7 +9,6 @@ import { Observer } from "gsap/Observer";
 import { cn } from "@/lib/utils";
 import TimelineItem from "@/components/timeline-item";
 import { Button } from "./ui/button";
-import { useLayoutEffect } from "@tanstack/react-router";
 
 gsap.registerPlugin(Observer, ScrollToPlugin, ScrollTrigger);
 

@@ -1,5 +1,5 @@
-import Navigation from "@/components/navigation";
 import { cn } from "@/lib/utils";
+import Navigation from "@/components/navigation";
 
 const Header = ({ isHome, className }: { isHome?: boolean; className?: string }) => {
   return (

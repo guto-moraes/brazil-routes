@@ -1,14 +1,13 @@
-import Article from "@/components/article";
-import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
-import SmoothScroller from "@/components/smooth-scroller";
-import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
-import Testimonials from "@/components/testimonials";
-import { Title } from "@/components/title";
+import { createFileRoute } from "@tanstack/react-router";
 import { useQuerySocialImpactPage } from "@/hooks/queries/pages-and-posts-queries";
+import { cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
-import { cn } from "@/lib/utils";
-import { createFileRoute } from "@tanstack/react-router";
+import { Title } from "@/components/title";
+import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
+import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
+import Testimonials from "@/components/testimonials";
+import Article from "@/components/article";
 
 export const Route = createFileRoute("/impacto-social")({
   head: () => ({
@@ -38,7 +37,7 @@ function SocialImpact() {
   const { page } = useQuerySocialImpactPage().data;
 
   return (
-    <SmoothScroller>
+    <>
       <Header className="shadow-md" />
       <Main className="p-0! overflow-hidden">
         <ScrollRotateWrapper className="min-h-[calc(100svh-280px)] lg:min-h-[100svh-104px]">
@@ -96,6 +95,6 @@ function SocialImpact() {
           </ScrollRotateSection>
         </ScrollRotateWrapper>
       </Main>
-    </SmoothScroller>
+    </>
   );
 }

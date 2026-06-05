@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { useQueryQuizHome } from "@/hooks/queries/pages-and-posts-queries";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { BadgeCheck, CircleQuestionMark, Clock } from "lucide-react";
 
 const InitialPage = ({ onStart }: { onStart: () => void}) => {

@@ -1,7 +1,7 @@
 import { useQueryMenu } from "@/hooks/queries/menus";
-import builtby from "@/assets/images/builtby.webp";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import builtby from "@/assets/images/builtby.webp";
 
 const copyDate = () => {
   const currentYear = new Date().getFullYear();
@@ -28,7 +28,7 @@ const Footer = () => {
                     href={uri}
                     className={cn(
                       "text-xs text-chocolate-300 dark:text-dark-contrast-100 hover:text-chocolate-400",
-                      "dark:hover:text-dark-contrast-100 font-semibold uppercase transition-colors duration-300",
+                      "dark:hover:text-dark-contrast-100 font-semibold uppercase transition-colors duration-300"
                     )}
                     title={label}
                   >
@@ -44,7 +44,7 @@ const Footer = () => {
                 href={uri}
                 className={cn(
                   "text-xs text-chocolate-300 dark:text-dark-contrast-100",
-                  "hover:text-chocolate-400 dark:hover:text-dark-contrast-100/50 font-semibold uppercase",
+                  "hover:text-chocolate-400 dark:hover:text-dark-contrast-100/50 font-semibold uppercase"
                 )}
                 title="Siga-nos no Instagram"
                 target="_blank"
@@ -55,12 +55,10 @@ const Footer = () => {
           </div>
         </div>
         <Separator className="bg-white/25 h-px container mx-auto hidden sm:block" />
-        <div
-          className={cn(
-            "copyright lg:container lg:mx-auto text-xs text-white whitespace-break-spaces",
-            "flex flex-col lg:flex-row justify-between items-center gap-3",
-          )}
-        >
+        <div className={cn(
+          "copyright lg:container lg:mx-auto text-xs text-white whitespace-break-spaces",
+          "flex flex-col lg:flex-row justify-between items-center gap-3"
+        )}>
           <p className="text-center">
             &copy;{copyDate()}{" "}
             <span className="text-chocolate-300 dark:text-dark-contrast-100 font-medium">
@@ -76,7 +74,7 @@ const Footer = () => {
               title="Entre em contato com Guto Moraes"
               className={cn(
                 "text-[0.725rem] text-white/35 hover:text-chocolate-300 dark:hover:text-dark-contrast-100",
-                "font-bold uppercase leading-3 transition-colors duration-300",
+                "font-bold uppercase leading-3 transition-colors duration-300"
               )}
             >
               Guto Moraes
