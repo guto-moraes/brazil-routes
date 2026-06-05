@@ -4,7 +4,7 @@ const Title = ({ className, children }: { className?: string; children: React.Re
   return (
     <h1
       className={cn(
-        "text-[clamp(2rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
+        "text-[clamp(1.75rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
         "max-md:uppercase leading-none max-md:tracking-tighter", className,
       )}
     >
@@ -17,7 +17,7 @@ const TitleH2 = ({ className, children }: { className?: string; children: React.
   return (
     <h2
       className={cn(
-        "text-[clamp(1.75rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
+        "text-[clamp(1.5rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
         "max-md:uppercase leading-none max-md:tracking-tighter", className,
       )}
     >

@@ -1,22 +1,31 @@
 import { gql } from "graphql-request";
 
 export const ALMANAQUE_PAGE = gql`
-  query AlmanaquePage($slug: ID!) {
-    page(id: $slug, idType: URI) {
+  query AlmanaquePage {
+    page(id: "almanaque-digital", idType: URI) {
       title(format: RENDERED)
       content(format: RENDERED)
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
       almanaque {
-        link {
-          title
-          url
-          target
+        almanaqueDownload {
+          text
+          almanaqueLink
+          image {
+            node {
+              sourceUrl
+            }
+          }
         }
       }
     }
   }
 `;
 
-//Consulta da Seção de Apresentaçã do Almanaque - Página Inicial
+// Consulta da Seção de Apresentaçã do Almanaque - Página Inicial
 export const ALMANAQUE_PRESENTATION = gql`
   query AlmanaquePresentation {
     project {
@@ -42,7 +51,7 @@ export const ALMANAQUE_PRESENTATION = gql`
   }
 `;
 
-//Consulta da Seção Capítulos do Almanaque - Página Inicial
+// Consulta da Seção Capítulos do Almanaque - Página Inicial
 export const ALMANAQUE_CHAPTERS = gql`
   query AlmanaqueChapters($slug: ID!) {
     page(id: $slug, idType: URI) {
@@ -60,6 +69,20 @@ export const ALMANAQUE_CHAPTERS = gql`
             url
           }
         }
+      }
+    }
+  }
+`;
+
+// GraphQl Query para pegar cada capítulo do Almanaque
+export const CHAPTER_PAGE = gql`
+  query ChapterPage($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      chaptersCustom {
+        title
+        subtitle
       }
     }
   }

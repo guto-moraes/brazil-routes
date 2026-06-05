@@ -18,7 +18,7 @@ const ScrollRotateContent = ({
   return (
     <div
       className={cn(
-        "content-container relative h-full w-full min-w-full px-4 md:p-8 rotate-30",
+        "content-container relative h-full w-full min-w-full md:p-8 rotate-30",
         "origin-bottom-left will-change-transform",
         className,
       )}

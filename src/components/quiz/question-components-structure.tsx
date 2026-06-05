@@ -4,12 +4,12 @@ import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
 
-//Encapisulador do componente
+// Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="h-full w-full md:w-[90%] flex flex-col md:flex-row gap-8 px-8 overflow-hidden">{children}</div>
 );
 
-//Container do componente
+// Container do componente
 const QuestionContainer = ({ children }: { children: React.ReactNode }) => (
   <section className="flex-3 max-w-full flex flex-col justify-start items-start gap-y-10">{children}</section>
 );
@@ -25,25 +25,26 @@ const QuestionBadgeAndStatement = ({
   <div className="flex flex-col gap-y-2.5">
     <span
       className={cn(
-        "rounded-full border-2 border-blue-retro-500 text-xs text-blue-retro-500",
+        "rounded-full border-2 border-blue-retro-500 dark:border-blue-retro-300",
+        "text-xs text-blue-retro-500 dark:text-blue-retro-300",
         "font-medium uppercase tracking-tight w-max py-1 px-3",
       )}
     >
       Questão {questionNumber}
     </span>
     <div
-      className="[&_p]:text-[clamp(1rem,4vw,1.15rem)] [&_p]:text-tan-700 [&_p]:font-medium [&_p]:leading-7"
+      className="[&_p]:text-[clamp(1rem,4vw,1.15rem)] [&_p]:text-tan-700 dark:[&_p]:text-white [&_p]:font-medium [&_p]:leading-7"
       dangerouslySetInnerHTML={sanitizedData(statement)}
     />
   </div>
 );
 
-//Lista de Respostas
+// Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
   <ul className="w-full flex flex-col gap-y-5">{children}</ul>
 );
 
-//Opção de Resposta
+// Opção de Resposta
 const QuestionAnswerOption = ({
   index,
   correctAnswer,
@@ -60,8 +61,10 @@ const QuestionAnswerOption = ({
   return (
     <li
       className={cn(
-        "rounded-xs outline-2 outline-offset-2 bg-bege-50 flex justify-between items-center p-0.5 group",
-        "outline-tan-600 data-[correct=true]:outline-darkgreen-500 data-[selected=true]:outline-terracotta-700",
+        "rounded-xs outline-2 outline-offset-2 bg-bege-50 dark:bg-dark-800 flex",
+        "justify-between items-center p-0.5 group outline-tan-600 dark:outline-dark-600",
+        "data-[correct=true]:outline-darkgreen-500 dark:data-[correct=true]:outline-green-500",
+        "data-[selected=true]:outline-terracotta-700 dark:data-[selected=true]:outline-rose-500",
       )}
       data-correct={correctAnswer === index && selectedAnswer !== -1}
       data-selected={correctAnswer !== selectedAnswer && selectedAnswer === index}
@@ -71,23 +74,26 @@ const QuestionAnswerOption = ({
         aria-checked={correctAnswer === index}
         aria-pressed={selectedAnswer === index}
         className={cn(
-          "w-full flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600 text-sm text-left",
+          "w-full flex justify-start items-center gap-x-1.5 cursor-pointer text-tan-600 dark:text-dark-100 text-sm text-left",
           "group-data-[correct=true]:text-darkgreen-500 group-data-[selected=true]:text-terracotta-700",
+          "dark:group-data-[correct=true]:text-green-400 dark:group-data-[selected=true]:text-rose-500",
         )}
         onClick={() => onAnswer(index, index)}
       >
         <span
           className={cn(
-            "rounded-xs h-full size-10 text-xl text-white font-medium bg-tan-600 flex justify-center items-center",
-            "group-data-[correct=true]:bg-darkgreen-500 group-data-[selected=true]:bg-terracotta-700",
+            "rounded-xs h-full size-10 text-xl text-white dark:text-dark-200 font-medium bg-tan-600 dark:bg-dark-600",
+            "flex justify-center items-center group-data-[correct=true]:bg-darkgreen-500 dark:group-data-[correct=true]:text-white",
+            "dark:group-data-[selected=true]:text-white group-data-[selected=true]:bg-terracotta-700",
+            "dark:group-data-[correct=true]:bg-green-400 dark:group-data-[selected=true]:bg-rose-500",
           )}
         >
           {indexes[index]}
         </span>
         {option}
       </button>
-      {correctAnswer === index && selectedAnswer !== -1 && <CircleCheck className="text-darkgreen-500" />}
-      {correctAnswer !== selectedAnswer && selectedAnswer === index && <CircleX className="text-terracotta-600" />}
+      {correctAnswer === index && selectedAnswer !== -1 && <CircleCheck className="text-darkgreen-500 dark:text-green-400" />}
+      {correctAnswer !== selectedAnswer && selectedAnswer === index && <CircleX className="text-terracotta-600 dark:text-rose-500" />}
     </li>
   );
 };
@@ -97,7 +103,7 @@ const QuestionAnswerExplainBullet = ({ alert, text }: { alert: boolean; text: st
     className={cn(
       "rounded-full size-5.5 inline-block text-white",
       "font-medium leading-tight",
-      alert ? "bg-blue-retro-600" : "bg-chocolate-600",
+      alert ? "bg-blue-retro-600 dark:bg-blue-retro-300" : "bg-chocolate-600",
     )}
   >
     {text}
@@ -117,10 +123,10 @@ const QuestionAnswerExplain = ({
   return (
     <div
       className={cn(
-        "rounded-sm border-l-3 shadow-md py-2 px-3 text-center w-full",
+        "rounded-sm border-l-3 shadow-md py-2 px-3 text-center w-full dark:border-dark-900 dark:bg-dark-900",
         alert
-          ? "border-blue-retro-600 bg-blue-retro-50 text-blue-retro-600"
-          : "border-chocolate-600 bg-bege-100 text-chocolate-600",
+          ? "border-blue-retro-50 bg-blue-retro-50 text-blue-retro-600 dark:text-dark-contrast-100"
+          : "border-chocolate-600 bg-bege-100 text-chocolate-600 dark:text-white",
       )}
     >
       {alert ? (
@@ -137,22 +143,22 @@ const QuestionAnswerExplain = ({
       <Dialog>
         <DialogTrigger
           className={cn(
-            "rounded-xs bg-bone-500 hover:bg-bone-600 text-xs text-white",
-            "font-medium uppercase py-1.5 px-3 mt-3 cursor-pointer transition-colors duration-300",
+            "rounded-xs bg-bone-500 dark:bg-dark-contrast-100 dark:hover:bg-dark-contrast-100/80 text-xs text-white",
+            "dark:text-dark-950 font-medium uppercase py-1.5 px-3 mt-3 cursor-pointer transition-colors duration-300",
           )}
         >
           Ver Explicação
         </DialogTrigger>
         <DialogContent
           className={cn(
-            "[&_button]:rounded-full border-bege-300 bg-bege-50 p-6 [&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 ",
-            "[&_button]:text-white [&_button]:hover:text-white [&_button]:transition-colors [&_button]:duration-300",
-            "[&_button]:cursor-pointer [&_button]:p-1",
+            "[&_button]:rounded-full border-bege-300 dark:border-dark-950 bg-bege-50 dark:bg-dark-950 p-6",
+            "m[&_button]:bg-tan-600 [&_button]:hover:bg-tan-700 &_button]:text-white [&_button]:hover:text-white",
+            "[&_button]:transition-colors [&_button]:duration-300 [&_button]:cursor-pointer [&_button]:p-1",
           )}
         >
-          <h3 className="text-lg text-tan-800 font-bold">Explicação da Resposta</h3>
+          <h3 className="text-lg text-tan-800 dark:text-[#ffe27d] font-bold">Explicação da Resposta</h3>
           <div
-            className="text-sm text-tan-700 text-justify text-pretty hyphens-auto mt-4"
+            className="text-sm text-tan-700 dark:text-white text-justify text-pretty hyphens-auto mt-4"
             dangerouslySetInnerHTML={sanitizedData(explain)}
           />
         </DialogContent>

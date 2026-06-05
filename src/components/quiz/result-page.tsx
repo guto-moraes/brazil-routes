@@ -11,31 +11,41 @@ const QuestionNotice = ({
   totalQuestions: number;
 }) => {
   const { content: notice } = useQueryQuizHome("/almanaque-digital/teste-de-conhecimento").data.page.quiz;
-  const percentage = (amountCorrectAnswer * 100) / totalQuestions; //Check the percentage of correct answers
+  const percentage = (amountCorrectAnswer * 100) / totalQuestions; // Check the percentage of correct answers
   const index =
     percentage < 50 ? 0 : percentage >= 50 && percentage <= 70 ? 1 : percentage > 70 && percentage <= 90 ? 2 : 3;
 
   return (
-    <div className="rounded-2xl bg-bege-50 p-6 flex flex-col md:flex-row gap-8">
+    <div className="rounded-2xl bg-bege-50 dark:bg-dark-900 p-6 flex flex-col md:flex-row gap-8">
       <figure className="flex-2 h-[95%] w-full hidden md:flex justify-center items-center my-auto">
         <img
-          className="h-full w-full object-cover object-center"
+          className={cn(
+            "h-full w-full object-cover object-center dark:invert-80 dark:brightness-70",
+            "dark:contrast-75 dark:hue-rotate-260 dark:saturate-150",
+          )}
           src={notice[index].imgSrc.node.sourceUrl}
           alt={notice[index].title}
         />
       </figure>
       <div className="flex-3 flex flex-col justify-around items-center gap-y-4">
-        <h2 className="text-[clamp(1.25rem,4vw,1.75rem)] text-bone-600 font-cabinet font-black text-center">
+        <h2 className="text-[clamp(1.25rem,4vw,1.75rem)] text-bone-600 dark:text-white font-cabinet font-black text-center">
           {notice[index].title}
         </h2>
-        <div className="rounded-full bg-bone-500 size-32 flex flex-col justify-center items-center">
-          <h3 className="text-xs text-bone-100 font-semibold uppercase tracking-tighter">Você acertou</h3>
-          <p className="text-4xl text-bone-100">
+        <div
+          className={cn(
+            "rounded-full bg-bone-500 dark:bg-dark-950 text-bone-100 size-32",
+            "dark:text-dark-contrast-100 flex flex-col justify-center items-center",
+          )}
+        >
+          <h3 className="text-xs font-semibold uppercase tracking-tighter">Você acertou</h3>
+          <p className="text-4xl">
             <span className="font-black">{amountCorrectAnswer}</span>
             <span className="opacity-50">/{totalQuestions}</span>
           </p>
         </div>
-        <p className="text-sm text-bone-700 text-center text-balance font-medium">{notice[index].message}</p>
+        <p className="text-sm text-bone-700 dark:text-white text-center text-balance font-medium">
+          {notice[index].message}
+        </p>
       </div>
     </div>
   );
@@ -44,15 +54,17 @@ const QuestionNotice = ({
 const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; questionNumber: number }) => (
   <li
     className={cn(
-      "rounded-md bg-bege-50 border-2 uppercase tracking-tighter py-2 px-3 flex justify-between items-center",
-      isCorrect ? "border-darkgreen-500 text-darkgreen-600" : "border-terracotta-500 text-terracotta-600",
+      "rounded-md bg-bege-50 dark:bg-dark-950 border-2 uppercase tracking-tighter py-2 px-3 flex justify-between items-center",
+      isCorrect
+        ? "border-darkgreen-500 dark:border-green-400 text-darkgreen-600 dark:text-green-400"
+        : "border-terracotta-500 dark:border-rose-500 text-terracotta-600 dark:text-rose-600",
     )}
   >
     <span>Questão {questionNumber.toString().padStart(2, "0")}</span>
     {isCorrect ? (
-      <CircleCheck className="size-5 text-darkgreen-500" />
+      <CircleCheck className="size-5 text-darkgreen-500 dark:text-green-400" />
     ) : (
-      <CircleX className="size-5 text-terracotta-600" />
+      <CircleX className="size-5 text-terracotta-600 dark:text-rose-600" />
     )}
   </li>
 );
@@ -85,8 +97,9 @@ const ResultPage = ({
       </div>
       <Button
         className={cn(
-          "rounded-none text-white bg-bone-500 hover:bg-blue-retro-500 text-lg! py-6! uppercase",
-          "border-0 transition-colors duration-500 w-74 mx-auto tracking-tighter cursor-pointer mt-6",
+          "rounded-none text-white dark:text-dark-50 bg-bone-500 dark:bg-blue-retro-400",
+          "hover:bg-blue-retro-500 dark:hover:bg-blue-retro-400/80 text-lg! py-6! uppercase",
+          "border-0 mt-6 transition-colors duration-500 w-74 mx-auto tracking-tighter cursor-pointer",
         )}
         onClick={() => onPage("initial")}
       >

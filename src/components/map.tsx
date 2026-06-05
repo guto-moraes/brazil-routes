@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { icon, type LatLngTuple } from "leaflet";
+import { icon } from "leaflet";
+import type { LatLngTuple } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, useMap, ZoomControl } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { useQueryInteractiveMapLocation } from "@/hooks/queries/custom-posts-queries";
@@ -10,7 +11,7 @@ import mapIcon from "@/assets/images/pin.png";
 import type { LocationTypes } from "@/types/custom-post-types";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import Article from "./article"
+import Article from "./article";
 
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-cluster/dist/assets/MarkerCluster.css";
@@ -44,16 +45,14 @@ const ButtonClosePopup = () => {
 
   const handleToggle = () => {
     button.closePopup();
-    if (body) {
-      multiToggle(body, "fixed", "inset-0");
-    }
+    multiToggle(body, "fixed", "inset-0");
   };
 
   return (
     <DialogClose
       className={cn(
-        "cursor-pointer rounded-sm bg-darkgreen-400 hover:bg-darkgreen-600",
-        "text-white py-1.5 px-5 transition-colors! duration-500",
+        "rounded-xs bg-darkgreen-400 hover:bg-darkgreen-500 text-white hover:text-white",
+        "text-xs uppercase h-6 w-max px-4 transition-colors duration-300 cursor-pointer",
       )}
       onClick={handleToggle}
     >
@@ -69,16 +68,14 @@ const ButtonOpenPopup = ({ setOpenPopup }: { setOpenPopup: (value: boolean) => v
   const handleOpenPopup = () => {
     button.closePopup();
     setOpenPopup(true);
-    if (body) {
-      multiToggle(body, "fixed", "inset-0");
-    }
+    multiToggle(body, "fixed", "inset-0");
   };
 
   return (
     <Button
       className={cn(
-        "border-none bg-darkgreen-500 hover:bg-darkgreen-600 mx-auto mb-6",
-        "text-[0.625rem] sm:text-xs font-inter font-semibold uppercase transition-colors duration-500",
+        "rounded-xs bg-darkgreen-400 hover:bg-darkgreen-500 text-white hover:text-white",
+        "text-xs uppercase h-6 transition-colors duration-300 cursor-pointer",
       )}
       onClick={handleOpenPopup}
     >
@@ -113,15 +110,17 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
       center={geoLocation}
       zoom={9}
       zoomControl={false}
-      scrollWheelZoom={true}
+      scrollWheelZoom={false}
       dragging={true}
-      className="h-[calc(100svh-104px)] w-full z-0!"
+      className="h-[calc(100svh-104px)] w-full z-0! dark:bg-dark-800"
     >
       <ZoomControl position="topright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contribuidores'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        className="[&.leaflet-attribution-flag]:hidden!"
+        className={cn(
+          "dark:invert-100! dark:grayscale! dark:saturate-250! dark:contrast-100! dark:hue-rotate-180!"
+        )}
       />
 
       <MarkerClusterGroup>
@@ -141,26 +140,23 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
                 },
               }}
             >
-              <Popup className="w-72!">
-                <figure className="rounded-t-xl h-30 sm:h-50 w-full relative overflow-hidden">
-                  <img
-                    src={location.featuredImage.node.guid}
-                    className="aspect-video h-full w-full object-cover"
-                    alt={location.title}
-                    title={location.title}
-                  />
-                  <figcaption className="rounded-tl-xl rounded-br-xl bg-black/50 text-xs text-white absolute top-0 left-0 py-px px-2.5">
-                    Fonte: {location.places.featuredImageCopy}
-                  </figcaption>
-                </figure>
-                <h3 className="text-base max-sm:text-center text-chocolate-700 font-inter font-bold uppercase leading-5 px-4">
-                  {location.title}
-                </h3>
-                <p
-                  className="hidden sm:block text-sm text-tan-900 text-justify hyphens-auto max-w-full px-4"
-                  dangerouslySetInnerHTML={sanitizedData(location.places.description)}
-                />
-                <ButtonOpenPopup setOpenPopup={setIsOpen} />
+              <Popup className="w-max! p-0!">
+                <div className="w-full max-w-full sm:w-120 sm:max-w-120 flex flex-col sm:flex-row p-4">
+                  <figure className="rounded-t-xl sm:rounded-tr-none sm:rounded-s-xl min-h-48 sm:min-w-48 overflow-hidden">
+                    <img
+                      className="h-full w-full object-cover object-center"
+                      src={location.featuredImage.node.guid}
+                      alt={location.title}
+                    />
+                  </figure>
+                  <div className="min-h-64 sm:min-w-64 pt-4 sm:pt-0 sm:pl-4 flex flex-col justify-between gap-y-3">
+                    <h2 className="text-xl text-bone-700 dark:text-dark-contrast-100 font-bold leading-[1.2] tracking-tighter line-clamp-2 mr-4">
+                      {location.title}
+                    </h2>
+                    <div className="max-w-full dark:text-white" dangerouslySetInnerHTML={sanitizedData(location.places.description)} />
+                    <ButtonOpenPopup setOpenPopup={setIsOpen} />
+                  </div>
+                </div>
               </Popup>
             </Marker>
           );
@@ -168,12 +164,12 @@ const Map = ({ locations }: { locations: LocationTypes[] }) => {
       </MarkerClusterGroup>
       {isOpen && selectedLocation && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="max-sm:px-4 lg:min-w-160 max-h-[90%]">
+          <DialogContent className="max-sm:px-4 lg:min-w-160 max-h-[90%] dark:bg-dark-950 dark:border-dark-950">
             <DialogHeader className="max-sm:px-0 max-sm:mt-4">
               <DialogTitle
                 className={cn(
-                  "text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 font-bold",
-                  "uppercase leading-none tracking-tighter max-w-[90%]",
+                  "text-[clamp(1.25rem,5vw,1.85rem)] text-chocolate-700 dark:text-dark-contrast-100",
+                  "font-bold uppercase leading-none tracking-tighter max-w-[90%]",
                 )}
               >
                 {selectedLocation.title}

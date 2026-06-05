@@ -4,27 +4,28 @@ import {
   GLOSSARY,
   INTERACTIVE_MAP,
   INTERACTIVE_MAP_LOCATION,
+  PRESS_RELEASES,
   QUIZ_QUESTIONS,
   TEAM,
+  TIMELINE,
 } from "@/graphql/custom-types-graphql";
 import type {
   GlossaryTypes,
   InteractiveMapLocationTypes,
   InteractiveMapTypes,
+  PressReleasesTypes,
   QuizQuestionsTypes,
   TimelineTypes,
 } from "@/types/custom-post-types";
-import { TIMELINE } from "@/graphql/custom-types-graphql";
 import type { TeamTypes } from "@/types/components-types";
+import { GRAPHQL_URL } from "@/lib/graphql";
 
-const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
-
-//Fetch do Mapa Interativo para Todos os Resultados
+// Fetch do Mapa Interativo para Todos os Resultados
 const fetchInteractiveMap = async () => {
   return await request<InteractiveMapTypes>(GRAPHQL_URL, INTERACTIVE_MAP);
 };
 
-//Query do Mapa Interativo para Todos os Resultados
+// Query do Mapa Interativo para Todos os Resultados
 export const useQueryInteractiveMap = () => {
   return useSuspenseQuery<InteractiveMapTypes>({
     queryKey: ["interactive-map"],
@@ -32,14 +33,14 @@ export const useQueryInteractiveMap = () => {
   });
 };
 
-//Fetch do Mapa Interativo para um Resultado
+// Fetch do Mapa Interativo para um Resultado
 const fetchInteractiveMapLocation = async (id: string) => {
   return await request<InteractiveMapLocationTypes>(GRAPHQL_URL, INTERACTIVE_MAP_LOCATION, {
     id,
   });
 };
 
-//Query do Mapa Interativo para um Resultado
+// Query do Mapa Interativo para um Resultado
 export const useQueryInteractiveMapLocation = (id: string) => {
   return useQuery<InteractiveMapLocationTypes>({
     queryKey: ["interactive-map-location", id],
@@ -48,12 +49,12 @@ export const useQueryInteractiveMapLocation = (id: string) => {
   });
 };
 
-//Fetch do Glossário
+// Fetch do Glossário
 const fetchGlossary = async () => {
   return await request<GlossaryTypes>(GRAPHQL_URL, GLOSSARY);
 };
 
-//Query do Glossário
+// Query do Glossário
 export const useQueryGlossary = () => {
   return useSuspenseQuery<GlossaryTypes>({
     queryKey: ["glossary"],
@@ -62,12 +63,12 @@ export const useQueryGlossary = () => {
   });
 };
 
-//Fetch da Linha do Tempo
+// Fetch da Linha do Tempo
 const fetchTimeline = async () => {
   return await request<TimelineTypes>(GRAPHQL_URL, TIMELINE);
 };
 
-//Query da Linha do Tempo
+// Query da Linha do Tempo
 export const useQueryTimeline = () => {
   return useSuspenseQuery<TimelineTypes>({
     queryKey: ["timeline"],
@@ -75,12 +76,12 @@ export const useQueryTimeline = () => {
   });
 };
 
-//Fetch da Equipe do Projeto
+// Fetch da Equipe do Projeto
 const fetchTeam = async () => {
   return await request<TeamTypes>(GRAPHQL_URL, TEAM);
 };
 
-//Query da Equipe do Projeto
+// Query da Equipe do Projeto
 export const useQueryTeam = () => {
   return useSuspenseQuery<TeamTypes>({
     queryKey: ["glossary"],
@@ -89,7 +90,7 @@ export const useQueryTeam = () => {
   });
 };
 
-//Query das Questões do Teste de Conhecimento
+// Query das Questões do Teste de Conhecimento
 const fecthQuizQuestion = async () => {
   return await request<QuizQuestionsTypes>(GRAPHQL_URL, QUIZ_QUESTIONS);
 };
@@ -98,6 +99,19 @@ export const useQueryQuestions = () => {
   return useSuspenseQuery<QuizQuestionsTypes>({
     queryKey: ["questions"],
     queryFn: () => fecthQuizQuestion(),
+    staleTime: 60 * 5 * 1000,
+  });
+};
+
+// Query das Questões do Teste de Conhecimento
+const fecthPressReleases = async () => {
+  return await request<PressReleasesTypes>(GRAPHQL_URL, PRESS_RELEASES);
+};
+
+export const useQueryPressReleases = () => {
+  return useSuspenseQuery<PressReleasesTypes>({
+    queryKey: ["press-releases"],
+    queryFn: () => fecthPressReleases(),
     staleTime: 60 * 5 * 1000,
   });
 };

@@ -9,37 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreOProjetoRouteImport } from './routes/sobre-o-projeto'
-import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as ImpactoSocialRouteImport } from './routes/impacto-social'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
-import { Route as CreditosRouteImport } from './routes/creditos'
-import { Route as ApoioFinanceiroRouteImport } from './routes/apoio-financeiro'
-import { Route as AgendaRouteImport } from './routes/agenda'
-import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
+import { Route as AgendaDoProjetoRouteImport } from './routes/agenda-do-projeto'
+import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BlogDoConhecimentoIndexRouteImport } from './routes/blog-do-conhecimento/index'
+import { Route as FiquePorDentroIndexRouteImport } from './routes/fique-por-dentro/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
-import { Route as BlogDoConhecimentoChar123SlugChar125RouteImport } from './routes/blog-do-conhecimento/{-$slug}'
+import { Route as FiquePorDentroChar123SlugChar125RouteImport } from './routes/fique-por-dentro/{-$slug}'
 import { Route as ApiEmailRouteImport } from './routes/api/email'
 import { Route as AlmanaqueDigitalVaAlemRouteImport } from './routes/almanaque-digital/va-alem'
 import { Route as AlmanaqueDigitalTesteDeConhecimentoRouteImport } from './routes/almanaque-digital/teste-de-conhecimento'
 import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/almanaque-digital/mapa-interativo'
 import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
-import { Route as AlmanaqueDigitalCapituloChar123SlugChar125RouteImport } from './routes/almanaque-digital/capitulo-{-$slug}'
+import { Route as AlmanaqueDigitalCapituloChar123NumberChar125RouteImport } from './routes/almanaque-digital/capitulo-{-$number}'
 
-const SobreOProjetoRoute = SobreOProjetoRouteImport.update({
-  id: '/sobre-o-projeto',
-  path: '/sobre-o-projeto',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
-  id: '/politica-de-privacidade',
-  path: '/politica-de-privacidade',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ImpactoSocialRoute = ImpactoSocialRouteImport.update({
   id: '/impacto-social',
   path: '/impacto-social',
@@ -55,24 +41,14 @@ const EquipeDoProjetoRoute = EquipeDoProjetoRouteImport.update({
   path: '/equipe-do-projeto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreditosRoute = CreditosRouteImport.update({
-  id: '/creditos',
-  path: '/creditos',
+const AgendaDoProjetoRoute = AgendaDoProjetoRouteImport.update({
+  id: '/agenda-do-projeto',
+  path: '/agenda-do-projeto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApoioFinanceiroRoute = ApoioFinanceiroRouteImport.update({
-  id: '/apoio-financeiro',
-  path: '/apoio-financeiro',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AgendaRoute = AgendaRouteImport.update({
-  id: '/agenda',
-  path: '/agenda',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AcessibilidadeRoute = AcessibilidadeRouteImport.update({
-  id: '/acessibilidade',
-  path: '/acessibilidade',
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -80,9 +56,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogDoConhecimentoIndexRoute = BlogDoConhecimentoIndexRouteImport.update({
-  id: '/blog-do-conhecimento/',
-  path: '/blog-do-conhecimento/',
+const FiquePorDentroIndexRoute = FiquePorDentroIndexRouteImport.update({
+  id: '/fique-por-dentro/',
+  path: '/fique-por-dentro/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlmanaqueDigitalIndexRoute = AlmanaqueDigitalIndexRouteImport.update({
@@ -90,10 +66,10 @@ const AlmanaqueDigitalIndexRoute = AlmanaqueDigitalIndexRouteImport.update({
   path: '/almanaque-digital/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogDoConhecimentoChar123SlugChar125Route =
-  BlogDoConhecimentoChar123SlugChar125RouteImport.update({
-    id: '/blog-do-conhecimento/{-$slug}',
-    path: '/blog-do-conhecimento/{-$slug}',
+const FiquePorDentroChar123SlugChar125Route =
+  FiquePorDentroChar123SlugChar125RouteImport.update({
+    id: '/fique-por-dentro/{-$slug}',
+    path: '/fique-por-dentro/{-$slug}',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiEmailRoute = ApiEmailRouteImport.update({
@@ -130,188 +106,146 @@ const AlmanaqueDigitalGlossarioRoute =
     path: '/almanaque-digital/glossario',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AlmanaqueDigitalCapituloChar123SlugChar125Route =
-  AlmanaqueDigitalCapituloChar123SlugChar125RouteImport.update({
-    id: '/almanaque-digital/capitulo-{-$slug}',
-    path: '/almanaque-digital/capitulo-{-$slug}',
+const AlmanaqueDigitalCapituloChar123NumberChar125Route =
+  AlmanaqueDigitalCapituloChar123NumberChar125RouteImport.update({
+    id: '/almanaque-digital/capitulo-{-$number}',
+    path: '/almanaque-digital/capitulo-{-$number}',
     getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/acessibilidade': typeof AcessibilidadeRoute
-  '/agenda': typeof AgendaRoute
-  '/apoio-financeiro': typeof ApoioFinanceiroRoute
-  '/creditos': typeof CreditosRoute
+  '/$slug': typeof SlugRoute
+  '/agenda-do-projeto': typeof AgendaDoProjetoRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/sobre-o-projeto': typeof SobreOProjetoRoute
-  '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
+  '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
-  '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
+  '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
-  '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
+  '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/acessibilidade': typeof AcessibilidadeRoute
-  '/agenda': typeof AgendaRoute
-  '/apoio-financeiro': typeof ApoioFinanceiroRoute
-  '/creditos': typeof CreditosRoute
+  '/$slug': typeof SlugRoute
+  '/agenda-do-projeto': typeof AgendaDoProjetoRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/sobre-o-projeto': typeof SobreOProjetoRoute
-  '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
+  '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
-  '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
+  '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
-  '/blog-do-conhecimento': typeof BlogDoConhecimentoIndexRoute
+  '/fique-por-dentro': typeof FiquePorDentroIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/acessibilidade': typeof AcessibilidadeRoute
-  '/agenda': typeof AgendaRoute
-  '/apoio-financeiro': typeof ApoioFinanceiroRoute
-  '/creditos': typeof CreditosRoute
+  '/$slug': typeof SlugRoute
+  '/agenda-do-projeto': typeof AgendaDoProjetoRoute
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
-  '/sobre-o-projeto': typeof SobreOProjetoRoute
-  '/almanaque-digital/capitulo-{-$slug}': typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
+  '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
-  '/blog-do-conhecimento/{-$slug}': typeof BlogDoConhecimentoChar123SlugChar125Route
+  '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
-  '/blog-do-conhecimento/': typeof BlogDoConhecimentoIndexRoute
+  '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/acessibilidade'
-    | '/agenda'
-    | '/apoio-financeiro'
-    | '/creditos'
+    | '/$slug'
+    | '/agenda-do-projeto'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/politica-de-privacidade'
-    | '/sobre-o-projeto'
-    | '/almanaque-digital/capitulo-{-$slug}'
+    | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
-    | '/blog-do-conhecimento/{-$slug}'
+    | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
-    | '/blog-do-conhecimento/'
+    | '/fique-por-dentro/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/acessibilidade'
-    | '/agenda'
-    | '/apoio-financeiro'
-    | '/creditos'
+    | '/$slug'
+    | '/agenda-do-projeto'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/politica-de-privacidade'
-    | '/sobre-o-projeto'
-    | '/almanaque-digital/capitulo-{-$slug}'
+    | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
-    | '/blog-do-conhecimento/{-$slug}'
+    | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital'
-    | '/blog-do-conhecimento'
+    | '/fique-por-dentro'
   id:
     | '__root__'
     | '/'
-    | '/acessibilidade'
-    | '/agenda'
-    | '/apoio-financeiro'
-    | '/creditos'
+    | '/$slug'
+    | '/agenda-do-projeto'
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/politica-de-privacidade'
-    | '/sobre-o-projeto'
-    | '/almanaque-digital/capitulo-{-$slug}'
+    | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
     | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
-    | '/blog-do-conhecimento/{-$slug}'
+    | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
-    | '/blog-do-conhecimento/'
+    | '/fique-por-dentro/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AcessibilidadeRoute: typeof AcessibilidadeRoute
-  AgendaRoute: typeof AgendaRoute
-  ApoioFinanceiroRoute: typeof ApoioFinanceiroRoute
-  CreditosRoute: typeof CreditosRoute
+  SlugRoute: typeof SlugRoute
+  AgendaDoProjetoRoute: typeof AgendaDoProjetoRoute
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
   ImpactoSocialRoute: typeof ImpactoSocialRoute
-  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
-  SobreOProjetoRoute: typeof SobreOProjetoRoute
-  AlmanaqueDigitalCapituloChar123SlugChar125Route: typeof AlmanaqueDigitalCapituloChar123SlugChar125Route
+  AlmanaqueDigitalCapituloChar123NumberChar125Route: typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   AlmanaqueDigitalLinhaDoTempoRoute: typeof AlmanaqueDigitalLinhaDoTempoRoute
   AlmanaqueDigitalMapaInterativoRoute: typeof AlmanaqueDigitalMapaInterativoRoute
   AlmanaqueDigitalTesteDeConhecimentoRoute: typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   AlmanaqueDigitalVaAlemRoute: typeof AlmanaqueDigitalVaAlemRoute
   ApiEmailRoute: typeof ApiEmailRoute
-  BlogDoConhecimentoChar123SlugChar125Route: typeof BlogDoConhecimentoChar123SlugChar125Route
+  FiquePorDentroChar123SlugChar125Route: typeof FiquePorDentroChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
-  BlogDoConhecimentoIndexRoute: typeof BlogDoConhecimentoIndexRoute
+  FiquePorDentroIndexRoute: typeof FiquePorDentroIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sobre-o-projeto': {
-      id: '/sobre-o-projeto'
-      path: '/sobre-o-projeto'
-      fullPath: '/sobre-o-projeto'
-      preLoaderRoute: typeof SobreOProjetoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/politica-de-privacidade': {
-      id: '/politica-de-privacidade'
-      path: '/politica-de-privacidade'
-      fullPath: '/politica-de-privacidade'
-      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/impacto-social': {
       id: '/impacto-social'
       path: '/impacto-social'
@@ -333,32 +267,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EquipeDoProjetoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/creditos': {
-      id: '/creditos'
-      path: '/creditos'
-      fullPath: '/creditos'
-      preLoaderRoute: typeof CreditosRouteImport
+    '/agenda-do-projeto': {
+      id: '/agenda-do-projeto'
+      path: '/agenda-do-projeto'
+      fullPath: '/agenda-do-projeto'
+      preLoaderRoute: typeof AgendaDoProjetoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/apoio-financeiro': {
-      id: '/apoio-financeiro'
-      path: '/apoio-financeiro'
-      fullPath: '/apoio-financeiro'
-      preLoaderRoute: typeof ApoioFinanceiroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/agenda': {
-      id: '/agenda'
-      path: '/agenda'
-      fullPath: '/agenda'
-      preLoaderRoute: typeof AgendaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/acessibilidade': {
-      id: '/acessibilidade'
-      path: '/acessibilidade'
-      fullPath: '/acessibilidade'
-      preLoaderRoute: typeof AcessibilidadeRouteImport
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -368,11 +288,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog-do-conhecimento/': {
-      id: '/blog-do-conhecimento/'
-      path: '/blog-do-conhecimento'
-      fullPath: '/blog-do-conhecimento/'
-      preLoaderRoute: typeof BlogDoConhecimentoIndexRouteImport
+    '/fique-por-dentro/': {
+      id: '/fique-por-dentro/'
+      path: '/fique-por-dentro'
+      fullPath: '/fique-por-dentro/'
+      preLoaderRoute: typeof FiquePorDentroIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/almanaque-digital/': {
@@ -382,11 +302,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog-do-conhecimento/{-$slug}': {
-      id: '/blog-do-conhecimento/{-$slug}'
-      path: '/blog-do-conhecimento/{-$slug}'
-      fullPath: '/blog-do-conhecimento/{-$slug}'
-      preLoaderRoute: typeof BlogDoConhecimentoChar123SlugChar125RouteImport
+    '/fique-por-dentro/{-$slug}': {
+      id: '/fique-por-dentro/{-$slug}'
+      path: '/fique-por-dentro/{-$slug}'
+      fullPath: '/fique-por-dentro/{-$slug}'
+      preLoaderRoute: typeof FiquePorDentroChar123SlugChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/email': {
@@ -431,11 +351,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalGlossarioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/almanaque-digital/capitulo-{-$slug}': {
-      id: '/almanaque-digital/capitulo-{-$slug}'
-      path: '/almanaque-digital/capitulo-{-$slug}'
-      fullPath: '/almanaque-digital/capitulo-{-$slug}'
-      preLoaderRoute: typeof AlmanaqueDigitalCapituloChar123SlugChar125RouteImport
+    '/almanaque-digital/capitulo-{-$number}': {
+      id: '/almanaque-digital/capitulo-{-$number}'
+      path: '/almanaque-digital/capitulo-{-$number}'
+      fullPath: '/almanaque-digital/capitulo-{-$number}'
+      preLoaderRoute: typeof AlmanaqueDigitalCapituloChar123NumberChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -443,17 +363,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AcessibilidadeRoute: AcessibilidadeRoute,
-  AgendaRoute: AgendaRoute,
-  ApoioFinanceiroRoute: ApoioFinanceiroRoute,
-  CreditosRoute: CreditosRoute,
+  SlugRoute: SlugRoute,
+  AgendaDoProjetoRoute: AgendaDoProjetoRoute,
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
   ImpactoSocialRoute: ImpactoSocialRoute,
-  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
-  SobreOProjetoRoute: SobreOProjetoRoute,
-  AlmanaqueDigitalCapituloChar123SlugChar125Route:
-    AlmanaqueDigitalCapituloChar123SlugChar125Route,
+  AlmanaqueDigitalCapituloChar123NumberChar125Route:
+    AlmanaqueDigitalCapituloChar123NumberChar125Route,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   AlmanaqueDigitalLinhaDoTempoRoute: AlmanaqueDigitalLinhaDoTempoRoute,
   AlmanaqueDigitalMapaInterativoRoute: AlmanaqueDigitalMapaInterativoRoute,
@@ -461,10 +377,9 @@ const rootRouteChildren: RootRouteChildren = {
     AlmanaqueDigitalTesteDeConhecimentoRoute,
   AlmanaqueDigitalVaAlemRoute: AlmanaqueDigitalVaAlemRoute,
   ApiEmailRoute: ApiEmailRoute,
-  BlogDoConhecimentoChar123SlugChar125Route:
-    BlogDoConhecimentoChar123SlugChar125Route,
+  FiquePorDentroChar123SlugChar125Route: FiquePorDentroChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,
-  BlogDoConhecimentoIndexRoute: BlogDoConhecimentoIndexRoute,
+  FiquePorDentroIndexRoute: FiquePorDentroIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

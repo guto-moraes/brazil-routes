@@ -1,18 +1,19 @@
 import * as z from "zod";
 
-//Tipagem do componente TextRevealHidden
+// Tipagem do componente TextRevealHidden
 export const TextRevealHiddenSchema = z.object({
   animateOnScroll: z.boolean(),
   delay: z.number().optional(),
   blockColor: z.string().optional(),
   stagger: z.number().optional(),
   duration: z.number().optional(),
+  className: z.string().optional(),
   children: z.custom<React.ReactNode>(),
 });
 
 export type TextRevealHiddenTypes = z.infer<typeof TextRevealHiddenSchema>;
 
-//Tipagem do componente Pagination
+// Tipagem do componente Pagination
 export const PaginationSchema = z.object({
   hasPrevious: z.boolean(),
   hasNext: z.boolean(),
@@ -29,7 +30,7 @@ export const PaginationSchema = z.object({
 
 export type PaginationTypes = z.infer<typeof PaginationSchema>;
 
-//Tipagem do componente LiquidImageReveal
+// Tipagem do componente LiquidImageReveal
 export const LiquidImageRevealPropsSchema = z.object({
   src: z.string(),
   alt: z.string(),
@@ -48,7 +49,7 @@ export const LiquidImageRevealPropsSchema = z.object({
 
 export type LiquidImageRevealPropsTypes = z.infer<typeof LiquidImageRevealPropsSchema>;
 
-//Tipagem do componente HorizontalSlidesScroll
+// Tipagem do componente HorizontalSlidesScroll
 export const HorizontalSlideItemSchema = z.object({
   id: z.string().optional(),
   bgColor: z.string(),
@@ -69,7 +70,7 @@ export const HorizontalSlidesSchema = z.object({
 
 export type HorizontalSlidesType = z.infer<typeof HorizontalSlidesSchema>;
 
-//Tipagem do componente de TextLoader
+// Tipagem do componente de TextLoader
 export const TextLoaderSchema = z.object({
   text: z.string(),
   className: z.string().optional(),
@@ -98,8 +99,8 @@ export const TextLoaderSchema = z.object({
 
 export type TextLoaderPropsTypes = z.infer<typeof TextLoaderSchema>;
 
-//Tipagem do componente EventCard
-export const EventCardSchema = z.object({
+// Tipagem do componente AppointmentCard
+export const AppointmentCardSchema = z.object({
   eventTime: z.string(),
   eventDay: z.string().or(z.number()),
   eventMonth: z.string(),
@@ -109,25 +110,25 @@ export const EventCardSchema = z.object({
   eventPlace: z.string(),
 });
 
-export type EventCardTypes = z.infer<typeof EventCardSchema>;
+export type AppointmentCardTypes = z.infer<typeof AppointmentCardSchema>;
 
-export const EventTimeSchema = z.object({
+export const AppointmentTimeSchema = z.object({
   datetime: z.string(),
   day: z.string().or(z.number()),
   month: z.string(),
 });
 
-export type EventTimeTypes = z.infer<typeof EventTimeSchema>;
+export type AppointmentTimeTypes = z.infer<typeof AppointmentTimeSchema>;
 
-export const EventTextSchema = z.object({
+export const AppointmentTextSchema = z.object({
   eventUrl: z.string(),
   eventTitle: z.string(),
   eventPlace: z.string(),
 });
 
-export type EventTextTypes = z.infer<typeof EventTextSchema>;
+export type AppointmentTextTypes = z.infer<typeof AppointmentTextSchema>;
 
-//Tipagem do componente CardStackScroll
+// Tipagem do componente CardStackScroll
 export const MemberCardDetailsSchema = z.object({
   name: z.string(),
   role: z.string(),

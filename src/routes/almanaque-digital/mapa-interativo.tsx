@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQueryInteractiveMap } from "@/hooks/queries/custom-posts-queries";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
 import Map from "@/components/map";
+import { useQueryInteractiveMap } from "@/hooks/queries/custom-posts-queries";
+
 export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
   head: () => ({
     meta: [
@@ -16,7 +19,7 @@ export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
     links: [
       {
         rel: "canonical",
-        href: "https://caminhosdobrasilcentral.com/mapa-interativo",
+        href: "https://caminhosdobrasilcentral.com/almanaque-digital/mapa-interativo",
       },
     ],
   }),
@@ -25,16 +28,14 @@ export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
 
 function InteractiveMap() {
   const { data } = useQueryInteractiveMap();
-  const { nodes: locations } = data?.locations || {};
-  if (locations) {
-    return (
-      <>
-        <div className="h-full lg:h-[calc(100svh-104px)] w-full grid grid-cols-1">
-          <div className="rounded-lg min-h-svh lg:h-[calc(100svh-104px)] z-0 [&>.leaflet-container]:shadow-lg [&>.leaflet-container>img]:rounded-lg">
-            {locations && <Map locations={locations} />}
-          </div>
-        </div>
-      </>
-    );
-  }
+  const { nodes: locations } = data.locations;
+
+  return (
+    <>
+      <Header className="shadow-md" />
+      <Main className="p-0!">
+        <Map locations={locations} />
+      </Main>
+    </>
+  );
 }

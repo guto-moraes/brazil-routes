@@ -27,7 +27,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
     <article
       className={cn(
         "activity-card rounded-2xl h-80 sm:h-120 w-80 sm:w-120 absolute top-1/2 left-1/2",
-        "-translate-1/2 p-4 sm:py-8 sm:px-10 flex flex-col justify-between items-start",
+        "-translate-1/2 p-4 sm:py-8 sm:px-10 flex flex-col justify-between items-start dark:bg-dark-700",
         className,
       )}
       style={{ background }}
@@ -39,7 +39,9 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
         <p className="text-base text-[clamp(0.85rem,2vw,1.25rem)] font-medium leading-snug">{description}</p>
       </div>
       <ul className="text-[clamp(0.85rem,1.75vw,1.125rem)] text-tan-800 font-bold uppercase tracking-[-0.02em]">
-        {splitTags && splitTags.map((tag: string) => <li key={tag}>{tag}</li>)}
+        {splitTags.map((tag: string) => (
+          <li key={tag}>{tag}</li>
+        ))}
       </ul>
       <span
         className={cn(
@@ -61,45 +63,43 @@ const ActivityAreas = () => {
     fieldsActivityTitle: title,
     fieldsActivityPresentation: presentation,
     fieldsActivities: activities,
-  } = data?.project.theming || {};
+  } = data.project.theming;
 
   useGSAP(
     () => {
-      if (!isLoading && activities) {
-        const container = activitiesCardsRef.current;
-        if (!container) return;
+      const container = activitiesCardsRef.current;
+      if (!container) return;
 
-        const cardsContainer = container.querySelector<HTMLDivElement>(".activities-cards");
-        if (!cardsContainer) return;
+      const cardsContainer = container.querySelector<HTMLDivElement>(".activities-cards");
+      if (!cardsContainer) return;
 
-        const cards = gsap.utils.toArray<HTMLElement>(".activity-card");
-        if (!cards.length) return;
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: activitiesCardsRef.current,
-            start: "top top",
-            end: `${(window.innerHeight * activities.length) / activities.length}%`,
-            pin: true,
-            scrub: 1,
-          },
+      const cards = gsap.utils.toArray<HTMLElement>(".activity-card");
+      if (!cards.length) return;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: activitiesCardsRef.current,
+          start: "top top",
+          end: `${(window.innerHeight * activities.length) / activities.length}%`,
+          pin: true,
+          scrub: 1,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        const cardItem = activities[i];
+        gsap.set(card, {
+          yPercent: 100 + 1 * 30,
+          opacity: 1,
+          scale: 1.25,
+          rotate: cardItem.fieldActivityRotateFrom,
         });
-
-        cards.forEach((card, i) => {
-          const cardItem = activities[i];
-          gsap.set(card, {
-            yPercent: 100 + 1 * 30,
-            opacity: 1,
-            scale: 1.25,
-            rotate: cardItem.fieldActivityRotateFrom,
-          });
-          tl.to(card, {
-            yPercent: -50,
-            scale: 0.9,
-            rotate: cardItem.fielActivityRotateTo,
-            duration: 0.5,
-          });
+        tl.to(card, {
+          yPercent: -50,
+          scale: 0.9,
+          rotate: cardItem.fielActivityRotateTo,
+          duration: 0.5,
         });
-      }
+      });
     },
     { scope: activitiesCardsRef, dependencies: [isLoading] },
   );
@@ -107,34 +107,35 @@ const ActivityAreas = () => {
   return (
     <>
       <section
-        className="activities-container relative bg-tan-300/50 h-svh w-full overflow-hidden"
+        className="activities-container relative bg-tan-300/50 dark:bg-dark-950 h-svh w-full overflow-hidden"
         ref={activitiesCardsRef}
       >
         {project && title && presentation && (
           <div className="activities-heading h-full w-full flex flex-col justify-center items-center gap-y-8">
             <hgroup className="flex flex-col gap-y-1 text-center">
-              <h3 className="text-[clamp(0.75rem,3vw,1.25rem)] text-bone-600 uppercase">{project}</h3>
-              <h2 className="text-[clamp(2.25rem,8vw,6rem)] text-bone-600 font-cabinet font-black max-sm:leading-none">{title}</h2>
+              <h3 className="text-[clamp(0.75rem,3vw,1.25rem)] text-bone-600 dark:text-[#857318] uppercase">{project}</h3>
+              <h2 className="text-[clamp(2.25rem,8vw,6rem)] text-bone-600 dark:text-[#ffe27d] font-cabinet font-black max-sm:leading-none">
+                {title}
+              </h2>
             </hgroup>
-            <p className="text-[clamp(0.9rem,3vw,1.5rem)] text-bone-600 text-center text-balance font-medium w-full sm:w-2/3 max-sm:px-4">
+            <p className="text-[clamp(0.9rem,3vw,1.5rem)] text-bone-600 dark:text-white text-center text-balance font-medium w-full sm:w-2/3 max-sm:px-4">
               {presentation}
             </p>
-            <img className="absolute top-0 left-0 w-full -z-2 opacity-25" src={brush} alt="" />
+            <img className="absolute top-0 left-0 w-full -z-2 opacity-25 dark:opacity-40" src={brush} alt="" />
           </div>
         )}
 
         <div className={cn("activities-cards fixed inset-0 overflow-hidden flex flex-col")}>
-          {activities &&
-            activities.map((activity: FieldActivityTypes, index: number) => (
-              <Card
-                key={index}
-                color={activity.fieldActivityColor}
-                title={activity.fieldActivity}
-                description={activity.fieldActivityDescription}
-                tags={activity.fieldActivityTags}
-                number={index + 1}
-              />
-            ))}
+          {activities.map((activity: FieldActivityTypes, index: number) => (
+            <Card
+              key={index}
+              color={activity.fieldActivityColor}
+              title={activity.fieldActivity}
+              description={activity.fieldActivityDescription}
+              tags={activity.fieldActivityTags}
+              number={index + 1}
+            />
+          ))}
         </div>
       </section>
     </>

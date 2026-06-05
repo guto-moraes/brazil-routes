@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ReactLenis, type LenisRef } from "lenis/react";
-import { useEffect, useRef, type ReactNode } from "react";
+import { ReactLenis } from "lenis/react";
+import type { LenisRef } from "lenis/react";
 
-const SmoothScroller = ({ children }: { children: ReactNode }) => {
+const SmoothScroller = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef<LenisRef | null>(null);
 
   useEffect(() => {

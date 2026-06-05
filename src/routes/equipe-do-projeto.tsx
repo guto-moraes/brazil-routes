@@ -1,130 +1,265 @@
 "use client";
 
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useQueryTeam } from "@/hooks/queries/custom-posts-queries";
-import { Title } from "@/components/title";
-import Main from "@/layouts/main";
-import {
-  TeamCard,
-  TeamMemberDetails,
-  TeamMemberDetailsContainer,
-  TeamMemberPhoto,
-  TeamMemberSocialItem,
-  TeamMemberSocialList,
-} from "@/components/team-cards";
 
+import { useRef, useState } from "react";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
+import { Title } from "@/components/title";
+import TeamCard from "@/components/team-card";
+import { useQueryTeam } from "@/hooks/queries/custom-posts-queries";
+import Article from "@/components/article";
+import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import { cn } from "@/lib/utils";
+import LiquidImageReveal from "@/components/liquid-image-reveal";
+import SmoothScroller from "@/components/smooth-scroller";
+import type { TeamItemTypes } from "@/types/components-types";
+
+gsap.registerPlugin(ScrollTrigger);
 export const Route = createFileRoute("/equipe-do-projeto")({
+  head: () => ({
+    meta: [
+      {
+        title: "Equipe do Projeto | Projeto Caminhos do Brasil Central",
+      },
+      {
+        name: "description",
+        content: "Informações sobre os integrantes do projeto, suas funções e seus currículos.",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://caminhosdobrasilcentral.com/equipe-do-projeto",
+      },
+    ],
+  }),
+  loader: () => ({
+    crumb: "Equipe do Projeto",
+  }),
   component: ProjectTeam,
 });
 
 function ProjectTeam() {
-  const { equipes } = useQueryTeam().data || {};
-  const teamCardRef = useRef<HTMLElement | null>(null);
+  const teamSectionRef = useRef<HTMLElement | null>(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const { data } = useQueryPage("equipe-do-projeto");
+  const { equipes: team } = useQueryTeam().data;
+  const targetPositions = [1, 0, 2];
+  const reorderedMembers: TeamItemTypes[] = [];
+
+  for (let i = 0; i < team.nodes.length; i++) {
+    const newPosition = targetPositions[i];
+    reorderedMembers[newPosition] = team.nodes[i];
+  }
+
+  const handleToggleDialog = () => {
+    setIsOpenModal(!isOpenModal);
+  };
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger);
-      const mm = gsap.matchMedia();
+      const teamSection = document.querySelector<HTMLElement>(".team");
+      const teamMembers = gsap.utils.toArray<HTMLDivElement>(".team-member");
+      const teamMemberCards = gsap.utils.toArray<HTMLDivElement>(".team-member-card");
 
-      const cards = gsap.utils.toArray<HTMLDivElement>(".team-card");
+      let cardPlaceholderEntrance: ScrollTrigger | null = null;
+      let cardSlideInAnimation: ScrollTrigger | null = null;
 
-      mm.add("(max-width: 640px)", () => {
-        cards.forEach((card) => {
-          gsap.set(card, {
-            y: 0,
+      function initTeamAnimations() {
+        if (window.innerWidth < 1024) {
+          if (cardPlaceholderEntrance) cardPlaceholderEntrance.kill();
+          if (cardSlideInAnimation) cardSlideInAnimation.kill();
+
+          teamMemberCards.forEach((member) => {
+            gsap.set(member, { clearProps: "all" });
+            const teamMemberInitial = member.querySelector(".team-member-initial-name h2");
+            gsap.set(teamMemberInitial, { clearProps: "all" });
           });
-        });
-      });
 
-      cards.forEach((card, index) => {
-        if (index !== 0) {
-          gsap.set(card, {
-            x: () => window.innerWidth + 100,
-            autoAlpha: 1,
+          teamMemberCards.forEach((card) => {
+            gsap.set(card, { clearProps: "all" });
           });
+
+          return;
         }
-      });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: teamCardRef.current,
+        if (cardPlaceholderEntrance) cardPlaceholderEntrance.kill();
+        if (cardSlideInAnimation) cardSlideInAnimation.kill();
+
+        cardPlaceholderEntrance = ScrollTrigger.create({
+          trigger: teamSection,
+          start: "top bottom",
+          end: "top top",
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+
+            teamMembers.forEach((member, index) => {
+              const entranceDelay = 0.15;
+              const entranceDuration = 0.7;
+              const entranceStart = index * entranceDelay;
+              const entranceEnd = entranceStart + entranceDuration;
+
+              if (progress >= entranceStart && progress <= entranceEnd) {
+                const memberEntranceProgress = (progress - entranceStart) / entranceDuration;
+
+                const entranceY = 125 - memberEntranceProgress * 125;
+                gsap.set(member, { y: `${entranceY}%` });
+
+                const teamMemberInitial = member.querySelector(".team-member-initial-name h2");
+                const initialLetterScaleDelay = 0.4;
+                const initialLetterScaleProgress = Math.max(
+                  0,
+                  (memberEntranceProgress - initialLetterScaleDelay) / (1 - initialLetterScaleDelay),
+                );
+
+                gsap.set(teamMemberInitial, { scale: initialLetterScaleProgress });
+              } else if (progress > entranceEnd) {
+                gsap.set(member, { y: "0%" });
+                const teamMemberInitial = member.querySelector(".team-member-initial-name h2");
+                gsap.set(teamMemberInitial, { scale: 1 });
+              }
+            });
+          },
+        });
+
+        cardSlideInAnimation = ScrollTrigger.create({
+          trigger: teamSection,
           start: "top top",
-          end: `+=${cards.length * 250}%`,
+          end: `+=${window.innerHeight * 3}`,
           pin: true,
-          scrub: window.innerWidth < 768 ? 1 : 2,
-        },
-      });
+          scrub: 1,
+          toggleActions: "play none none reset",
+          onUpdate: (self) => {
+            const progress = self.progress;
 
-      cards.forEach((card, index) => {
-        const memberPhoto = card.querySelector(".team-card-image");
-        const isMobile = window.innerWidth < 768;
+            teamMemberCards.forEach((card, index) => {
+              const slideInStagger = 0.075;
+              const xRotationDuration = 0.4;
+              const xRotationStart = index * slideInStagger;
+              const xRotationEnd = xRotationStart + xRotationDuration;
 
-        const cardTimeline = gsap.timeline({});
+              if (progress >= xRotationStart && progress <= xRotationEnd) {
+                const cardProgress = (progress - xRotationStart) / xRotationDuration;
 
-        mm.add("(min-width: 1280px)", () => {
-          cardTimeline.to(card, {
-            y: "15%",
-          });
+                const cardInitialX = 300 - index * 100;
+                const cardTargetX = -50;
+                const cardSlideInRotation = 20 - cardProgress * 20;
+                const cardSlideInX = cardInitialX + cardProgress * (cardTargetX - cardInitialX);
+
+                gsap.set(card, {
+                  x: `${cardSlideInX}%`,
+                  rotation: cardSlideInRotation,
+                });
+              } else if (progress > xRotationEnd) {
+                gsap.set(card, {
+                  x: "-50%",
+                  rotation: 0,
+                });
+              }
+
+              const cardScaleStagger = 0.12;
+              const cardScaleStart = 0.4 + index * cardScaleStagger;
+              const cardScaleEnd = 1;
+
+              if (progress >= cardScaleStart && progress <= cardScaleEnd) {
+                const scaleProgress = (progress - cardScaleStart) / (cardScaleEnd - cardScaleStart);
+                const scaleValue = 0.75 + scaleProgress * 0.25;
+
+                gsap.set(card, { scale: scaleValue });
+              } else if (progress > cardScaleEnd) {
+                gsap.set(card, { scale: 1 });
+              }
+            });
+          },
         });
+      }
 
-        if (index !== 0) {
-          cardTimeline
-            .to(card, {
-              x: index * 3,
-              duration: 2.5,
-              ease: "power2.out",
-              force3D: true,
-            })
-            .to(
-              memberPhoto,
-              {
-                y: isMobile ? 0 : -10,
-                scale: isMobile ? 1 : 1.1,
-                duration: 1,
-                ease: "power1.out",
-              },
-              "-=1",
-            );
-        }
+      let resizeTimer: ReturnType<typeof setTimeout>;
 
-        tl.add(cardTimeline, "+=0.5");
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          initTeamAnimations();
+          ScrollTrigger.refresh();
+        }, 250);
       });
+
+      initTeamAnimations();
     },
-    { scope: teamCardRef },
+    { scope: teamSectionRef },
   );
 
   return (
-    <Main className="py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
-      <Title className="max-w-300 mx-auto max-sm:mb-12">
-        Equipe do <span className="text-tan-400">Projeto</span>
-      </Title>
-      <section className="team-card-wrapper relative h-svh lg:h-[calc(100svh-280px)] overflow-hidden" ref={teamCardRef}>
-        <div className="team-card-container h-170 sm:h-125 lg:max-h-140 w-full lg:max-w-300 m-[auto_auto] absolute top-1/2 left-1/2 -translate-1/2">
-          {equipes.nodes.map((member, index) => (
-            <TeamCard key={index}>
-              <TeamMemberPhoto imgSrc={member.featuredImage.node.sourceUrl} altText={member.title} />
-              <TeamMemberDetailsContainer>
-                <TeamMemberDetails name={member.title} role={member.team.role} resume={member.content} />
-                <TeamMemberSocialList>
-                  {member.team.socials.map((social, index) => (
-                    <TeamMemberSocialItem
-                      key={index}
-                      socialUrl={social.socialUrl}
-                      socialName={social.socialName}
-                      socialAt={social.socialAt ? social.socialAt : social.socialUrl}
-                      memberName={member.title}
+    <>
+      <Header className="shadow-md z-20" />
+
+      <Main className="bg-tan-100 dark:bg-dark-700 p-0!">
+        <section className="bg-bone-200 dark:bg-dark-900 min-h-[calc(100svh-280px)] lg:min-h-[100svh-104px] w-full py-8 md:py-16 px-4">
+          <Title
+            className={cn(
+              "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
+              "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",
+            )}
+          >
+            Equipe <span className="text-bone-400 dark:text-dark-contrast-50">do Projeto</span>
+          </Title>
+
+          <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-16">
+            <div className="col-span-1 md:col-span-3 h-full flex items-center">
+              <Article className="[&_p]:text-[clamp(1rem,5vw,1.275rem)]!" content={data.page.content} />
+            </div>
+            <div
+              className={cn(
+                "col-span-1 md:col-span-2 relative hidden md:flex justify-center items-center",
+                "*:nth-[1]:-left-20 *:nth-[1]:-translate-y-1/2 *:nth-[1]:-rotate-15 *:nth-[1]:z-1",
+                "*:nth-[2]:left-1/2 *:nth-[2]:-translate-1/2 *:nth-[2]:z-3",
+                "*:nth-[3]:-right-20 *:nth-[3]:-translate-y-1/2 *:nth-[3]:rotate-15 *:nth-[3]:z-2",
+              )}
+            >
+              {reorderedMembers.map((member, index) => (
+                <div className="w-full flex justify-center absolute top-1/2" key={index}>
+                  <figure className="rounded-2xl shadow-sm bg-bone-100 dark:bg-dark-200 h-85.5 w-63 p-4 aspect-9/6 overflow-hidden">
+                    <LiquidImageReveal
+                      src={member.featuredImage.node.sourceUrl}
+                      height={308}
+                      width={220}
+                      alt={member.title}
                     />
-                  ))}
-                </TeamMemberSocialList>
-              </TeamMemberDetailsContainer>
-            </TeamCard>
-          ))}
-        </div>
-      </section>
-    </Main>
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <SmoothScroller>
+          <div className="bg-tan-200 dark:bg-dark-950 w-full">
+            <section
+              className={cn(
+                "team relative h-[250svh] lg:h-svh container mx-auto flex flex-col",
+                "lg:flex-row items-center gap-8 p-4 max-md:py-16 overflow-hidden",
+              )}
+              ref={teamSectionRef}
+            >
+              {team.nodes.map((member, index) => (
+                <TeamCard
+                  key={index}
+                  imageSrc={member.featuredImage.node.sourceUrl}
+                  memberName={member.title}
+                  role={member.team.role}
+                  synopsis={member.content}
+                  socials={member.team.socials}
+                  handleToggle={handleToggleDialog}
+                />
+              ))}
+            </section>
+          </div>
+        </SmoothScroller>
+      </Main>
+    </>
   );
 }

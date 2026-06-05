@@ -23,7 +23,7 @@ if (!isset($content_width)) {
 }
 
 
-if (!function_exists('cbc_setup')):
+if (!function_exists('br_setup')):
 
 	/**
 	 * Sets up theme defaults and registers support for various
@@ -33,7 +33,7 @@ if (!function_exists('cbc_setup')):
 	 * hook, which runs before the init hook. The init hook is too late
 	 * for some features, such as indicating support post thumbnails.
 	 */
-	function cbc_setup()
+	function br_setup()
 	{
 
 		/**
@@ -80,12 +80,12 @@ if (!function_exists('cbc_setup')):
 		 */
 		add_theme_support('post-formats', array('aside', 'gallery', 'quote', 'image', 'video'));
 	}
-endif; // cbc_setup
-add_action('after_setup_theme', 'cbc_setup');
+endif; // br_setup
+add_action('after_setup_theme', 'br_setup');
 
 
 //Add ReactJs Components Support
-function cbc__theme()
+function br__theme()
 {
 
 	wp_set_script_translations('cbc', 'cbc');
@@ -121,7 +121,7 @@ function cbc__theme()
 
 	wp_enqueue_style(
 		"cbc",
-		get_stylesheet_directory_uri() . '/dist/assets/index.css',
+		get_stylesheet_directory_uri() . '/dist/assets/styles.css',
 		wp_get_theme()->get("Version"), //time()
 		true
 	);
@@ -134,7 +134,7 @@ function cbc__theme()
 	);
 
 }
-add_action('wp_enqueue_scripts', 'cbc__theme');
+add_action('wp_enqueue_scripts', 'br__theme');
 
 // Allow SVG
 add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {
@@ -171,3 +171,18 @@ function fix_svg()
 }
 add_action('admin_head', 'fix_svg');
 
+
+// Remove Gutenberg frontend block styles and assets
+add_action( 'wp_enqueue_scripts', function() {
+    wp_dequeue_style( 'wp-block-library' );          // Core block styles
+    wp_dequeue_style( 'wp-block-library-theme' );    // Default block theme styles
+    wp_dequeue_style( 'classic-theme-styles' );      // Classic theme styles fallback
+    wp_dequeue_style( 'core-block-supports' );       // Block support inline styles
+}, 100 );
+
+// Disable global inline styles (theme.json presets, colors, margins)
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+
+// Remove the injected SVG layout filters
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );

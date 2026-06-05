@@ -1,81 +1,101 @@
-import { createFileRoute } from "@tanstack/react-router";
-// import Title from "@/components/title";
+import Article from "@/components/article";
 import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@/components/section-scroll-rotate";
+import SmoothScroller from "@/components/smooth-scroller";
 import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
-import { cn } from "@/lib/utils";
-import { Title } from "@/components/title";
 import Testimonials from "@/components/testimonials";
+import { Title } from "@/components/title";
+import { useQuerySocialImpactPage } from "@/hooks/queries/pages-and-posts-queries";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
+import { cn } from "@/lib/utils";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/impacto-social")({
+  head: () => ({
+    meta: [
+      {
+        title: "Impacto Social | Projeto Caminhos do Brasil Central",
+      },
+      {
+        name: "description",
+        content: "Informações sobre os impactos na sociedade sobre as ações do Projeto Caminhos do Brasil Central.",
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://caminhosdobrasilcentral.com/impacto-social",
+      },
+    ],
+  }),
+  loader: () => ({
+    crumb: "Impacto Social",
+  }),
   component: SocialImpact,
 });
 
 function SocialImpact() {
+  const { page } = useQuerySocialImpactPage().data;
+
   return (
-    <ScrollRotateWrapper>
-      {/* <ScrollRotateSection>
-        <ScrollRotateContent>
-          <Title className="max-w-7xl mx-auto text-tan-700 text-center font-cabinet font-black -mt-14 lg:-mt-8">
-            Impacto <span className="text-tan-400">Social</span>
-          </Title>
-          <div className="max-w-7xl mx-auto mt-16 text-center">
-            <h2
-              className={cn(
-                "w-full text-[clamp(2rem,5vw,3.5rem)] text-center text-balance font-semibold text-white",
-                "bg-tan-900 z-1 leading-17 inline relative px-4 after:content-none after:block",
-                "after:border-b-8 after:relative after:z-0 after:-mt-1.75",
-              )}
-            >
-              Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
-              <span className="text-chocolate-300">conhecer, valorizar e preservar</span> a história, a memória e o
-              patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar.
-            </h2>
-          </div>
-        </ScrollRotateContent>
-      </ScrollRotateSection> */}
-      <ScrollRotateSection className="h-full">
-        <ScrollRotateContent className="bg-[#d8d9bc]">
-          <div className="max-w-7xl mx-auto pb-24">
-            <Title className="text-bone-600 text-center">Alcance <span className="text-bone-400">do Projeto</span></Title>
-            <p className="text-[clamp(1rem,4vw,1.5rem)] sm:text-justify leading-7 mb-16">
-              Perceber a forma como pessoas de diferentes idades passam a tangenciar a importância de de se{" "}
-              <strong className="text-terracotta-700">conhecer, valorizar e preservar</strong> a história, a memória e o
-              patrimônio da região leste e nordeste do Mato Grosso, nos motivo a avançar. Por isso, o Projeto Caminhos
-              do Brasil Central está engajado em, cada vez mais, ampliar o número de pessoas alcançadas.
-            </p>
-            <div
-              className={cn(
-                "grid grid-cols-1 xl:grid-cols-3 gap-8 divide-y md:divide-y-0",
-                "md:divide-x divide-mate-duo-50 bg-mate-duo-700 py-10 px-8 rounded-4xl",
-              )}
-            >
-              <SocialImpactStatsCard
-                value="1"
-                title="Palestras realizadas"
-                description="Para divulgação do Almanaque e para incentivar a valorização da história da região do Vale do Araguaia, em Mato Grosso."
-              />
-              <SocialImpactStatsCard
-                value="100+"
-                title="Público Presencial"
-                description="As ações presenciais são fundamentais para promover e aprofundas a troca de saberes e viabilizar mais interação com o público."
-              />
-              <SocialImpactStatsCard
-                value="1000+"
-                title="Downloads do Almanaque"
-                description="O aumento da circulação do Almanaque é uma forma de fortaler a história, a memória e a preservação do patrimônio."
-              />
-            </div>
-          </div>
-        </ScrollRotateContent>
-      </ScrollRotateSection>
-      <ScrollRotateSection className="h-svh">
-        <ScrollRotateContent className="bg-tan-300">
-          <div className="max-w-7xl mx-auto pb-24">
-            <Title className="text-tan-700 text-center">O que dizem <span className="text-tan-500">sobre o Projeto</span></Title>
-            <Testimonials />
-          </div>
-        </ScrollRotateContent>
-      </ScrollRotateSection>
-    </ScrollRotateWrapper>
+    <SmoothScroller>
+      <Header className="shadow-md" />
+      <Main className="p-0! overflow-hidden">
+        <ScrollRotateWrapper className="min-h-[calc(100svh-280px)] lg:min-h-[100svh-104px]">
+          <ScrollRotateSection className="h-full">
+            <ScrollRotateContent className="bg-[#d8d9bc] dark:bg-dark-950 py-8 md:py-16">
+              <div className="container max-w-7xl mx-auto h-full px-4 lg:px-0">
+                <Title
+                  className={cn(
+                    "w-full text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700 dark:text-dark-contrast-100",
+                    "text-center font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",
+                  )}
+                >
+                  Alcance <span className="text-bone-400 dark:text-dark-contrast-50">do Projeto</span>
+                </Title>
+
+                <Article
+                  className={cn(
+                    "w-5xl! mx-auto [&_p]:text-[clamp(1rem,5vw,1.25rem)]! mb-10 xl:mb-20",
+                    "[&_p_strong]:text-terracotta-800 dark:[&_p_strong]:text-mate-200",
+                  )}
+                  content={page.content}
+                />
+                <div
+                  className={cn(
+                    "grid grid-cols-1 xl:grid-cols-3 gap-8 divide-y md:divide-y-0",
+                    "md:divide-x divide-mate-50 bg-mate-700 dark:bg-dark-900 py-10 px-8 rounded-4xl",
+                  )}
+                >
+                  {page.socialImpact.stats.map((stat, index) => (
+                    <SocialImpactStatsCard
+                      key={index}
+                      value={stat.amount}
+                      title={stat.label}
+                      description={stat.description}
+                    />
+                  ))}
+                </div>
+              </div>
+            </ScrollRotateContent>
+          </ScrollRotateSection>
+          <ScrollRotateSection className="h-svh">
+            <ScrollRotateContent className="bg-tan-300 dark:bg-dark-800 flex items-center">
+              <div className="max-w-7xl mx-auto pb-24">
+                <Title
+                  className={cn(
+                    "w-full text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700 dark:text-dark-contrast-100",
+                    "text-center font-cabinet font-black max-md:leading-[0.9]",
+                  )}
+                >
+                  O que dizem <span className="text-tan-500 dark:text-dark-contrast-50">sobre o Projeto</span>
+                </Title>
+                <Testimonials />
+              </div>
+            </ScrollRotateContent>
+          </ScrollRotateSection>
+        </ScrollRotateWrapper>
+      </Main>
+    </SmoothScroller>
   );
 }

@@ -1,6 +1,8 @@
 import * as z from "zod";
 
-//Tipagem do Menu dos Capítulos do Almanaque
+/**
+* Tipagem do Menu dos Capítulos do Almanaque
+*/
 export const MenuSchema = z.object({
   menu: z.object({
     menuItems: z.object({

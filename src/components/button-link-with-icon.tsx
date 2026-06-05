@@ -29,7 +29,7 @@ const ButtonLinkWithIcon = ({
       <span className="relative z-10 transition-all duration-500">{textButton}</span>
       <span
         className={cn(
-          "absolute right-1 size-8 bg-background text-foreground rounded-full grid place-content-center",
+          "absolute right-1 size-8 bg-background dark:bg-dark-950 text-foreground rounded-full grid place-content-center",
           "transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45",
           iconColor,
         )}

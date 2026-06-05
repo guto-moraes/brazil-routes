@@ -60,7 +60,7 @@ const LiquidImageReveal: React.FC<LiquidImageRevealPropsTypes> = ({
   );
 
   return (
-    <div className={cn("liquid-image-reveal inline-block", className)} ref={containerRef}>
+    <div className={cn("liquid-image-reveal inline-block rounded-2xl", className)} ref={containerRef}>
       <svg
         ref={svgRef}
         width={width}
@@ -100,7 +100,14 @@ const LiquidImageReveal: React.FC<LiquidImageRevealPropsTypes> = ({
         </defs>
 
         {/* Image with mask applied */}
-        <image href={src} mask={`url(#${maskId})`} width={width} height={height} preserveAspectRatio="xMidYMid slice" />
+        <image
+          className="rounded-xl object-cover object-center"
+          href={src}
+          mask={`url(#${maskId})`}
+          width={width}
+          height={height}
+          preserveAspectRatio="xMidYMid slice"
+        />
       </svg>
     </div>
   );

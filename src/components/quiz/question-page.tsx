@@ -81,11 +81,11 @@ const QuestionPage = ({
       <QuestionContainer>
         <QuestionBadgeAndStatement questionNumber={index + 1} statement={currentQuestion.excerpt} />
         <QuestionAnswerList>
-          {quizAnswers.map((option, index) => {
+          {quizAnswers.map((option, idx) => {
             return (
               <QuestionAnswerOption
-                key={index}
-                index={index}
+                key={idx}
+                index={idx}
                 correctAnswer={answerCorrect}
                 selectedAnswer={selectedAnswer}
                 option={option.answer}
@@ -99,8 +99,9 @@ const QuestionPage = ({
           {isLocked && !isQuizCompleted && (
             <Button
               className={cn(
-                "rounded-sm bg-blue-retro-500 hover:bg-tan-500 text-white uppercase h-12 px-4",
-                "transition-colors duration-500 cursor-pointer mx-auto inline-block disabled:cursor-not-allowed",
+                "rounded-sm bg-blue-retro-500 dark:bg-blue-retro-400 hover:bg-tan-500",
+                "dark:hover:bg-blue-retro-600 text-white uppercase h-12 px-4 transition-colors",
+                "duration-500 cursor-pointer mx-auto inline-block disabled:cursor-not-allowed",
               )}
               onClick={handleNextQuestion}
               disabled={isQuizCompleted}
@@ -110,21 +111,19 @@ const QuestionPage = ({
           )}
           {isQuizCompleted && (
             <Dialog>
-              <DialogTrigger
-                render={
-                  <Button
-                    className={cn(
-                      "rounded-sm bg-blue-retro-500 hover:bg-blue-retro-600 text-white uppercase h-12 px-4",
-                      "transition-colors duration-500 cursor-pointer mx-auto inline-block",
-                    )}
-                  />
-                }
-              >
-                Ver Resultado
+              <DialogTrigger>
+                <Button
+                  className={cn(
+                    "rounded-sm bg-blue-retro-500 hover:bg-blue-retro-600 text-white uppercase h-12 px-4",
+                    "transition-colors duration-500 cursor-pointer mx-auto inline-block",
+                  )}
+                >
+                  Ver Resultado
+                </Button>
               </DialogTrigger>
               <DialogContent
                 className={cn(
-                  "bg-tan-100 md:min-w-1/2! p-8 flex items-center justify-center!",
+                  "bg-tan-100 dark:bg-dark-950 dark:border-dark-950 md:min-w-1/2! p-8 flex items-center justify-center!",
                   "[&>button]:bg-bone-600 [&>button]:hover:bg-bone-500 [&>button]:text-white",
                   "[&>button]:hover:text-white [&>button]:rounded-full [&>button]:cursor-pointer:transition-colors",
                   "[&>button]:duration-500 [&>button]:cursor-pointer [&>button]:p-1",

@@ -15,6 +15,7 @@ const TextRevealHidden = ({
   blockColor = "#000",
   stagger = 0.15,
   duration = 0.75,
+  className,
   children,
 }: TextRevealHiddenTypes) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,7 +57,7 @@ const TextRevealHidden = ({
 
           const block = document.createElement("div");
           block.className =
-            "block-revealer absolute top-0 left-0 xl:h-[110%] xl:w-[110%] will-change-transform pointer-events-none z-1";
+            "block-revealer absolute top-0 left-0 xl:h-[110%] xl:w-[110%] will-change-transform pointer-events-none z-1 dark:bg-dark-950!";
           block.style.backgroundColor = blockColor;
           wrapper.appendChild(block);
 
@@ -114,7 +115,7 @@ const TextRevealHidden = ({
   );
   return (
     <>
-      <div ref={containerRef} data-copy-wrapper="true">
+      <div ref={containerRef} data-copy-wrapper="true" className={className}>
         {children}
       </div>
     </>

@@ -1,4 +1,4 @@
-import { createRootRoute, useRouterState } from "@tanstack/react-router";
+import { createRootRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { NuqsAdapter } from "nuqs/adapters/tanstack-router";
 import applyGoogleTranslateDOMPatch from "@/lib/applyGoogleTranslateDOMPatch";
@@ -10,14 +10,14 @@ const queryClient = new QueryClient();
 // Import Static Layout Components
 import QueryLoadingBoundary from "@/components/query-loading-boundary";
 import SmoothScroller from "@/components/smooth-scroller";
-import NotFound from "@/components/not-found";
-import ErrorComponentTheme from "@/components/error-component";
-import Navigation from "@/components/navigation";
 import Footer from "@/layouts/footer";
 import Partners from "@/layouts/partners";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
+import ErrorComponentTheme from "@/layouts/error-component-theme";
+import NotFound from "@/layouts/not-found";
+import { Toaster } from "sonner";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -44,11 +44,6 @@ export const Route = createRootRoute({
 });
 
 function App({ children }: { children: React.ReactNode }) {
-  const pathname = useRouterState({
-    select: (state) => state.location.pathname,
-  });
-  const isHome = pathname === "/";
-
   useEffect(() => {
     applyGoogleTranslateDOMPatch();
   }, []);
@@ -58,10 +53,10 @@ function App({ children }: { children: React.ReactNode }) {
       <NuqsAdapter>
         <QueryLoadingBoundary>
           <SmoothScroller>
-            {!isHome && <Navigation />}
             {children}
             <Partners />
             <Footer />
+            <Toaster position="top-center" />
           </SmoothScroller>
         </QueryLoadingBoundary>
       </NuqsAdapter>

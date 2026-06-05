@@ -1,17 +1,15 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import request from "graphql-request";
-import type { FieldsActivityTypes, PionnersTypes,  } from "@/types/theme-types";
-import { FIELDS_ACTIVITY, PARTNERS, PIONEERS } from "@/graphql/theme-graphql";
-import type { PartnersTypes } from "@/types/theme-types";
+import type { FieldsActivityTypes, PartnersTypes, PionnersTypes, PressSectionTypes,  } from "@/types/theme-types";
+import { FIELDS_ACTIVITY, PARTNERS, PIONEERS, PRESS_TEXT_SECTION } from "@/graphql/theme-graphql";
+import { GRAPHQL_URL } from "@/lib/graphql";
 
-const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL;
-
-//Fetch da Seção de Pioneiros - Página Inicial
+// Fetch da Seção de Pioneiros - Página Inicial
 const fetchPioneers = async () => {
   return await request<PionnersTypes>(GRAPHQL_URL, PIONEERS);
 };
 
-//Query da Seção de Pioneiros - Página Inicial
+// Consulta da Seção de Pioneiros - Página Inicial
 export const useQueryPioneers = () => {
   return useSuspenseQuery<PionnersTypes>({
     queryKey: ["pioneers"],
@@ -19,12 +17,12 @@ export const useQueryPioneers = () => {
   });
 };
 
-//Fetch da Seção Áreas de Atuação - Página Inicial
+// Fetch da Seção Áreas de Atuação - Página Inicial
 const fetchFieldsActivityOfProject = async () => {
   return await request<FieldsActivityTypes>(GRAPHQL_URL, FIELDS_ACTIVITY);
 };
 
-//Query da Seção Áreas de Atuação - Página Inicial
+// Consulta da Seção Áreas de Atuação - Página Inicial
 export const useQueryFieldsActivityOfProject = () => {
   return useSuspenseQuery<FieldsActivityTypes>({
     queryKey: ["fields-activity-project"],
@@ -32,15 +30,28 @@ export const useQueryFieldsActivityOfProject = () => {
   });
 };
 
-//Fetch da Seção Áreas de Atuação - Layout
+// Fetch da Seção Áreas de Atuação - Página Inicial
 const fetchPartners = async () => {
   return await request<PartnersTypes>(GRAPHQL_URL, PARTNERS);
 };
 
-//Query da Seção Áreas de Atuação - Layout
+// Consulta da Seção Áreas de Atuação - Página Inicial
 export const useQueryPartners = () => {
   return useSuspenseQuery<PartnersTypes>({
     queryKey: ["partners"],
     queryFn: () => fetchPartners(),
+  });
+};
+
+// Fetch da Seção de Publicações na Mídia - Página Inicial
+const fetchPressReleaseSection = async () => {
+  return await request<PressSectionTypes>(GRAPHQL_URL, PRESS_TEXT_SECTION);
+};
+
+// Consulta da Seção de Publicações na Mídia - Página Inicial
+export const useQueryPressReleaseSection = () => {
+  return useSuspenseQuery<PressSectionTypes>({
+    queryKey: ["press-release-section"],
+    queryFn: () => fetchPressReleaseSection(),
   });
 };

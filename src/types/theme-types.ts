@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-//Tipagem da consulta dos pioneiros
+// Tipagem da consulta dos pioneiros
 export const PioneerSchema = z.object({
   image: z.object({
     node: z.object({
@@ -32,7 +32,7 @@ export const PioneersSchema = z.object({
 
 export type PionnersTypes = z.infer<typeof PioneersSchema>;
 
-//Tipagem da consulta para área de atuação
+// Tipagem da consulta para área de atuação
 export const FieldActivitySchema = z.object({
   fieldActivity: z.string(),
   fieldActivityDescription: z.string(),
@@ -68,9 +68,14 @@ export const FieldsActivityCardItemSchema = z.object({
 
 export type FieldsActivityCardItem = z.infer<typeof FieldsActivityCardItemSchema>;
 
-//Tipagem da linha de parceiros realizadores do projeto
+// Tipagem da linha de parceiros realizadores do projeto
 export const PartnerSchema = z.object({
   image: z.object({
+    node: z.object({
+      guid: z.string(),
+    }),
+  }),
+  negativeImage: z.object({
     node: z.object({
       guid: z.string(),
     }),
@@ -90,3 +95,14 @@ export const PartnersSchema = z.object({
 });
 
 export type PartnersTypes = z.infer<typeof PartnersSchema>;
+
+// Tipagem da Descrição da Seção Na Mídia
+export const PressSectionSchema = z.object({
+  project: z.object({
+    theming: z.object({
+      pressDescription: z.string(),
+    }),
+  }),
+});
+
+export type PressSectionTypes = z.infer<typeof PressSectionSchema>;

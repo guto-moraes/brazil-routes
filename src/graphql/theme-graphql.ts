@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-//Consulta da Seção de Pioneiros - Página Inicial
+// Consulta da Seção de Pioneiros - Página Inicial
 export const PIONEERS = gql`
   query Pioneers {
     project {
@@ -28,7 +28,7 @@ export const PIONEERS = gql`
   }
 `;
 
-//Consulta da Seção Áreas de Atuação - Página Inicial
+// Consulta da Seção Áreas de Atuação - Página Inicial
 export const FIELDS_ACTIVITY = gql`
   query ProjectActivities {
     project {
@@ -49,7 +49,7 @@ export const FIELDS_ACTIVITY = gql`
   }
 `;
 
-//Consulta da Seção Realizadores - Leiaute Padrão
+// Consulta da Seção Realizadores - Leiaute Padrão
 export const PARTNERS = gql`
   query Partners {
     project {
@@ -60,9 +60,25 @@ export const PARTNERS = gql`
               guid
             }
           }
+          negativeImage {
+            node {
+              guid
+            }
+          }
           name
           url
         }
+      }
+    }
+  }
+`;
+
+// Consulta da Seção Na Mídia
+export const PRESS_TEXT_SECTION = gql`
+  query PressDescription {
+    project {
+      theming {
+        pressDescription
       }
     }
   }

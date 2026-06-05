@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
+import Header from "@/layouts/header";
+import Main from "@/layouts/main";
 import AboveTheFold from "@/layouts/partials/almanaque/above-the-fold";
-import AlmanaqueChapters from "@/components/perspective-sections";
-import PioneersTribute from "@/layouts/partials/home/pioneers-tribute";
+import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
+import AlmanaqueChapters from "@/layouts/partials/almanaque/almanaque-chapters";
+import PioneersTribute from "@/layouts/partials/almanaque/pioneers-tribute";
 
 export const Route = createFileRoute("/almanaque-digital/")({
   head: () => ({
@@ -23,17 +25,29 @@ export const Route = createFileRoute("/almanaque-digital/")({
       },
     ],
   }),
+  loader: () => ({
+    crumb: "Almanaque Digital",
+  }),
   component: Almanaque,
 });
 
 function Almanaque() {
-  const { data } = useQueryAlmanaquePage("almanaque-digital");
+  const { data } = useQueryAlmanaquePage();
 
   return (
     <>
-      <AboveTheFold content={data.page.content} link={data.page.almanaque.link.url} />
-      <AlmanaqueChapters />
-      <PioneersTribute />
+      <Header className="shadow-md" />
+      <Main className="min-h-auto p-0! overflow-hidden">
+        <AboveTheFold
+          fullTitle={data.page.title}
+          content={data.page.content}
+          almanaqueImageSrc={data.page.featuredImage.node.sourceUrl}
+          almanaqueButtonTextDownload="Faça o download agora!"
+          almanaqueDownloadLink={data.page.almanaque.almanaqueDownload.almanaqueLink}
+        />
+        <AlmanaqueChapters />
+        <PioneersTribute />
+      </Main>
     </>
   );
 }

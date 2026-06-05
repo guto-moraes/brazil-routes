@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-//GraphQl Query para pegar uma página baseada no slug
+// GraphQl Query para pegar uma página baseada no slug
 export const PAGE = gql`
   query Page($slug: ID!) {
     page(id: $slug, idType: URI) {
@@ -10,25 +10,13 @@ export const PAGE = gql`
   }
 `;
 
-//GraphQl Query para pegar uma página baseada no slug
-export const CHAPTER_PAGE = gql`
-  query ChapterPage($slug: ID!) {
-    page(id: $slug, idType: URI) {
-      title(format: RENDERED)
-      content(format: RENDERED)
-      chaptersCustom {
-        firstPartTitle
-        secondPartTitle
-        subtitle
-      }
-    }
-  }
-`;
-
-//GraphQl Query para todos os posts publicados nas categorias Agenda e Blog
+// GraphQl Query para todos os posts publicados nas categorias Agenda e Blog
 export const BLOG = gql`
-  query Blog {
-    posts(where: { categoryName: "agenda, blog" }) {
+  query Blog($per_page: Int, $offset: Int){
+    posts(where: { 
+      categoryName: "agenda, blog",
+      offsetPagination: { size: $per_page, offset: $offset }
+    }) {
       pageInfo {
         offsetPagination {
           hasMore
@@ -66,7 +54,7 @@ export const BLOG = gql`
         }
         title(format: RENDERED)
         excerpt(format: RENDERED)
-        link
+        uri
         slug
       }
     }
@@ -99,10 +87,13 @@ export const SINGLE_BLOG = gql`
   }
 `;
 
-//Query para todos os posts publicados na categoria Agenda
-export const CALENDAR = gql`
-  query Calendar {
-    posts(where: { categoryName: "agenda" }) {
+// Query para todos os posts publicados na categoria Agenda
+export const APPOINTMENT = gql`
+  query Appointment($per_page: Int, $offset: Int){
+    posts(where: { 
+      categoryName: "agenda",
+      offsetPagination: { size: $per_page, offset: $offset }
+    }) {
       pageInfo {
         offsetPagination {
           hasMore
@@ -124,7 +115,7 @@ export const CALENDAR = gql`
             name
           }
         }
-        agenda {
+        appointment {
           eventDate
           eventPlace
         }
@@ -135,13 +126,13 @@ export const CALENDAR = gql`
         }
         title(format: RENDERED)
         content(format: RENDERED)
-        link
+        uri
       }
     }
   }
 `;
 
-//Query para a página Vá Além
+// Query para a página Vá Além
 export const GO_FURTHER = gql`
   query GoFurhter {
     nodeByUri(uri: "almanaque-digital/va-alem") {
@@ -162,7 +153,7 @@ export const GO_FURTHER = gql`
   }
 `;
 
-//Query para a página inicial do Teste de Conhecimento
+// Query para a página inicial do Teste de Conhecimento
 export const QUIZ_HOME = gql`
   query Quiz($slug: ID!) {
     page(id: $slug, idType: URI) {
@@ -182,6 +173,33 @@ export const QUIZ_HOME = gql`
           }
           title
           message
+        }
+      }
+    }
+  }
+`;
+
+// Query para a página do Impacto Social
+export const SOCIAL_IMPACT = gql`
+  query SocialImpact {
+    page(id: "impacto-social", idType: URI) {
+      title(format: RENDERED)
+      content(format: RENDERED)
+      socialImpact {
+        stats {
+          amount
+          label
+          description
+        }
+        testimonials {
+          name
+          role
+          text
+          image {
+            node {
+              sourceUrl
+            }
+          }
         }
       }
     }

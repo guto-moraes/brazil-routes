@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-//Consulta para exibição da localidades no Mapa Interativo
+// Consulta para exibição da localidades no Mapa Interativo
 export const INTERACTIVE_MAP = gql`
   query InteractiveMap {
     locations {
@@ -33,7 +33,7 @@ export const INTERACTIVE_MAP_LOCATION = gql`
   }
 `;
 
-//Consulta para exibiçao dos termos do Glossário
+// Consulta para exibiçao dos termos do Glossário
 export const GLOSSARY = gql`
   query Glossary {
     glossarios(where: { orderby: { field: TITLE, order: ASC } }) {
@@ -46,7 +46,7 @@ export const GLOSSARY = gql`
   }
 `;
 
-//Query da Linha do Tempo
+// Query da Linha do Tempo
 export const TIMELINE = gql`
   query Timeline {
     timelines(where: { orderby: { field: TITLE, order: ASC } }) {
@@ -101,7 +101,7 @@ export const TIMELINE = gql`
   }
 `;
 
-//Query da Equipe do Projeto
+// Query da Equipe do Projeto
 export const TEAM = gql`
   query Team {
     equipes(where: { orderby: { field: DATE, order: ASC } }) {
@@ -127,7 +127,7 @@ export const TEAM = gql`
   }
 `;
 
-//Query das Questões do Teste de Conhecimento
+// Query das Questões do Teste de Conhecimento
 export const QUIZ_QUESTIONS = gql`
   query QuizQuestions {
     questions {
@@ -140,6 +140,25 @@ export const QUIZ_QUESTIONS = gql`
           }
           correctAnswer
           answerExplain
+        }
+      }
+    }
+  }
+`;
+
+// Query para listar todas as publicações nas mídias
+export const PRESS_RELEASES = gql`
+  query Press {
+    releases {
+      nodes {
+        title
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        newsLink {
+          url
         }
       }
     }

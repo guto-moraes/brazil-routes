@@ -1,7 +1,8 @@
-import { Icon, type LatLngTuple } from "leaflet";
+import { Icon } from "leaflet";
+import type { LatLngTuple } from "leaflet";
 import * as z from "zod";
 
-//Tipagem da consulta de localidades do mapa interativo
+// Tipagem da consulta de localidades do mapa interativo
 export const LocationSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -28,7 +29,7 @@ export const InteractiveMapSchema = z.object({
 
 export type InteractiveMapTypes = z.infer<typeof InteractiveMapSchema>;
 
-//Tipagem da consulta de informações de uma localidade no mapa interativo
+// Tipagem da consulta de informações de uma localidade no mapa interativo
 export const InterctiveMapLocationSchema = z.object({
   location: z.object({
     id: z.string(),
@@ -39,7 +40,7 @@ export const InterctiveMapLocationSchema = z.object({
 
 export type InteractiveMapLocationTypes = z.infer<typeof InterctiveMapLocationSchema>;
 
-//Tipagem dos marcadores do mapa
+// Tipagem dos marcadores do mapa
 export const MarkersSchema = z.object({
   locations: z.array(LocationSchema),
   show: z.boolean(),
@@ -57,7 +58,7 @@ export type MarkersTypes = z.infer<typeof MarkersSchema>;
 
 export type MarkersMapTypes = MarkersTypes & { setLocation: React.Dispatch<React.SetStateAction<LatLngTuple>> };
 
-//Tipagem dos termos do Glossário
+// Tipagem dos termos do Glossário
 export const GlossaryTermSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -74,7 +75,7 @@ export const GlossarySchema = z.object({
 
 export type GlossaryTypes = z.infer<typeof GlossarySchema>;
 
-//Tipagem da Linha do tempo
+// Tipagem da Linha do tempo
 export const FirstAndSecondTimelineColumnsSchema = z.object({
   tagText: z.string(),
   heading: z.string(),
@@ -124,7 +125,7 @@ export const TimelineSchema = z.object({
 
 export type TimelineTypes = z.infer<typeof TimelineSchema>;
 
-//Tipagem das Questões do Teste de Conhecimento
+// Tipagem das Questões do Teste de Conhecimento
 export const QuizQuestionAnswerSchema = z.object({
   answer: z.string(),
 });
@@ -148,3 +149,26 @@ export const QuizQuestionsSchema = z.object({
 });
 
 export type QuizQuestionsTypes = z.infer<typeof QuizQuestionsSchema>;
+
+// Tipagem da Publicações nas Mídias
+export const PressSchema = z.object({
+  title: z.string(),
+  featuredImage: z.object({
+    node: z.object({
+      sourceUrl: z.string(),
+    }),
+  }),
+  newsLink: z.object({
+    url: z.string(),
+  }),
+});
+
+export type PressTypes = z.infer<typeof PressSchema>;
+
+export const PressReleasesSchema = z.object({
+  releases: z.object({
+    nodes: z.array(PressSchema),
+  }),
+});
+
+export type PressReleasesTypes = z.infer<typeof PressReleasesSchema>;

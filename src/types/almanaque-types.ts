@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-//Tipagem da consulta da apresentação do Almanaque
+// Tipagem da consulta da apresentação do Almanaque
 export const AlmanaquePresentationSchema = z.object({
   project: z.object({
     theming: z.object({
@@ -26,16 +26,25 @@ export const AlmanaquePresentationSchema = z.object({
 
 export type AlmanaquePresentationTypes = z.infer<typeof AlmanaquePresentationSchema>;
 
-//Tipagem da consulta de uma página
+// Tipagem da consulta de uma página
 export const AlmanaquePageSchema = z.object({
   page: z.object({
     title: z.string(),
     content: z.string(),
+    featuredImage: z.object({
+      node: z.object({
+        sourceUrl: z.string(),
+      }),
+    }),
     almanaque: z.object({
-      link: z.object({
-        title: z.string(),
-        url: z.string(),
-        target: z.string(),
+      almanaqueDownload: z.object({
+        text: z.string(),
+        almanaqueLink: z.string(),
+        image: z.object({
+          node: z.object({
+            sourceUrl: z.string(),
+          })
+        }),
       }),
     }),
   }),
@@ -43,7 +52,7 @@ export const AlmanaquePageSchema = z.object({
 
 export type AlmanaquePageTypes = z.infer<typeof AlmanaquePageSchema>;
 
-//Tipagem para consultas da apresentação Almanaque
+// Tipagem para consultas da apresentação Almanaque
 export const AlmanaqueChapterSchema = z.object({
   tag: z.string(),
   title: z.string(),
@@ -55,7 +64,7 @@ export const AlmanaqueChapterSchema = z.object({
   }),
   link: z.object({
     url: z.string(),
-  })
+  }),
 });
 
 export type AlmanaqueChapterTypes = z.infer<typeof AlmanaqueChapterSchema>;
@@ -69,3 +78,17 @@ export const AlmanaqueChaptersSchema = z.object({
 });
 
 export type AlmanaqueChaptersTypes = z.infer<typeof AlmanaqueChaptersSchema>;
+
+// Tipagem da consulta dos capítulos do Alamanque
+export const ChapterPageSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+    chaptersCustom: z.object({
+      title: z.string(),
+      subtitle: z.string(),
+    }),
+  }),
+});
+
+export type ChapterPageTypes = z.infer<typeof ChapterPageSchema>;

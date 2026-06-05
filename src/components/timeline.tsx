@@ -7,13 +7,17 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
 import { cn } from "@/lib/utils";
-import TimelineSlide from "@/components/timeline-slide";
+import TimelineItem from "@/components/timeline-item";
+import { Button } from "./ui/button";
+import { useLayoutEffect } from "@tanstack/react-router";
 
 gsap.registerPlugin(Observer, ScrollToPlugin, ScrollTrigger);
 
 const Timeline = () => {
   const scopeRef = useRef<HTMLElement | null>(null);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1930);
+  const viewportWidth = window.innerWidth;
   const min = 1930;
   const max = 1967;
   const skipInterval = 1;
@@ -23,7 +27,39 @@ const Timeline = () => {
     if (year) {
       setCurrentSlide(year);
     }
+    if (isOpenMenu) {
+      setIsOpenMenu(false);
+    }
   };
+
+  const handleTimelineDropMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
+
+  useLayoutEffect(() => {
+    const trigger = document.querySelector<HTMLElement>("#timeline");
+    const elementToFix = document.querySelector<HTMLElement>(".timeline-nav");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Element is visible in viewport, lock it to the bottom
+            elementToFix!.classList.add("fixed");
+          } else {
+            // Element is out of view, return it to normal flow
+            elementToFix!.classList.remove("fixed");
+          }
+        });
+      },
+      {
+        root: null, // Defaults to the browser viewport
+        threshold: 0.1, // Triggers as soon as 10% of the target is visible
+      },
+    );
+
+    observer.observe(trigger!);
+  });
 
   useGSAP(
     () => {
@@ -36,7 +72,7 @@ const Timeline = () => {
       if (timelineWrapper && timelineContainer) {
         let tween: gsap.core.Tween | undefined = undefined;
 
-        /* Main navigation */
+        /* Timeline navigation */
         anchors.forEach((anchor) => {
           anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -52,7 +88,7 @@ const Timeline = () => {
 
             let y: number = targetElem as unknown as number;
 
-            if (targetElem && timelineContainer!.isSameNode(targetElem.parentElement)) {
+            if (timelineContainer.isSameNode(targetElem.parentElement)) {
               const totalScroll: number = (tween.scrollTrigger?.end ?? 0) - (tween.scrollTrigger?.start ?? 0);
 
               const slideCountMinusOne: number = slides.length - 1;
@@ -83,11 +119,11 @@ const Timeline = () => {
               inertia: false,
               duration: { min: 0.1, max: 0.1 },
             },
-            end: () => "+=" + (timelineContainer!.offsetWidth - innerWidth),
+            end: () => "+=" + (timelineContainer.offsetWidth - innerWidth),
           },
         });
 
-        //Viewport slide observer
+        // Viewport slide observer
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -95,12 +131,12 @@ const Timeline = () => {
                 const element = entry.target;
                 // Get element id in viewport
                 const elementId = element.getAttribute("id")?.split("-")[1];
-                //Set year of current slide
+                // Set year of current slide
                 setCurrentSlide(Number(elementId));
               }
             });
           },
-          { threshold: 0.5 }, //Slide percentage to get id
+          { threshold: 0.5 }, // Slide percentage to get id
         );
 
         slides.forEach((section) => observer.observe(section));
@@ -116,7 +152,6 @@ const Timeline = () => {
           if (currentSlide >= 1930 && currentSlide < 1967) {
             setCurrentSlide(currentSlide + 1);
           }
-          console.log("Oi")
         },
         onUp: () => {
           if (currentSlide > 1930 && currentSlide <= 1967) {
@@ -147,32 +182,58 @@ const Timeline = () => {
   return (
     <section id="timeline" ref={scopeRef}>
       <div id="timeline-container" className="relative h-full xl:h-svh flex overflow-hidden" style={{ width: "500%" }}>
-        <TimelineSlide />
-        <div className="hidden xl:block absolute bottom-0 left-0 h-16 w-full bg-gray-800">
+        <TimelineItem />
+        <div className="absolute bottom-0 left-0 h-16 w-full">
           <nav
-            className="h-full w-full max-w-svw bg-gray-900 text-white flex flex-col justify-center items-center gap-x-3 px-8"
+            className={cn(
+                "timeline-nav bottom relative  bg-gray-800 dark:bg-dark-900 text-white h-full w-full",
+                "max-w-svw flex flex-col justify-center items-center gap-x-3 px-8"
+            )}
             role="navigation"
           >
-            <hr className="bg-none border-chocolate-300 w-[99%] mx-auto" />
-            <span className="text-bone-200 flex w-full items-center justify-between gap-1 px-2.5 text-xs font-medium">
+            <Button
+              className={cn(
+                "lg:hidden rounded-xs bg-darkgreen-400 dark:bg-dark-contrast-100 hover:bg-darkgreen-600",
+                "dark:hover:bg-dark-contrast-100/80 text-xl text-white dark:text-dark-950 hover:text-white",
+                "dark:hover:text-dark-950 font-bold lg:h-6 py-1 lg:hidden transition-colors duration-500 cursor-pointer",
+              )}
+              onClick={handleTimelineDropMenu}
+            >
+              {currentSlide}
+            </Button>
+            <hr className="hidden lg:block bg-none border-chocolate-300 dark:border-dark-contrast-100 w-[99%] mx-auto" />
+            <ul
+              className={cn(
+                "text-bone-200 w-full flex flex-col lg:flex-row items-center justify-between",
+                "gap-1 px-2.5 text-xs font-medium transition-transform duration-300",
+                "max-lg:h-full max-lg:bg-white max-lg:text-bone-700 max-lg:text-base max-lg:absolute max-lg:bottom-16.5", // Dispositivos menores do que 1024px
+                "max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:h-60 max-lg:max-h-60 max-lg:p-6 max-lg:shadow-md max-lg:w-48",
+                "max-lg:rounded-2xl max-lg:origin-bottom max-lg:overflow-y-scroll max-lg:scrollbar-thin max-lg:scrollbar-thumb-tan-200",
+                "max-lg:[&::-webkit-scrollbar-thumb]:bg-gray-600 max-lg:hover:[&::-webkit-scrollbar-thumb]:bg-gray-500",
+                "max-lg:dark:bg-dark-900 max-lg:dark:text-dark-200",
+                isOpenMenu || viewportWidth >= 1024 ? "scale-100" : "scale-0",
+              )}
+            >
               {years.map((year) => (
-                <span key={year} className="flex w-0 flex-col items-center justify-center gap-2">
-                  <span className={cn("bg-chocolate-300 h-1.5 w-px", year % skipInterval !== 0 && "h-1")} />
+                <li key={year} className="flex w-0 flex-col items-center justify-center gap-2">
+                  <span
+                    className={cn("hidden lg:block bg-chocolate-300 dark:bg-dark-contrast-100 h-1.5 w-px", year % skipInterval !== 0 && "h-1")}
+                  />
                   <a
                     href={`#slide-${year}`}
                     className={cn(
                       "timeline-anchor hover:scale-150 transition-all duration-400 cursor-pointer",
                       year % skipInterval !== 0 && "opacity-0",
-                      year === currentSlide && "text-white font-bold scale-200",
+                      year === currentSlide && "text-bone-800 max-lg:dark:text-dark-contrast-100 lg:text-chocolate-300 dark:lg:text-dark-contrast-100 font-bold scale-200",
                     )}
                     data-slide={year}
                     onClick={() => handleUpdateCurrentSlide(year)}
                   >
                     {year}
                   </a>
-                </span>
+                </li>
               ))}
-            </span>
+            </ul>
           </nav>
         </div>
       </div>

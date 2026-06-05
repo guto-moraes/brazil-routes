@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-//Tipagem da consulta de uma página
+// Tipagem da consulta de uma página
 export const PageSchema = z.object({
   page: z.object({
     title: z.string(),
@@ -10,22 +10,7 @@ export const PageSchema = z.object({
 
 export type PageTypes = z.infer<typeof PageSchema>;
 
-//Tipagem da consulta dos capítulos do Alamanque
-export const ChapterPageSchema = z.object({
-  page: z.object({
-    title: z.string(),
-    content: z.string(),
-    chaptersCustom: z.object({
-      firstPartTitle: z.string(),
-      secondPartTitle: z.string(),
-      subtitle: z.string(),
-    }),
-  }),
-});
-
-export type ChapterPageTypes = z.infer<typeof ChapterPageSchema>;
-
-//Tipagem da consulta de todas as postagens no Blog de Notícias
+// Tipagem da consulta de todas as postagens no Blog de Notícias
 export const BlogItemsSchema = z.object({
   id: z.string(),
   modified: z.string(),
@@ -60,7 +45,7 @@ export const BlogItemsSchema = z.object({
   }),
   title: z.string(),
   excerpt: z.string(),
-  link: z.string(),
+  uri: z.string(),
   slug: z.string(),
 });
 
@@ -81,7 +66,7 @@ export const BlogSchema = z.object({
 
 export type BlogTypes = z.infer<typeof BlogSchema>;
 
-//Tipagem da consulta de uma única notícias
+// Tipagem da consulta de uma única notícias
 export const BlogItemSchema = z.object({
   post: z.object({
     id: z.string(),
@@ -110,8 +95,8 @@ export const BlogItemSchema = z.object({
 
 export type BlogItemTypes = z.infer<typeof BlogItemSchema>;
 
-//Tipagem da Query para consultas das postagens na categoria Agenda
-export const CalendarItemSchema = z.object({
+// Tipagem da Query para consultas das postagens na categoria Agenda
+export const AppointmentItemSchema = z.object({
   id: z.string(),
   modified: z.string(),
   date: z.string(),
@@ -134,7 +119,7 @@ export const CalendarItemSchema = z.object({
       }),
     ),
   }),
-  agenda: z.object({
+  appointment: z.object({
     eventDate: z.string(),
     eventPlace: z.string(),
   }),
@@ -145,13 +130,13 @@ export const CalendarItemSchema = z.object({
   }),
   title: z.string(),
   excerpt: z.string(),
-  link: z.string(),
+  uri: z.string(),
   slug: z.string(),
 });
 
-export type CalendarItemTypes = z.infer<typeof CalendarItemSchema>;
+export type AppointmentItemTypes = z.infer<typeof AppointmentItemSchema>;
 
-export const CalendarSchema = z.object({
+export const AppointmentSchema = z.object({
   posts: z.object({
     pageInfo: z.object({
       offsetPagination: z.object({
@@ -160,13 +145,13 @@ export const CalendarSchema = z.object({
         total: z.number(),
       }),
     }),
-    nodes: z.array(CalendarItemSchema),
+    nodes: z.array(AppointmentItemSchema),
   }),
 });
 
-export type CalendarTypes = z.infer<typeof CalendarSchema>;
+export type AppointmentTypes = z.infer<typeof AppointmentSchema>;
 
-//Tipagem da página Vá Além
+// Tipagem da página Vá Além
 export const GoFurtherSchema = z.object({
   subject: z.string(),
   name: z.string(),
@@ -189,7 +174,7 @@ export const GoFurtherPageSchema = z.object({
 
 export type GoFurtherPageTypes = z.infer<typeof GoFurtherPageSchema>;
 
-//Tipagem da página do Teste de Conhecimento
+// Tipagem da página do Teste de Conhecimento
 export const QuizResultNoticeSchema = z.object({
   imgSrc: z.object({
     node: z.object({
@@ -217,7 +202,7 @@ export const QuizHomeSchema = z.object({
 
 export type QuizHomeTypes = z.infer<typeof QuizHomeSchema>;
 
-//Tipagem do Formulário de Contato
+// Tipagem do Formulário de Contato
 export const FormSelectSchema = z.string().or(z.literal(""));
 
 export type FormSelectType = z.infer<typeof FormSelectSchema>;
@@ -240,3 +225,38 @@ export const FormFieldsSchema = z.object({
 });
 
 export type FormTypes = z.infer<typeof FormFieldsSchema>;
+
+// Tipagem da Página de Impacto Social
+export const StatsSchema = z.object({
+  amount: z.string(),
+  label: z.string(),
+  description: z.string(),
+});
+
+export type StatsTypes = z.infer<typeof StatsSchema>;
+
+export const TestimonialsSchema = z.object({
+  name: z.string(),
+  role: z.string(),
+  text: z.string(),
+  image: z.object({
+    node: z.object({
+      sourceUrl: z.string(),
+    }),
+  }),
+});
+
+export type TestimonialsTypes = z.infer<typeof TestimonialsSchema>;
+
+export const SocialImpactSchema = z.object({
+  page: z.object({
+    title: z.string(),
+    content: z.string(),
+    socialImpact: z.object({
+      stats: z.array(StatsSchema),
+      testimonials: z.array(TestimonialsSchema),
+    }),
+  }),
+});
+
+export type SocialImpactTypes = z.infer<typeof SocialImpactSchema>;

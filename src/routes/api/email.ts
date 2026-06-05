@@ -1,14 +1,13 @@
 "use server";
 
 import { createFileRoute } from "@tanstack/react-router";
-import { Resend } from "resend";
-
-const RESENDE_API_KEY = import.meta.env.VITE_RESEND_APY_KEY;
-const resend = new Resend(RESENDE_API_KEY);
+import { resend } from "@/lib/resend";
 
 export const Route = createFileRoute("/api/email")({
-  server: {
-    handlers: {
+  beforeLoad: () => {},
+  component: () => null,
+  async loader() {
+    return {
       POST: async (request: Request) => {
         try {
           const body = await request.json();
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/api/email")({
 
           const data = await resend.emails.send({
             from: `Nome: ${fullName} <${email}>`,
-            to: "joseaugusto.teo@gmail.com",
+            to: "luiz.nogueira@ifmt.edu.br",
             subject: `${subject} - Contado via Caminhos do Brasil Central`,
             html: `<p>Nome: ${fullName}</p><p>/e-mail: ${email}</p><p>Mensagem: ${message}</p>`,
           });
@@ -26,6 +25,6 @@ export const Route = createFileRoute("/api/email")({
           return Response.json({ error }, { status: 500 });
         }
       },
-    },
+    };
   },
 });

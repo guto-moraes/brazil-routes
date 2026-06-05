@@ -1,15 +1,7 @@
 import { cn } from "@/lib/utils";
 
-const Main = ({
-  className,
-  ref,
-  children,
-}: {
-  className?: string;
-  ref?: React.RefObject<HTMLElement | null>;
-  children: React.ReactNode;
-}) => {
-  return <main className={cn("h-full w-full [view-transition-name:main-content]", className)} ref={ref}>{children}</main>;
+const Main = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+  return <main className={cn("bg-bege-50 dark:bg-dark-950 min-h-[calc(100svh-80px)] xl:min-h-[calc(100svh-104px)] w-full p-4", className)}>{children}</main>;
 };
 
 export default Main;
