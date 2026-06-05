@@ -16,6 +16,8 @@ const HeroIntro = () => {
 
   useGSAP(
     () => {
+      gsap.registerPlugin(SplitText);
+      
       const approaches = document.querySelectorAll<HTMLDivElement>(".approaches .approach");
       const video = document.querySelector<HTMLDivElement>(".video-container");
 

@@ -1,4 +1,5 @@
-import { cn, dateFormat } from "@/lib/utils";
+import { dateFormat } from "@/lib/client-utils";
+import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import z from "zod";
 

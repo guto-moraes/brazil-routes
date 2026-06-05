@@ -1,5 +1,6 @@
-import { cn, sanitizedData, stripHtml } from "@/lib/utils";
 import { useQueryTimeline } from "@/hooks/queries/custom-posts-queries";
+import { cn, sanitizedData } from "@/lib/utils";
+import { stripHtml } from "@/lib/client-utils";
 
 const ColHeader = ({ color, className, text }: { color: string; className: string; text: string }) => (
   <div className={cn("text-sm font-medium uppercase flex items-center px-8", className)} style={{ color }}>

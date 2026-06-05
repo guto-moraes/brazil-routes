@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryState } from "nuqs";
 import { useQueryAppointment } from "@/hooks/queries/pages-and-posts-queries";
-import { calendarDateFormat, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { calendarDateFormat } from "@/lib/client-utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { Title } from "@/components/title";
