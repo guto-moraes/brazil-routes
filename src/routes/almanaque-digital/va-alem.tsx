@@ -40,6 +40,7 @@ function GoFurther() {
       <Main className="min-h-[calc(100svh-280px)] xl:min-h-[100svh-384px] py-8 md:py-16">
         <div className="max-w-6xl mx-auto">
           <Title
+            title={page.title}
             className={cn(
               "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
               "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",

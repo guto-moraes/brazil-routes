@@ -30,6 +30,7 @@ function Page() {
       <Main className="py-8 md:py-16">
         <section className="max-w-4xl mx-auto">
           <Title
+            title={data.page.title}
             className={cn(
               "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
               "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",

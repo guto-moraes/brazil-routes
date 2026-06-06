@@ -127,6 +127,7 @@ function ContactUs() {
       <Header className="shadow-md" />
       <Main className="flex flex-col items-start py-8 md:py-16">
         <Title
+          title={`${data.page.title} | Projeto Caminhos do Brasil Central`}
           className={cn(
             "container mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700",
             "dark:text-dark-contrast-100 font-cabinet font-black pb-8 sm:pb-16",

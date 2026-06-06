@@ -53,10 +53,13 @@ function Blog() {
     <>
       <Header className="shadow-md" />
       <Main className="py-8 md:py-16">
-        <Title className={cn(
-          "container max-w-6xl mx-auto text-[clamp(1.85rem,4vw,4.25rem)] text-tan-700 font-inter",
-          "sm:font-cabinet font-black dark:text-dark-contrast-100 pb-8 sm:pb-16"
-        )}>
+        <Title 
+          title="Fique Por Dentro | Projeto Caminhos do Brasil Central"
+          className={cn(
+            "container max-w-6xl mx-auto text-[clamp(1.85rem,4vw,4.25rem)] text-tan-700 font-inter",
+            "sm:font-cabinet font-black dark:text-dark-contrast-100 pb-8 sm:pb-16"
+          )}
+        >
           Fique <span className="text-tan-400 dark:text-dark-contrast-50">por Dentro</span>
         </Title>
         <div className="container max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">

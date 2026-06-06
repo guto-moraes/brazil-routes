@@ -198,6 +198,7 @@ function ProjectTeam() {
       <Main className="bg-tan-100 dark:bg-dark-700 p-0!">
         <section className="bg-bone-200 dark:bg-dark-900 min-h-[calc(100svh-280px)] lg:min-h-[100svh-104px] w-full py-8 md:py-16 px-4">
           <Title
+            title={`${data.page.title} | Projeto Caminhos do Brasil Central`}
             className={cn(
               "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
               "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",

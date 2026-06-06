@@ -5,7 +5,7 @@ import Main from "@/layouts/main";
 import Article from "@/components/article";
 import ChapterTitle from "@/components/chapter-title";
 import AlmanaqueDownload from "@/components/almanaque-download";
-
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/almanaque-digital/capitulo-{-$number}")({
   component: AlmanaqueChapter,
@@ -14,6 +14,12 @@ export const Route = createFileRoute("/almanaque-digital/capitulo-{-$number}")({
 function AlmanaqueChapter() {
   const { pathname } = useLocation();
   const { data } = useQueryChapterPage(pathname);
+
+  useEffect(() => {
+    if (data) {
+      document.title = `${data.page.title} Almanaque Digital  | Projeto Caminhos do Brasil Central`;
+    }
+  }, [data]);
 
   return (
     <>

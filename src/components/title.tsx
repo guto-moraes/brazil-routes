@@ -1,6 +1,15 @@
+"use client";
+
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-const Title = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+const Title = ({ title, className, children }: { title?: string; className?: string; children: React.ReactNode }) => {
+  
+  useEffect(() => {
+    if(title)
+    document.title = `${title} | Projeto Caminhos do Brasil Central`;
+  }, [title]);
+
   return (
     <h1
       className={cn(
@@ -13,7 +22,13 @@ const Title = ({ className, children }: { className?: string; children: React.Re
   );
 };
 
-const TitleH2 = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+const TitleH2 = ({ title, className, children }: { title?: string; className?: string; children: React.ReactNode }) => {
+
+  useEffect(() => {
+    if(title)
+    document.title = `${title} | Projeto Caminhos do Brasil Central`;
+  }, [title]);
+  
   return (
     <h2
       className={cn(

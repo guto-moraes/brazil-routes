@@ -4,6 +4,7 @@ import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import TextRevealHidden from "@/components/text-reveal-hidden";
 import Timeline from "@/components/timeline";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/almanaque-digital/linha-do-tempo")({
   head: () => ({
@@ -49,6 +50,10 @@ const TimelineBoxResume = ({ period, text }: { period: string; text: string }) =
 );
 
 function TimelinePage() {
+  useEffect(() => {
+    document.title = "Linha do Tempo | Projeto Caminhos do Brasil Central";
+  });
+
   return (
     <>
       <Header className="shadow-md" />

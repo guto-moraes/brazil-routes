@@ -3,6 +3,7 @@ import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import Map from "@/components/map";
 import { useQueryInteractiveMap } from "@/hooks/queries/custom-posts-queries";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
   head: () => ({
@@ -29,6 +30,10 @@ export const Route = createFileRoute("/almanaque-digital/mapa-interativo")({
 function InteractiveMap() {
   const { data } = useQueryInteractiveMap();
   const { nodes: locations } = data.locations;
+
+    useEffect(() => {
+      document.title = "Mapa Interativo | Projeto Caminhos do Brasil Central";
+    });
 
   return (
     <>

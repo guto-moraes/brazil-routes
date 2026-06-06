@@ -4,6 +4,7 @@ import CitiesMarquee from "@/layouts/partials/home/cities-marquee";
 import FlipCardScrollReveal from "@/layouts/partials/home/flip-cards-scroll";
 import ActivityAreas from "@/layouts/partials/home/activity-areas";
 import Press from "@/layouts/partials/home/press";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
     head: () => ({
@@ -27,6 +28,11 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+
+  useEffect(() => {
+    document.title = "Página Inicial | Projeto Caminhos do Brasil Central";
+  });
+
   return (
     <>
       <HeroIntro />

@@ -28,16 +28,16 @@
 - [X] Ampliar imagens quando uma postagem ou página possuir um galeria
 - [X] Padronizar SEO das páginas
 - [X] Melhorar a navegação da Linha do Tempo pelas setas do teclado
+- [X] Finalizar a página de acessibilidade
+- [X] Remover pastas com imagens não utilizadas
+- [X] Mudar url do GraphQl no arquivo .env
+- [X] Mudar `autoCodeSpliting` para `false`
+- [X] Compilar a versão do tema para WordPress
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
-- [ ] Finalizar a página de acessibilidade
 - [ ] Transição de páginas
 - [ ] Fechar menu quando clicar fora da área
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
-- [ ] Remover pasts com imagens não utilizadas
 - [ ] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Descomentar código de envio do formulário de contato
 - [ ] Inserir comentários nos códigos
-- [ ] Mudar url do GraphQl no arquivo .env
-- [ ] Mudar `autoCodeSpliting` para `false`
-- [ ] Compilar a versão do tema para WordPress

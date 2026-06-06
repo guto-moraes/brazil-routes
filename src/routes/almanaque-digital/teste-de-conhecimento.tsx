@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { cn, sanitizedData } from "@/lib/utils";
 import { useQueryQuizHome } from "@/hooks/queries/pages-and-posts-queries";
 import Header from "@/layouts/header";
@@ -30,7 +31,13 @@ export const Route = createFileRoute("/almanaque-digital/teste-de-conhecimento")
 
 function QuizzPage() {
   const { data } = useQueryQuizHome("/almanaque-digital/teste-de-conhecimento");
-  
+
+  useEffect(() => {
+    if (data) {
+      document.title = `${data.page.title} | Projeto Caminhos do Brasil Central`;
+    }
+  }, [data]);
+
   return (
     <>
       <Header className="shadow-md" />

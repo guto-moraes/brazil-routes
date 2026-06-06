@@ -8,6 +8,7 @@ import { ScrollRotateContent, ScrollRotateSection, ScrollRotateWrapper } from "@
 import { SocialImpactStatsCard } from "@/components/social-impact-stats-card";
 import Testimonials from "@/components/testimonials";
 import Article from "@/components/article";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/impacto-social")({
   head: () => ({
@@ -35,6 +36,11 @@ export const Route = createFileRoute("/impacto-social")({
 
 function SocialImpact() {
   const { page } = useQuerySocialImpactPage().data;
+
+  useEffect(() => {
+    if(page)
+    document.title = `${page.title} | Projeto Caminhos do Brasil Central`;
+  }, [page]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { useQueryAlmanaquePage } from "@/hooks/queries/almanaque-queries";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
@@ -33,6 +34,10 @@ export const Route = createFileRoute("/almanaque-digital/")({
 
 function Almanaque() {
   const { data } = useQueryAlmanaquePage();
+
+  useEffect(() => {
+    document.title = `${data.page.title} | Projeto Caminhos do Brasil Central`;
+  }, [data]);
 
   return (
     <>
