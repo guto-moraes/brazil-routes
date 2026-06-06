@@ -15,9 +15,9 @@ import Partners from "@/layouts/partners";
 
 // Import Custom CSS
 import appCss from "../index.css?url";
-import ErrorComponentTheme from "@/layouts/error-component-theme";
 import NotFound from "@/layouts/not-found";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,7 +39,6 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: App,
-  errorComponent: ({ error, reset }) => <ErrorComponentTheme error={error} reset={reset} />,
   notFoundComponent: () => <NotFound />,
 });
 
@@ -51,14 +50,16 @@ function App({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <NuqsAdapter>
-        <QueryLoadingBoundary>
-          <SmoothScroller>
-            {children}
-            <Partners />
-            <Footer />
-            <Toaster position="top-center" />
-          </SmoothScroller>
-        </QueryLoadingBoundary>
+        <SmoothScroller>
+          <ThemeProvider defaultTheme="light" storageKey="theme">
+            <QueryLoadingBoundary>
+              {children}
+              <Partners />
+              <Footer />
+              <Toaster position="top-center" />
+            </QueryLoadingBoundary>
+          </ThemeProvider>
+        </SmoothScroller>
       </NuqsAdapter>
     </QueryClientProvider>
   );

@@ -2,6 +2,7 @@ import { useQueryMenu } from "@/hooks/queries/menus";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import builtby from "@/assets/images/builtby.webp";
+import { Link } from "@tanstack/react-router";
 
 const copyDate = () => {
   const currentYear = new Date().getFullYear();
@@ -24,8 +25,8 @@ const Footer = () => {
             <ul className="flex items-center justify-start gap-3">
               {footerLinks.nodes.map(({ uri, label }, index) => (
                 <li key={index}>
-                  <a
-                    href={uri}
+                  <Link
+                    to={uri}
                     className={cn(
                       "text-xs text-chocolate-300 dark:text-dark-contrast-100 hover:text-chocolate-400",
                       "dark:hover:text-dark-contrast-100 font-semibold uppercase transition-colors duration-300"
@@ -33,7 +34,7 @@ const Footer = () => {
                     title={label}
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

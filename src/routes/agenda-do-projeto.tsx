@@ -1,3 +1,5 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryState } from "nuqs";
 import { useQueryAppointment } from "@/hooks/queries/pages-and-posts-queries";

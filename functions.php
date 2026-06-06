@@ -23,7 +23,7 @@ if (!isset($content_width)) {
 }
 
 
-if (!function_exists('br_setup')):
+if (!function_exists('cbr_setup')):
 
 	/**
 	 * Sets up theme defaults and registers support for various
@@ -33,14 +33,14 @@ if (!function_exists('br_setup')):
 	 * hook, which runs before the init hook. The init hook is too late
 	 * for some features, such as indicating support post thumbnails.
 	 */
-	function br_setup()
+	function cbr_setup()
 	{
 
 		/**
 		 * Make theme available for translation.
 		 * Translations can be placed in the /languages/ directory.
 		 */
-		load_theme_textdomain('brazil-routes', get_template_directory() . '/languages');
+		load_theme_textdomain('central-brazil-routes', get_template_directory() . '/languages');
 
 		// Add support for block styles.
 		add_theme_support('wp-block-styles');
@@ -81,60 +81,39 @@ if (!function_exists('br_setup')):
 		add_theme_support('post-formats', array('aside', 'gallery', 'quote', 'image', 'video'));
 	}
 endif; // br_setup
-add_action('after_setup_theme', 'br_setup');
+add_action('after_setup_theme', 'cbr_setup');
 
 
 //Add ReactJs Components Support
-function br__theme()
+function cbr_theme()
 {
 
-	wp_set_script_translations('cbc', 'cbc');
+	wp_set_script_translations('cbr', 'central-brazil-routes');
 
 	wp_enqueue_script_module(
-		"cbc",
-		get_stylesheet_directory_uri() . "/dist/assets/index.js",
+		"cbr",
+		get_stylesheet_directory_uri() . "/dist/assets/main.js",
 		array(),
 		wp_get_theme()->get("Version"),
 		array()
 	);
-
+	
 	wp_enqueue_style(
-		"react-leaflet",
-		"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
-		"1.9.4",
-		null
-	);
-
-	wp_enqueue_style(
-		"react-leaflet-marker-cluster",
-		"https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css",
-		"1.5.3",
-		null
-	);
-
-	wp_enqueue_style(
-		"react-leaflet-marker-cluster-default",
-		"https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css",
-		"1.5.3",
-		null
-	);
-
-	wp_enqueue_style(
-		"br",
+		"cbr-theme",
 		get_stylesheet_directory_uri() . '/dist/assets/index.css',
 		wp_get_theme()->get("Version"), //time()
 		true
 	);
 
 	wp_enqueue_style(
-		"br",
+		"cbr",
 		get_stylesheet_uri(),
 		wp_get_theme()->get("Version"), //time()
 		true
 	);
 
 }
-add_action('wp_enqueue_scripts', 'br__theme');
+add_action('wp_enqueue_scripts', 'cbr_theme');
 
 // Allow SVG
 add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {

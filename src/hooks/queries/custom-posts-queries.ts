@@ -45,7 +45,6 @@ export const useQueryInteractiveMapLocation = (id: string) => {
   return useQuery<InteractiveMapLocationTypes>({
     queryKey: ["interactive-map-location", id],
     queryFn: () => fetchInteractiveMapLocation(id),
-    // staleTime: 60 * 5 * 1000,
   });
 };
 
@@ -59,7 +58,6 @@ export const useQueryGlossary = () => {
   return useSuspenseQuery<GlossaryTypes>({
     queryKey: ["glossary"],
     queryFn: () => fetchGlossary(),
-    staleTime: 60 * 5 * 1000,
   });
 };
 
@@ -84,7 +82,7 @@ const fetchTeam = async () => {
 // Query da Equipe do Projeto
 export const useQueryTeam = () => {
   return useSuspenseQuery<TeamTypes>({
-    queryKey: ["glossary"],
+    queryKey: ["team"],
     queryFn: () => fetchTeam(),
     staleTime: 60 * 5 * 1000,
   });

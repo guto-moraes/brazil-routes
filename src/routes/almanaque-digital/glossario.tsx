@@ -1,3 +1,5 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryGlossary } from "@/hooks/queries/custom-posts-queries";
 import { cn, sanitizedData } from "@/lib/utils";
@@ -5,7 +7,6 @@ import Header from "@/layouts/header";
 import { Title } from "@/components/title";
 import Main from "@/layouts/main";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import Footer from "@/layouts/footer";
 
 export const Route = createFileRoute("/almanaque-digital/glossario")({
   loader: () => ({
@@ -32,8 +33,7 @@ export const Route = createFileRoute("/almanaque-digital/glossario")({
 });
 
 function Glossary() {
-  const { data } = useQueryGlossary();
-  const { glossarios: terms } = data;
+  const { glossarios: terms } = useQueryGlossary().data || {};
 
   return (
     <>
@@ -45,7 +45,7 @@ function Glossary() {
           </Title>
           <section className="glossary-container">
             <Accordion type="single" className="space-y-2 border-0">
-              {terms.nodes.map((term) => (
+              {terms && terms.nodes.map((term) => (
                 <AccordionItem
                   key={term.id}
                   value={term.id}
@@ -70,7 +70,6 @@ function Glossary() {
           </section>
         </div>
       </Main>
-      <Footer />
     </>
   );
 }

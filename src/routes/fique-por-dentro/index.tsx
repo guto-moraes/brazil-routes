@@ -1,3 +1,5 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useQueryState } from "nuqs";
 import { useQueryBlogNews } from "@/hooks/queries/pages-and-posts-queries";
@@ -40,7 +42,6 @@ const LIMIT = 8; // Número de posts por requisição
 function Blog() {
   const [offset, setOffset] = useQueryState("offset");
   const { posts } = useQueryBlogNews(LIMIT, offset ? Number(offset) : 0).data || {};
-  console.log(posts)
 
   const pages = posts ? Math.ceil(posts.pageInfo.offsetPagination.total / LIMIT) : 0; // Check if total pages is bigger that LIMIT
 

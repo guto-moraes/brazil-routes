@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import type { PaginationTypes } from "@/types/components-types";
 

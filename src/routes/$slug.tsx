@@ -1,5 +1,4 @@
-import { createFileRoute, useLocation } from "@tanstack/react-router";
-import { useQueryPage } from "@/hooks/queries/pages-and-posts-queries";
+import { createFileRoute } from "@tanstack/react-router";
 import request from "graphql-request";
 import { GRAPHQL_URL } from "@/lib/graphql";
 import { PAGE } from "@/graphql/pages-and-posts-graphql";
@@ -14,18 +13,15 @@ import NotFound from "@/layouts/not-found";
 export const Route = createFileRoute("/$slug")({
   loader: async ({ params }) => {
     const currentSlug = params.slug;
-    const title = await request<PageTypes>(GRAPHQL_URL, PAGE, { slug: currentSlug });
-    return {
-      crumb: title.page.title,
-    };
+    const data = await request<PageTypes>(GRAPHQL_URL, PAGE, { slug: currentSlug });
+    return data
   },
   component: Page,
   errorComponent: () => <NotFound />,
 });
 
 function Page() {
-  const { pathname } = useLocation();
-  const { data } = useQueryPage(pathname);
+  const data = Route.useLoaderData()
   const title = pageTitle(data.page.title);
 
   return (

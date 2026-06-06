@@ -1,79 +1,73 @@
-"use client";
+import { createContext, useContext, useEffect, useState } from "react"
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { ScriptOnce } from "@tanstack/react-router";
-
-type Theme = "dark" | "light" | "system";
+type Theme = "dark" | "light" | "system"
 
 type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-};
+  children: React.ReactNode
+  defaultTheme?: Theme
+  storageKey?: string
+}
 
 type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
-
-function getThemeScript(storageKey: string, defaultTheme: Theme) {
-  const key = JSON.stringify(storageKey);
-  const fallback = JSON.stringify(defaultTheme);
-
-  return `(function(){try{var t=localStorage.getItem(${key});if(t!=='light'&&t!=='dark'&&t!=='system'){t=${fallback}}var d=matchMedia('(prefers-color-scheme: dark)').matches;var r=t==='system'?(d?'dark':'light'):t;var e=document.documentElement;e.classList.add(r);e.style.colorScheme=r}catch(e){}})();`;
+  theme: Theme
+  setTheme: (theme: Theme) => void
 }
 
-const ThemeProviderContext = createContext<ThemeProviderState>({
+const initialState: ThemeProviderState = {
   theme: "light",
-  setTheme: () => {},
-});
-
-function applyTheme(theme: Theme) {
-  const root = document.documentElement;
-  root.classList.remove("light", "dark");
-
-  const resolved =
-    theme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : theme;
-
-  root.classList.add(resolved);
-  root.style.colorScheme = resolved;
+  setTheme: () => null,
 }
 
-export function ThemeProvider({ children, defaultTheme = "system", storageKey = "theme" }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === "undefined") return defaultTheme;
-    const stored = localStorage.getItem(storageKey);
-    return stored === "light" || stored === "dark" || stored === "system" ? stored : defaultTheme;
-  });
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "light",
+  storageKey = "theme",
+  ...props
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  )
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    const root = window.document.documentElement
 
-  useEffect(() => {
-    if (theme !== "system") return;
+    root.classList.remove("light", "dark")
 
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => applyTheme("system");
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
-  }, [theme]);
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light"
 
-  const setTheme = (next: Theme) => {
-    localStorage.setItem(storageKey, next);
-    setThemeState(next);
-  };
+      root.classList.add(systemTheme)
+      return
+    }
+
+    root.classList.add(theme)
+  }, [theme])
+
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      localStorage.setItem(storageKey, theme)
+      setTheme(theme)
+    },
+  }
 
   return (
-    <ThemeProviderContext value={{ theme, setTheme }}>
-      <ScriptOnce>{getThemeScript(storageKey, defaultTheme)}</ScriptOnce>
+    <ThemeProviderContext.Provider {...props} value={value}>
       {children}
-    </ThemeProviderContext>
-  );
+    </ThemeProviderContext.Provider>
+  )
 }
 
-export function useTheme() {
-  const context = useContext(ThemeProviderContext);
-  if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider");
-  return context;
+export const useTheme = () => {
+  const context = useContext(ThemeProviderContext)
+
+  if (context === undefined)
+    throw new Error("useTheme must be used within a ThemeProvider")
+
+  return context
 }
