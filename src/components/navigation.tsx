@@ -19,9 +19,9 @@ import {
   NavigationContainer,
   NavigationWrapper,
 } from "./navigation/menu";
-import { ExternalLink, RouterLink } from "./navigation/links";
-import ThemeModeToggle from "./theme-mode-toggle";
+import { ExternalLink, RouterLink } from "./navigation/links"
 import { cn } from "@/lib/utils";
+import AccessibiltiyDropdownButton from "./accessibility-dropdown-button";
 
 const Navigation = ({ isHome }: { isHome?: boolean }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -129,7 +129,7 @@ const Navigation = ({ isHome }: { isHome?: boolean }) => {
           <Brand isOpen={isActiveMenu} isHome={isHome} />
           <div className="flex items-center gap-x-1.5">
             <ButtonToggleMenu isHome={isHome} isOpen={isActiveMenu} handleToggle={handleToggleMenu} />
-            <ThemeModeToggle isHome={isHome} isActiveMenu={isActiveMenu} />
+            <AccessibiltiyDropdownButton isHome={isHome} isActiveMenu={isActiveMenu} />
           </div>
         </NavigationContainer>
       </NavigationWrapper>

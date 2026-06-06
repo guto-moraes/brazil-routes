@@ -44,7 +44,7 @@ function Post() {
 
   return (
     <>
-      <Header />
+      <Header className="shadow-md" />
       <Main className=" py-8 md:py-16">
         <section className="max-w-4xl mx-auto">
           <TitleH2 className="text-[clamp(1.85rem,4vw,2.75rem)] dark:text-dark-contrast-100 leading-10">{data?.post.title}</TitleH2>

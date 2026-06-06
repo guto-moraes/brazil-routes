@@ -26,6 +26,9 @@ export const figure = `
     [&_.wp-block-image]:h-52 md:[&_.wp-block-image]:h-auto md:[&_.wp-block-image]:max-h-150   
     [&_.wp-block-image]:max-w-svw [&_.wp-block-image]:rounded-2xl [&_.wp-block-image]:overflow-hidden
     max-[500px]:[&_.wp-block-image]:max-w-full [&_.wp-block-image]:relative 
+    [&_figure.aligncenter]:w-max! [&_figure.aligncenter]:mx-auto!
+    [&_figure.alignleft]:w-max! [&_figure.aligncenter]:ms-auto!
+    [&_figure.alignright]:w-max! [&_figure.aligncenter]:me-auto!
 `;
 
 // Elemento img

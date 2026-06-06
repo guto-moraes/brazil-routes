@@ -195,7 +195,6 @@ function ProjectTeam() {
   return (
     <>
       <Header className="shadow-md z-20" />
-
       <Main className="bg-tan-100 dark:bg-dark-700 p-0!">
         <section className="bg-bone-200 dark:bg-dark-900 min-h-[calc(100svh-280px)] lg:min-h-[100svh-104px] w-full py-8 md:py-16 px-4">
           <Title
