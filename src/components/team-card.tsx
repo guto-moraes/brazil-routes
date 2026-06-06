@@ -6,6 +6,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -107,6 +108,7 @@ const TeamCard = ({ imageSrc, memberName, role, synopsis, socials, handleToggle 
                 <DialogDescription className="shadow-md w-max mx-auto rounded-3xl h-80 overflow-hidden">
                   <img className="h-full w-full object-scale-down" src={imageSrc} alt={memberName} />
                 </DialogDescription>
+                <DialogTitle className="text-xl text-bone-500 dark:text-dark-contrast-100 text-center font-bold uppercase tracking-tight pt-4">{memberName}</DialogTitle>
               </DialogHeader>
               <ScrollArea className="h-72 w-full rounded-md!">
                 <Article content={synopsis} className="bg-tan-100 dark:bg-dark-800 p-4 shadow-inner" />
@@ -122,7 +124,7 @@ const TeamCard = ({ imageSrc, memberName, role, synopsis, socials, handleToggle 
                     onClick={handleToggle}
                     className={cn(
                       "bg-darkgreen-400 hover:bg-darkgreen-500 text-white hover:text-white dark:hover:border-dark-contrast-100",
-                      "dark:bg-dark-contrast-100 dark:hover:bg-dark-contrast-100/80 dark:text-white hover:text-white",
+                      "dark:bg-dark-contrast-100 dark:hover:bg-dark-contrast-100/80 dark:text-dark-950 dark:hover:text-dark-950",
                       "transition-colors duration-300 cursor-pointer"
                     )}
                   >
