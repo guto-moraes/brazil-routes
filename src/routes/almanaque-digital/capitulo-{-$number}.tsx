@@ -17,7 +17,7 @@ function AlmanaqueChapter() {
 
   useEffect(() => {
     if (data) {
-      document.title = `${data.page.title} Almanaque Digital  | Projeto Caminhos do Brasil Central`;
+      document.title = `${data.page.title} | Almanaque Digital  | Projeto Caminhos do Brasil Central`;
     }
   }, [data]);
 

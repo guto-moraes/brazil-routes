@@ -9,6 +9,7 @@ import Main from "@/layouts/main";
 import { Title } from "@/components/title";
 import Article from "@/components/article";
 import NotFound from "@/layouts/not-found";
+import HotkeysList from "@/components/hotkeys-table";
 
 export const Route = createFileRoute("/$slug")({
   loader: async ({ params }) => {
@@ -40,6 +41,11 @@ function Page() {
             <span className="text-tan-400 dark:text-dark-contrast-50">{title.secondPart}</span>
           </Title>
           <Article content={data.page.content} />
+          {
+            data.page.title === "Acessibilidade" && (
+              <HotkeysList />
+            )
+          }
         </section>
       </Main>
     </>

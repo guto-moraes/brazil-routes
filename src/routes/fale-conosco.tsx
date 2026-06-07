@@ -169,11 +169,12 @@ function ContactUs() {
                     value={state.value}
                     onValueChange={(value) => handleChange(value)}
                     defaultValue="Selecione um assunto"
-                    required
+                    required                    
                   >
                     <SelectTrigger
                       className="h-12! w-full bg-white dark:bg-dark-800 dark:border-dark-400 transition-colors duration-300 cursor-pointer"
                       onBlur={handleBlur}
+                      autoFocus
                     >
                       <SelectValue placeholder="Selecione um assunto" />
                     </SelectTrigger>

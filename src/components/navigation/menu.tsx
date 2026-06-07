@@ -64,7 +64,7 @@ const MenuGroup = ({ className, children }: { className?: string; children: Reac
 );
 
 const MenuList = ({ className, children }: { className?: string; children: React.ReactNode }) => (
-  <ul role="menu" className={cn("flex flex-col gap-y-0.5 md:gap-y-1.5", className)}>
+  <ul role="menu" aria-labelledby="menu-list" className={cn("flex flex-col gap-y-0.5 md:gap-y-1.5", className)}>
     {children}
   </ul>
 );

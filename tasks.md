@@ -33,11 +33,11 @@
 - [X] Mudar url do GraphQl no arquivo .env
 - [X] Mudar `autoCodeSpliting` para `false`
 - [X] Compilar a versão do tema para WordPress
+- [X] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
 - [ ] Transição de páginas
 - [ ] Fechar menu quando clicar fora da área
 - [ ] Incluir a opção de áudio descrição (_text to speech_)
-- [ ] Remover importação dos arquivos CSS do Leaflet Map
 - [ ] Descomentar código de envio do formulário de contato
 - [ ] Inserir comentários nos códigos

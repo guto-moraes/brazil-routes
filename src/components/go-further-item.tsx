@@ -28,7 +28,7 @@ const GoFurtherItem = ({
         </h2>
       </div>
       <div className="flex-3 h-full flex justify-center items-center">
-        <p className="text-sm font-light group-hover:text-white dark:group-hover:text-dark-950 md:px-6">{description}</p>
+        <p className="text-sm font-light group-hover:text-white dark:text-white dark:group-hover:text-dark-950 md:px-6">{description}</p>
       </div>
       <div className="flex-1 h-full flex justify-center items-center">
         <a

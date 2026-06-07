@@ -74,7 +74,7 @@ function TimelinePage() {
             </h1>
             <div className="mt-6 lg:md:mt-0 lg:md:absolute lg:md:bottom-2.5 lg:right-0 w-full max-w-80 md:hidden lg:block lg:max-w-120">
               <TextRevealHidden animateOnScroll={false} blockColor="#fbf6ea">
-                <p className="resume min-[350px]:text-lg xl:text-3xl text-right text-balance">
+                <p className="resume min-[350px]:text-lg xl:text-3xl text-right dark:text-white text-balance">
                   Uma breve cronologia da história da colonização não indígena na região do Vale do Araguaia (1943-1967)
                 </p>
               </TextRevealHidden>
