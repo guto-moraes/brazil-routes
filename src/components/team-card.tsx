@@ -78,6 +78,8 @@ const TeamCard = ({ imageSrc, memberName, role, synopsis, socials, handleToggle 
               ) : (
                 <li className="w-full flex gap-x-1" key={idx}>
                   <CopyButton
+                    toastTitle="E-mail copiado com sucesso!"
+                    toastMessage={`O e-mail de ${memberName} foi copiado para área de transferência.`}
                     title={`Copiar endereço de e-mail de ${memberName}`}
                     value={social.socialUrl}
                     className="gap-0 shadow-none border-none bg-transparent hover:bg-transparent p-0! cursor-pointer group"
