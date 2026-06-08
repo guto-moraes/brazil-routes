@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FontSizeController } from "./font-size-controls";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
-import { ScrollArea } from "./ui/scroll-area";
+import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import HotkeysList from "./hotkeys-table";
 
 const AccessibiltiyDropdownButton = ({ isHome = false, isActiveMenu }: { isHome?: boolean; isActiveMenu: boolean }) => {
@@ -38,7 +38,7 @@ const AccessibiltiyDropdownButton = ({ isHome = false, isActiveMenu }: { isHome?
 
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu >
         <DropdownMenuTrigger asChild className="border-none p-0">
           <Button
             variant="outline"
@@ -63,7 +63,7 @@ const AccessibiltiyDropdownButton = ({ isHome = false, isActiveMenu }: { isHome?
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="w-44 flex items-center flex-col gap-x-1 border-none bg-tan-100 dark:bg-dark-900"
+          className="relative w-46 flex items-center flex-col gap-x-1 border-none bg-tan-100 dark:bg-dark-900"
         >
           <DropdownMenuItem
             className={cn(
@@ -75,34 +75,40 @@ const AccessibiltiyDropdownButton = ({ isHome = false, isActiveMenu }: { isHome?
             <Contrast
               className={cn(
                 "size-5 fill-tan-100 dark:fill-dark-950 group-hover:fill-tan-200 dark:group-hover:fill-dark-800",
-                "stroke-2 stroke-dark-950 dark:stroke-dark-contrast-100",
+                "stroke-2 stroke-bone-500 dark:stroke-dark-contrast-100",
               )}
             />{" "}
             <span className="text-xs font-medium text-dark-950 dark:text-white">
-              {theme === "dark" || theme === "system" ? "Sem Contraste" : "Contraste"}
+              {theme === "dark" || theme === "system" ? "Remover Contraste" : "Aplicar Contraste"}
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className={cn(
-              "w-full flex justify-start items-center gap-6 text-dark-950 dark:text-dark-contrast-100 font-medium",
+              "h-8 w-full flex justify-start items-center gap-6 text-dark-950 dark:text-dark-contrast-100 font-medium",
               "hover:bg-tan-200! dark:hover:bg-dark-800! transition-colors duration-300 cursor-pointer group",
             )}
           >
             <ALargeSmall
               className={cn(
                 "size-5 fill-tan-100 dark:fill-dark-950 group-hover:fill-tan-200 dark:group-hover:fill-dark-800",
-                "stroke-2 stroke-dark-950 dark:stroke-dark-contrast-100",
+                "stroke-2 stroke-bone-500 dark:stroke-dark-contrast-100",
               )}
             />{" "}
             <FontSizeController />
+            <div className={cn(
+              "rounded bg-bone-400 dark:bg-slate-950 text-xs text-white text-center w-full py-0.5 px-1 scale-0",
+              "group-hover:scale-100 group-hover:absolute group-hover:left-0 group-hover:-top-5 transition-all duration-300"
+            )}>
+              Mudar o tamanho da fonte
+            </div>
           </DropdownMenuItem>
           <DropdownMenuItem
             className={cn(
-              "w-full flex justify-start items-center gap-6 text-dark-950 dark:text-dark-contrast-100 font-medium",
+              "h-8 w-full flex justify-start items-center gap-6 text-dark-950 dark:text-dark-contrast-100 font-medium",
               "hover:bg-tan-200! dark:hover:bg-dark-800! transition-colors duration-300 cursor-pointer group",
             )}
           >
-            <Keyboard className="size-5 stroke-dark-950 dark:stroke-dark-contrast-100" />{" "}
+            <Keyboard className="size-5 stroke-bone-500 dark:stroke-dark-contrast-100" />{" "}
             <Button
               className="bg-transparent! text-xs text-dark-950 dark:text-white p-0! cursor-pointer"
               onClick={handleHotkeysList}
@@ -114,17 +120,27 @@ const AccessibiltiyDropdownButton = ({ isHome = false, isActiveMenu }: { isHome?
       </DropdownMenu>
 
       <Dialog open={hotkeysList} onOpenChange={handleHotkeysList}>
-        <DialogContent className={cn(
-          "bg-bone-100 dark:bg-dark-900 dark:[&_button]:data-[slot=dialog-close]:bg-dark-contrast-100!",
-          "dark:[&_button]:rounded-full dark:[&_button]:data-[slot=dialog-close]:text-dark-950",
-          "dark:[&_button]:p-1 dark:[&_button]:cursor-pointer lg:min-w-140!"
-        )}>
+        <DialogContent
+          className={cn(
+            "bg-bone-100 dark:bg-dark-900 dark:[&_button]:data-[slot=dialog-close]:bg-dark-contrast-100!",
+            "dark:[&_button]:rounded-full dark:[&_button]:data-[slot=dialog-close]:text-dark-950",
+            "dark:[&_button]:p-1 dark:[&_button]:cursor-pointer lg:min-w-140!",
+          )}
+        >
           <DialogHeader>
             <DialogTitle className="text-bone-700 dark:text-white">Lista de Teclas de Atalho</DialogTitle>
-            <DialogDescription className="mt-2">Navegue entre as páginas do site utilizando as seguintes combinações de teclas:</DialogDescription>
+            <DialogDescription className="mt-2">
+              Navegue entre as páginas do site utilizando as seguintes combinações de teclas:
+            </DialogDescription>
           </DialogHeader>
           <ScrollArea className="h-72 sm:h-96">
             <HotkeysList />
+            <ScrollBar
+              className={cn(
+                "bg-tan-200! **:data-[slot=scroll-area-thumb]:bg-bone-400! **:data-[slot=scroll-area-thumb]:z-2",
+                "dark:bg-dark-600! dark:**:data-[slot=scroll-area-thumb]:bg-dark-contrast-100!",
+              )}
+            />
           </ScrollArea>
         </DialogContent>
       </Dialog>

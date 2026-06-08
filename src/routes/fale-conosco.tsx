@@ -266,8 +266,9 @@ function ContactUs() {
                   type="submit"
                   disabled={!canSubmit || isSubmitting}
                   className={cn(
-                    "h-12 uppercase bg-mate-600/60 dark:bg-dark-700 hover:bg-mate-700/60 dark:hover:bg-dark-contrast-100 dark:text-white",
-                    "dark:hover:text-dark-contrast-950 transition-colors duration-500 cursor-pointer disabled:cursor-not-allowed",
+                    "h-12 uppercase bg-mate-600/60 dark:bg-dark-contrast-100 hover:bg-mate-700/60",
+                    "dark:hover:bg-dark-700 dark:text-dark-contrast-950 dark:hover:text-white",
+                    "transition-colors duration-500 cursor-pointer disabled:cursor-not-allowed",
                   )}
                 >
                   {isSubmitting ? "Enviando mensagem" : "Enviar Mensagem"}

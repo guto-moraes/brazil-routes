@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useCanGoBack, useRouter } from "@tanstack/react-router";
 import { useQueryNews } from "@/hooks/queries/pages-and-posts-queries";
 import request from "graphql-request";
 import { GRAPHQL_URL } from "@/lib/graphql";
@@ -8,6 +8,8 @@ import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import { TitleH2 } from "@/components/title";
 import Article from "@/components/article";
+import { ArrowLeft } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
   head: () => ({
@@ -41,12 +43,22 @@ export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
 function Post() {
   const { slug } = Route.useParams();
   const { data } = useQueryNews(slug ?? "");
+  const router = useRouter();
+  const canGoBack = useCanGoBack();
 
   return (
     <>
       <Header className="shadow-md" />
       <Main className=" py-8 md:py-16">
         <section className="max-w-4xl mx-auto">
+          {canGoBack ? (
+            <button className={cn(
+              "text-blue-retro-500 hover:text-bone-700/60 transition-colors duration-300 mb-4 cursor-pointer",
+              "dark:text-dark-contrast-100 dark:hover:text-dark-contrast-100/50 flex items-center gap-x-px"
+            )} onClick={() => router.history.back()}>
+              <ArrowLeft size={18} /> Voltar para a página anterior
+            </button>
+          ) : null}
           <TitleH2
             title={data?.post.title}
             className="text-[clamp(1.85rem,4vw,2.75rem)] dark:text-dark-contrast-100 leading-10"
