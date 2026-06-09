@@ -41,7 +41,7 @@ export const image = `
 export const figcaption = `
     [&_.wp-block-image_.wp-element-caption]:absolute [&_.wp-block-image_.wp-element-caption]:bottom-0
     [&_.wp-block-image_.wp-element-caption]:rounted-b-2xl max-[500px]:[&_.wp-block-image_.wp-element-caption]:text-center
-    [&_.wp-block-image_.wp-element-caption]:w-full [&_.wp-block-image_.wp-element-caption]:bg-black/
+    [&_.wp-block-image_.wp-element-caption]:w-full [&_.wp-block-image_.wp-element-caption]:bg-black/50
     [&_.wp-block-image_.wp-element-caption]:py-1 [&_.wp-block-image_.wp-element-caption]:px-3
     [&_.wp-block-image_.wp-element-caption]:text-white [&_.wp-block-image_.wp-element-caption]:text-[clamp(0.625rem,2vw,0.85rem)]
 `;

@@ -23,7 +23,7 @@ const CitiesMarquee = () => {
           </div>
           <div className="flex flex-col">
             <h2 className="text-6xl font-black tracking-tight">Indiana</h2>
-            <h2 className="text-6xl">nápolis</h2>
+            <h2 className="text-6xl">nópolis</h2>
           </div>
           <div className="flex flex-col items-center">
             <h2 className="text-6xl tracking-tight">Rio das</h2>
@@ -55,7 +55,7 @@ const CitiesMarquee = () => {
           </div>
           <div className="flex flex-col">
             <h2 className="text-6xl font-black tracking-tight">Indiana</h2>
-            <h2 className="text-6xl">nápolis</h2>
+            <h2 className="text-6xl">nópolis</h2>
           </div>
           <div className="flex flex-col items-center">
             <h2 className="text-6xl tracking-tight">Rio das</h2>
