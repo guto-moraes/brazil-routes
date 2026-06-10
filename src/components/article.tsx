@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn, sanitizedData } from "@/lib/utils";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
+// import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import {
   anchor,
   blockquote,
@@ -17,7 +17,7 @@ import {
   dark_table,
   figcaption,
   figure,
-  gallery,
+  wp_gallery,
   general,
   headingH2,
   horizontal_video,
@@ -30,26 +30,35 @@ import {
   table,
   vertical_video,
 } from "@/lib/tw-class-article";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 
 const Article = ({ className, content }: { className?: string; content: string }) => {
-  const [srcImage, setSrcImage] = useState<string | null>(null);
+  const [gallery, setGallery] = useState<string[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleCloseImage = () => {
+    setIsOpenModal(false);
+  };
 
   useEffect(() => {
     const getAllImages = document.querySelectorAll<HTMLImageElement>(".wp-block-gallery img");
 
     getAllImages.forEach((imageElement) => {
       imageElement.addEventListener("click", () => {
-        setSrcImage(imageElement.src);
         setIsOpenModal(true);
       });
     });
   });
 
-  const handleCloseImage = () => {
-    setIsOpenModal(false);
-    setSrcImage(null);
-  };
+  const galleryRef = useCallback((node: HTMLElement) => {
+    if (node !== null) {
+      const getAllImages = node.querySelectorAll<HTMLImageElement>(".wp-block-gallery img");
+      getAllImages.forEach((imageElement) => {
+        setGallery((prev) => [...prev, imageElement.src]);
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -65,7 +74,7 @@ const Article = ({ className, content }: { className?: string; content: string }
           hr,
           ol_footnotes,
           anchor,
-          gallery,
+          wp_gallery,
           vertical_video,
           horizontal_video,
           image_media_block,
@@ -84,14 +93,31 @@ const Article = ({ className, content }: { className?: string; content: string }
           className,
         )}
         dangerouslySetInnerHTML={sanitizedData(content)}
+        ref={galleryRef}
       />
-      {isOpenModal && srcImage && (
+      {isOpenModal && (
         <Dialog open={isOpenModal} onOpenChange={handleCloseImage}>
-          <DialogContent className="rounded-2xl p-2 overflow-hidden [&_button]:rounded-full [&_button]:bg-white [&_button]:cursor-pointer">
+          <DialogContent
+            className={cn(
+              "sm:max-w-155 rounded-2xl p-2 [&>button]:rounded-full [&_button]:grid [&>button]:place-content-center",
+              "[&>button]:size-7 [&>button]:bg-bege-50! [&>button]:cursor-pointer [&>button]:ring-0!",
+              "[&>button]:text-black [&_div:nth-child(2)_button]:cursor-pointer",
+            )}
+          >
             <DialogHeader className="hidden">
               <DialogTitle className="text-sm text-black/35 font-medium">Caminhos do Brasil Central</DialogTitle>
             </DialogHeader>
-            <img className="rounded-lg h-full w-full object-cover object-center" src={srcImage} />
+            <Carousel>
+              <CarouselContent>
+                {gallery.map((sourceUrl, index) => (
+                  <CarouselItem key={index}>
+                    <img src={sourceUrl} alt="Galeria" />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </DialogContent>
         </Dialog>
       )}

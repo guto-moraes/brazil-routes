@@ -67,7 +67,7 @@ export const anchor = `
 `;
 
 // Elemento figure galeria de imagens
-export const gallery = `
+export const wp_gallery = `
     [&_figure.wp-block-gallery.is-layout-flex]:grid! [&_figure.wp-block-gallery.is-layout-flex]:grid-cols-2!
     sm:[&_figure.wp-block-gallery.is-layout-flex]:grid-cols-3! [&_figure.wp-block-gallery.is-layout-flex]:gap-4!
     sm:[&_.wp-block-gallery.is-layout-flex]:gap-8! [&_.wp-block-gallery.is-layout-flex_.wp-block-image_img]:object-cover
