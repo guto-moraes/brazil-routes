@@ -340,6 +340,7 @@ html,
 body,
 #app {
   min-height: 100%;
+  overflow: hidden;
 }
 
 body {

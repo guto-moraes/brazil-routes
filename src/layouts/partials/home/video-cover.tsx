@@ -15,7 +15,7 @@ const Video = ({ className }: { className?: string }) => {
             loop
             autoPlay
             className={cn(
-                "absolute top-0 left-0 object-cover opacity-50 w-full h-full z-3"
+                "h-full w-full absolute top-0 left-0 object-cover opacity-50 z-3"
             )}
           />
         </div>

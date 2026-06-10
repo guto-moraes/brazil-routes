@@ -47,7 +47,7 @@ function Glossary() {
             Glos<span className="text-tan-300 dark:text-dark-contrast-50">sário</span>
           </Title>
           <section className="glossary-container">
-            <Accordion type="single" className="space-y-2 border-0">
+            <Accordion collapsible type="single" className="space-y-2 border-0">
               {terms &&
                 terms.nodes.map((term) => (
                   <AccordionItem

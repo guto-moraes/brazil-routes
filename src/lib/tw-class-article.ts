@@ -11,7 +11,7 @@ export const general = `
 // Elemento p
 export const paragraph = `
     [&_p]:text-[clamp(0.9rem,4vw,1.05rem)]! [&_p]:text-tan-800 sm:[&_p]:text-justify
-    [&_p]:text-pretty sm:[&_p]:indent-8 [&_p]:hyphens-auto    
+    [&_p]:text-pretty sm:[&_p]:indent-8 sm:[&_p.no-indent]:indent-0 [&_p]:hyphens-auto    
 `;
 
 // Elementos h2

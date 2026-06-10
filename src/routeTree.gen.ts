@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TesteRouteImport } from './routes/teste'
 import { Route as ImpactoSocialRouteImport } from './routes/impacto-social'
 import { Route as FaleConoscoRouteImport } from './routes/fale-conosco'
 import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
@@ -27,11 +26,6 @@ import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/alman
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
 import { Route as AlmanaqueDigitalCapituloChar123NumberChar125RouteImport } from './routes/almanaque-digital/capitulo-{-$number}'
 
-const TesteRoute = TesteRouteImport.update({
-  id: '/teste',
-  path: '/teste',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ImpactoSocialRoute = ImpactoSocialRouteImport.update({
   id: '/impacto-social',
   path: '/impacto-social',
@@ -126,7 +120,6 @@ export interface FileRoutesByFullPath {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
@@ -145,7 +138,6 @@ export interface FileRoutesByTo {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
@@ -165,7 +157,6 @@ export interface FileRoutesById {
   '/equipe-do-projeto': typeof EquipeDoProjetoRoute
   '/fale-conosco': typeof FaleConoscoRoute
   '/impacto-social': typeof ImpactoSocialRoute
-  '/teste': typeof TesteRoute
   '/almanaque-digital/capitulo-{-$number}': typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
@@ -186,7 +177,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/teste'
     | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
@@ -205,7 +195,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/teste'
     | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
@@ -224,7 +213,6 @@ export interface FileRouteTypes {
     | '/equipe-do-projeto'
     | '/fale-conosco'
     | '/impacto-social'
-    | '/teste'
     | '/almanaque-digital/capitulo-{-$number}'
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
@@ -244,7 +232,6 @@ export interface RootRouteChildren {
   EquipeDoProjetoRoute: typeof EquipeDoProjetoRoute
   FaleConoscoRoute: typeof FaleConoscoRoute
   ImpactoSocialRoute: typeof ImpactoSocialRoute
-  TesteRoute: typeof TesteRoute
   AlmanaqueDigitalCapituloChar123NumberChar125Route: typeof AlmanaqueDigitalCapituloChar123NumberChar125Route
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   AlmanaqueDigitalLinhaDoTempoRoute: typeof AlmanaqueDigitalLinhaDoTempoRoute
@@ -259,13 +246,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/teste': {
-      id: '/teste'
-      path: '/teste'
-      fullPath: '/teste'
-      preLoaderRoute: typeof TesteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/impacto-social': {
       id: '/impacto-social'
       path: '/impacto-social'
@@ -388,7 +368,6 @@ const rootRouteChildren: RootRouteChildren = {
   EquipeDoProjetoRoute: EquipeDoProjetoRoute,
   FaleConoscoRoute: FaleConoscoRoute,
   ImpactoSocialRoute: ImpactoSocialRoute,
-  TesteRoute: TesteRoute,
   AlmanaqueDigitalCapituloChar123NumberChar125Route:
     AlmanaqueDigitalCapituloChar123NumberChar125Route,
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,

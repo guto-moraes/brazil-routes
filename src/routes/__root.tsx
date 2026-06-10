@@ -18,6 +18,9 @@ import appCss from "../index.css?url";
 import NotFound from "@/layouts/not-found";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CookieProvider } from "@/contexts/useCookieContext";
+import { CookieBanner } from "@/components/cookies/banner";
+import CookieConsentBanner from "@/components/cookies/preferences";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -49,18 +52,22 @@ function App({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NuqsAdapter>
-        <SmoothScroller>
-          <ThemeProvider defaultTheme="light" storageKey="theme">
-            <QueryLoadingBoundary>
-              {children}
-              <Partners />
-              <Footer />
-              <Toaster position="top-center" />
-            </QueryLoadingBoundary>
-          </ThemeProvider>
-        </SmoothScroller>
-      </NuqsAdapter>
+      <CookieProvider>
+        <NuqsAdapter>
+          <SmoothScroller>
+            <ThemeProvider defaultTheme="light" storageKey="theme">
+              <QueryLoadingBoundary>
+                {children}
+                <Partners />
+                <Footer />
+                <Toaster position="top-center" />
+                <CookieBanner />
+                <CookieConsentBanner />
+              </QueryLoadingBoundary>
+            </ThemeProvider>
+          </SmoothScroller>
+        </NuqsAdapter>
+      </CookieProvider>
     </QueryClientProvider>
   );
 }
