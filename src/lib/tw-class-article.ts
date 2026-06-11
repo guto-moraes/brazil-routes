@@ -1,5 +1,7 @@
 /**
- * Estilização do componente Article
+ * 
+ * Estilização dos elementos HTML do componente Article
+ * 
  */
 
 // Afeta todos os elementos e o container
@@ -48,11 +50,10 @@ export const figcaption = `
 
 // Elemento blockquote
 export const blockquote = `
-    [&_.wp-block-quote]:max-w-max [&_.wp-block-quote]:mx-auto [&_.wp-block-quote_p]:text-[clamp(1.25rem,5vw,1.5rem)]
+    [&_.wp-block-quote]:max-w-max [&_.wp-block-quote]:mx-auto [&_.wp-block-quote_p]:text-[clamp(1.15rem,5vw,1.35rem)]!
     max-[500px]:[&_.wp-block-quote_p]:leading-6 [&_.wp-block-quote_p]:bg-tan-200/50 [&_.wp-block-quote_p]:py-2
-    [&_.wp-block-quote_p]:text-left [&_.wp-block-quote_p]:indent-0 [&_.wp-block-quote_p]:pr-2
-    [&_.wp-block-quote_p]:border-l-6 [&_.wp-block-quote_p]:border-mate-500 [&_.wp-block-quote_p]:pl-3
-    [&_.wp-block-quote_p]:text-[clamp(1.25rem,5vw,1.5rem)] [&_.wp-block-quote_p]:font-bold
+    [&_.wp-block-quote_p]:text-left [&_.wp-block-quote_p]:indent-0 [&_.wp-block-quote_p]:pr-2 [&_.wp-block-quote_p]:border-l-6 
+    [&_.wp-block-quote_p]:border-mate-500 [&_.wp-block-quote_p]:pl-3 [&_.wp-block-quote_p]:font-bold
 `;
 
 // Elemento hr

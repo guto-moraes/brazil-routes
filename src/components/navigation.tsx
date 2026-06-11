@@ -25,10 +25,15 @@ import AccessibiltiyDropdownButton from "./accessibility-dropdown-button";
 
 const Navigation = ({ isHome }: { isHome?: boolean }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
-  const menuWrapperRef = useRef<HTMLDivElement | null>(null);
+  const menuWrapperRef = useRef<HTMLDivElement>(null);
 
   const handleToggleMenu = () => {
-    setIsActiveMenu(!isActiveMenu);
+    if(isActiveMenu){
+      setTimeout(() => {
+        setIsActiveMenu(false)
+      },1000)
+    }
+    setIsActiveMenu(true);
   };
 
   /**

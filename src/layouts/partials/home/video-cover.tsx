@@ -5,10 +5,10 @@ const Video = ({ className }: { className?: string }) => {
   return (
     <>
       <div
-        className={cn("video-container bg-hero h-[40%] w-[62%] absolute top-1/2 left-1/2 -translate-1/2", className)}
+        className={cn("video-container max-md:hidden bg-hero h-[40%] w-[62%] absolute top-1/2 left-1/2 -translate-1/2", className)}
       >
         <div className="absolute inset-0 bg-hero bg-bege-200 dark:bg-dark-950"></div>
-        <div className="isolate w-full h-full absolute inset-0">
+        <div className="isolate w-full h-full absolute top-0 left-0">
           <video
             src={videoSrc}
             muted
@@ -19,7 +19,7 @@ const Video = ({ className }: { className?: string }) => {
             )}
           />
         </div>
-        <div className="absolute inset-0 bg-hero bg-bege-200/35 dark:bg-dark-950"></div>
+        <div className="absolute top-0 left-0 bg-hero bg-bege-200/35 dark:bg-dark-950"></div>
       </div>
     </>
   );

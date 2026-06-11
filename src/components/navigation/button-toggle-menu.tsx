@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 type ButtonToggleMenuProps = {
   isHome?: boolean;
   isOpen: boolean;
-  handleToggle: () => void;
+  handleToggle?: () => void;
 };
 
 const ButtonToggleMenu = ({ isHome, isOpen, handleToggle }: ButtonToggleMenuProps) => {
