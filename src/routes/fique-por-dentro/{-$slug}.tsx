@@ -10,6 +10,8 @@ import { TitleH2 } from "@/components/title";
 import Article from "@/components/article";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRef } from "react";
+import AudioTextReader from "@/components/text-reader";
 
 export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
   head: () => ({
@@ -41,6 +43,7 @@ export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
 });
 
 function Post() {
+  const containerRef = useRef<HTMLElement | null>(null)
   const { slug } = Route.useParams();
   const { data } = useQueryNews(slug ?? "");
   const router = useRouter();
@@ -50,7 +53,7 @@ function Post() {
     <>
       <Header className="shadow-md" />
       <Main className=" py-8 md:py-16">
-        <section className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {canGoBack ? (
             <button className={cn(
               "text-blue-retro-500 hover:text-bone-700/60 transition-colors duration-300 mb-4 cursor-pointer",
@@ -59,14 +62,17 @@ function Post() {
               <ArrowLeft size={18} /> Voltar para a página anterior
             </button>
           ) : null}
-          <TitleH2
-            title={data?.post.title}
-            className="text-[clamp(1.85rem,4vw,2.75rem)] dark:text-dark-contrast-100 leading-10"
-          >
-            {data?.post.title}
-          </TitleH2>
-          {data && <Article className="mt-8" content={data.post.content} />}
-        </section>
+          <AudioTextReader className="mb-8" contentRef={containerRef} />
+          <section ref={containerRef}>
+            <TitleH2
+              title={data?.post.title}
+              className="text-[clamp(1.85rem,4vw,2.75rem)] dark:text-dark-contrast-100 leading-10"
+            >
+              {data?.post.title}
+            </TitleH2>
+            {data && <Article className="mt-8" content={data.post.content} />}
+          </section>
+        </div>
       </Main>
     </>
   );

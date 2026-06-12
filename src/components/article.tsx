@@ -115,8 +115,8 @@ const Article = ({ className, content }: { className?: string; content: string }
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="dark:bg-white! dark:text-dark-950!" />
+              <CarouselNext className="dark:bg-white! dark:text-dark-950!" />
             </Carousel>
           </DialogContent>
         </Dialog>
