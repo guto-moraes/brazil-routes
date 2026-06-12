@@ -56,8 +56,8 @@ function Blog() {
         <Title 
           title="Fique Por Dentro | Projeto Caminhos do Brasil Central"
           className={cn(
-            "container max-w-6xl mx-auto text-[clamp(1.85rem,4vw,4.25rem)] text-tan-700 font-inter",
-            "sm:font-cabinet font-black dark:text-dark-contrast-100 pb-8 sm:pb-16"
+            "container max-w-6xl mx-auto text-[clamp(1.85rem,4vw,4.25rem)]",
+            "text-tan-700 dark:text-dark-contrast-100 pb-8 sm:pb-16"
           )}
         >
           Fique <span className="text-tan-400 dark:text-dark-contrast-50">por Dentro</span>

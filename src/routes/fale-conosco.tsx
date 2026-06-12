@@ -129,8 +129,8 @@ function ContactUs() {
         <Title
           title={`${data.page.title} | Projeto Caminhos do Brasil Central`}
           className={cn(
-            "container mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-tan-700",
-            "dark:text-dark-contrast-100 font-cabinet font-black pb-8 sm:pb-16",
+            "container mx-auto text-[clamp(2.75rem,4vw,4.25rem)]",
+            "dark:text-dark-contrast-100 text-tan-700 pb-8 sm:pb-16",
           )}
         >
           Fale <span className="text-tan-400 dark:text-dark-contrast-50">Conosco</span>

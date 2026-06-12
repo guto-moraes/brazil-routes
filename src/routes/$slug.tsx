@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useRef } from "react";
 import request from "graphql-request";
 import { GRAPHQL_URL } from "@/lib/graphql";
 import { PAGE } from "@/graphql/pages-and-posts-graphql";
@@ -6,6 +7,7 @@ import { cn, pageTitle } from "@/lib/utils";
 import type { PageTypes } from "@/types/page-and-post-types";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
+import AudioTextReader from "@/components/text-reader";
 import { Title } from "@/components/title";
 import Article from "@/components/article";
 import NotFound from "@/layouts/not-found";
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/$slug")({
 });
 
 function Page() {
+  const containerRef = useRef<HTMLElement | null>(null)
   const data = Route.useLoaderData()
   const title = pageTitle(data.page.title);
 
@@ -29,12 +32,13 @@ function Page() {
     <>
       <Header className="shadow-md" />
       <Main className="py-8 md:py-16">
-        <section className="max-w-4xl mx-auto">
+        <AudioTextReader className="container max-w-4xl mx-auto mb-8" contentRef={containerRef} />
+        <section className="max-w-4xl mx-auto" ref={containerRef} >
           <Title
             title={data.page.title}
             className={cn(
-              "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
-              "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",
+              "max-w-full text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
+              "mdark:text-dark-contrast-100 max-md:leading-[0.9] pb-8 sm:pb-16",
             )}
           >
             {title.firstPart}

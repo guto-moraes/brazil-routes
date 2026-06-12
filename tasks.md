@@ -35,9 +35,9 @@
 - [X] Compilar a versão do tema para WordPress
 - [X] Remover importação dos arquivos CSS do Leaflet Map
 - [X] Implementar banner para aceitar cookies de coleta de dados e formulário de contato
+- [X] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Estudar a melhor forma de incluir estatísticas do _site_ e do _ebook_
 - [ ] Transição de páginas
 - [ ] Fechar menu quando clicar fora da área
-- [ ] Incluir a opção de áudio descrição (_text to speech_)
 - [ ] Descomentar código de envio do formulário de contato
 - [ ] Inserir comentários nos códigos

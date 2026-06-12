@@ -13,7 +13,7 @@ const Title = ({ title, className, children }: { title?: string; className?: str
   return (
     <h1
       className={cn(
-        "text-[clamp(1.75rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
+        "text-[clamp(1.75rem,4vw,4.5rem)] text-tan-700 font-inter sm:font-cabinet font-black",
         "max-md:uppercase leading-none max-md:tracking-tighter", className,
       )}
     >
@@ -32,7 +32,7 @@ const TitleH2 = ({ title, className, children }: { title?: string; className?: s
   return (
     <h2
       className={cn(
-        "text-[clamp(1.5rem,4vw,4.5rem)] text-tan-700 font-inter md:font-cabinet font-black",
+        "text-[clamp(1.5rem,4vw,4.5rem)] text-tan-700 font-inter sm:font-cabinet font-black",
         "max-md:uppercase leading-none max-md:tracking-tighter", className,
       )}
     >

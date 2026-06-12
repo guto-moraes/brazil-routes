@@ -42,7 +42,7 @@ function Glossary() {
         <div className="max-w-5xl mx-auto">
           <Title
             title="Glossário | Almanaque Digital | Projeto Caminhos do Brasil Central"
-            className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 dark:text-dark-contrast-100 font-cabinet font-black pb-8 sm:pb-16"
+            className="text-[clamp(3rem,4vw,4.5rem)] text-tan-700 dark:text-dark-contrast-100 pb-8 sm:pb-16"
           >
             Glos<span className="text-tan-300 dark:text-dark-contrast-50">sário</span>
           </Title>

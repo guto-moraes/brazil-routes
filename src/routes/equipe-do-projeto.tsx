@@ -201,7 +201,7 @@ function ProjectTeam() {
             title={`${data.page.title} | Projeto Caminhos do Brasil Central`}
             className={cn(
               "container max-w-6xl mx-auto text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700",
-              "dark:text-dark-contrast-100 font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",
+              "dark:text-dark-contrast-100 max-md:leading-[0.9] pb-8 sm:pb-16",
             )}
           >
             Equipe <span className="text-bone-400 dark:text-dark-contrast-50">do Projeto</span>

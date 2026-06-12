@@ -132,7 +132,7 @@ const Navigation = ({ isHome }: { isHome?: boolean }) => {
       <NavigationWrapper isHome={isHome} isOpen={isActiveMenu}>
         <NavigationContainer>
           <Brand isOpen={isActiveMenu} isHome={isHome} />
-          <div className="flex items-center gap-x-1.5">
+          <div className="flex items-center gap-x-2.5">
             <ButtonToggleMenu isHome={isHome} isOpen={isActiveMenu} handleToggle={handleToggleMenu} />
             <AccessibiltiyDropdownButton isHome={isHome} isActiveMenu={isActiveMenu} />
           </div>

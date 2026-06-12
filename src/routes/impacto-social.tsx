@@ -52,8 +52,8 @@ function SocialImpact() {
               <div className="container max-w-7xl mx-auto h-full px-4 lg:px-0">
                 <Title
                   className={cn(
-                    "w-full text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700 dark:text-dark-contrast-100",
-                    "text-center font-cabinet font-black max-md:leading-[0.9] pb-8 sm:pb-16",
+                    "w-full text-[clamp(2.75rem,4vw,4.25rem)] text-bone-700 text-center",
+                    "dark:text-dark-contrast-100 max-md:leading-[0.9] pb-8 sm:pb-16",
                   )}
                 >
                   Alcance <span className="text-bone-400 dark:text-dark-contrast-50">do Projeto</span>

@@ -337,10 +337,8 @@ html {
 }
 
 html,
-body,
-#app {
+body {
   min-height: 100%;
-  overflow: hidden;
 }
 
 body {
