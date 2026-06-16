@@ -71,6 +71,7 @@ export const useQueryTimeline = () => {
   return useSuspenseQuery<TimelineTypes>({
     queryKey: ["timeline"],
     queryFn: () => fetchTimeline(),
+    staleTime: 1000 * 60 * 5,
   });
 };
 

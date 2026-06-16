@@ -49,7 +49,7 @@ export const GLOSSARY = gql`
 // Query da Linha do Tempo
 export const TIMELINE = gql`
   query Timeline {
-    timelines(where: { orderby: { field: TITLE, order: ASC } }) {
+    timelines(first: 40, where: { orderby: { field: DATE, order: ASC } }) {
       nodes {
         id
         title
