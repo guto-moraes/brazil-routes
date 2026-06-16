@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 
 // Média de palavras lidas por minuto para um leitura "natural" em uma taxa de 1.0
 const WORDS_PER_MINUTE = 140;
-interface AudioTextReaderProps {
+interface TextToSpeechPlayerProps {
   className?: string;
   contentRef: React.RefObject<HTMLElement | null>;
 }
 
-const AudioTextReader = ({ className, contentRef }: AudioTextReaderProps) => {
+const TextToSpeechPlayer = ({ className, contentRef }: TextToSpeechPlayerProps) => {
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
@@ -193,4 +193,4 @@ const AudioTextReader = ({ className, contentRef }: AudioTextReaderProps) => {
   );
 };
 
-export default AudioTextReader;
+export default TextToSpeechPlayer;

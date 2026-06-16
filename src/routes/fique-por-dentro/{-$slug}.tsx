@@ -11,7 +11,7 @@ import Article from "@/components/article";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
-import AudioTextReader from "@/components/text-reader";
+import TextToSpeechPlayer from "@/components/text-to-speech-player";
 
 export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
   head: () => ({
@@ -65,7 +65,7 @@ function Post() {
               <ArrowLeft size={18} /> Voltar para a página anterior
             </button>
           ) : null}
-          <AudioTextReader className="mb-8" contentRef={containerRef} />
+          <TextToSpeechPlayer className="mb-8" contentRef={containerRef} />
           <section ref={containerRef}>
             <TitleH2
               title={data?.post.title}

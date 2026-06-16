@@ -7,11 +7,11 @@ import { cn, pageTitle } from "@/lib/utils";
 import type { PageTypes } from "@/types/page-and-post-types";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
-import AudioTextReader from "@/components/text-reader";
 import { Title } from "@/components/title";
 import Article from "@/components/article";
 import NotFound from "@/layouts/not-found";
 import HotkeysList from "@/components/hotkeys-table";
+import TextToSpeechPlayer from "@/components/text-to-speech-player";
 
 export const Route = createFileRoute("/$slug")({
   loader: async ({ params }) => {
@@ -32,7 +32,7 @@ function Page() {
     <>
       <Header className="shadow-md" />
       <Main className="py-8 md:py-16">
-        <AudioTextReader className="container max-w-4xl mx-auto mb-8" contentRef={containerRef} />
+        <TextToSpeechPlayer className="container max-w-4xl mx-auto mb-8"  contentRef={containerRef} />
         <section className="max-w-4xl mx-auto" ref={containerRef}>
           <Title
             title={data.page.title}
