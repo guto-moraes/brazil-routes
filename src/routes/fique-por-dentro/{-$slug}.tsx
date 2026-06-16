@@ -43,7 +43,7 @@ export const Route = createFileRoute("/fique-por-dentro/{-$slug}")({
 });
 
 function Post() {
-  const containerRef = useRef<HTMLElement | null>(null)
+  const containerRef = useRef<HTMLElement | null>(null);
   const { slug } = Route.useParams();
   const { data } = useQueryNews(slug ?? "");
   const router = useRouter();
@@ -55,10 +55,13 @@ function Post() {
       <Main className=" py-8 md:py-16">
         <div className="max-w-4xl mx-auto">
           {canGoBack ? (
-            <button className={cn(
-              "text-blue-retro-500 hover:text-bone-700/60 transition-colors duration-300 mb-4 cursor-pointer",
-              "dark:text-dark-contrast-100 dark:hover:text-dark-contrast-100/50 flex items-center gap-x-px"
-            )} onClick={() => router.history.back()}>
+            <button
+              className={cn(
+                "text-blue-retro-500 hover:text-bone-700/60 transition-colors duration-300 mb-4 cursor-pointer",
+                "dark:text-dark-contrast-100 dark:hover:text-dark-contrast-100/50 flex items-center gap-x-px",
+              )}
+              onClick={() => router.history.back()}
+            >
               <ArrowLeft size={18} /> Voltar para a página anterior
             </button>
           ) : null}

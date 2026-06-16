@@ -17,15 +17,15 @@ export const Route = createFileRoute("/$slug")({
   loader: async ({ params }) => {
     const currentSlug = params.slug;
     const data = await request<PageTypes>(GRAPHQL_URL, PAGE, { slug: currentSlug });
-    return data
+    return data;
   },
   component: Page,
   errorComponent: () => <NotFound />,
 });
 
 function Page() {
-  const containerRef = useRef<HTMLElement | null>(null)
-  const data = Route.useLoaderData()
+  const containerRef = useRef<HTMLElement | null>(null);
+  const data = Route.useLoaderData();
   const title = pageTitle(data.page.title);
 
   return (
@@ -33,7 +33,7 @@ function Page() {
       <Header className="shadow-md" />
       <Main className="py-8 md:py-16">
         <AudioTextReader className="container max-w-4xl mx-auto mb-8" contentRef={containerRef} />
-        <section className="max-w-4xl mx-auto" ref={containerRef} >
+        <section className="max-w-4xl mx-auto" ref={containerRef}>
           <Title
             title={data.page.title}
             className={cn(
@@ -45,11 +45,7 @@ function Page() {
             <span className="text-tan-400 dark:text-dark-contrast-50">{title.secondPart}</span>
           </Title>
           <Article content={data.page.content} />
-          {
-            data.page.title === "Acessibilidade" && (
-              <HotkeysList />
-            )
-          }
+          {data.page.title === "Acessibilidade" && <HotkeysList />}
         </section>
       </Main>
     </>
