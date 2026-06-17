@@ -23,6 +23,12 @@ export const headingH2 = `
     [&_h2.wp-block-heading]:uppercase [&_h2.wp-block-heading]:leading-none
 `;
 
+// Elementos h3
+export const headingH3 = `
+    [&_h3.wp-block-heading]:text-[clamp(1rem,4vw,1.15rem)] [&_h3.wp-block-heading]:text-tan-700 
+    [&_h3.wp-block-heading]:tracking-tighter [&_h3.wp-block-heading]:font-bold &_h3.wp-block-heading]:leading-none
+`;
+
 // Elemento figure
 export const figure = `
     [&_.wp-block-image]:h-52 md:[&_.wp-block-image]:h-auto md:[&_.wp-block-image]:max-h-150   
@@ -142,6 +148,11 @@ export const dark_p = `
 // Elemento h2
 export const dark_h2 = `
     dark:[&_h2.wp-block-heading]:text-blue-retro-300
+`;
+
+// Elemento h2
+export const dark_h3 = `
+    dark:[&_h3.wp-block-heading]:text-white
 `;
 
 // Elemento a

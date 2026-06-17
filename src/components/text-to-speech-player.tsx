@@ -149,7 +149,7 @@ const TextToSpeechPlayer = ({ className, contentRef }: TextToSpeechPlayerProps) 
 
   return (
     <div className={cn("w-full max-w-full container mx-auto", className)}>
-      <p className="text-xs text-tan-800 mb-0.5">Ouça este conteúdo</p>
+      <p className="text-xs text-tan-800 dark:text-white mb-0.5">Ouça este conteúdo</p>
       <div className="rounded-sm border border-tan-200 dark:border-dark-contrast-100 bg-tan-100 dark:bg-dark-900 flex items-center gap-4 p-3">
         <div className="flex items-center gap-x-1.5">
           <button

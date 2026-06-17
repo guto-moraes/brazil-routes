@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { cn, sanitizedData } from "@/lib/utils";
-// import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import {
   anchor,
   blockquote,
@@ -29,6 +28,8 @@ import {
   paragraph,
   table,
   vertical_video,
+  headingH3,
+  dark_h3,
 } from "@/lib/tw-class-article";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
@@ -67,6 +68,7 @@ const Article = ({ className, content }: { className?: string; content: string }
           general,
           paragraph,
           headingH2,
+          headingH3,
           figure,
           image,
           figcaption,
@@ -84,6 +86,7 @@ const Article = ({ className, content }: { className?: string; content: string }
           dark_selection,
           dark_p,
           dark_h2,
+          dark_h3,
           dark_anchor,
           dark_ol_footnotes,
           dark_hr,
