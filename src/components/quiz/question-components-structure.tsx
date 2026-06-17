@@ -1,17 +1,17 @@
 import { cn, sanitizedData } from "@/lib/utils";
 import { CircleCheck, CircleX } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
 
 const indexes: string[] = ["A", "B", "C", "D", "E"];
 
 // Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-full w-full md:w-[90%] flex flex-col md:flex-row gap-8 px-8 overflow-hidden">{children}</div>
+  <div className="h-full w-full md:w-[90%] flex flex-col md:flex-row gap-8 px-8 md:overflow-hidden">{children}</div>
 );
 
 // Container do componente
 const QuestionContainer = ({ children }: { children: React.ReactNode }) => (
-  <section className="flex-3 max-w-full flex flex-col justify-start items-start gap-y-10">{children}</section>
+  <section className="flex-3 max-w-full flex flex-col justify-start items-start gap-y-7">{children}</section>
 );
 
 // Enunciado da Questão
@@ -22,7 +22,7 @@ const QuestionBadgeAndStatement = ({
   questionNumber: number | string;
   statement: string;
 }) => (
-  <div className="flex flex-col gap-y-2.5">
+  <div className="flex flex-col gap-y-3">
     <span
       className={cn(
         "rounded-full border-2 border-blue-retro-500 dark:border-blue-retro-300",
@@ -33,7 +33,7 @@ const QuestionBadgeAndStatement = ({
       Questão {questionNumber}
     </span>
     <div
-      className="[&_p]:text-[clamp(1rem,4vw,1.15rem)] [&_p]:text-tan-700 dark:[&_p]:text-white [&_p]:font-medium [&_p]:leading-7"
+      className="[&_p]:text-[clamp(0.85rem,4vw,1rem)] [&_p]:text-tan-700 dark:[&_p]:text-white [&_p]:font-medium [&_p]:leading-6"
       dangerouslySetInnerHTML={sanitizedData(statement)}
     />
   </div>
@@ -41,7 +41,7 @@ const QuestionBadgeAndStatement = ({
 
 // Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="w-full flex flex-col gap-y-5">{children}</ul>
+  <ul className="w-full flex flex-col gap-y-4">{children}</ul>
 );
 
 // Opção de Resposta
@@ -82,7 +82,7 @@ const QuestionAnswerOption = ({
       >
         <span
           className={cn(
-            "rounded-xs h-full size-10 text-xl text-white dark:text-dark-200 font-medium bg-tan-600 dark:bg-dark-600",
+            "rounded-xs h-full size-8 text-base text-white dark:text-dark-200 font-medium bg-tan-600 dark:bg-dark-600",
             "flex justify-center items-center group-data-[correct=true]:bg-darkgreen-500 dark:group-data-[correct=true]:text-white",
             "dark:group-data-[selected=true]:text-white group-data-[selected=true]:bg-terracotta-700",
             "dark:group-data-[correct=true]:bg-green-400 dark:group-data-[selected=true]:bg-rose-500",
@@ -101,8 +101,7 @@ const QuestionAnswerOption = ({
 const QuestionAnswerExplainBullet = ({ alert, text }: { alert: boolean; text: string }) => (
   <span
     className={cn(
-      "rounded-full size-5.5 inline-block text-white",
-      "font-medium leading-tight",
+      "rounded-full size-5 inline-block text-white font-medium leading-5",
       alert ? "bg-blue-retro-600 dark:bg-blue-retro-300" : "bg-chocolate-600",
     )}
   >
@@ -126,17 +125,17 @@ const QuestionAnswerExplain = ({
         "rounded-sm border-l-3 shadow-md py-2 px-3 text-center w-full dark:border-dark-900 dark:bg-dark-900",
         alert
           ? "border-blue-retro-50 bg-blue-retro-50 text-blue-retro-600 dark:text-dark-contrast-100"
-          : "border-chocolate-600 bg-bege-100 text-chocolate-600 dark:text-white",
+          : "border-chocolate-600 bg-bege-100 text-chocolate-600 dark:text-white text-sm",
       )}
     >
       {alert ? (
-        <h3 className="font-semibold">Você acertou esta questão!</h3>
+        <h3 className="font-bold uppercase">Você acertou esta questão!</h3>
       ) : (
         <>
-          <h3 className="font-semibold">Você errou esta questão!</h3>
-          <p className="leading-8">
+          <h3 className="font-bold uppercase">Você errou esta questão!</h3>
+          <p className="leading-7">
             A resposta marcada foi a letra <QuestionAnswerExplainBullet alert={alert} text={indexes[selectedAnswer]} />,
-            porém, a correta é <QuestionAnswerExplainBullet alert={alert} text={indexes[correctAnswer]} />.
+            porém, a correta é a letra <QuestionAnswerExplainBullet alert={alert} text={indexes[correctAnswer]} />.
           </p>
         </>
       )}
@@ -156,9 +155,9 @@ const QuestionAnswerExplain = ({
             "[&_button]:transition-colors [&_button]:duration-300 [&_button]:cursor-pointer [&_button]:p-1",
           )}
         >
-          <h3 className="text-lg text-tan-800 dark:text-[#ffe27d] font-bold">Explicação da Resposta</h3>
+          <DialogTitle className="text-lg text-tan-800 dark:text-[#ffe27d] font-bold">Explicação da Resposta</DialogTitle>
           <div
-            className="text-sm text-tan-700 dark:text-white text-justify text-pretty hyphens-auto mt-4"
+            className="text-sm text-tan-700 dark:text-white text-justify text-pretty hyphens-auto"
             dangerouslySetInnerHTML={sanitizedData(explain)}
           />
         </DialogContent>
