@@ -6,7 +6,7 @@ const indexes: string[] = ["A", "B", "C", "D", "E"];
 
 // Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-full w-full md:w-[90%] flex flex-col md:flex-row gap-8 px-8 md:overflow-hidden">{children}</div>
+  <div className="h-[calc(100vh-80px)] 2xl:h-[calc(100vh-104px)] max-w-6xl container mx-auto flex flex-col md:flex-row gap-8 py-12">{children}</div>
 );
 
 // Container do componente
@@ -41,7 +41,7 @@ const QuestionBadgeAndStatement = ({
 
 // Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="w-full flex flex-col gap-y-4">{children}</ul>
+  <ul className="w-3/4 mx-auto flex flex-col gap-y-4">{children}</ul>
 );
 
 // Opção de Resposta

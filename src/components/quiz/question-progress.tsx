@@ -23,7 +23,7 @@ const QuestionProgress = ({
           "transition-all duration-300 shadow-lg aria-expanded:shadow-none",
         )}
       >
-        <p className="text-xs text-white dark:text-dark-950 font-medium uppercase tracking-tighter">Visualizar Progresso</p>
+        <p className="text-xs text-white dark:text-dark-950 font-medium uppercase tracking-tighter">Ver Progresso</p>
         <ChevronRight className="size-4 text-white dark:text-dark-950 rotate-90 group-aria-expanded:-rotate-90 transition-transform duration-500" />
         <span className="sr-only">Alternar exibição de detalhes</span>
       </CollapsibleTrigger>

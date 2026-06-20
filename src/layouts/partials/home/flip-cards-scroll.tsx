@@ -9,10 +9,9 @@ import { cn } from "@/lib/utils";
 import interview_one from "@/assets/images/flip-card/entrevista-1.webp";
 import interview_two from "@/assets/images/flip-card/entrevista-2.webp";
 import interview_three from "@/assets/images/flip-card/entrevista-3.webp";
-import expedicionarios from "@/assets/images/flip-card/batismo-canoa_cel-vanique.webp";
-import operarios from "@/assets/images/flip-card/balsa-travessia-rio-das-mortes.webp";
-import indigenas from "@/assets/images/flip-card/indigenas-xavante.webp";
-import SmoothScroller from "@/components/smooth-scroller";
+import expedition_members from "@/assets/images/flip-card/batismo-canoa_cel-vanique.webp";
+import workers from "@/assets/images/flip-card/balsa-travessia-rio-das-mortes.webp";
+import indigenous from "@/assets/images/flip-card/indigenas-xavante.webp";
 
 type FlipCardTypes = {
   frontImage: string;
@@ -25,23 +24,23 @@ type FlipCardTypes = {
 const flipCards: FlipCardTypes[] = [
   {
     frontImage: interview_one,
-    backImage: expedicionarios,
+    backImage: expedition_members,
     altBackImage: "Batismo de canoa construída no meio da mata durante marcha até o Rio das Mortes",
     title: "Expedicionários",
     colors: "bg-[#eed7a1] dark:bg-dark-700 [&_figure]:border-[#d4c4a0] dark:[&_figure]:border-dark-400",
   },
   {
     frontImage: interview_two,
-    backImage: operarios,
+    backImage: workers,
     altBackImage: "Translado de operários e equipamentos por meio de balsa no Rio das Mortes",
     title: "Operários",
     colors: "bg-[#b5ab76] dark:bg-dark-600 [&_figure]:border-[#9d9676] dark:[&_figure]:border-dark-400",
   },
   {
     frontImage: interview_three,
-    backImage: indigenas,
+    backImage: indigenous,
     altBackImage: "Crianças da etnia Xavante em embarcação",
-    title: "Operários",
+    title: "Indígenas",
     colors: "bg-[#e7bb8b] dark:bg-dark-700 [&_figure]:border-[#cba67d] dark:[&_figure]:border-dark-400",
   },
 ];
@@ -220,7 +219,6 @@ function FlipCardScrollReveal() {
   );
 
   return (
-    <SmoothScroller>
       <section
         className={cn(
           "flip-card-scroll-reveal relative bg-bone-800 dark:bg-dark-800 h-svh w-full flex justify-center items-center p-8",
@@ -287,7 +285,6 @@ function FlipCardScrollReveal() {
           ))}
         </div>
       </section>
-    </SmoothScroller>
   );
 }
 

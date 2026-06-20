@@ -160,10 +160,10 @@ const Timeline = () => {
       });
 
       /**
-       * Handles slide navigation via keyboard arrow keys.
+       * Mudança de slides com as teclas para cima (próximo) e seta para baixo (anterior).
        */
       document.addEventListener("keydown", (event: KeyboardEvent) => {
-        // Check for specific arrow keys
+        // Verifica qual tecla foi acionada
         if (event.key === "ArrowDown" || event.key === "ArrowRight") {
           if (currentSlide >= 1930 && currentSlide < 1967) {
             setCurrentSlide(currentSlide + 1);
@@ -180,50 +180,53 @@ const Timeline = () => {
 
   return (
     <section id="timeline" ref={scopeRef}>
-      <div id="timeline-container" className="relative h-full xl:h-svh flex overflow-hidden" style={{ width: "500%" }}>
+      <div id="timeline-container" className="relative h-screen flex overflow-hidden" style={{ width: "500%" }}>
         <TimelineItem />
-        <div className="absolute bottom-0 left-0 h-16 w-full">
+        <div className="absolute bottom-0 left-0 h-16 lg:h-12 w-full max-w-full">
           <nav
             className={cn(
-                "timeline-nav bottom relative  bg-gray-800 dark:bg-dark-900 text-white h-full w-full",
-                "max-w-svw flex flex-col justify-center items-center gap-x-3 px-8"
+              "timeline-nav bottom relative bg-gray-800 dark:bg-dark-900 h-full w-full",
+              "max-w-screen flex flex-col justify-center items-center gap-x-2 px-8 xl:px-4",
             )}
             role="navigation"
           >
             <Button
               className={cn(
-                "lg:hidden rounded-xs bg-darkgreen-400 dark:bg-dark-contrast-100 hover:bg-darkgreen-600",
+                "xl:hidden rounded-xs bg-darkgreen-400 dark:bg-dark-contrast-100 hover:bg-darkgreen-600",
                 "dark:hover:bg-dark-contrast-100/80 text-xl text-white dark:text-dark-950 hover:text-white",
-                "dark:hover:text-dark-950 font-bold lg:h-6 py-1 lg:hidden transition-colors duration-500 cursor-pointer",
+                "dark:hover:text-dark-950 font-bold lg:h-6 py-1 transition-colors duration-500 cursor-pointer",
               )}
               onClick={handleTimelineDropMenu}
             >
               {currentSlide}
             </Button>
-            <hr className="hidden lg:block bg-none border-chocolate-300 dark:border-dark-contrast-100 w-[99%] mx-auto" />
+            <hr className="hidden xl:block bg-none border-chocolate-300 dark:border-dark-contrast-100 w-[95%] mx-auto" />
             <ul
               className={cn(
-                "text-bone-200 w-full flex flex-col lg:flex-row items-center justify-between",
-                "gap-1 px-2.5 text-xs font-medium transition-transform duration-300",
-                "max-lg:h-full max-lg:bg-white max-lg:text-bone-700 max-lg:text-base max-lg:absolute max-lg:bottom-16.5", // Dispositivos menores do que 1024px
-                "max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:h-60 max-lg:max-h-60 max-lg:p-6 max-lg:shadow-md max-lg:w-48",
-                "max-lg:rounded-2xl max-lg:origin-bottom max-lg:overflow-y-scroll max-lg:scrollbar-thin max-lg:scrollbar-thumb-tan-200",
-                "max-lg:[&::-webkit-scrollbar-thumb]:bg-gray-600 max-lg:hover:[&::-webkit-scrollbar-thumb]:bg-gray-500",
-                "max-lg:dark:bg-dark-900 max-lg:dark:text-dark-200",
-                isOpenMenu || viewportWidth >= 1024 ? "scale-100" : "scale-0",
+                "w-[95%] mx-auto flex flex-col xl:flex-row items-center justify-between gap-0.5 transition-transform duration-300",
+                "max-xl:h-full max-xl:bg-white max-xl:absolute max-xl:bottom-16.5", // Resoluções menores do que 1280px
+                "max-xl:left-1/2 max-xl:-translate-x-1/2 max-xl:h-60 max-xl:max-h-60 max-xl:p-6 max-xl:shadow-md max-xl:w-48",
+                "max-xl:rounded-2xl max-xl:origin-bottom max-xl:overflow-y-scroll max-xl:scrollbar-thin max-xl:scrollbar-thumb-tan-200",
+                "max-xl:[&::-webkit-scrollbar-thumb]:bg-gray-600 max-xl:hover:[&::-webkit-scrollbar-thumb]:bg-gray-500",
+                "max-xl:dark:bg-dark-900",
+                isOpenMenu || viewportWidth >= 1280 ? "scale-100" : "scale-0",
               )}
             >
               {years.map((year) => (
-                <li key={year} className="flex w-0 flex-col items-center justify-center gap-2">
+                <li key={year} className="flex w-0 flex-col items-center justify-center gap-1">
                   <span
-                    className={cn("hidden lg:block bg-chocolate-300 dark:bg-dark-contrast-100 h-1.5 w-px", year % skipInterval !== 0 && "h-1")}
+                    className={cn(
+                      "hidden xl:block bg-chocolate-300 dark:bg-dark-contrast-100 h-1.5 w-px",
+                      year % skipInterval !== 0 && "h-1",
+                    )}
                   />
                   <a
                     href={`#slide-${year}`}
                     className={cn(
-                      "timeline-anchor hover:scale-150 transition-all duration-400 cursor-pointer",
+                      "timeline-anchor text-[0.625rem] min-[1440px]:text-xs text-white font-medium",
+                      "transition-transform duration-300",
                       year % skipInterval !== 0 && "opacity-0",
-                      year === currentSlide && "text-bone-800 max-lg:dark:text-dark-contrast-100 lg:text-chocolate-300 dark:lg:text-dark-contrast-100 font-bold scale-200",
+                      year === currentSlide && "text-chocolate-300 font-bold scale-150",
                     )}
                     data-slide={year}
                     onClick={() => handleUpdateCurrentSlide(year)}

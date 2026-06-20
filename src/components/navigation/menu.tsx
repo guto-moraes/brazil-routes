@@ -10,7 +10,7 @@ type MenuNavigationTypeProps = {
 const NavigationWrapper = ({ isHome, isOpen, className, children }: MenuNavigationTypeProps) => (
   <div
     className={cn(
-      "dark:bg-tan-950 h-full w-full absolute top-0 left-0 z-2 transition-colors duration-500 px-4",
+      "dark:bg-tan-950 h-full w-full max-w-full absolute top-0 left-0 z-2 transition-colors duration-500 px-4",
       className,
       isHome && isOpen || isOpen ? "bg-tan-800 dark:bg-dark-800 z-5" : isHome ? "bg-transparent dark:bg-transparent" : "bg-white dark:bg-dark-800",
     )}
@@ -30,7 +30,7 @@ type MenuContainerTypeProps = MenuNavigationTypeProps & {
 const MenuWrapper = ({ isOpen, ref, children }: MenuContainerTypeProps) => {
   return (
     <div
-      className={cn("nav-content w-full absolute top-20 xl:top-26 left-0 pointer-events-auto", isOpen ? "z-1" : "-z-10")}
+      className={cn("nav-content w-full absolute top-20 2xl:top-26 left-0 pointer-events-auto", isOpen ? "z-1" : "-z-10")}
       aria-labelledby="menubutton"
       tabIndex={-1}
       ref={ref}

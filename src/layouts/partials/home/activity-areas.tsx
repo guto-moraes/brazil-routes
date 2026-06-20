@@ -36,7 +36,7 @@ const Card = ({ color, title, description, tags, number, className }: FieldsActi
         <h2 className="text-[clamp(1.25rem,3.75vw,2.25rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.055em]">
           {title}
         </h2>
-        <p className="text-base text-[clamp(0.85rem,2vw,1.25rem)] font-medium leading-snug">{description}</p>
+        <p className="text-base text-[clamp(0.85rem,2vw,1.15rem)] font-medium leading-snug">{description}</p>
       </div>
       <ul className="text-[clamp(0.85rem,1.75vw,1.125rem)] text-tan-800 font-bold uppercase tracking-[-0.02em]">
         {splitTags.map((tag: string) => (

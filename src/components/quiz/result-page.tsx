@@ -54,7 +54,7 @@ const QuestionNotice = ({
 const QuestionItem = ({ isCorrect, questionNumber }: { isCorrect: boolean; questionNumber: number }) => (
   <li
     className={cn(
-      "rounded-md bg-bege-50 dark:bg-dark-950 border-2 uppercase tracking-tighter py-2 px-3 flex justify-between items-center",
+      "text-xs rounded-md bg-bege-50 dark:bg-dark-950 border-2 uppercase tracking-tighter py-2 px-3 flex justify-between items-center",
       isCorrect
         ? "border-darkgreen-500 dark:border-green-400 text-darkgreen-600 dark:text-green-400"
         : "border-terracotta-500 dark:border-rose-500 text-terracotta-600 dark:text-rose-600",
@@ -89,7 +89,7 @@ const ResultPage = ({
     <div className="h-full w-full flex flex-col justify-around gap-y-6">
       <QuestionNotice totalQuestions={totalQuestions} amountCorrectAnswer={totalCorrectAnswer.length} />
       <div className="w-full">
-        <ul className="columns-2 sm:columns-3 lg:columns-5 space-y-2.5">
+        <ul className="columns-2 sm:columns-3 lg:columns-4 space-y-2.5">
           {results.map((item) => (
             <QuestionItem key={item.question} questionNumber={item.question} isCorrect={item.correct} />
           ))}

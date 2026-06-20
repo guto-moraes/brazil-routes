@@ -10,7 +10,7 @@ const Partners = () => {
     <section className="shadow-lg bg-tan-100 dark:bg-dark-900 p-4 xl:p-0 xl:h-44">
       <div className="container max-w-6xl mx-auto h-full w-full px-4 xl:px-0 md:px-8 flex items-center justify-center">
         <div className="flex flex-col gap-y-2">
-          <h3 className="text-tan-700 dark:text-dark-contrast-100 mb-2">Realização</h3>
+          <h3 className="text-tan-700 dark:text-dark-contrast-100 mb-2 pl-8">Realização</h3>
           <ul className="max-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[repeat(6,minmax(200px,1fr))] gap-8 place-items-center">
             {partners.map((partner: PartnerType, index: number) => {
               return (

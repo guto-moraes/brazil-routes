@@ -125,11 +125,11 @@ const HeroIntro = () => {
 
   return (
     <section
-      className="hero-container relative bg-hero bg-tan-400 dark:bg-tan-950 h-svh sm:min-h-svh lg:h-svh w-full overflow-hidden"
+      className="hero-container relative bg-hero bg-tan-400 dark:bg-tan-950 h-screen w-full overflow-hidden"
       ref={heroContainer}
     >
       <Header isHome className="bg-transparent z-25" />
-      <div className="hero-content relative h-[calc(100svh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10 z-10">
+      <div className="hero-content relative h-[calc(100vh-80px)] 2xl:h-[calc(100vh-104px)] w-full flex justify-center items-center -mt-16 translate-y-10 z-10">
         <img
           className="hero-image invert dark:invert-0 scale-0 opacity-7.5 absolute top-1/2 left-1/2 -translate-1/2 h-1/2 w-1/2 object-cover"
           src={map}
@@ -158,7 +158,7 @@ const HeroIntro = () => {
           </div>
           <h2
             className={cn(
-              "hero-slogan max-sm:h-12 text-[clamp(1rem,3vw,1.875rem)] text-tan-700 dark:text-white text-center font-cintarini",
+              "hero-slogan max-sm:h-12 text-[clamp(1rem,3vw,1.875rem)] text-white text-center font-cintarini",
               "font-semibold max-sm:leading-none leading-16 sm:whitespace-nowrap tracking-wider max-sm:mt-3",
               "max-[360px]:max-w-[90%] min-[360px]:max-w-[75%] min-[400px]:max-w-[70%] sm:max-w-full",
             )}

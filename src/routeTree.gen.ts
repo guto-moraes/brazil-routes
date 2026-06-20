@@ -20,11 +20,12 @@ import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-di
 import { Route as FiquePorDentroChar123SlugChar125RouteImport } from './routes/fique-por-dentro/{-$slug}'
 import { Route as ApiEmailRouteImport } from './routes/api/email'
 import { Route as AlmanaqueDigitalVaAlemRouteImport } from './routes/almanaque-digital/va-alem'
-import { Route as AlmanaqueDigitalTesteDeConhecimentoRouteImport } from './routes/almanaque-digital/teste-de-conhecimento'
 import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/almanaque-digital/mapa-interativo'
 import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
 import { Route as AlmanaqueDigitalCapituloChar123NumberChar125RouteImport } from './routes/almanaque-digital/capitulo-{-$number}'
+import { Route as AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport } from './routes/almanaque-digital/teste-de-conhecimento/index'
+import { Route as AlmanaqueDigitalTesteDeConhecimentoQuizRouteImport } from './routes/almanaque-digital/teste-de-conhecimento/quiz'
 
 const ImpactoSocialRoute = ImpactoSocialRouteImport.update({
   id: '/impacto-social',
@@ -82,12 +83,6 @@ const AlmanaqueDigitalVaAlemRoute = AlmanaqueDigitalVaAlemRouteImport.update({
   path: '/almanaque-digital/va-alem',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AlmanaqueDigitalTesteDeConhecimentoRoute =
-  AlmanaqueDigitalTesteDeConhecimentoRouteImport.update({
-    id: '/almanaque-digital/teste-de-conhecimento',
-    path: '/almanaque-digital/teste-de-conhecimento',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const AlmanaqueDigitalMapaInterativoRoute =
   AlmanaqueDigitalMapaInterativoRouteImport.update({
     id: '/almanaque-digital/mapa-interativo',
@@ -112,6 +107,18 @@ const AlmanaqueDigitalCapituloChar123NumberChar125Route =
     path: '/almanaque-digital/capitulo-{-$number}',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AlmanaqueDigitalTesteDeConhecimentoIndexRoute =
+  AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport.update({
+    id: '/almanaque-digital/teste-de-conhecimento/',
+    path: '/almanaque-digital/teste-de-conhecimento/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AlmanaqueDigitalTesteDeConhecimentoQuizRoute =
+  AlmanaqueDigitalTesteDeConhecimentoQuizRouteImport.update({
+    id: '/almanaque-digital/teste-de-conhecimento/quiz',
+    path: '/almanaque-digital/teste-de-conhecimento/quiz',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,12 +131,13 @@ export interface FileRoutesByFullPath {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
-  '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
+  '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
+  '/almanaque-digital/teste-de-conhecimento/': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,12 +150,13 @@ export interface FileRoutesByTo {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
-  '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro': typeof FiquePorDentroIndexRoute
+  '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
+  '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,12 +170,13 @@ export interface FileRoutesById {
   '/almanaque-digital/glossario': typeof AlmanaqueDigitalGlossarioRoute
   '/almanaque-digital/linha-do-tempo': typeof AlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/mapa-interativo': typeof AlmanaqueDigitalMapaInterativoRoute
-  '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   '/almanaque-digital/va-alem': typeof AlmanaqueDigitalVaAlemRoute
   '/api/email': typeof ApiEmailRoute
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
+  '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
+  '/almanaque-digital/teste-de-conhecimento/': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,12 +191,13 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
-    | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
     | '/fique-por-dentro/'
+    | '/almanaque-digital/teste-de-conhecimento/quiz'
+    | '/almanaque-digital/teste-de-conhecimento/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,12 +210,13 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
-    | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital'
     | '/fique-por-dentro'
+    | '/almanaque-digital/teste-de-conhecimento/quiz'
+    | '/almanaque-digital/teste-de-conhecimento'
   id:
     | '__root__'
     | '/'
@@ -217,12 +229,13 @@ export interface FileRouteTypes {
     | '/almanaque-digital/glossario'
     | '/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/mapa-interativo'
-    | '/almanaque-digital/teste-de-conhecimento'
     | '/almanaque-digital/va-alem'
     | '/api/email'
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
     | '/fique-por-dentro/'
+    | '/almanaque-digital/teste-de-conhecimento/quiz'
+    | '/almanaque-digital/teste-de-conhecimento/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,12 +249,13 @@ export interface RootRouteChildren {
   AlmanaqueDigitalGlossarioRoute: typeof AlmanaqueDigitalGlossarioRoute
   AlmanaqueDigitalLinhaDoTempoRoute: typeof AlmanaqueDigitalLinhaDoTempoRoute
   AlmanaqueDigitalMapaInterativoRoute: typeof AlmanaqueDigitalMapaInterativoRoute
-  AlmanaqueDigitalTesteDeConhecimentoRoute: typeof AlmanaqueDigitalTesteDeConhecimentoRoute
   AlmanaqueDigitalVaAlemRoute: typeof AlmanaqueDigitalVaAlemRoute
   ApiEmailRoute: typeof ApiEmailRoute
   FiquePorDentroChar123SlugChar125Route: typeof FiquePorDentroChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   FiquePorDentroIndexRoute: typeof FiquePorDentroIndexRoute
+  AlmanaqueDigitalTesteDeConhecimentoQuizRoute: typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
+  AlmanaqueDigitalTesteDeConhecimentoIndexRoute: typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -323,13 +337,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalVaAlemRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/almanaque-digital/teste-de-conhecimento': {
-      id: '/almanaque-digital/teste-de-conhecimento'
-      path: '/almanaque-digital/teste-de-conhecimento'
-      fullPath: '/almanaque-digital/teste-de-conhecimento'
-      preLoaderRoute: typeof AlmanaqueDigitalTesteDeConhecimentoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/almanaque-digital/mapa-interativo': {
       id: '/almanaque-digital/mapa-interativo'
       path: '/almanaque-digital/mapa-interativo'
@@ -358,6 +365,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalCapituloChar123NumberChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/almanaque-digital/teste-de-conhecimento/': {
+      id: '/almanaque-digital/teste-de-conhecimento/'
+      path: '/almanaque-digital/teste-de-conhecimento'
+      fullPath: '/almanaque-digital/teste-de-conhecimento/'
+      preLoaderRoute: typeof AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/almanaque-digital/teste-de-conhecimento/quiz': {
+      id: '/almanaque-digital/teste-de-conhecimento/quiz'
+      path: '/almanaque-digital/teste-de-conhecimento/quiz'
+      fullPath: '/almanaque-digital/teste-de-conhecimento/quiz'
+      preLoaderRoute: typeof AlmanaqueDigitalTesteDeConhecimentoQuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -373,13 +394,15 @@ const rootRouteChildren: RootRouteChildren = {
   AlmanaqueDigitalGlossarioRoute: AlmanaqueDigitalGlossarioRoute,
   AlmanaqueDigitalLinhaDoTempoRoute: AlmanaqueDigitalLinhaDoTempoRoute,
   AlmanaqueDigitalMapaInterativoRoute: AlmanaqueDigitalMapaInterativoRoute,
-  AlmanaqueDigitalTesteDeConhecimentoRoute:
-    AlmanaqueDigitalTesteDeConhecimentoRoute,
   AlmanaqueDigitalVaAlemRoute: AlmanaqueDigitalVaAlemRoute,
   ApiEmailRoute: ApiEmailRoute,
   FiquePorDentroChar123SlugChar125Route: FiquePorDentroChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,
   FiquePorDentroIndexRoute: FiquePorDentroIndexRoute,
+  AlmanaqueDigitalTesteDeConhecimentoQuizRoute:
+    AlmanaqueDigitalTesteDeConhecimentoQuizRoute,
+  AlmanaqueDigitalTesteDeConhecimentoIndexRoute:
+    AlmanaqueDigitalTesteDeConhecimentoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

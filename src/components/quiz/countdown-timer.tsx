@@ -42,7 +42,7 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
   }, [isStart, totalSeconds, timeLeft]);
 
   // Cálculos do SVG
-  const radius = 70;
+  const radius = 55;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = -circumference + (timeLeft / totalSeconds) * circumference;
 
@@ -53,13 +53,13 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
   const secondsStr = (timeLeft % 60).toString().padStart(2, "0");
 
   return (
-    <div className="countdown-timer rounded-xl shadow-lg size-48 bg-bege-50 dark:bg-dark-800 flex justify-center items-center">
-      <div className="relative flex items-center justify-center size-48">
+    <div className="countdown-timer rounded-xl shadow-lg size-36 bg-bege-50 dark:bg-dark-800 flex justify-center items-center">
+      <div className="relative flex items-center justify-center h-full w-full">
         <svg className="w-full h-full transform -rotate-90">
           {/* Círculo de fundo */}
           <circle
-            cx="96"
-            cy="96"
+            cx="71"
+            cy="71"
             r={radius}
             className="text-tan-200 dark:text-dark-400"
             strokeWidth="5"
@@ -68,8 +68,8 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
           />
           {/* Círculo de contagem regressiva animado */}
           <circle
-            cx="96"
-            cy="96"
+            cx="71"
+            cy="71"
             r={radius}
             className="text-blue-retro-500 dark:text-dark-contrast-100 transition-all duration-1000 ease-linear"
             strokeWidth="8"
@@ -82,10 +82,10 @@ export const CircleCountdownTimer: React.FC<CircleCuntdownTimerProps> = ({
         </svg>
         {/* Contador centralizado */}
         <div className="absolute flex flex-col items-center">
-          <span className="timer text-4xl font-bold text-tan-700 dark:text-white font-mono -tracking-widest">
+          <span className="timer text-3xl font-bold text-tan-700 dark:text-white font-mono -tracking-widest">
             {minutesStr}:{secondsStr}
           </span>
-          <span className="text-[0.625rem] text-tan-500 dark:text-dark-200 font-medium uppercase tracking-tighter">
+          <span className="text-[0.575rem] text-tan-700 dark:text-dark-200 font-semibold uppercase tracking-tighter">
             {minutesStr === "00" && secondsStr === "00" ? "Tempo Encerrado" : "Tempo Restante"}
           </span>
         </div>
