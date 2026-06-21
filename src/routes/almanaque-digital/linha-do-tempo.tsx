@@ -90,7 +90,7 @@ function TimelinePage() {
                   "resume min-[425px]:text-lg md:text-2xl text-right dark:text-white text-balance",
                   "leading-5 min-[425px]:leading-6 md:leading-8"
                 )}>
-                  Uma breve cronologia da história da colonização não indígena na região do Vale do Araguaia (1943-1967)
+                  
                 </p>
               </TextRevealHidden>
             </div>
