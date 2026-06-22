@@ -10,7 +10,6 @@ import {
   TimelineEventCol,
   TimelineEventDate,
   TimelineEventDetails,
-  TimelineHorizontalDashedLine,
   TimelineBadge,
   TimelineSecondaryHeading,
   TimelinePrimaryHeading,
@@ -70,10 +69,10 @@ const Timeline = () => {
         </TimelineNavigationButton>
       </TimelineNavigationBar>
 
-      <section className="relative bg-tan-900 w-full hidden xl:flex justify-center items-center py-2 xl:py-3">
+      <section className="relative bg-dark-800 w-full hidden xl:flex justify-center items-center py-2 xl:py-3">
         <ul
           className={cn(
-            "border-t border-chocolate-300 w-[95%] mx-auto flex flex-row",
+            "border-t border-chocolate-300 dark:border-t-dark-contrast-100 w-[95%] mx-auto flex flex-row",
             "items-center justify-between gap-0.5 transition-transform duration-300",
           )}
         >
@@ -88,7 +87,7 @@ const Timeline = () => {
               <button
                 className={cn(
                   "text-xs origin-center cursor-pointer transition-all duration-500 ease-in-out",
-                  index === current ? "text-chocolate-300 font-black scale-115" : "text-white scale-100",
+                  index === current ? "text-chocolate-300 dark:text-dark-contrast-100 font-black scale-115" : "text-white scale-100",
                 )}
                 onClick={() => api?.scrollTo(index)}
                 aria-label={`Ir para o ano ${index + 1}`}
@@ -114,7 +113,6 @@ const Timeline = () => {
                       text={events[0]}
                     />
                     <TimelineEventDetails>
-                      <TimelineHorizontalDashedLine />
                       <TimelineBadge color={timeline.info.textColor} text={timeline.info.firstCol.tagText} />
                       <TimelineSecondaryHeading color={timeline.info.textColor} text={timeline.info.firstCol.heading} />
                       <TimelineFigure caption={timeline.info.firstCol.image.node.caption}>
@@ -132,7 +130,6 @@ const Timeline = () => {
                       text={events[1]}
                     />
                     <TimelineEventDetails>
-                      <TimelineHorizontalDashedLine />
                       <TimelineBadge color={timeline.info.textColor} text={timeline.info.secondCol.tagText} />
                       <TimelinePrimaryHeading color={timeline.info.textColor} text={timeline.info.secondCol.heading} />
                       <TimelineFigure caption={timeline.info.secondCol.image.node.caption}>
@@ -150,9 +147,8 @@ const Timeline = () => {
                       text={events[1]}
                     />
                     <TimelineEventDetails>
-                      <TimelineHorizontalDashedLine />
                       <TimelineBadge color={timeline.info.textColor} text={timeline.info.thirdCol.textTag} />
-                      <TimelinePrimaryHeading color={timeline.info.textColor} text={timeline.info.thirdCol.title} />
+                      <TimelineSecondaryHeading color={timeline.info.textColor} text={timeline.info.thirdCol.title} />
                       {timeline.info.thirdCol.image && (
                         <TimelineFigure caption={timeline.info.thirdCol.image.node.caption}>
                           <TimelineImage
@@ -172,7 +168,7 @@ const Timeline = () => {
                     />
                     <h1
                       className={cn(
-                        "[writing-mode:vertical-rl] text-[9rem] font-mono",
+                        "[writing-mode:vertical-rl] text-[9rem] font-mono dark:text-white/75!",
                         "font-black leading-none -tracking-widest mt-8 opacity-25",
                       )}
                       style={{ color: timeline.info.textColor }}
@@ -206,10 +202,10 @@ const Timeline = () => {
         </TimelineNavigationButton>
       </TimelineNavigationBar>
 
-      <section className="relative bg-tan-900 w-full hidden xl:flex justify-center items-center py-2 xl:py-3">
+      <section className="relative bg-dark-800 w-full hidden xl:flex justify-center items-center py-2 xl:py-3">
         <ul
           className={cn(
-            "border-t border-chocolate-300 w-[95%] mx-auto flex flex-row",
+            "border-t border-chocolate-300 dark:border-t-dark-contrast-100 w-[95%] mx-auto flex flex-row",
             "items-center justify-between gap-0.5 transition-transform duration-300",
           )}
         >
@@ -224,7 +220,7 @@ const Timeline = () => {
               <button
                 className={cn(
                   "text-xs origin-center cursor-pointer transition-all duration-500 ease-in-out",
-                  index === current ? "text-chocolate-300 font-black scale-115" : "text-white scale-100",
+                  index === current ? "text-chocolate-300 dark:text-dark-contrast-100 font-black scale-115" : "text-white scale-100",
                 )}
                 onClick={() => api?.scrollTo(index)}
                 aria-label={`Ir para o ano ${index + 1}`}

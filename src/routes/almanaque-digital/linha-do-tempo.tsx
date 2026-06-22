@@ -10,7 +10,10 @@ import { cn } from "@/lib/utils";
 import Timeline from "@/components/timeline";
 
 const PeriodBox = ({ title, subtitle }: { title: string; subtitle: string }) => (
-  <div className="border border-darkgreen-700 bg-darkgreen-500 min-h-34 flex flex-col justify-center items-center gap-2 p-4">
+  <div className={cn(
+    "border border-darkgreen-700 dark:border-dark-contrast-100 bg-darkgreen-500",
+    "dark:bg-dark-900 min-h-34 flex flex-col justify-center items-center gap-2 p-4"
+  )}>
     <h2 className="text-2xl min-[425px]:text-4xl md:text-5xl text-white font-inter font-black leading-none">{title}</h2>
     <p className="min-[425px]:text-[1.15rem] md:text-[1.25rem] text-white font-inter font-semibold uppercase">
       {subtitle}
@@ -37,16 +40,16 @@ function NewTimeline() {
             <Title
               className={cn(
                 "min-[425px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl md:text-terracotta-900",
-                "sm:tracking-normal uppercase lg:max-w-full",
+                "dark:text-dark-contrast-50 sm:tracking-normal uppercase lg:max-w-full",
               )}
             >
-              Desbravamento do <span className="max-sm:text-tan-500">leste de Mato Grosso</span>
+              Desbravamento do <span className="max-sm:text-tan-500 dark:text-dark-contrast-100">leste de Mato Grosso</span>
             </Title>
             <TextRevealHidden animateOnScroll={false} blockColor="#fbf6ea" className="my-8 sm:w-full max-w-screen">
               <p
                 className={cn(
-                  "sm:text-lg lg:text-2xl 2xl:text-[26px] text-tan-800 leading-5 sm:leading-6",
-                  "lg:leading-7 xl:leading-9 sm:max-w-full lg:max-w-[85%]!",
+                  "sm:text-lg lg:text-2xl 2xl:text-[26px] text-tan-800 dark:text-white leading-5",
+                  "sm:leading-6 lg:leading-7 xl:leading-9 sm:max-w-full lg:max-w-[85%]!",
                 )}
               >
                 Para compreender melhor os eventos que sucederam durante o período de atividades promovidas pelas Expedição

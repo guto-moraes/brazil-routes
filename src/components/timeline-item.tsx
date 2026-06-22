@@ -4,7 +4,10 @@ import { stripHtml } from "@/lib/client-utils";
 
 const TimelineWrapper = ({ bgColor, children }: { bgColor: string; children: React.ReactNode }) => (
   <article
-    className="h-full w-full max-w-screen flex flex-col md:flex-row justify-start items-start md:divide-x divide-dashed"
+    className={cn(
+      "h-full w-full max-w-screen flex flex-col md:flex-row justify-start",
+      "items-start md:divide-x divide-dashed dark:bg-dark-900!"
+    )}
     style={{ backgroundColor: bgColor }}
   >
     {children}
@@ -56,7 +59,7 @@ const TimelineEventCol = ({ className, children }: { className?: string; childre
 
 const TimelineEventDate = ({ bgColor, color, text }: { bgColor: string; color: string; text: string }) => (
   <div
-    className="text-xs text-center font-semibold uppercase w-full py-1"
+    className="text-xs text-center font-semibold uppercase w-full py-1 dark:bg-dark-contrast-100! dark:text-dark-950!"
     style={{ backgroundColor: bgColor, color: color }}
   >
     {text}
@@ -67,13 +70,9 @@ const TimelineEventDetails = ({ children }: { children: React.ReactNode }) => (
   <div className="w-full max-w-full flex flex-col gap-4 min-[425px]:gap-8 px-4">{children}</div>
 );
 
-const TimelineHorizontalDashedLine = () => (
-  <hr className="h-px border-px border-dashed border-bone-800/20 dark:border-dark-700 bg-none" />
-);
-
 const TimelineBadge = ({ color, text }: { color: string; text: string }) => (
   <span
-    className="rounded-full border text-xs font-semibold uppercase leading-none w-max pt-1 pb-0.5 px-2"
+    className="rounded-full border text-xs font-semibold uppercase leading-none w-max pt-1 pb-0.5 px-2 dark:text-white! dark:border-white!"
     style={{ color: color, borderColor: color }}
   >
     {text}
@@ -81,13 +80,13 @@ const TimelineBadge = ({ color, text }: { color: string; text: string }) => (
 );
 
 const TimelinePrimaryHeading = ({ color, text }: { color: string; text: string }) => (
-  <h2 className="text-[1.35rem] min-[425px]:text-[1.5rem] font-bold leading-6 min-[425px]:leading-7" style={{ color: color }}>
+  <h2 className="text-[1.35rem] min-[425px]:text-[1.5rem] dark:text-dark-contrast-100! font-bold leading-6 min-[425px]:leading-7" style={{ color: color }}>
     {text}
   </h2>
 );
 
 const TimelineSecondaryHeading = ({ color, text }: { color: string; text: string }) => (
-  <h2 className="text-[1.25rem] min-[425px]:text-[1.35rem] font-bold leading-6 min-[425px]:leading-7" style={{ color: color }}>
+  <h2 className="text-[1.25rem] min-[425px]:text-[1.35rem] dark:text-dark-contrast-100! font-bold leading-6 min-[425px]:leading-7" style={{ color: color }}>
     {text}
   </h2>
 );
@@ -127,7 +126,6 @@ export {
   TimelineEventCol,
   TimelineEventDate,
   TimelineEventDetails,
-  TimelineHorizontalDashedLine,
   TimelineBadge,
   TimelinePrimaryHeading,
   TimelineSecondaryHeading,
