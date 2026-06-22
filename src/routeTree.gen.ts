@@ -15,7 +15,6 @@ import { Route as EquipeDoProjetoRouteImport } from './routes/equipe-do-projeto'
 import { Route as AgendaDoProjetoRouteImport } from './routes/agenda-do-projeto'
 import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as NovoIndexRouteImport } from './routes/novo/index'
 import { Route as FiquePorDentroIndexRouteImport } from './routes/fique-por-dentro/index'
 import { Route as AlmanaqueDigitalIndexRouteImport } from './routes/almanaque-digital/index'
 import { Route as FiquePorDentroChar123SlugChar125RouteImport } from './routes/fique-por-dentro/{-$slug}'
@@ -25,9 +24,7 @@ import { Route as AlmanaqueDigitalMapaInterativoRouteImport } from './routes/alm
 import { Route as AlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalGlossarioRouteImport } from './routes/almanaque-digital/glossario'
 import { Route as AlmanaqueDigitalCapituloChar123NumberChar125RouteImport } from './routes/almanaque-digital/capitulo-{-$number}'
-import { Route as NovoAlmanaqueDigitalIndexRouteImport } from './routes/novo/almanaque-digital/index'
 import { Route as AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport } from './routes/almanaque-digital/teste-de-conhecimento/index'
-import { Route as NovoAlmanaqueDigitalLinhaDoTempoRouteImport } from './routes/novo/almanaque-digital/linha-do-tempo'
 import { Route as AlmanaqueDigitalTesteDeConhecimentoQuizRouteImport } from './routes/almanaque-digital/teste-de-conhecimento/quiz'
 
 const ImpactoSocialRoute = ImpactoSocialRouteImport.update({
@@ -58,11 +55,6 @@ const SlugRoute = SlugRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NovoIndexRoute = NovoIndexRouteImport.update({
-  id: '/novo/',
-  path: '/novo/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FiquePorDentroIndexRoute = FiquePorDentroIndexRouteImport.update({
@@ -115,22 +107,10 @@ const AlmanaqueDigitalCapituloChar123NumberChar125Route =
     path: '/almanaque-digital/capitulo-{-$number}',
     getParentRoute: () => rootRouteImport,
   } as any)
-const NovoAlmanaqueDigitalIndexRoute =
-  NovoAlmanaqueDigitalIndexRouteImport.update({
-    id: '/novo/almanaque-digital/',
-    path: '/novo/almanaque-digital/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const AlmanaqueDigitalTesteDeConhecimentoIndexRoute =
   AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport.update({
     id: '/almanaque-digital/teste-de-conhecimento/',
     path: '/almanaque-digital/teste-de-conhecimento/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const NovoAlmanaqueDigitalLinhaDoTempoRoute =
-  NovoAlmanaqueDigitalLinhaDoTempoRouteImport.update({
-    id: '/novo/almanaque-digital/linha-do-tempo',
-    path: '/novo/almanaque-digital/linha-do-tempo',
     getParentRoute: () => rootRouteImport,
   } as any)
 const AlmanaqueDigitalTesteDeConhecimentoQuizRoute =
@@ -156,11 +136,8 @@ export interface FileRoutesByFullPath {
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
-  '/novo/': typeof NovoIndexRoute
   '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
-  '/novo/almanaque-digital/linha-do-tempo': typeof NovoAlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/teste-de-conhecimento/': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
-  '/novo/almanaque-digital/': typeof NovoAlmanaqueDigitalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -178,11 +155,8 @@ export interface FileRoutesByTo {
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro': typeof FiquePorDentroIndexRoute
-  '/novo': typeof NovoIndexRoute
   '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
-  '/novo/almanaque-digital/linha-do-tempo': typeof NovoAlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/teste-de-conhecimento': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
-  '/novo/almanaque-digital': typeof NovoAlmanaqueDigitalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,11 +175,8 @@ export interface FileRoutesById {
   '/fique-por-dentro/{-$slug}': typeof FiquePorDentroChar123SlugChar125Route
   '/almanaque-digital/': typeof AlmanaqueDigitalIndexRoute
   '/fique-por-dentro/': typeof FiquePorDentroIndexRoute
-  '/novo/': typeof NovoIndexRoute
   '/almanaque-digital/teste-de-conhecimento/quiz': typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
-  '/novo/almanaque-digital/linha-do-tempo': typeof NovoAlmanaqueDigitalLinhaDoTempoRoute
   '/almanaque-digital/teste-de-conhecimento/': typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
-  '/novo/almanaque-digital/': typeof NovoAlmanaqueDigitalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -225,11 +196,8 @@ export interface FileRouteTypes {
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
     | '/fique-por-dentro/'
-    | '/novo/'
     | '/almanaque-digital/teste-de-conhecimento/quiz'
-    | '/novo/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/teste-de-conhecimento/'
-    | '/novo/almanaque-digital/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -247,11 +215,8 @@ export interface FileRouteTypes {
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital'
     | '/fique-por-dentro'
-    | '/novo'
     | '/almanaque-digital/teste-de-conhecimento/quiz'
-    | '/novo/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/teste-de-conhecimento'
-    | '/novo/almanaque-digital'
   id:
     | '__root__'
     | '/'
@@ -269,11 +234,8 @@ export interface FileRouteTypes {
     | '/fique-por-dentro/{-$slug}'
     | '/almanaque-digital/'
     | '/fique-por-dentro/'
-    | '/novo/'
     | '/almanaque-digital/teste-de-conhecimento/quiz'
-    | '/novo/almanaque-digital/linha-do-tempo'
     | '/almanaque-digital/teste-de-conhecimento/'
-    | '/novo/almanaque-digital/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -292,11 +254,8 @@ export interface RootRouteChildren {
   FiquePorDentroChar123SlugChar125Route: typeof FiquePorDentroChar123SlugChar125Route
   AlmanaqueDigitalIndexRoute: typeof AlmanaqueDigitalIndexRoute
   FiquePorDentroIndexRoute: typeof FiquePorDentroIndexRoute
-  NovoIndexRoute: typeof NovoIndexRoute
   AlmanaqueDigitalTesteDeConhecimentoQuizRoute: typeof AlmanaqueDigitalTesteDeConhecimentoQuizRoute
-  NovoAlmanaqueDigitalLinhaDoTempoRoute: typeof NovoAlmanaqueDigitalLinhaDoTempoRoute
   AlmanaqueDigitalTesteDeConhecimentoIndexRoute: typeof AlmanaqueDigitalTesteDeConhecimentoIndexRoute
-  NovoAlmanaqueDigitalIndexRoute: typeof NovoAlmanaqueDigitalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -341,13 +300,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/novo/': {
-      id: '/novo/'
-      path: '/novo'
-      fullPath: '/novo/'
-      preLoaderRoute: typeof NovoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fique-por-dentro/': {
@@ -413,25 +365,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlmanaqueDigitalCapituloChar123NumberChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/novo/almanaque-digital/': {
-      id: '/novo/almanaque-digital/'
-      path: '/novo/almanaque-digital'
-      fullPath: '/novo/almanaque-digital/'
-      preLoaderRoute: typeof NovoAlmanaqueDigitalIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/almanaque-digital/teste-de-conhecimento/': {
       id: '/almanaque-digital/teste-de-conhecimento/'
       path: '/almanaque-digital/teste-de-conhecimento'
       fullPath: '/almanaque-digital/teste-de-conhecimento/'
       preLoaderRoute: typeof AlmanaqueDigitalTesteDeConhecimentoIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/novo/almanaque-digital/linha-do-tempo': {
-      id: '/novo/almanaque-digital/linha-do-tempo'
-      path: '/novo/almanaque-digital/linha-do-tempo'
-      fullPath: '/novo/almanaque-digital/linha-do-tempo'
-      preLoaderRoute: typeof NovoAlmanaqueDigitalLinhaDoTempoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/almanaque-digital/teste-de-conhecimento/quiz': {
@@ -461,13 +399,10 @@ const rootRouteChildren: RootRouteChildren = {
   FiquePorDentroChar123SlugChar125Route: FiquePorDentroChar123SlugChar125Route,
   AlmanaqueDigitalIndexRoute: AlmanaqueDigitalIndexRoute,
   FiquePorDentroIndexRoute: FiquePorDentroIndexRoute,
-  NovoIndexRoute: NovoIndexRoute,
   AlmanaqueDigitalTesteDeConhecimentoQuizRoute:
     AlmanaqueDigitalTesteDeConhecimentoQuizRoute,
-  NovoAlmanaqueDigitalLinhaDoTempoRoute: NovoAlmanaqueDigitalLinhaDoTempoRoute,
   AlmanaqueDigitalTesteDeConhecimentoIndexRoute:
     AlmanaqueDigitalTesteDeConhecimentoIndexRoute,
-  NovoAlmanaqueDigitalIndexRoute: NovoAlmanaqueDigitalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,111 +1,65 @@
+"use client";
+
 import { createFileRoute } from "@tanstack/react-router";
-import { cn } from "@/lib/utils";
 import Header from "@/layouts/header";
 import Main from "@/layouts/main";
 import TextRevealHidden from "@/components/text-reveal-hidden";
+import { Title } from "@/components/title";
+
+import { cn } from "@/lib/utils";
 import Timeline from "@/components/timeline";
-import { useEffect } from "react";
 
-export const Route = createFileRoute("/almanaque-digital/linha-do-tempo")({
-  head: () => ({
-    meta: [
-      {
-        title: "Linha do Tempo Histórica | Projeto Caminhos do Brasil Central",
-      },
-      {
-        name: "description",
-        content:
-          "Linha do tempo com alguns do principais eventos ocorridos no recorte temporal do Projeto Caminhos do Brasil Central",
-      },
-    ],
-    links: [
-      {
-        rel: "canonical",
-        href: "https://caminhosdobrasilcentral.com/almanaque-digital/linha-do-tempo",
-      },
-    ],
-  }),
-  component: TimelinePage,
-});
-
-const TimelineBoxResume = ({ period, text }: { period: string; text: string }) => (
-  <div
-    className={cn(
-      "timeline-boxes-item bg-darkgreen-500 dark:bg-dark-900 h-auto xl:h-72 py-6 xl:py-0 flex",
-      "flex-col justify-center gap-y-3 max-sm:border max-sm:border-terracotta-950 max-sm:dark:border-dark-contrast-100",
-    )}
-  >
-    <h2
-      className={cn(
-        "text-[1.75rem] min-[375px]:text-3xl md:text-4xl lg:text-5xl text-center",
-        "text-terracotta-950 dark:text-dark-200 font-black md:tracking-tighter",
-      )}
-    >
-      {period}
-    </h2>
-    <p className={cn(
-      "min-[375px]:text-lg min-[425px]:text-xl md:text-[1.105rem] lg:text-2xl",
-      "text-center text-terracotta-950 dark:text-dark-200 uppercase",
-      "font-semibold md:font-medium tracking-tighter sm:font-black"
-    )}>
-      {text}
+const PeriodBox = ({ title, subtitle }: { title: string; subtitle: string }) => (
+  <div className="border border-darkgreen-700 bg-darkgreen-500 min-h-34 flex flex-col justify-center items-center gap-2 p-4">
+    <h2 className="text-2xl min-[425px]:text-4xl md:text-5xl text-white font-inter font-black leading-none">{title}</h2>
+    <p className="min-[425px]:text-[1.15rem] md:text-[1.25rem] text-white font-inter font-semibold uppercase">
+      {subtitle}
     </p>
   </div>
 );
 
-function TimelinePage() {
-  useEffect(() => {
-    document.title = "Linha do Tempo | Projeto Caminhos do Brasil Central";
-  });
+export const Route = createFileRoute("/almanaque-digital/linha-do-tempo")({
+  component: NewTimeline,
+});
 
+function NewTimeline() {
   return (
     <>
       <Header className="shadow-md" />
-      <Main className="p-0 md:py-8 lg:py-0 max-w-full">
-        <section className={cn(
-          "px-4 xl:px-0 h-[calc(100vh-80px)] 2xl:h-[calc(100vh-104px)] w-full",
-          "max-w-screen flex flex-col gap-y-8 xl:gap-y-16 xl:py-16"
-        )}>
-          <div className="hero-title relative container mx-auto mt-10 xl:mt-0">
-            <h1
+      <Main className="p-0">
+        <section
+          className={cn(
+            "md:h-[calc(100dvh-80px)] 2xl:h-[calc(100dvh-104px)] container mx-auto",
+            "flex flex-col xl:flex-row xl:gap-16 py-8 lg:py-16 2xl:py-24 px-4 sm:px-6 md:px-8",
+          )}
+        >
+          <div className="flex-2 flex flex-col lg:gap-y-8 2xl:gap-y-12">
+            <Title
               className={cn(
-                "text-[1.75rem] min-[375px]:text-[2rem] min-[425px]:text-[2.25rem] md:text-7xl lg:text-[5rem]",
-                "xl:text-[4.5rem] text-terracotta-950 dark:text-dark-contrast-100 max-sm:font-inter",
-                "font-cabinet font-black uppercase max-sm:tracking-tighter leading-8 min-[425px]:leading-9",
-                "md:leading-15 lg:leading-20 xl:leading-18 2xl:leading-24",
+                "min-[425px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl md:text-terracotta-900",
+                "sm:tracking-normal uppercase lg:max-w-full",
               )}
             >
-              Desbravamento
-              <br />
-              do leste de
-              <br />
-              Mato Grosso
-            </h1>
-            <div className={cn(
-              "mt-6 md:mt-12 md:mb-8 2xl:mt-0 xl:absolute xl:bottom-2.5 xl:right-0",
-              "max-w-70 sm:max-w-76 md:max-w-full xl:max-w-120"
-            )}>
-              <TextRevealHidden animateOnScroll={false} blockColor="#fbf6ea">
-                <p className={cn(
-                  "resume min-[425px]:text-lg md:text-2xl text-right dark:text-white text-balance",
-                  "leading-5 min-[425px]:leading-6 md:leading-8"
-                )}>
-                  
-                </p>
-              </TextRevealHidden>
-            </div>
+              Desbravamento do <span className="max-sm:text-tan-500">leste de Mato Grosso</span>
+            </Title>
+            <TextRevealHidden animateOnScroll={false} blockColor="#fbf6ea" className="my-8 sm:w-full max-w-screen">
+              <p
+                className={cn(
+                  "sm:text-lg lg:text-2xl 2xl:text-[26px] text-tan-800 leading-5 sm:leading-6",
+                  "lg:leading-7 xl:leading-9 sm:max-w-full lg:max-w-[85%]!",
+                )}
+              >
+                Para compreender melhor os eventos que sucederam durante o período de atividades promovidas pelas Expedição
+                Roncador-Xingu e Fundação Brasil Central (1943-1967) no atual Vale do Araguaia, em Mato Grosso, abaixo
+                apresentamos um breve contexto histórico do início da colonização não indígena na região
+              </p>
+            </TextRevealHidden>
           </div>
 
-          <div
-            className={cn(
-              "timeline-boxes relative 2xl:h-72.5 2xl:min-h-72.5 container mx-auto sm:border",
-              "dark:border-dark-contrast-100 grid grid-rows-3 gap-y-4 grid-cols-1 md:grid-rows-1 md:grid-cols-3",
-              "md:divide-x md:divide-terracotta-950 dark:md:divide-dark-contrast-100 mb-12 xl:mb-0",
-            )}
-          >
-            <TimelineBoxResume period="1943-1949" text="Lançamento das bases" />
-            <TimelineBoxResume period="1950-1959" text="Período de consolidação" />
-            <TimelineBoxResume period="1960-1967" text="Expansão e declínio" />
+          <div className="flex-1 grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2">
+            <PeriodBox title="1943-1949" subtitle="Lançamento das bases" />
+            <PeriodBox title="1950-1959" subtitle="Período de consolidação" />
+            <PeriodBox title="1960-1967" subtitle="Expansão e declínio" />
           </div>
         </section>
         <Timeline />

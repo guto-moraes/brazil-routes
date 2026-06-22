@@ -165,3 +165,11 @@ remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 
 // Remove the injected SVG layout filters
 remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+
+//Evitar vazamento do GraphQl para pessoa não autorizadas
+add_filter( 'graphql_object_visibility', function( $visibility, $model_name, $data, $owner, $current_user ) {
+    if ( ( ! isset( $current_user->ID ) || 0 === $current_user->ID ) && 'UserObject' === $model_name ) {
+        $visibility = 'private';
+    }
+    return $visibility;
+}, 10, 5 );
