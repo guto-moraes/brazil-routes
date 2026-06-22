@@ -5,14 +5,16 @@ import Main from "@/layouts/main";
 import Article from "@/components/article";
 import ChapterTitle from "@/components/chapter-title";
 import AlmanaqueDownload from "@/components/almanaque-download";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ChapterNavigation from "@/components/chapters-navigation";
+import TextToSpeechPlayer from "@/components/text-to-speech-player";
 
 export const Route = createFileRoute("/almanaque-digital/capitulo-{-$number}")({
   component: AlmanaqueChapter,
 });
 
 function AlmanaqueChapter() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { pathname } = useLocation();
   const { data } = useQueryChapterPage(pathname);
 
@@ -26,7 +28,8 @@ function AlmanaqueChapter() {
     <>
       <Header className="shadow-md" />
       <Main className="py-12 sm:py-16 md:py-18 lg:py-20 xl:py-24 max-md:px-4">
-        <div className="container max-w-5xl mx-auto">
+        <TextToSpeechPlayer className="container max-w-5xl mx-auto mb-8" contentRef={containerRef} />
+        <div className="container max-w-5xl mx-auto" ref={containerRef}>
           <ChapterTitle
             title={data.page.chaptersCustom.title}
             subtitle={data.page.chaptersCustom.subtitle && data.page.chaptersCustom.subtitle}
