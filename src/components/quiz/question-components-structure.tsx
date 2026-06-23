@@ -6,7 +6,9 @@ const indexes: string[] = ["A", "B", "C", "D", "E"];
 
 // Encapisulador do componente
 const QuestionWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="h-[calc(100vh-80px)] 2xl:h-[calc(100vh-104px)] max-w-6xl container mx-auto flex flex-col md:flex-row gap-8 py-12">{children}</div>
+  <div className="min-h-[calc(100vh-80px)] 2xl:min-h-[calc(100vh-104px)] max-w-6xl container mx-auto flex flex-col md:flex-row gap-8 lg:gap-10 xl:gap-12 py-12">
+    {children}
+  </div>
 );
 
 // Container do componente
@@ -41,7 +43,7 @@ const QuestionBadgeAndStatement = ({
 
 // Lista de Respostas
 const QuestionAnswerList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="w-3/4 mx-auto flex flex-col gap-y-4">{children}</ul>
+  <ul className="w-full max-w-full flex flex-col gap-y-4">{children}</ul>
 );
 
 // Opção de Resposta
@@ -82,7 +84,7 @@ const QuestionAnswerOption = ({
       >
         <span
           className={cn(
-            "rounded-xs h-full size-8 text-base text-white dark:text-dark-200 font-medium bg-tan-600 dark:bg-dark-600",
+            "rounded-xs h-full min-h-8 min-w-8 text-base text-white dark:text-dark-200 font-medium bg-tan-600 dark:bg-dark-600",
             "flex justify-center items-center group-data-[correct=true]:bg-darkgreen-500 dark:group-data-[correct=true]:text-white",
             "dark:group-data-[selected=true]:text-white group-data-[selected=true]:bg-terracotta-700",
             "dark:group-data-[correct=true]:bg-green-400 dark:group-data-[selected=true]:bg-rose-500",
@@ -92,8 +94,12 @@ const QuestionAnswerOption = ({
         </span>
         {option}
       </button>
-      {correctAnswer === index && selectedAnswer !== -1 && <CircleCheck className="text-darkgreen-500 dark:text-green-400" />}
-      {correctAnswer !== selectedAnswer && selectedAnswer === index && <CircleX className="text-terracotta-600 dark:text-rose-500" />}
+      {correctAnswer === index && selectedAnswer !== -1 && (
+        <CircleCheck className="text-darkgreen-500 dark:text-green-400" />
+      )}
+      {correctAnswer !== selectedAnswer && selectedAnswer === index && (
+        <CircleX className="text-terracotta-600 dark:text-rose-500" />
+      )}
     </li>
   );
 };
@@ -155,7 +161,9 @@ const QuestionAnswerExplain = ({
             "[&_button]:transition-colors [&_button]:duration-300 [&_button]:cursor-pointer [&_button]:p-1",
           )}
         >
-          <DialogTitle className="text-lg text-tan-800 dark:text-[#ffe27d] font-bold">Explicação da Resposta</DialogTitle>
+          <DialogTitle className="text-lg text-tan-800 dark:text-[#ffe27d] font-bold">
+            Explicação da Resposta
+          </DialogTitle>
           <div
             className="text-sm text-tan-700 dark:text-white text-justify text-pretty hyphens-auto"
             dangerouslySetInnerHTML={sanitizedData(explain)}

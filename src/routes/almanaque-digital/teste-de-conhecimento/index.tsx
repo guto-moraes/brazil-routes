@@ -50,7 +50,7 @@ function QuizzPage() {
           </h1>
           <div
             className={cn(
-              "[&_p]:text-[clamp(0.85rem,2vw,1.05rem)] [&_p]:text-tan-800 dark:[&_p]:text-white",
+              "*:not-last:mb-8 [&_p]:text-[clamp(0.85rem,2vw,1.05rem)] [&_p]:text-tan-800 dark:[&_p]:text-white",
               "[&_p]:text-justify [&_p]:text-pretty [&_p]:hyphens-auto max-w-2xl max-sm:px-4 mt-8 px-4",
             )}
             dangerouslySetInnerHTML={sanitizedData(data.page.content)}
