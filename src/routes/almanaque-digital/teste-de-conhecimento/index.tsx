@@ -40,7 +40,7 @@ function QuizzPage() {
   return (
     <>
       <Header className="shadow-md" />
-      <Main className="h-[calc(100vh-80px)] 2xl:h-[calc(100vh-104px)] flex flex-col justify-center items-center gap-10 dark:bg-dark-950">
+      <Main className="min-h-[calc(100vh-80px)] 2xl:min-h-[calc(100vh-104px)] flex flex-col justify-center items-center gap-10 dark:bg-dark-950">
         <div className="flex flex-col">
           <figure className="w-52 sm:w-72 max-w-full mx-auto">
             <img className="h-full w-full object-cover object-center" src={quizz} alt="" />

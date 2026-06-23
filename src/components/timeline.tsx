@@ -144,7 +144,7 @@ const Timeline = () => {
                     <TimelineEventDate
                       bgColor={timeline.info.theadBgColor}
                       color={timeline.info.textColor}
-                      text={events[1]}
+                      text={events[2]}
                     />
                     <TimelineEventDetails>
                       <TimelineBadge color={timeline.info.textColor} text={timeline.info.thirdCol.textTag} />

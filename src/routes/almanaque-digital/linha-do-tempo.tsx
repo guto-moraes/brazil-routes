@@ -32,11 +32,11 @@ function NewTimeline() {
       <Main className="p-0">
         <section
           className={cn(
-            "md:h-[calc(100dvh-80px)] 2xl:h-[calc(100dvh-104px)] container mx-auto",
+            "md:min-h-[calc(100dvh-80px)] 2xl:min-h-[calc(100dvh-104px)] container mx-auto",
             "flex flex-col xl:flex-row xl:gap-16 py-8 lg:py-16 2xl:py-24 px-4 sm:px-6 md:px-8",
           )}
         >
-          <div className="flex-2 flex flex-col lg:gap-y-8 2xl:gap-y-12">
+          <div className="flex-2 flex flex-col lg:gap-y-8 2xl:gap-y-12 mb-6">
             <Title
               className={cn(
                 "min-[425px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl md:text-terracotta-900",
